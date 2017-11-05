@@ -6,11 +6,14 @@
         <field name='model'>res.shop</field>
         <field name='type'>form</field>
         <field name='arch' type='xml'>
-            <form string='Shop' version='7.0'>
+            <form string='Shop'>
                 <sheet>
                     <group>
                         <group>
                             <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="company_id"/>
                         </group>
                     </group>
                 </sheet>
@@ -19,12 +22,13 @@
     </record>
 
     <record id='tree_view_shop' model='ir.ui.view'>
-        <field name='name'>tree.view.idenfitication.type</field>
+        <field name='name'>tree.view.shop.type</field>
         <field name='model'>res.shop</field>
         <field name='type'>tree</field>
         <field name='arch' type='xml'>
             <tree string='Shops'>
                 <field name="name"/>
+                <field name="company_id"/>
             </tree>
         </field>
     </record>
