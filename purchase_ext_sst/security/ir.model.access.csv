@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_request_channel_user,request_channel_user,model_request_channel,base.group_user,1,0,0,0
+access_request_channel_manager,request_channel_manager,model_request_channel,purchase.group_purchase_manager,1,1,1,1
+access_request_medium_user,request_medium_user,model_request_medium,base.group_user,1,0,0,0
+access_request_medium_manager,request_medium_manager,model_request_medium,purchase.group_purchase_manager,1,1,1,1
+access_purchase_category_user,purchase_category_user,model_purchase_category,base.group_user,1,0,0,0
+access_purchase_category_manager,purchase_category_manager,model_purchase_category,purchase.group_purchase_manager,1,1,1,1
