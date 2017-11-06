@@ -10,6 +10,7 @@
     'license': "AGPL-3",
     'description': "",
     'depends': [
+        'hr',
         'purchase',
     ],
     'data': [
@@ -19,6 +20,7 @@
         'views/request_channel_views.xml',
         'views/request_medium_views.xml',
         'views/purchase_category_views.xml',
+        'views/purchase_order_views.xml',
     ],
     'installable': True,
 }

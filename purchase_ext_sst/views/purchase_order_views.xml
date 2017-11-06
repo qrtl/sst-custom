@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="phone"/>
+                <field name="address"/>
+            </xpath>
+            <xpath expr="//sheet/group" position="after">
+                <group>
+                    <group>
+                        <field name="request_channel_id"/>
+                        <field name="request_medium_id"/>
+                        <field name="call_back"/>
+                    </group>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="shop_id"/>
+                        <field name="purchase_category_id"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="remark"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_tree" model="ir.ui.view">
+        <field name="name">purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="request_channel_id"/>
+                <field name="request_medium_id"/>
+                <field name="call_back"/>
+                <field name="employee_id"/>
+                <field name="shop_id"/>
+                <field name="purchase_category_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="request_channel_id"/>
+                <field name="request_medium_id"/>
+                <field name="call_back"/>
+                <field name="employee_id"/>
+                <field name="shop_id"/>
+                <field name="purchase_category_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
