@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="purchase_category_pickup" model="purchase.category">
+        <field name="name">出張買取</field>
+        <field eval="False" name="company_id"/>
+    </record>
+    <record id="purchase_category_delivery" model="purchase.category">
+        <field name="name">宅配買取</field>
+        <field eval="False" name="company_id"/>
+    </record>
+    <record id="purchase_category_walkin" model="purchase.category">
+        <field name="name">店頭買取</field>
+        <field eval="False" name="company_id"/>
+    </record>
+    <record id="purchase_category_other" model="purchase.category">
+        <field name="name">その他</field>
+        <field eval="False" name="company_id"/>
+    </record>
+
+</odoo>

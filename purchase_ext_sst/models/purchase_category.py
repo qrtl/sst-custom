@@ -5,10 +5,9 @@
 from odoo import models, fields
 
 
-class RequestChannel(models.Model):
-    _name = 'request.channel'
+class PurchaseCategory(models.Model):
+    _name = 'purchase.category'
     _order = 'sequence, name'
-
 
     name = fields.Char(required=True)
     sequence = fields.Integer(default=10)
@@ -17,5 +16,5 @@ class RequestChannel(models.Model):
         'res.company',
         'Company',
         default=lambda self: self.env['res.company']._company_default_get(
-            'request.channel'),
+            'request.medium'),
     )
