@@ -6,7 +6,11 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="before">
+                <field name="fax"/>
+            </xpath>
             <xpath expr="//field[@name='lang']" position="after">
+                <field name="occupation_id" attrs="{'invisible' : [('supplier', '=', False)]}"/>
                 <field name="identification_type_id" attrs="{'invisible' : [('supplier', '=', False)]}"/>
                 <field name="identification_number" attrs="{'invisible' : [('supplier', '=', False)]}"/>
                 <field name="shop_id" attrs="{'invisible' : [('supplier', '=', False)]}"/>

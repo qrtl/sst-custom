@@ -6,7 +6,7 @@
         <field name='model'>res.identification.type</field>
         <field name='type'>form</field>
         <field name='arch' type='xml'>
-            <form string='Identification Type' version='7.0'>
+            <form string='Identification Type'>
                 <sheet>
                     <group>
                         <group>
