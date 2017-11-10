@@ -118,7 +118,7 @@ msgstr "買取区分"
 #: model:ir.model.fields,field_description:product_ext_sst.field_product_product_purchased_by_id
 #: model:ir.model.fields,field_description:product_ext_sst.field_product_template_purchased_by_id
 msgid "Purchased By"
-msgstr "Purchased By"
+msgstr "買取担当"
 
 #. module: product_ext_sst
 #: model:ir.model.fields,field_description:product_ext_sst.field_product_product_team_ids
