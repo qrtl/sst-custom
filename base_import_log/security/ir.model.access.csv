@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_error_log,error.log,model_error_log,base_import_log.group_data_importing,1,1,1,1
+access_error_log_line,error.log.line,model_error_log_line,base_import_log.group_data_importing,1,1,1,1
