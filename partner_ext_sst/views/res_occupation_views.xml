@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='form_view_occupation' model='ir.ui.view'>
+        <field name='name'>form.view.occupation</field>
+        <field name='model'>res.occupation</field>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+            <form string='Occupation'>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='tree_view_occupation' model='ir.ui.view'>
+        <field name='name'>tree.view.occupation</field>
+        <field name='model'>res.occupation</field>
+        <field name='type'>tree</field>
+        <field name='arch' type='xml'>
+            <tree string='Occupations'>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='action_occupation' model='ir.actions.act_window'>
+        <field name='name'>Occupations</field>
+        <field name='res_model'>res.occupation</field>
+        <field name='view_type'>form</field>
+        <field name='view_mode'>tree,form</field>
+    </record>
+
+    <menuitem id="menu_occupation" name="Occupations" parent="menu_vendor_in_config_purchase" action='action_occupation' sequence="15"/>
+
+</odoo>
