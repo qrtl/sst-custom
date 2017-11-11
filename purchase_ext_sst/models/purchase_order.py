@@ -15,16 +15,11 @@ class PurchaseOrder(models.Model):
         'purchase.category',
         "Purchase Category",
     )
-    remark = fields.Char('Remark')
     call_back = fields.Boolean('Call Back')
-    shop_id = fields.Many2one('res.shop', 'Shop')
-    phone = fields.Char(related='partner_id.phone', store=True, readonly=True)
-    address = fields.Char(
-        related='partner_id.street',
-        store=True,
-        readonly=True,
-        string='Address',
-    )
+    shop_id = fields.Many2one('stock.warehouse', 'Shop')
+    phone = fields.Char(index=True)
+    address = fields.Char()
+    remark = fields.Text('Remark')
 
 
     @api.onchange('partner_id', 'company_id')

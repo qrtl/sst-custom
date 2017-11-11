@@ -27,6 +27,12 @@
                     <field name="remark"/>
                 </group>
             </xpath>
+            <xpath expr="//notebook/page[1]//tree/field[@name='date_planned']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[2]//field[@name='date_planned']" position="attributes">
+                <attribute name="required">False</attribute>
+            </xpath>
         </field>
     </record>
 
@@ -51,6 +57,9 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="phone"/>
+            </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="request_channel_id"/>
                 <field name="request_medium_id"/>
