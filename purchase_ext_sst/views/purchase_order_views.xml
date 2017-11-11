@@ -27,6 +27,9 @@
                     <field name="remark"/>
                 </group>
             </xpath>
+            <xpath expr="//notebook/page[2]//field[@name='date_planned']" position="attributes">
+                <attribute name="required">False</attribute>
+            </xpath>
         </field>
     </record>
 

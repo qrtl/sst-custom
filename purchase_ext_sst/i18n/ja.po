@@ -1,0 +1,187 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_ext_sst
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-11 14:48+0000\n"
+"PO-Revision-Date: 2017-11-11 14:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_active
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_active
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_active
+msgid "Active"
+msgstr "有効"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_address
+msgid "Address"
+msgstr "アドレス"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_call_back
+msgid "Call Back"
+msgstr "折TEL"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_company_id
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_company_id
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_company_id
+msgid "Company"
+msgstr "会社"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_create_uid
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_create_uid
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_create_date
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_create_date
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_display_name
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_display_name
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_id
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_id
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category___last_update
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel___last_update
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_write_uid
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_write_uid
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_write_date
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_write_date
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_name
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_name
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_name
+msgid "Name"
+msgstr "名称"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_phone
+msgid "Phone"
+msgstr "電話"
+
+#. module: purchase_ext_sst
+#: model:ir.actions.act_window,name:purchase_ext_sst.action_purchase_category
+#: model:ir.ui.menu,name:purchase_ext_sst.menu_purchase_category
+#: model:ir.ui.view,arch_db:purchase_ext_sst.tree_view_purchase_category
+msgid "Purchase Categories"
+msgstr "買取区分"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_purchase_category_id
+#: model:ir.ui.view,arch_db:purchase_ext_sst.form_view_purchase_category
+msgid "Purchase Category"
+msgstr "買取区分"
+
+#. module: purchase_ext_sst
+#: model:ir.model,name:purchase_ext_sst.model_purchase_order
+msgid "Purchase Order"
+msgstr "発注"
+
+#. module: purchase_ext_sst
+#: model:ir.ui.menu,name:purchase_ext_sst.menu_purchase_in_config_purchase
+msgid "Purchases"
+msgstr "購買"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_employee_id
+msgid "Received By"
+msgstr "受付担当"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_remark
+msgid "Remark"
+msgstr "備考"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_request_channel_id
+#: model:ir.ui.view,arch_db:purchase_ext_sst.form_view_request_channel
+msgid "Request Channel"
+msgstr "受付方法"
+
+#. module: purchase_ext_sst
+#: model:ir.actions.act_window,name:purchase_ext_sst.action_request_channel
+#: model:ir.ui.menu,name:purchase_ext_sst.menu_request_channel
+#: model:ir.ui.view,arch_db:purchase_ext_sst.tree_view_request_channel
+msgid "Request Channels"
+msgstr "受付方法"
+
+#. module: purchase_ext_sst
+#: model:ir.actions.act_window,name:purchase_ext_sst.action_request_medium
+#: model:ir.ui.menu,name:purchase_ext_sst.menu_request_medium
+#: model:ir.ui.view,arch_db:purchase_ext_sst.tree_view_request_medium
+msgid "Request Media"
+msgstr "媒体"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_request_medium_id
+#: model:ir.ui.view,arch_db:purchase_ext_sst.form_view_request_medium
+msgid "Request Medium"
+msgstr "媒体"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_sequence
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_sequence
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_sequence
+msgid "Sequence"
+msgstr "付番"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_shop_id
+msgid "Shop"
+msgstr "担当店舗"
+
+#. module: purchase_ext_sst
+#: model:ir.model,name:purchase_ext_sst.model_purchase_category
+msgid "purchase.category"
+msgstr "purchase.category"
+
+#. module: purchase_ext_sst
+#: model:ir.model,name:purchase_ext_sst.model_request_channel
+msgid "request.channel"
+msgstr "request.channel"
+
+#. module: purchase_ext_sst
+#: model:ir.model,name:purchase_ext_sst.model_request_medium
+msgid "request.medium"
+msgstr "request.medium"
