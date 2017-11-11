@@ -16,8 +16,8 @@ class ResPartner(models.Model):
         string='Identification Number',
     )
     shop_id = fields.Many2one(
-        comodel_name='res.shop',
-        string='Shop',
+        'stock.warehouse',
+        'Shop',
     )
     fax = fields.Char()
     occupation_id = fields.Many2one('res.occupation', 'Occupation')
