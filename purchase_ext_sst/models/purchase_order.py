@@ -17,7 +17,7 @@ class PurchaseOrder(models.Model):
     )
     call_back = fields.Boolean('Call Back')
     shop_id = fields.Many2one('stock.warehouse', 'Shop')
-    phone = fields.Char()
+    phone = fields.Char(index=True)
     address = fields.Char()
     remark = fields.Text('Remark')
 
