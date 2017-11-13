@@ -34,9 +34,6 @@
                         <group>
                             <field name="picking_policy"/>
                         </group>
-                        <group>
-                            <field name="order_policy"/>
-                        </group>
                     </group>
                     <group>
                         <group>

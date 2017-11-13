@@ -43,12 +43,6 @@ class import_sale(models.TransientModel):
             return default_rec.picking_policy
 
     @api.model
-    def _get_order_policy(self):
-        default_rec = self.env['sale.import.default'].search([('company_id','=',self.env.user.company_id.id)], limit=1)
-        if default_rec:
-            return default_rec.order_policy
-
-    @api.model
     def _get_customer_invoice_journal_id(self):
         default_rec = self.env['sale.import.default'].search([('company_id','=',self.env.user.company_id.id)], limit=1)
         if default_rec:
@@ -66,11 +60,6 @@ class import_sale(models.TransientModel):
                 ('direct', 'Deliver each product when available'),
                 ('one', 'Deliver all products at once')],
                 required=True, string='Shipping Policy', default=_get_picking_policy)
-    order_policy = fields.Selection([
-                ('manual', 'On Demand'),
-                ('picking', 'On Delivery Order'),
-                ('prepaid', 'Before Delivery')],
-                required=True, string='Create Invoice', default=_get_order_policy)
     customer_invoice_journal_id = fields.Many2one('account.journal',
                 required=True, string='Customer Invoice Journal',
                 default=_get_customer_invoice_journal_id)
@@ -122,7 +111,8 @@ class import_sale(models.TransientModel):
     def _get_taxes(self, tax_from_chunk, taxes, error_line_vals):
         tax_name_list = tax_from_chunk.split(',')
         for tax_name in tax_name_list:
-            tax = self.env['account.tax'].search([('name', '=', tax_name)])
+            tax = self.env['account.tax'].search([('name', '=', tax_name)],
+                                                 limit=1)
             if not tax:
                 error_line_vals['error_name'] = error_line_vals['error_name'] + _('Tax: ') + tax_name + _(' Not Found!') + '\n'
                 error_line_vals['error'] = True
@@ -172,7 +162,6 @@ class import_sale(models.TransientModel):
             'partner_shipping_id' : order_data['partner_shipping_id'],
             'payment_term_id': order_data['payment_term'],
             'state' : 'draft',
-#             'order_policy' :  order_data['order_policy'], # odoo11
             'picking_policy': order_data['picking_policy'],
 #             'currency_id' : order_data['currency_id'], # odoo11
             'note': order_data['note'],
@@ -345,7 +334,6 @@ class import_sale(models.TransientModel):
                     error_line_vals['error_name'] = error_line_vals['error_name'] + _('Unit Price not less than zero!') + '\n'
                     error_line_vals['error'] = True
 
-                order_policy = self.order_policy
                 picking_policy = self.picking_policy
                 order = row[order_group].strip()
 
@@ -399,7 +387,6 @@ class import_sale(models.TransientModel):
                                         'partner_shipping_id' : addr['delivery'],
 #                                         'payment_term': partner_data['value']['payment_term'], # odoo11
                                         'payment_term':  partner_data.property_payment_term_id and partner_data.property_payment_term_id.id or False,
-                                        'order_policy' :  order_policy,
                                         'picking_policy': picking_policy,
 #                                         'currency_id' : pricelist_data['value']['currency_id'], # odoo11
                                         'note': row[notes].strip()
@@ -422,17 +409,6 @@ class import_sale(models.TransientModel):
                     if order_id.picking_ids:
                         for picking in order_id.picking_ids:
                             available = picking.action_assign()
-#                     if order_id.order_policy == 'picking': # odoo11 TODO
-                    if self.order_policy == 'picking': # TODO check now order policy removed from sale order it is on product
-                        pass
-                        #IF INVOICE POLICY IS FROM DELIVERY ORDER THEN WE WILL NOT CREATE INVOICE FROM HERE AND WE WILL PROCESS/CREATE INVOICE WHILE IMPORTING PICKINGS CSV. MEANS PICKING WILL BE HAVING STATE 2BINVOICED WILL BE PROCESS INVOICE/PAYMENT WHILE IMPORTING PICKING CSV.
-                        #invoice = picking.action_invoice_create(
-                        #                        journal_id = self.customer_invoice_journal_id.id,
-                        #                        type = 'out_invoice'
-                        #                        )
-
-#                     if order_id.state == 'manual' or order_id.state == 'prepaid':
-#                         invoice = order_id.signal_workflow('manual_invoice') # odoo 11
 
                     invoice_ids = order_id.action_invoice_create() # odoo11
 
