@@ -1,5 +1,5 @@
 Group,Customer,Line Product,Line Description,Line Unit Price,Line Qty,Line Tax,Notes,Pricelist,Warehouse,Picking Policy,Order Policy
-a,Agrolait,DVD,ニンテンドー3DS シルバー,16000,1,Tax 15.00%,,Public Pricelist,YourCompany,Deliver each product when available,On Demand
-a,Agrolait,HEAD,東芝 ロボット掃除機 トルネオ ロボ イエロー VC-RVD1-R,58000,1,Tax 15.00%,,Public Pricelist,YourCompany,Deliver each product when available,On Demand
-b,China Export,LAP-E5,PANASONIC MC-RX1S-W レッド RULO(ルーロ) [ロボット掃除機],75000,1,Tax 15.00%,,Public Pricelist,YourCompany,Deliver each product when available,On Demand
-c,Best Designers,HEAD,東芝 ロボット掃除機 トルネオ ロボ イエロー VC-RVD1-R,58000,1,Tax 15.00%,,Public Pricelist,YourCompany,Deliver each product when available,On Demand
+a,Agrolait,E-COM08,ニンテンドー3DS シルバー,16000,1,Tax 15.00%,,Public Pricelist,YourCompany,Deliver each product when available,On Demand
+a,Agrolait,E-COM10,東芝 ロボット掃除機 トルネオ ロボ イエロー VC-RVD1-R,58000,1,Tax 15.00%,,Public Pricelist,YourCompany,Deliver each product when available,On Demand
+b,China Export,CONS_DEL03,PANASONIC MC-RX1S-W レッド RULO(ルーロ) [ロボット掃除機],75000,1,Tax 15.00%,,Public Pricelist,YourCompany,Deliver each product when available,On Demand
+c,Camptocamp,E-COM05,東芝 ロボット掃除機 トルネオ ロボ イエロー VC-RVD1-R,58000,1,Tax 15.00%,,Public Pricelist,YourCompany,Deliver each product when available,On Demand
