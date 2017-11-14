@@ -23,6 +23,27 @@ from odoo import tools
 class ImportSale(models.TransientModel):
     _name = 'import.sale'
 
+    @api.model
+    def _get_picking_policy(self):
+        default_rec = self.env['sale.import.default'].search(
+            [('company_id', '=', self.env.user.company_id.id)], limit=1)
+        if default_rec:
+            return default_rec.picking_policy
+
+    @api.model
+    def _get_customer_invoice_journal_id(self):
+        default_rec = self.env['sale.import.default'].search(
+            [('company_id', '=', self.env.user.company_id.id)], limit=1)
+        if default_rec:
+            return default_rec.customer_invoice_journal_id
+
+    @api.model
+    def _get_customer_payment_journal_id(self):
+        default_rec = self.env['sale.import.default'].search(
+            [('company_id', '=', self.env.user.company_id.id)], limit=1)
+        if default_rec:
+            return default_rec.customer_payment_journal_id
+
     input_file = fields.Binary(
         'Sale Order File (.csv Format)',
         required=True,
@@ -51,32 +72,12 @@ class ImportSale(models.TransientModel):
     )
 
     @api.model
-    def _get_picking_policy(self):
-        default_rec = self.env['sale.import.default'].search(
-            [('company_id', '=', self.env.user.company_id.id)], limit=1)
-        if default_rec:
-            return default_rec.picking_policy
-
-    @api.model
-    def _get_customer_invoice_journal_id(self):
-        default_rec = self.env['sale.import.default'].search(
-            [('company_id', '=', self.env.user.company_id.id)], limit=1)
-        if default_rec:
-            return default_rec.customer_invoice_journal_id
-
-    @api.model
-    def _get_customer_payment_journal_id(self):
-        default_rec = self.env['sale.import.default'].search(
-            [('company_id', '=', self.env.user.company_id.id)], limit=1)
-        if default_rec:
-            return default_rec.customer_payment_journal_id
-
-    @api.model
     def _get_partner_dict(self, partner_value, partner_dict, error_line_vals):
         if partner_value not in partner_dict.keys():
-            partner = self.env['res.partner'].search([('name', '=', partner_value)])
+            partner = self.env['res.partner'].search([('name', '=',
+                                                       partner_value)])
             if not partner:
-                error_line_vals['error_name'] = error_line_vals['error_name'] + _('Partner: ') + partner_value + _(' Not Found!') + '\n'
+                error_line_vals['error_name'] = error_line_vals['error_name']+ _('Partner: ') + partner_value + _(' Not Found!') + '\n'
                 error_line_vals['error'] = True
             else:
                 partner_dict[partner_value] = partner.id
@@ -194,23 +195,7 @@ class ImportSale(models.TransientModel):
 
     @api.multi
     def import_sale_data(self):
-#         if not self.customer_invoice_journal_id:
-#             raise Warning(_('Error!'),_('Please select Customer Invoice Journal.'))
-#         
-#         if not self.customer_payment_journal_id:
-#             raise Warning(_('Error!'),_('Please select Customer Payment Journal.'))
         for line in self:
-#             try:
-#                 lines = xlrd.open_workbook(file_contents=base64.decodestring(self.input_file))
-#             except IOError as e:
-#                 raise Warning(_('Import Error!'),_(e.strerror))
-#             except ValueError as e:
-#                 raise Warning(_('Import Error!'),_(e.strerror))
-#             except:
-#                 e = sys.exc_info()[0]
-#                 raise Warning(_('Import Error!'),_('Wrong file format. Please enter .xlsx file.'))
-#             if len(lines.sheet_names()) > 1:
-#                 raise Warning(_('Import Error!'),_('Please check your xlsx file, it seems it contains more than one sheet.'))
 
             model = self.env['ir.model'].search([('model', '=', 'sale.order')])
 
@@ -226,11 +211,6 @@ class ImportSale(models.TransientModel):
             ir_attachment = self.env['ir.attachment'].create({'name': self.datas_fname,
                         'datas': self.input_file,
                         'datas_fname': self.datas_fname})
-             
-#             fileobj = TemporaryFile('w+')
-#             fileobj.write(base64.b64decode(self.input_file))
-#             fileobj.seek(0)
-#             reader = csv.reader(fileobj)
 
             # new code to read csv
             csv_data = base64.decodestring(self.input_file)
@@ -252,24 +232,7 @@ class ImportSale(models.TransientModel):
             pricelist_id = fields.index('Pricelist')
             warehouse_id = fields.index('Warehouse')
 
-#             line = 1
             for row in csv_iterator:
-#                 line += 1
-
-#                 if line == 1:#Get the index of header and skip the first line
-#                     
-#                     order_group = row.index('Group')
-#                     partner_id = row.index('Customer')
-#                     product_id = row.index('Line Product')
-#                     line_name = row.index('Line Description')
-#                     price_unit = row.index('Line Unit Price')
-#                     product_qty = row.index('Line Qty')
-#                     taxes_id = row.index('Line Tax')
-#                     notes = row.index('Notes')
-#                     pricelist_id = row.index('Pricelist')
-#                     warehouse_id = row.index('Warehouse')
-#                     continue
-
                 check_list = []# Below logic for is row values are empty on all columns then skip that line.
                 order_group_value = row[order_group].strip()
                 if not bool(row[order_group].strip()):
@@ -278,9 +241,6 @@ class ImportSale(models.TransientModel):
                             check_list.append(r)
                     if not bool(row[order_group].strip()) and not check_list:
                         continue
-
-#                 if line == 2:#Check for UTF-8 Format. Only for first line i.e. line=2.
-#                     self._check_csv_format(row)
 
                 error_line_vals = {'error_name' : '', 'error': False}
                 partner_value = row[partner_id].strip()
@@ -345,8 +305,6 @@ class ImportSale(models.TransientModel):
 
                 if not error_log_id:
                     name = row[line_name].strip()
-#                     product_data = self.env['sale.order.line'].product_id_change(pricelist_dict[pricelist_value], product_dict[product_id_value], qty, False, 0, False, '', partner_dict[partner_value],False, True, False, False, False, False)
-#                     product_data = self.env['sale.order.line'].product_id_change()
                     product_data = self.env['product.product'].browse(product_dict[product_id_value]) # odoo11
                     if not name:
                         name = product_data['value']['name']
@@ -376,8 +334,6 @@ class ImportSale(models.TransientModel):
                                             })
 
                     if order not in order_dict:
-#                         pricelist_data = self.env['sale.order'].onchange_pricelist_id(pricelist_dict[pricelist_value], False)
-#                         partner_data = self.env['sale.order'].onchange_partner_id(partner_dict[partner_value])
                         partner_data = self.env['res.partner'].browse(partner_dict[partner_value])
                         pricelist_data = partner_data.property_product_pricelist and partner_data.property_product_pricelist.id or False
                         addr = partner_data.address_get(['delivery', 'invoice'])
@@ -408,7 +364,7 @@ class ImportSale(models.TransientModel):
                     for so_line in order_item_dict[item]:
                         orderline_id = self._get_orderline_id(so_line, order_id)
 
-#                     order_id.signal_workflow('order_confirm') # odoo11
+#                   order_id.signal_workflow('order_confirm') # odoo11
                     order_id.action_confirm() # odoo11
                     if order_id.picking_ids:
                         for picking in order_id.picking_ids:
@@ -423,60 +379,7 @@ class ImportSale(models.TransientModel):
 #                                 invoice.signal_workflow('invoice_open')
                                 invoice.action_invoice_open() # odoo11
                                 invoice.pay_and_reconcile(self.customer_payment_journal_id.id) # odoo11
-
-                                # no need to create manual payment we have odoo standard method to do this so just called it
-#                                 if self.customer_payment_journal_id.currency and self.customer_payment_journal_id.currency.id != invoice.currency_id.id:
-#                                     currency_id_voucher = self.customer_payment_journal_id.currency.id
-#                                     voucher_amount = invoice.currency_id.compute(invoice.amount_total, self.customer_payment_journal_id.currency)
-#                                 elif not self.customer_payment_journal_id.currency and invoice.currency_id.id != invoice.company_id.currency_id.id:
-#                                     currency_id_voucher = invoice.company_id.currency_id.id
-#                                     voucher_amount = invoice.currency_id.compute(invoice.amount_total, invoice.company_id.currency_id)
-#                                 else:
-#                                     currency_id_voucher = invoice.currency_id.id
-#                                     voucher_amount = invoice.amount_total
-#                                 partner_data  = self.env['account.voucher'].onchange_partner_id(invoice.partner_id.id,
-#                                                                                                 self.customer_payment_journal_id.id,
-#                                                                                                 voucher_amount,
-#                                                                                                 currency_id_voucher,
-#                                                                                                 'receipt',
-#                                                                                                 invoice.date_invoice)
-#                                 journal_data = self.env['account.voucher'].onchange_journal_voucher(line_ids= False,
-#                                                                                                     tax_id=False,
-#                                                                                                     price=0.0, 
-#                                                                                                     partner_id=invoice.partner_id.id,
-#                                                                                                     journal_id=self.customer_payment_journal_id.id,
-#                                                                                                     ttype='receipt',
-#                                                                                                     company_id=invoice.company_id.id)
-#                                 line_cr_list = []
-#                                 for line in partner_data['value']['line_cr_ids']:
-#                                     moveline = self.env['account.move.line'].browse(line['move_line_id'])
-#                                     if invoice.id == moveline.invoice.id:
-#                                         line['amount'] = voucher_amount
-#                                         line_cr_list.append((0, 0, line))
-#                                         break #IF one line found then get out of loop since invoice and payment has one to one relation.
-#                                 voucher_vals = {
-#                                     'name': '/',
-#                                     'partner_id' : invoice.partner_id.id,
-#                                     'company_id' : invoice.company_id.id,
-#                                     'journal_id' : self.customer_payment_journal_id.id,
-#                                     'currency_id': currency_id_voucher,
-#                                     'line_ids' : False,
-#                                     'line_cr_ids' : line_cr_list,
-#                                     'line_dr_ids' : False,
-#                                     'account_id' : partner_data['value']['account_id'],
-#                                     'period_id': journal_data['value']['period_id'],
-#                                     'state': 'draft',
-#                                     'date' : invoice.date_invoice,
-#                                     'type': 'receipt',
-#                                     'amount' : voucher_amount,
-#                                     'payment_rate': journal_data['value']['payment_rate'],
-#                                     'payment_rate_currency_id': journal_data['value']['payment_rate_currency_id']
-#                                 }
-#                                 voucher_id = self.env['account.voucher'].create(voucher_vals)
-#                                 voucher_id.signal_workflow('proforma_voucher')
             res = self.env.ref('base_import_log.error_log_action')
             res = res.read()[0]
             res['domain'] = str([('id','in',[error_log_id])])
             return res
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
