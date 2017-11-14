@@ -1,19 +1,6 @@
 # -*- coding: utf-8 -*-
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) Rooms For (Hong Kong) Limited T/A OSCG. All Rights Reserved.
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# Copyright 2017 Quartile Limited
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import os
 import csv
@@ -28,44 +15,61 @@ from odoo.tools import pycompat
 import sys
 import urllib
 
-from openerp.exceptions import except_orm, Warning, RedirectWarning
-from openerp import models, fields, api, _
-from openerp import tools
+from odoo.exceptions import except_orm, Warning, RedirectWarning
+from odoo import models, fields, api, _
+from odoo import tools
 
 
-class import_sale(models.TransientModel):
+class ImportSale(models.TransientModel):
     _name = 'import.sale'
-    
+
+    input_file = fields.Binary(
+        'Sale Order File (.csv Format)',
+        required=True,
+    )
+    datas_fname = fields.Char(
+        'File Path'
+    )
+    picking_policy = fields.Selection([
+        ('direct', 'Deliver each product when available'),
+        ('one', 'Deliver all products at once')],
+        required=True,
+        string='Shipping Policy',
+        default=_get_picking_policy,
+    )
+    customer_invoice_journal_id = fields.Many2one(
+        'account.journal',
+        required=True,
+        string='Customer Invoice Journal',
+        default=_get_customer_invoice_journal_id,
+    )
+    customer_payment_journal_id = fields.Many2one(
+        'account.journal',
+        required=True,
+        string='Customer Payment Journal',
+        default=_get_customer_payment_journal_id,
+    )
+
     @api.model
     def _get_picking_policy(self):
-        default_rec = self.env['sale.import.default'].search([('company_id','=',self.env.user.company_id.id)], limit=1)
+        default_rec = self.env['sale.import.default'].search(
+            [('company_id', '=', self.env.user.company_id.id)], limit=1)
         if default_rec:
             return default_rec.picking_policy
 
     @api.model
     def _get_customer_invoice_journal_id(self):
-        default_rec = self.env['sale.import.default'].search([('company_id','=',self.env.user.company_id.id)], limit=1)
+        default_rec = self.env['sale.import.default'].search(
+            [('company_id', '=', self.env.user.company_id.id)], limit=1)
         if default_rec:
             return default_rec.customer_invoice_journal_id
 
     @api.model
     def _get_customer_payment_journal_id(self):
-        default_rec = self.env['sale.import.default'].search([('company_id','=',self.env.user.company_id.id)], limit=1)
+        default_rec = self.env['sale.import.default'].search(
+            [('company_id', '=', self.env.user.company_id.id)], limit=1)
         if default_rec:
             return default_rec.customer_payment_journal_id
-
-    input_file = fields.Binary('Sale Order File (.csv Format)', required=True)
-    datas_fname = fields.Char('File Path')
-    picking_policy = fields.Selection([
-                ('direct', 'Deliver each product when available'),
-                ('one', 'Deliver all products at once')],
-                required=True, string='Shipping Policy', default=_get_picking_policy)
-    customer_invoice_journal_id = fields.Many2one('account.journal',
-                required=True, string='Customer Invoice Journal',
-                default=_get_customer_invoice_journal_id)
-    customer_payment_journal_id = fields.Many2one('account.journal',
-                required=True, string='Customer Payment Journal',
-                default=_get_customer_payment_journal_id)
 
     @api.model
     def _get_partner_dict(self, partner_value, partner_dict, error_line_vals):

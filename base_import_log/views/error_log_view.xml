@@ -1,89 +1,100 @@
-<?xml version="1.0"?>
-<openerp>
-    <data>
-        <record model="ir.ui.view" id="import_error_log_form">
-            <field name="name">error.log.form</field>
-            <field name="model">error.log</field>
-            <field name="arch" type="xml">
-                 <form string="Error Logs" create="false" edit="false">
-                     <header>
-                         <field name="state" widget="statusbar"/>
-                     </header>
-                    <sheet>
-                        <group>
-                            <group>
-                                <field name="import_date"/>
-                                <field name="file_path" filename="file_name"/> 
-                                <field name="file_name" invisible="1"/>
-                            </group>
-                            <group>
-                                <field name="import_user_id"/>
-                                <field name="model_id"/>
-                                <field name="model_name" invisible="1"/>
-                            </group>
-                        </group>
-                        <notebook string='Logs'>
-                            <page string='Error Logs'>
-                                <field name="log_line_ids">
-                                    <tree string='Error Logs'>
-                                        <field name="order_group"/>                                        
-                                        <field name="row_no"/> 
-                                        <field name="error_name"/> 
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
-                    </sheet>
-                 </form>
-            </field>
-        </record>
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
 
-        <record model="ir.ui.view" id="error_log_tree">
-            <field name="name">error.log.tree</field>
-            <field name="model">error.log</field>
-            <field name="arch" type="xml">
-                 <tree string="Error Logs" create="false" edit="false" colors="red:state == 'failed';" default_order="import_date desc">
-                    <field name="import_date"/> 
-                    <field name="import_user_id"/>
-                    <field name="model_id"/>
-                    <field name="state"/>
-                 </tree>
-            </field>
-        </record>
-        
-        <record id="error_log_filter" model="ir.ui.view">
-            <field name="name">error.log.select</field>
-            <field name="model">error.log</field>
-            <field name="arch" type="xml">
-                <search string="Search Logs">
+    <record model="ir.ui.view" id="import_error_log_form">
+        <field name="name">error.log.form</field>
+        <field name="model">error.log</field>
+        <field name="arch" type="xml">
+             <form string="Error Logs" create="false" edit="false">
+                 <header>
+                     <field name="state" widget="statusbar"/>
+                 </header>
+                <sheet>
                     <group>
-                        <field name="state"/>
-                        <field name="import_user_id" />
-                        <field name="import_date"/>
-                        <field name="model_id"/>
+                        <group>
+                            <field name="import_date"/>
+                            <field name="file_path" filename="file_name"/>
+                            <field name="file_name" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="import_user_id"/>
+                            <field name="model_id"/>
+                            <field name="model_name" invisible="1"/>
+                        </group>
                     </group>
-                    <group expand="0" string="Group By...">
-                        <filter string="Status" name="state" context="{'group_by':'state'}" />
-                        <filter string="Imported By" name="import_user_id" context="{'group_by':'import_user_id'}" />
-                        <filter string="Import Date" name="import_date" context="{'group_by':'import_date'}" />
-                        <filter string="Model" name="model_id" context="{'group_by':'model_id'}" />
-                    </group>
-                </search>
-            </field>
-        </record>
-        
-        <record id='error_log_action' model='ir.actions.act_window'>
-            <field name='name'>Import Logs</field>
-            <field name='res_model'>error.log</field>
-            <field name='view_type'>form</field>
-            <field name='view_mode'>tree,form</field>
-        </record>
-        
-        <menuitem id="import_data_main_menu" name="Import" groups="base_import_log.group_data_importing"/>
-        <menuitem id="import_error_log_menu" name="Data Import Log" parent="import_data_main_menu" sequence="1"/>
-        <menuitem id="error_log_sub_menu" name="Import Log" parent="import_error_log_menu"
-                action="error_log_action" sequence="1"/>
-        <menuitem id="import_data_menu" name="Data Import" parent="import_data_main_menu"/>
-        <menuitem id="import_data_config" name="Configuration" parent="import_data_main_menu"/>
-    </data>
-</openerp>
+                    <notebook string='Logs'>
+                        <page string='Error Logs'>
+                            <field name="log_line_ids">
+                                <tree string='Error Logs'>
+                                    <field name="order_group"/>
+                                    <field name="row_no"/>
+                                    <field name="error_name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+             </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="error_log_tree">
+        <field name="name">error.log.tree</field>
+        <field name="model">error.log</field>
+        <field name="arch" type="xml">
+             <tree string="Error Logs" create="false" edit="false"
+                   colors="red:state == 'failed';"
+                   default_order="import_date desc">
+                <field name="import_date"/>
+                <field name="import_user_id"/>
+                <field name="model_id"/>
+                <field name="state"/>
+             </tree>
+        </field>
+    </record>
+
+    <record id="error_log_filter" model="ir.ui.view">
+        <field name="name">error.log.select</field>
+        <field name="model">error.log</field>
+        <field name="arch" type="xml">
+            <search string="Search Logs">
+                <group>
+                    <field name="state"/>
+                    <field name="import_user_id" />
+                    <field name="import_date"/>
+                    <field name="model_id"/>
+                </group>
+                <group expand="0" string="Group By...">
+                    <filter string="Status" name="state"
+                            context="{'group_by':'state'}" />
+                    <filter string="Imported By" name="import_user_id"
+                            context="{'group_by':'import_user_id'}" />
+                    <filter string="Import Date" name="import_date"
+                            context="{'group_by':'import_date'}" />
+                    <filter string="Model" name="model_id"
+                            context="{'group_by':'model_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id='error_log_action' model='ir.actions.act_window'>
+        <field name='name'>Import Logs</field>
+        <field name='res_model'>error.log</field>
+        <field name='view_type'>form</field>
+        <field name='view_mode'>tree,form</field>
+    </record>
+
+    <menuitem id="import_data_main_menu" name="Import"
+              groups="base_import_log.group_data_importing"/>
+    <menuitem id="import_error_log_menu" name="Data Import Log"
+              parent="import_data_main_menu" sequence="1"/>
+    <menuitem id="error_log_sub_menu" name="Import Log"
+              parent="import_error_log_menu" action="error_log_action"
+              sequence="1"/>
+    <menuitem id="import_data_menu" name="Data Import"
+              parent="import_data_main_menu"/>
+    <menuitem id="import_data_config" name="Configuration"
+              parent="import_data_main_menu"/>
+
+</odoo>

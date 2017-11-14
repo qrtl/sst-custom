@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
+
         <record id="import_error_log_form_sale" model="ir.ui.view">
             <field name="name">error.log.form.inherit</field>
             <field name="model">error.log</field>
             <field name="inherit_id" ref="base_import_log.import_error_log_form"/>
             <field name="arch" type="xml">
-<!--                <page string="Error Logs" position="after"-->
                 <xpath expr="//form/sheet/notebook/page" position="after">
-                    <page name="sales_orders" string="Sale Orders" attrs="{'invisible': [('model_name', '!=', 'sale.order')]}">
+                    <page name="sales_orders" string="Sale Orders"
+                          attrs="{'invisible': [('model_name', '!=', 'sale.order')]}">
                         <group>
-                            <div><field name="sale_order_ids" colspan="3" nolabel="1"/></div>
+                            <div>
+                                <field name="sale_order_ids"
+                                       colspan="3" nolabel="1"/>
+                            </div>
                         </group>
                     </page>
                 </xpath>
@@ -26,7 +29,7 @@
                     <label string="This wizard will create sales orders using imported .csv file. It will also validate sales order, validate invoice and pay the invoice."/>
                     <group>
                         <group>
-                            <field name="input_file" filename="datas_fname" />
+                            <field name="input_file" filename="datas_fname"/>
                             <field name="datas_fname" invisible="1"/>
                         </group>
                     </group>
@@ -37,14 +40,17 @@
                     </group>
                     <group>
                         <group>
-                            <field name="customer_invoice_journal_id" domain="[('type', '=', 'sale')]"/>
+                            <field name="customer_invoice_journal_id"
+                                   domain="[('type', '=', 'sale')]"/>
                         </group>
                         <group>
-                            <field name="customer_payment_journal_id" domain="[('type', 'in', ('cash', 'bank'))]"/>
+                            <field name="customer_payment_journal_id"
+                                   domain="[('type', 'in', ('cash', 'bank'))]"/>
                         </group>
                     </group>
                     <footer>
-                        <button name="import_sale_data" string="Import" type="object" class="oe_highlight"/> or 
+                        <button name="import_sale_data" string="Import"
+                                type="object" class="oe_highlight"/> or
                         <button special="cancel" string="Cancel" class="oe_link"/>
                     </footer>
                 </form>
@@ -62,8 +68,8 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem id="sale_import_wiz_menu" name="Import Sale Order" action="action_import_sale_order"
-                   parent= "base_import_log.import_data_menu"/>
+        <menuitem id="sale_import_wiz_menu" name="Import Sale Order"
+                  action="action_import_sale_order"
+                  parent= "base_import_log.import_data_menu"/>
 
-    </data>
-</openerp>
+</odoo>
