@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Sales Order Import',
-    'version': '11.0.1.0',
+    'version': '11.0.1.0.0',
     'author': 'Quartile Limited',
     'website': 'https://www.odoo-asia.com',
     'category': 'Sales Management',
