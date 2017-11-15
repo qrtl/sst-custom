@@ -1,5 +1,5 @@
 Sales Data Import
-====================
+=================
 
 This module provides following functions:
 
