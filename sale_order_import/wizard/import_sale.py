@@ -74,13 +74,16 @@ class ImportSale(models.TransientModel):
     @api.model
     def _get_partner_dict(self, partner_value, partner_dict, error_line_vals):
         if partner_value not in partner_dict.keys():
-            partner = self.env['res.partner'].search([('name', '=',
-                                                       partner_value)])
+            partner = self.env['res.partner'].search(
+                [('name', '=', partner_value),
+                 ('active', '=', True)])
             if not partner:
                 error_line_vals['error_name'] = error_line_vals['error_name']+ _('Partner: ') + partner_value + _(' Not Found!') + '\n'
                 error_line_vals['error'] = True
             else:
-                partner_dict[partner_value] = partner.id
+                #pick the first partner that matches the domain
+                #FIXME logic should be further refined
+                partner_dict[partner_value] = partner[0].id
 
     @api.model
     def _get_product_dict(self, product_id_value, product_dict, error_line_vals):
@@ -159,7 +162,7 @@ class ImportSale(models.TransientModel):
     @api.model
     def _get_order_id(self, order_data, item, error_log_id):
         order_vals = {
-            'name' : 'New', #'/', # odoo11
+            # 'name' : 'New', #'/', # odoo11
             'partner_id' : order_data['partner_id'],
             'partner_invoice_id' : order_data['partner_invoice_id'],
             'pricelist_id' : order_data['pricelist_id'],
@@ -213,7 +216,8 @@ class ImportSale(models.TransientModel):
                         'datas_fname': self.datas_fname})
 
             # new code to read csv
-            csv_data = base64.decodestring(self.input_file)
+            # csv_data = base64.decodestring(self.input_file)
+            csv_data = base64.decodebytes(self.input_file)
             csv_iterator = pycompat.csv_reader(
                 io.BytesIO(csv_data),
                 quotechar='"',
