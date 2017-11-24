@@ -30,3 +30,17 @@ class PurchaseOrder(models.Model):
         else:
             self.shop_id = self.partner_id.shop_id
         return {}
+
+    @api.multi
+    def open_record(self):
+        form_id = self.env.ref('purchase.purchase_order_form')
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'purchase.order',
+            'res_id': self.id,
+            'view_type': 'form',
+            'view_mode': 'form',
+            'view_id': form_id.id,
+            'context': {},
+            'target': 'current',
+        }

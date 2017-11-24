@@ -41,6 +41,9 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_tree"/>
         <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="editable">top</attribute>
+            </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="request_channel_id"/>
                 <field name="request_medium_id"/>
@@ -48,6 +51,9 @@
                 <field name="employee_id"/>
                 <field name="shop_id"/>
                 <field name="purchase_category_id"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <button name="open_record" type="object" icon="fa-sign-in"/>
             </xpath>
         </field>
     </record>
@@ -67,6 +73,15 @@
                 <field name="employee_id"/>
                 <field name="shop_id"/>
                 <field name="purchase_category_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='to_approve']" position="after">
+                <separator/>
+                <filter string="Late Scheduled Date" name="schedule_overdue"
+                        domain="[('date_planned', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Scheduled Today" name="schedule_today"
+                        domain="[('date_planned', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Upcoming Schedule" name="schedule_upcoming"
+                        domain="[('date_planned', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
             </xpath>
         </field>
     </record>
