@@ -68,6 +68,15 @@
                 <field name="shop_id"/>
                 <field name="purchase_category_id"/>
             </xpath>
+            <xpath expr="//filter[@name='to_approve']" position="after">
+                <separator/>
+                <filter string="Late Scheduled Date" name="schedule_overdue"
+                        domain="[('date_planned', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Scheduled Today" name="schedule_today"
+                        domain="[('date_planned', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Upcoming Schedule" name="schedule_upcoming"
+                        domain="[('date_planned', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+            </xpath>
         </field>
     </record>
 

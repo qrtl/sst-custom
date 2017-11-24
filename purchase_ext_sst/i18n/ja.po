@@ -185,3 +185,18 @@ msgstr "request.channel"
 #: model:ir.model,name:purchase_ext_sst.model_request_medium
 msgid "request.medium"
 msgstr "request.medium"
+
+#. module: purchase_ext_sst
+#: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
+msgid "Late Scheduled Date"
+msgstr "過去予定日"
+
+#. module: purchase_ext_sst
+#: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
+msgid "Scheduled Today"
+msgstr "本日予定日"
+
+#. module: purchase_ext_sst
+#: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
+msgid "Upcoming Schedule"
+msgstr "将来予定日"
