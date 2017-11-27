@@ -77,11 +77,12 @@
             <xpath expr="//filter[@name='to_approve']" position="after">
                 <separator/>
                 <filter string="Late Scheduled Date" name="schedule_overdue"
-                        domain="[('date_planned', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                        domain="[('date_planned', '&lt;', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
                 <filter string="Scheduled Today" name="schedule_today"
-                        domain="[('date_planned', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                        domain="[('date_planned','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
+                                 ('date_planned','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
                 <filter string="Upcoming Schedule" name="schedule_upcoming"
-                        domain="[('date_planned', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                        domain="[('date_planned', '&gt;', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
             </xpath>
         </field>
     </record>
