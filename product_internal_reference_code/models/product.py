@@ -7,8 +7,8 @@ class Product(models.Model):
     
     @api.model
     def create(self, vals):
-        code = self.env.user.company_id.code
-        name = self.env['ir.sequence'].next_by_code('product.product.seq')
-        new_code = code + name
-        vals.update({'default_code': new_code})
-        return  super(Product, self).create(vals)
+        if not vals.get('default_code', False):
+            internal_code_prefix = self.env.user.company_id.internal_code_prefix
+            seq_code = self.env['ir.sequence'].next_by_code('product.product.internal_code')
+            vals.update({'default_code': internal_code_prefix + seq_code})
+        return super(Product, self).create(vals)

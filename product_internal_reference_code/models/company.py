@@ -5,6 +5,7 @@ from odoo import models, fields
 class Company(models.Model):
     _inherit = "res.company"
     
-    code = fields.Char(
+    internal_code_prefix = fields.Char(
         string='Internal Reference Prefix',
+        copy=False,
     )

@@ -29,7 +29,9 @@
 An example of generated number: A00023 ("A" from the company dependent pre-fix, and "00023" from number_next_actual of ir.sequence)
 
     """,
-    'summary':"",
+    'summary':""" 
+        Product is created, system will auto-generate a sequential number for default_code based on company configuration.
+    """,
     'data': [
             'data/product_sequence.xml',
             'views/company_view.xml',
