@@ -7,6 +7,7 @@
             <field name="name">Product Sequence</field>
             <field name="code">product.product.internal_code</field>
             <field name="padding">5</field>
+            <field eval="False" name="company_id"/>
         </record>
         
     </data>

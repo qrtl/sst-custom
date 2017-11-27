@@ -7,5 +7,5 @@ class Company(models.Model):
     
     internal_code_prefix = fields.Char(
         string='Internal Reference Prefix',
-        copy=False,
+        copy=True,
     )

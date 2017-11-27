@@ -6,15 +6,11 @@
             <field name="name">red.company.form.inherit.internal_code_prefix</field>
             <field name="model">res.company</field>
             <field name="inherit_id" ref="base.view_company_form" />
-            <field name="priority" eval="20"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="inside">
-                    <page name="prefix_internal_reference" string="Prefix Internal Reference">
+                    <page name="prefix_internal_reference" string="Product Prefix">
                         <group>
-                            <group>
-                                <field name="internal_code_prefix" />
-                            </group>
-                            <group/>
+                            <field name="internal_code_prefix" placeholder="Product Internal Code Prefix.. For example A, B, C...."/>
                         </group>
                    </page>
                 </xpath>
