@@ -17,25 +17,29 @@
 
 {
     'name': 'Product Internal Reference Code',
-    'category': 'Sales',
     'version': '1.0',
+    'category': 'Sales',
     'author': 'Rooms For (Hong Kong) T/A OSCG',
-    'depends': ['product'],
     'website': 'www.openerp-asia.net',
+    'depends': ['product'],
     'description': """ 
-- When product is created, the system should auto-generate a sequential number for default_code
-- Pre-fix (just pre-fix field) should depend on company (we may add a field in res.company for this purpose)
+    - When product is created, the system should auto-generate a sequential number 
+    for default_code
+    - Pre-fix (just pre-fix field) should depend on company (we may add a field in 
+    res.company for this purpose)
 
-An example of generated number: A00023 ("A" from the company dependent pre-fix, and "00023" from number_next_actual of ir.sequence)
+    An example of generated number: A00023 ("A" from the company dependent pre-fix,
+    and "00023" from number_next_actual of ir.sequence)
 
     """,
-    'summary':""" 
-        Product is created, system will auto-generate a sequential number for default_code based on company configuration.
+    'summary': """ 
+        Product is created, system will auto-generate a sequential number for 
+        default_code based on company configuration.
     """,
     'data': [
-            'data/product_sequence.xml',
+            'data/product_data.xml',
             'views/company_view.xml',
              ],
+    'application': False,
     'installable': True,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
