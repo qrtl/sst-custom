@@ -4,7 +4,7 @@
 
 from datetime import datetime
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class ProductTemplate(models.Model):
@@ -32,3 +32,17 @@ class ProductTemplate(models.Model):
     evaluated_by_id = fields.Many2one('hr.employee', "Evaluated By")
     purchased_by_id = fields.Many2one('hr.employee', "Purchased By")
     shop_id = fields.Many2one('stock.warehouse', string='Shop Purchased')
+
+    @api.multi
+    def open_record(self):
+        form_id = self.env.ref('product.product_template_only_form_view')
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'product.template',
+            'res_id': self.id,
+            'view_type': 'form',
+            'view_mode': 'form',
+            'view_id': form_id.id,
+            'context': {},
+            'target': 'current',
+        }
