@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Product Internal Reference Code',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.1.0',
     'category': 'Sales',
     'author': 'Quartile Limited',
     'website': 'https://www.odoo-asia.com',
@@ -11,23 +11,17 @@
         'product',
     ],
     'description': """ 
-    - When product is created, the system should auto-generate a sequential number 
+    When product is created, the system should auto-generate a sequential number
     for default_code
-    - Pre-fix (just pre-fix field) should depend on company (we may add a field in 
-    res.company for this purpose)
 
-    An example of generated number: A00023 ("A" from the company dependent pre-fix,
-    and "00023" from number_next_actual of ir.sequence)
+    An example of generated number: A00023 (number_next_actual of ir.sequence)
 
     """,
     'summary': """ 
         Product is created, system will auto-generate a sequential number for 
-        default_code based on company configuration.
+        default_code.
     """,
-    'data': [
-        'data/product_data.xml',
-        'views/company_view.xml',
-    ],
+    'post_init_hook': '_create_ir_sequence',
     'application': False,
     'installable': True,
 }

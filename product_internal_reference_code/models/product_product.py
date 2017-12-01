@@ -11,9 +11,9 @@ class ProductProduct(models.Model):
     @api.model
     def create(self, vals):
         if not vals.get('default_code', False):
-            internal_code_prefix = \
-                self.env.user.company_id.internal_code_prefix or ''
-            seq_code = self.env['ir.sequence'].next_by_code(
+            # Get the sequence with user company_id
+            seq_code = self.env['ir.sequence'].with_context(
+                force_company=self.env.user.company_id.id).next_by_code(
                 'product.product.internal_code')
-            vals.update({'default_code': internal_code_prefix + seq_code})
+            vals.update({'default_code': seq_code})
         return super(ProductProduct, self).create(vals)
