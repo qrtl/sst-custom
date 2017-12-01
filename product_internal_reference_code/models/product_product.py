@@ -15,20 +15,5 @@ class ProductProduct(models.Model):
             seq_code = self.env['ir.sequence'].with_context(
                 force_company=self.env.user.company_id.id).next_by_code(
                 'product.product.internal_code')
-            # If there is not seq_code, create a new one for the company
-            if not seq_code:
-                seq = {
-                    'name': self.env.user.company_id.name + ' - Product Sequence',
-                    'code': 'product.product.internal_code',
-                    'prefix': self.env.user.company_id.internal_code_prefix
-                              or '',
-                    'padding': 5,
-                    'number_increment': 1,
-                    'company_id': self.env.user.company_id.id
-                }
-                self.env['ir.sequence'].create(seq)
-                seq_code = self.env['ir.sequence'].with_context(
-                    force_company=self.env.user.company_id.id).next_by_code(
-                    'product.product.internal_code')
             vals.update({'default_code': seq_code})
         return super(ProductProduct, self).create(vals)
