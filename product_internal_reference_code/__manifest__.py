@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Product Internal Reference Code',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.1.0',
     'category': 'Sales',
     'author': 'Quartile Limited',
     'website': 'https://www.odoo-asia.com',
@@ -25,7 +25,6 @@
         default_code based on company configuration.
     """,
     'data': [
-        'data/product_data.xml',
         'views/company_view.xml',
     ],
     'application': False,
