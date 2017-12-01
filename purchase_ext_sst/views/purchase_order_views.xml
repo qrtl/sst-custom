@@ -52,6 +52,13 @@
                 <field name="shop_id"/>
                 <field name="purchase_category_id"/>
             </xpath>
+            <xpath expr="//field[@name='date_planned']" position="before">
+                <field name="remark"/>
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']"
+                   position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
             <xpath expr="//field[@name='invoice_status']" position="after">
                 <button name="open_record" type="object" icon="fa-sign-in"/>
             </xpath>
@@ -73,6 +80,7 @@
                 <field name="employee_id"/>
                 <field name="shop_id"/>
                 <field name="purchase_category_id"/>
+                <field name="remark"/>
             </xpath>
             <xpath expr="//filter[@name='to_approve']" position="after">
                 <separator/>
