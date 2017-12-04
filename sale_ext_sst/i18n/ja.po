@@ -24,8 +24,3 @@ msgstr "電話"
 #: model:ir.model,name:sale_ext_sst.model_sale_order
 msgid "Quotation"
 msgstr "見積"
-
-#. module: sale_ext_sst
-#: model:ir.model.fields,field_description:sale_ext_sst.field_sale_order_order_item
-msgid "Product"
-msgstr "製品"
