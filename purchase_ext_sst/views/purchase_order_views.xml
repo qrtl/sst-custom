@@ -53,6 +53,8 @@
                 <field name="purchase_category_id"/>
             </xpath>
             <xpath expr="//field[@name='date_planned']" position="before">
+                <field name="phone"/>
+                <field name="address"/>
                 <field name="remark"/>
             </xpath>
             <xpath expr="//field[@name='amount_untaxed']"
