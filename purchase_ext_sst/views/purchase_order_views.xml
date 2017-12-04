@@ -53,6 +53,8 @@
                 <field name="purchase_category_id"/>
             </xpath>
             <xpath expr="//field[@name='date_planned']" position="before">
+                <field name="phone"/>
+                <field name="address"/>
                 <field name="remark"/>
             </xpath>
             <xpath expr="//field[@name='amount_untaxed']"
@@ -72,6 +74,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="before">
                 <field name="phone"/>
+                <field name="address"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="request_channel_id"/>
