@@ -9,8 +9,8 @@ class YahooProductState(models.Model):
     _name = 'yahoo.product.state'
 
     status = fields.Char(
-        string = 'Status',
-        require = True,
+        string='Status',
+        require=True,
     )
 
     def name_get(self):

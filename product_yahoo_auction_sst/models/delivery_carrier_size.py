@@ -9,13 +9,13 @@ class DeliveryCarrierSize(models.Model):
     _name = 'delivery.carrier.size'
 
     size = fields.Char(
-        string = 'Size',
-        required = True,
+        string='Size',
+        required=True,
     )
     delivery_method = fields.Many2one(
         'delivery.carrier',
-        string = 'Delivery Method',
-        required = True,
+        string='Delivery Method',
+        required=True,
     )
 
     def name_get(self):
