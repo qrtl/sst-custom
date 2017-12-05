@@ -63,6 +63,10 @@
                    position="attributes">
                 <attribute name="invisible">True</attribute>
             </xpath>
+            <xpath expr="//field[@name='origin']"
+                   position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
             <xpath expr="//field[@name='invoice_status']" position="after">
                 <button name="open_record" type="object" icon="fa-sign-in"/>
             </xpath>
