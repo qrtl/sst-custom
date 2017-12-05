@@ -44,18 +44,20 @@
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">top</attribute>
             </xpath>
-            <xpath expr="//field[@name='partner_id']" position="after">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="purchase_category_id"/>
+                <field name="shop_id"/>
+                <field name="call_back"/>
                 <field name="request_channel_id"/>
                 <field name="request_medium_id"/>
-                <field name="call_back"/>
-                <field name="employee_id"/>
-                <field name="shop_id"/>
-                <field name="purchase_category_id"/>
             </xpath>
-            <xpath expr="//field[@name='date_planned']" position="before">
+            <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="phone"/>
                 <field name="address"/>
                 <field name="remark"/>
+            </xpath>
+            <xpath expr="//field[@name='date_planned']" position="after">
+                <field name="employee_id"/>
             </xpath>
             <xpath expr="//field[@name='amount_untaxed']"
                    position="attributes">
