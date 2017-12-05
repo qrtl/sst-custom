@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_vpicktree" model="ir.ui.view">
+        <field name="name">stock.vpicktree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='scheduled_date']" position="before">
+                <field name="product_id"/>
+                <field name="carrier_id"
+                       invisible="context.get('hide_carrier', False)"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
