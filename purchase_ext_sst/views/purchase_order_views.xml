@@ -44,13 +44,28 @@
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">top</attribute>
             </xpath>
-            <xpath expr="//field[@name='partner_id']" position="after">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="purchase_category_id"/>
+                <field name="shop_id"/>
+                <field name="call_back"/>
                 <field name="request_channel_id"/>
                 <field name="request_medium_id"/>
-                <field name="call_back"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="phone"/>
+                <field name="address"/>
+                <field name="remark"/>
+            </xpath>
+            <xpath expr="//field[@name='date_planned']" position="after">
                 <field name="employee_id"/>
-                <field name="shop_id"/>
-                <field name="purchase_category_id"/>
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']"
+                   position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='origin']"
+                   position="attributes">
+                <attribute name="invisible">True</attribute>
             </xpath>
             <xpath expr="//field[@name='invoice_status']" position="after">
                 <button name="open_record" type="object" icon="fa-sign-in"/>
@@ -65,6 +80,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="before">
                 <field name="phone"/>
+                <field name="address"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="request_channel_id"/>
@@ -73,6 +89,7 @@
                 <field name="employee_id"/>
                 <field name="shop_id"/>
                 <field name="purchase_category_id"/>
+                <field name="remark"/>
             </xpath>
             <xpath expr="//filter[@name='to_approve']" position="after">
                 <separator/>
