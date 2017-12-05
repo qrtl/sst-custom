@@ -69,9 +69,9 @@ class ImportSale(models.TransientModel):
     @api.model
     def _get_order_value_dict(self, row, error_line_vals, partner_id,
                               product_id, pricelist_id, warehouse_id,
-                              team_id, partner_dict, product_dict,
+                              team_id, carrier_id, partner_dict, product_dict,
                               pricelist_dict, picking_dict, warehouse_dict,
-                              team_dict):
+                              team_dict, carrier_dict):
         """Get order value dict"""
         partner_value = row[partner_id].strip()
 
@@ -124,8 +124,17 @@ class ImportSale(models.TransientModel):
         else:
             self._get_team_dict(team_value, team_dict, error_line_vals)
 
+        carrier_value = row[carrier_id].strip()
+        if not carrier_value:
+            error_line_vals['error_name'] = error_line_vals['error_name']\
+                + _('Carrier is empty!') + '\n'
+            error_line_vals['error'] = True
+        else:
+            self._get_carrier_dict(carrier_value, carrier_dict,
+                                   error_line_vals)
+
         return partner_value, product_id_value, pricelist_value,\
-            warehouse_value, team_value
+            warehouse_value, team_value, carrier_value
 
     @api.model
     def _get_order_value(self, row, error_line_vals, taxes, price_unit,
@@ -205,6 +214,7 @@ class ImportSale(models.TransientModel):
     def _get_order_dict(self, error_log_id, order_dict, order, partner_dict,
                         partner_value, pricelist_dict, pricelist_value,
                         picking_dict, picking_policy, team_dict, team_value,
+                        carrier_dict, carrier_value,
                         warehouse_dict, warehouse_value, row, notes):
         """Get order dict"""
         if not error_log_id:
@@ -237,6 +247,7 @@ class ImportSale(models.TransientModel):
                     or False,
                     'picking_policy': picking_policy,
                     'team_id': team_dict[team_value],
+                    'carrier_id': carrier_dict[carrier_value],
                     'warehouse_id': warehouse_dict[warehouse_value],
                     #  'currency_id':
                     #      pricelist_data['value']['currency_id'],  # odoo11
@@ -327,6 +338,20 @@ class ImportSale(models.TransientModel):
             warehouse_dict[warehouse_value] = warehouse_id
 
     @api.model
+    def _get_carrier_dict(self, carrier_value, carrier_dict, error_line_vals):
+        """get carrier dict"""
+        carrier_obj = self.env['delivery.carrier']
+        carrier_id = carrier_obj.search([
+            ('name', '=', carrier_value)])
+        if not carrier_id:
+            error_line_vals['error_name'] = error_line_vals['error_name']\
+                + _('Carrier: ') + carrier_value + _(' Not Found!') + '\n'
+            error_line_vals['error'] = True
+        else:
+            #pick the first carrier that matches the domain
+            carrier_dict[carrier_value] = carrier_id[0].id
+
+    @api.model
     def _get_team_dict(self, team_value, team_dict, error_line_vals):
         """get team dict"""
         crm_team = self.env['crm.team']
@@ -411,6 +436,7 @@ class ImportSale(models.TransientModel):
             'order_ref': item,
             'team_id': order_data['team_id'],
             'warehouse_id': order_data['warehouse_id'],
+            'carrier_id': order_data['carrier_id'],
             }
         return self.env['sale.order'].create(order_vals)
 
@@ -445,6 +471,7 @@ class ImportSale(models.TransientModel):
             picking_dict = {}
             warehouse_dict = {}
             team_dict = {}
+            carrier_dict = {}
             error_log_id = False
             ir_attachment_obj = self.env['ir.attachment']
             ir_attachment = ir_attachment_obj.create({
@@ -475,6 +502,7 @@ class ImportSale(models.TransientModel):
             pricelist_id = sheet_fields.index('Pricelist')
             warehouse_id = sheet_fields.index('Warehouse')
             team_id = sheet_fields.index('Team')
+            carrier_id = sheet_fields.index('Carrier')
 
             for row in csv_iterator:
                 check_list = []
@@ -490,12 +518,13 @@ class ImportSale(models.TransientModel):
                 error_line_vals = {'error_name': '', 'error': False}
                 ctx.update({'partner_name': partner_name})
                 partner_value, product_id_value, pricelist_value,\
-                    warehouse_value, team_value =\
+                    warehouse_value, team_value, carrier_value = \
                     self.with_context(ctx)._get_order_value_dict(
                         row, error_line_vals, partner_id, product_id,
-                        pricelist_id, warehouse_id, team_id, partner_dict,
+                        pricelist_id, warehouse_id, team_id, carrier_id,
+                        partner_dict,
                         product_dict, pricelist_dict, picking_dict,
-                        warehouse_dict, team_dict)
+                        warehouse_dict, team_dict, carrier_dict)
 
                 taxes = []
                 qty, price_unit_value = self._get_order_value(row,
@@ -521,6 +550,7 @@ class ImportSale(models.TransientModel):
                                      pricelist_dict,
                                      pricelist_value, picking_dict,
                                      picking_policy, team_dict, team_value,
+                                     carrier_dict, carrier_value,
                                      warehouse_dict, warehouse_value, row,
                                      notes)
 

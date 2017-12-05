@@ -21,6 +21,7 @@ Imports sales data and processes the following:
         'base_import_log',
         'account_voucher',
         'sale_management',
+        'delivery'
     ],
     'data': [
         'security/ir.model.access.csv',
