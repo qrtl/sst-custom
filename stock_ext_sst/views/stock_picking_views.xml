@@ -8,8 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='scheduled_date']" position="before">
                 <field name="product_id"/>
-                <field name="carrier_id"
-                       invisible="context.get('hide_carrier', False)"/>
+                <field name="carrier_id"/>
             </xpath>
         </field>
     </record>
