@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Yahoo Auctions">
+                    <group>
+                        <group>
+                            <field name="title"/>
+                            <field name="product_category"/>
+                            <field name="product_condition_comment"/>
+                            <field name="accessories"/>
+                            <field name="remark"/>
+                            <field name="staff_in_charge"/>
+                        </group>
+                        <group>
+                            <field name="auction_start_price"/>
+                            <field name="auction_buyout_price"/>
+                            <field name="product_condition"/>
+                            <field name="carrier_id"/>
+                            <field name="carrier_size_id"/>
+                            <field name="deliver_prefecture"/>
+                            <field name="delivery_cites"/>
+                            <field name="yahoo_product_state_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

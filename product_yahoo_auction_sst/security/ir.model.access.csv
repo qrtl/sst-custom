@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_carrier_size,access_delivery_carrier_size,model_delivery_carrier_size,base.group_user,1,1,1,1
+access_yahoo_product_state,access_yahoo_product_state,model_yahoo_product_state,base.group_user,1,1,1,1

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="yahoo_product_state_not_started" model="yahoo.product.state">
+        <field name="name">未着手</field>
+    </record>
+    <record id="yahoo_product_state_stock_finished"
+            model="yahoo.product.state">
+        <field name="name">ストック完了</field>
+    </record>
+    <record id="yahoo_product_state_delivered" model="yahoo.product.state">
+        <field name="name">出品完了</field>
+    </record>
+
+</odoo>
