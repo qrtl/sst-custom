@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 06:58+0000\n"
-"PO-Revision-Date: 2017-12-04 06:58+0000\n"
+"POT-Creation-Date: 2017-12-06 02:44+0000\n"
+"PO-Revision-Date: 2017-12-06 02:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,9 +52,9 @@ msgid "Delivery Cities"
 msgstr "発送市町村"
 
 #. module: product_yahoo_auction_sst
-#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_delivery_carrier_size_delivery_method
-#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_product_delivery_method
-#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_template_delivery_method
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_delivery_carrier_size_carrier_id
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_product_carrier_id
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_template_carrier_id
 msgid "Delivery Method"
 msgstr "発送方法"
 
@@ -65,8 +65,8 @@ msgid "Delivery Prefecture"
 msgstr "発送都道府県"
 
 #. module: product_yahoo_auction_sst
-#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_product_delivery_size
-#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_template_delivery_size
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_product_carrier_size_id
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_template_carrier_size_id
 msgid "Delivery Size"
 msgstr "発送サイズ"
 
@@ -135,14 +135,18 @@ msgid "Remark"
 msgstr "備考"
 
 #. module: product_yahoo_auction_sst
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_delivery_carrier_size_name
+msgid "Size"
+msgstr "サイズ"
+
+#. module: product_yahoo_auction_sst
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_product_staff_in_charge
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_template_staff_in_charge
 msgid "Staff in charge"
 msgstr "ストック担当"
 
 #. module: product_yahoo_auction_sst
-#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_delivery_carrier_size_size
-#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_yahoo_product_state_status
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_yahoo_product_state_name
 msgid "Status"
 msgstr "ステータス"
 
@@ -163,8 +167,8 @@ msgid "Yahoo Auctions"
 msgstr "ヤフオク"
 
 #. module: product_yahoo_auction_sst
-#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_product_yahoo_product_state
-#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_template_yahoo_product_state
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_product_yahoo_product_state_id
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_template_yahoo_product_state_id
 msgid "Yahoo Product State"
 msgstr "商品化ステータス"
 
@@ -177,5 +181,17 @@ msgstr "delivery.carrier.size"
 #: model:ir.model,name:product_yahoo_auction_sst.model_yahoo_product_state
 msgid "yahoo.product.state"
 msgstr "yahoo.product.state"
+
+#. module: product_yahoo_auction_sst
+#: model:product.product,name:product_yahoo_auction_sst.product_product_yu_pack
+#: model:product.template,name:product_yahoo_auction_sst.product_product_yu_pack_product_template
+msgid "ゆうパック"
+msgstr "ゆうパック"
+
+#. module: product_yahoo_auction_sst
+#: model:product.product,name:product_yahoo_auction_sst.product_product_kazai_bin
+#: model:product.template,name:product_yahoo_auction_sst.product_product_kazai_bin_product_template
+msgid "家財便"
+msgstr "家財便"
 
 

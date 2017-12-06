@@ -8,13 +8,7 @@ from odoo import models, fields, api
 class YahooProductState(models.Model):
     _name = 'yahoo.product.state'
 
-    status = fields.Char(
+    name = fields.Char(
         string='Status',
         require=True,
     )
-
-    def name_get(self):
-        res = []
-        for record in self:
-            res.append((record.id, record.status))
-        return res

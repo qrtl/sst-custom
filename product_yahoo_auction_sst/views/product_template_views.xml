@@ -21,11 +21,11 @@
                             <field name="auction_start_price"/>
                             <field name="auction_buyout_price"/>
                             <field name="product_condition"/>
-                            <field name="delivery_method"/>
-                            <field name="delivery_size"/>
+                            <field name="carrier_id"/>
+                            <field name="carrier_size_id"/>
                             <field name="deliver_prefecture"/>
                             <field name="delivery_cites"/>
-                            <field name="yahoo_product_state"/>
+                            <field name="yahoo_product_state_id"/>
                         </group>
                     </group>
                 </page>

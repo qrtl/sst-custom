@@ -37,11 +37,11 @@ class ProductTemplate(models.Model):
         [('new', 'New'), ('used', 'Used')],
         string='Product Condition',
     )
-    delivery_method = fields.Many2one(
+    carrier_id = fields.Many2one(
         'delivery.carrier',
         string='Delivery Method',
     )
-    delivery_size = fields.Many2one(
+    carrier_size_id = fields.Many2one(
         'delivery.carrier.size',
         string='Delivery Size',
     )
@@ -51,18 +51,18 @@ class ProductTemplate(models.Model):
     delivery_cites = fields.Char(
         string='Delivery Cities',
     )
-    yahoo_product_state = fields.Many2one(
+    yahoo_product_state_id = fields.Many2one(
         'yahoo.product.state',
         string='Yahoo Product State',
     )
 
-    @api.onchange('delivery_method')
-    def _onchange_delivery_method(self):
+    @api.onchange('carrier_id')
+    def _onchange_carrier_id(self):
         domain = []
-        self.delivery_size = False
-        if self.delivery_method:
-            delivery_sizes = self.env['delivery.carrier.size'].search([
-                 ('delivery_method', '=', self.delivery_method.id)
+        self.carrier_size_id = False
+        if self.carrier_id:
+            carrier_sizes = self.env['delivery.carrier.size'].search([
+                 ('carrier_id', '=', self.carrier_id.id)
             ])
-            domain.append(('id', 'in', delivery_sizes.ids))
-        return {'domain': {'delivery_size': domain}}
+            domain.append(('id', 'in', carrier_sizes.ids))
+        return {'domain': {'carrier_size_id': domain}}
