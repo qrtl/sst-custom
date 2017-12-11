@@ -11,6 +11,24 @@ from odoo import models, fields, api, _
 from odoo.exceptions import Warning
 from odoo.tools import pycompat
 
+FIELDS_TO_IMPORT = [
+    'Group',
+    'Customer',
+    'Customer Phone/Mobile',
+    'Line Product',
+    'Line Description',
+    'Line Unit Price',
+    'Line Qty',
+    'Line Tax',
+    'Notes',
+    'Pricelist',
+    'Warehouse',
+    'Picking Policy',
+    'Order Policy',
+    'Team',
+    'Carrier'
+]
+
 
 class ImportSale(models.TransientModel):
     _name = 'import.sale'
@@ -490,19 +508,100 @@ class ImportSale(models.TransientModel):
             )
             sheet_fields = next(csv_iterator)
 
-            order_group = sheet_fields.index('Group')
-            partner_name = sheet_fields.index('Customer')
-            partner_id = sheet_fields.index('Customer Phone/Mobile')
-            product_id = sheet_fields.index('Line Product')
-            line_name = sheet_fields.index('Line Description')
-            price_unit = sheet_fields.index('Line Unit Price')
-            product_qty = sheet_fields.index('Line Qty')
-            taxes_id = sheet_fields.index('Line Tax')
-            notes = sheet_fields.index('Notes')
-            pricelist_id = sheet_fields.index('Pricelist')
-            warehouse_id = sheet_fields.index('Warehouse')
-            team_id = sheet_fields.index('Team')
-            carrier_id = sheet_fields.index('Carrier')
+            #  column validation
+            missing_columns = list(set(FIELDS_TO_IMPORT) - set(sheet_fields))
+            if missing_columns:
+                raise Warning(
+                    _('Missing columns in sheet are: \n %s'
+                      % ('\n'.join(missing_columns))
+                      )
+                )
+
+            missing_columns = []
+            order_group = False
+            if 'Group' in sheet_fields:
+                order_group = sheet_fields.index('Group')
+            else:
+                missing_columns.append('Group')
+
+            partner_name = False
+            if 'Customer' in sheet_fields:
+                partner_name = sheet_fields.index('Customer')
+            else:
+                missing_columns.append('Customer')
+
+            partner_id = False
+            if 'Customer Phone/Mobile' in sheet_fields:
+                partner_id = sheet_fields.index('Customer Phone/Mobile')
+            else:
+                missing_columns.append('Customer Phone/Mobile')
+
+            product_id = False
+            if 'Line Product' in sheet_fields:
+                product_id = sheet_fields.index('Line Product')
+            else:
+                missing_columns.append('Line Product')
+
+            line_name = False
+            if 'Line Description' in sheet_fields:
+                line_name = sheet_fields.index('Line Description')
+            else:
+                missing_columns.append('Line Description')
+
+            price_unit = False
+            if 'Line Unit Price' in sheet_fields:
+                price_unit = sheet_fields.index('Line Unit Price')
+            else:
+                missing_columns.append('Line Unit Price')
+
+            product_qty = False
+            if 'Line Qty' in sheet_fields:
+                product_qty = sheet_fields.index('Line Qty')
+            else:
+                missing_columns.append('Line Qty')
+
+            taxes_id = False
+            if 'Line Tax' in sheet_fields:
+                taxes_id = sheet_fields.index('Line Tax')
+            else:
+                missing_columns.append('Line Tax')
+
+            notes = False
+            if 'Notes' in sheet_fields:
+                notes = sheet_fields.index('Notes')
+            else:
+                missing_columns.append('Notes')
+
+            pricelist_id = False
+            if 'Pricelist' in sheet_fields:
+                pricelist_id = sheet_fields.index('Pricelist')
+            else:
+                missing_columns.append('Pricelist')
+
+            warehouse_id = False
+            if 'Warehouse' in sheet_fields:
+                warehouse_id = sheet_fields.index('Warehouse')
+            else:
+                missing_columns.append('Warehouse')
+
+            team_id = False
+            if 'Team' in sheet_fields:
+                team_id = sheet_fields.index('Team')
+            else:
+                missing_columns.append('Team')
+
+            carrier_id = False
+            if 'Carrier' in sheet_fields:
+                carrier_id = sheet_fields.index('Carrier')
+            else:
+                missing_columns.append('Carrier')
+
+            if missing_columns:
+                raise Warning(
+                    _('Missing columns in sheet are: \n %s'
+                      % ('\n'.join(missing_columns))
+                      )
+                )
 
             for row in csv_iterator:
                 check_list = []
