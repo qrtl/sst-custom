@@ -33,4 +33,31 @@
         </field>
     </record>
 
+    <record id="product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='list_price']" position="before">
+                <field name="auction_start_price"/>
+                <field name="auction_buyout_price"/>
+                <field name="yahoo_product_state_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_search_view" model="ir.ui.view">
+        <field name="name">product.template.search</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pricelist_id']" position="after">
+                <group expand="0" string="Group By">
+                    <filter string="Yahoo Product State" domain="[]"
+                        context="{'group_by': 'yahoo_product_state_id'}" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

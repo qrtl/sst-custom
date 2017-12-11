@@ -169,6 +169,7 @@ msgstr "ヤフオク"
 #. module: product_yahoo_auction_sst
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_product_yahoo_product_state_id
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_template_yahoo_product_state_id
+#: model:ir.ui.view,arch_db:product_yahoo_auction_sst.product_template_search_view
 msgid "Yahoo Product State"
 msgstr "商品化ステータス"
 

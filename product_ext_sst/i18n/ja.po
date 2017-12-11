@@ -138,6 +138,11 @@ msgid "Shop Purchased"
 msgstr "買取店舗"
 
 #. module: product_ext_sst
+#: model:ir.ui.view,arch_db:product_ext_sst.product_template_tree_view
+msgid "Visible in Website"
+msgstr "ウェブサイトに表示"
+
+#. module: product_ext_sst
 #: model:ir.model,name:product_ext_sst.model_product_state
 msgid "product.state"
 msgstr "product.state"
