@@ -85,17 +85,17 @@ class ImportSale(models.TransientModel):
     )
 
     @api.model
-    def _get_order_value_dict(self, row, error_line_vals, partner_id,
+    def _get_order_value_dict(self, row, error_line_vals, partner_tel,
                               product_id, pricelist_id, warehouse_id,
                               team_id, carrier_id, partner_dict, product_dict,
                               pricelist_dict, picking_dict, warehouse_dict,
                               team_dict, carrier_dict):
         """Get order value dict"""
-        partner_value = row[partner_id].strip()
+        partner_value = row[partner_tel].strip()
 
         if not partner_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Partner is empty!') + '\n'
+                + _('Column "Partner" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             ctx = self._context.copy()
@@ -110,7 +110,7 @@ class ImportSale(models.TransientModel):
         product_id_value = row[product_id].strip()
         if not product_id_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Product is empty!') + '\n'
+                + _('Column "Product" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             self._get_product_dict(product_id_value,
@@ -119,7 +119,7 @@ class ImportSale(models.TransientModel):
         pricelist_value = row[pricelist_id].strip()
         if not pricelist_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Pricelist is empty!') + '\n'
+                + _('Column "Pricelist" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             self._get_pricelist_dict(pricelist_value,
@@ -128,7 +128,7 @@ class ImportSale(models.TransientModel):
         warehouse_value = row[warehouse_id].strip()
         if not warehouse_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Warehouse is empty!') + '\n'
+                + _('Column "Warehouse" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             self._get_picking_dict(warehouse_value, picking_dict,
@@ -137,7 +137,7 @@ class ImportSale(models.TransientModel):
         team_value = row[team_id].strip()
         if not team_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Team is empty!') + '\n'
+                + _('Column "Team" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             self._get_team_dict(team_value, team_dict, error_line_vals)
@@ -145,7 +145,7 @@ class ImportSale(models.TransientModel):
         carrier_value = row[carrier_id].strip()
         if not carrier_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Carrier is empty!') + '\n'
+                + _('Column "Carrier" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             self._get_carrier_dict(carrier_value, carrier_dict,
@@ -165,27 +165,27 @@ class ImportSale(models.TransientModel):
         qty = row[product_qty].strip()
         if not qty:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Quantity is empty!') + '\n'
+                + _('Column "Quantity" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             qty = float(qty)
 
         if qty <= 0:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Quantity not less than zero!') + '\n'
+                + _('Column "Quantity" cannot be less than 0.') + '\n'
             error_line_vals['error'] = True
 
         price_unit_value = row[price_unit].strip()
         if not price_unit_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Unit Price is empty!') + '\n'
+                + _('Column "Unit Price" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             price_unit_value = float(price_unit_value)
 
         if price_unit_value <= 0:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Unit Price not less than zero!') + '\n'
+                + _('Column "Unit Price" cannot be less than 0.') + '\n'
             error_line_vals['error'] = True
         return qty, price_unit_value
 
@@ -200,7 +200,8 @@ class ImportSale(models.TransientModel):
                 product_dict[product_id_value]
             )  # odoo11
             if not name:
-                name = product_data['value']['name']
+                #  name = product_data['value']['name']
+                name = product_data.name
 
             state = 'draft'
             if order not in order_item_dict.keys():
@@ -512,7 +513,7 @@ class ImportSale(models.TransientModel):
             missing_columns = list(set(FIELDS_TO_IMPORT) - set(sheet_fields))
             if missing_columns:
                 raise Warning(
-                    _('Missing columns in sheet are: \n %s'
+                    _('Following columns are missing: \n %s'
                       % ('\n'.join(missing_columns))
                       )
                 )
@@ -530,9 +531,9 @@ class ImportSale(models.TransientModel):
             else:
                 missing_columns.append('Customer')
 
-            partner_id = False
+            partner_tel = False
             if 'Customer Phone/Mobile' in sheet_fields:
-                partner_id = sheet_fields.index('Customer Phone/Mobile')
+                partner_tel = sheet_fields.index('Customer Phone/Mobile')
             else:
                 missing_columns.append('Customer Phone/Mobile')
 
@@ -598,7 +599,7 @@ class ImportSale(models.TransientModel):
 
             if missing_columns:
                 raise Warning(
-                    _('Missing columns in sheet are: \n %s'
+                    _('Following columns are missing: \n %s'
                       % ('\n'.join(missing_columns))
                       )
                 )
@@ -619,7 +620,7 @@ class ImportSale(models.TransientModel):
                 partner_value, product_id_value, pricelist_value,\
                     warehouse_value, team_value, carrier_value = \
                     self.with_context(ctx)._get_order_value_dict(
-                        row, error_line_vals, partner_id, product_id,
+                        row, error_line_vals, partner_tel, product_id,
                         pricelist_id, warehouse_id, team_id, carrier_id,
                         partner_dict,
                         product_dict, pricelist_dict, picking_dict,
