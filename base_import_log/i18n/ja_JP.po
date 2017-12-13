@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-06 01:59+0000\n"
-"PO-Revision-Date: 2015-11-06 01:59+0000\n"
+"POT-Creation-Date: 2017-12-13 04:09+0000\n"
+"PO-Revision-Date: 2017-12-13 04:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,14 +21,14 @@ msgid "Configuration"
 msgstr "設定"
 
 #. module: base_import_log
-#: field:error.log,create_uid:0
-#: field:error.log.line,create_uid:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_create_uid
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_create_uid
 msgid "Created by"
 msgstr "作成者"
 
 #. module: base_import_log
-#: field:error.log,create_date:0
-#: field:error.log.line,create_date:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_create_date
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_create_date
 msgid "Created on"
 msgstr "作成日"
 
@@ -44,13 +44,19 @@ msgid "Data Import Log"
 msgstr "データインポートログ"
 
 #. module: base_import_log
-#: field:error.log.line,error_name:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_display_name
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: base_import_log
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_error_name
 msgid "Error"
 msgstr "エラー"
 
 #. module: base_import_log
-#: view:error.log:base_import_log.error_log_tree
-#: view:error.log:base_import_log.import_error_log_form
+#: model:ir.ui.view,arch_db:base_import_log.error_log_tree
+#: model:ir.ui.view,arch_db:base_import_log.import_error_log_form
 msgid "Error Logs"
 msgstr "エラーログ"
 
@@ -60,18 +66,19 @@ msgid "Failed"
 msgstr "失敗"
 
 #. module: base_import_log
-#: field:error.log,input_file:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_file_name
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_input_file
 msgid "File"
 msgstr "ファイル"
 
 #. module: base_import_log
-#: view:error.log:base_import_log.error_log_filter
+#: model:ir.ui.view,arch_db:base_import_log.error_log_filter
 msgid "Group By..."
 msgstr "グルーピング..."
 
 #. module: base_import_log
-#: field:error.log,id:0
-#: field:error.log.line,id:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_id
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_id
 msgid "ID"
 msgstr "ID"
 
@@ -81,7 +88,7 @@ msgid "Import"
 msgstr "インポート"
 
 #. module: base_import_log
-#: view:error.log:base_import_log.error_log_filter
+#: model:ir.ui.view,arch_db:base_import_log.error_log_filter
 msgid "Import Date"
 msgstr "インポート日"
 
@@ -96,67 +103,83 @@ msgid "Import Logs"
 msgstr "インポートログ"
 
 #. module: base_import_log
-#: view:error.log:base_import_log.error_log_filter
-#: field:error.log,import_user_id:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_import_user_id
+#: model:ir.ui.view,arch_db:base_import_log.error_log_filter
 msgid "Imported By"
 msgstr "インポートユーザ"
 
 #. module: base_import_log
-#: field:error.log,import_date:0
-msgid "Imported On"
-msgstr "インポート日"
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_file_path
+msgid "Imported File"
+msgstr "インポートしたファイル"
 
 #. module: base_import_log
-#: field:error.log,write_uid:0
-#: field:error.log.line,write_uid:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_import_date
+msgid "Imported On"
+msgstr "インポート時間"
+
+#. module: base_import_log
+#: model:ir.model.fields,field_description:base_import_log.field_error_log___last_update
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: base_import_log
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_write_uid
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_write_uid
 msgid "Last Updated by"
 msgstr "最終更新者"
 
 #. module: base_import_log
-#: field:error.log,write_date:0
-#: field:error.log.line,write_date:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_write_date
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_write_date
 msgid "Last Updated on"
 msgstr "最終更新日"
 
 #. module: base_import_log
-#: field:error.log.line,log_id:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_log_id
 msgid "Log"
 msgstr "ログ"
 
 #. module: base_import_log
-#: field:error.log,log_line_ids:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_log_line_ids
 msgid "Log Lines"
-msgstr "ログ明細行"
+msgstr "ログ明細"
 
 #. module: base_import_log
-#: view:error.log:base_import_log.import_error_log_form
+#: model:ir.ui.view,arch_db:base_import_log.import_error_log_form
 msgid "Logs"
 msgstr "ログ"
 
 #. module: base_import_log
-#: view:error.log:base_import_log.error_log_filter
-#: field:error.log,model_id:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_model_id
+#: model:ir.ui.view,arch_db:base_import_log.error_log_filter
 msgid "Model"
 msgstr "モデル"
 
 #. module: base_import_log
-#: field:error.log.line,order_group:0
-msgid "Order Group"
-msgstr "オーダグループ"
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_model_name
+msgid "Model Name"
+msgstr "モデル名"
 
 #. module: base_import_log
-#: field:error.log.line,row_no:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_order_group
+msgid "Order Group"
+msgstr "受注グループ"
+
+#. module: base_import_log
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_line_row_no
 msgid "Row Number"
 msgstr "行番号"
 
 #. module: base_import_log
-#: view:error.log:base_import_log.error_log_filter
+#: model:ir.ui.view,arch_db:base_import_log.error_log_filter
 msgid "Search Logs"
 msgstr "ログ検索"
 
 #. module: base_import_log
-#: view:error.log:base_import_log.error_log_filter
-#: field:error.log,state:0
+#: model:ir.model.fields,field_description:base_import_log.field_error_log_state
+#: model:ir.ui.view,arch_db:base_import_log.error_log_filter
 msgid "Status"
 msgstr "ステータス"
 
@@ -164,4 +187,15 @@ msgstr "ステータス"
 #: selection:error.log,state:0
 msgid "Succeed"
 msgstr "成功"
+
+#. module: base_import_log
+#: model:ir.model,name:base_import_log.model_error_log
+msgid "error.log"
+msgstr "error.log"
+
+#. module: base_import_log
+#: model:ir.model,name:base_import_log.model_error_log_line
+msgid "error.log.line"
+msgstr "error.log.line"
+
 

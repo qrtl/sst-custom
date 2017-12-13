@@ -95,7 +95,7 @@ class ImportSale(models.TransientModel):
 
         if not partner_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Column "Partner" cannot be empty.') + '\n'
+                + _('Column "Customer Phone/Mobile" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             ctx = self._context.copy()
@@ -110,7 +110,7 @@ class ImportSale(models.TransientModel):
         product_id_value = row[product_id].strip()
         if not product_id_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Column "Product" cannot be empty.') + '\n'
+                + _('Column "Line Product" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
             self._get_product_dict(product_id_value,
@@ -165,28 +165,42 @@ class ImportSale(models.TransientModel):
         qty = row[product_qty].strip()
         if not qty:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Column "Quantity" cannot be empty.') + '\n'
+                + _('Column "Line Qty" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
-            qty = float(qty)
-
-        if qty <= 0:
-            error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Column "Quantity" cannot be less than 0.') + '\n'
-            error_line_vals['error'] = True
+            try:
+                qty = float(qty)
+                if qty <= 0:
+                    error_line_vals['error_name'] = error_line_vals[
+                                                        'error_name'] + _(
+                        'Column "Line Qty" must be greater than 0.') + '\n'
+                    error_line_vals['error'] = True
+            except ValueError:
+                error_line_vals['error_name'] = error_line_vals['error_name'] \
+                                                + _('Column "Line Qty" must '
+                                                    'be a number.') + '\n'
+                error_line_vals['error'] = True
 
         price_unit_value = row[price_unit].strip()
         if not price_unit_value:
             error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Column "Unit Price" cannot be empty.') + '\n'
+                + _('Column "Line Unit Price" cannot be empty.') + '\n'
             error_line_vals['error'] = True
         else:
-            price_unit_value = float(price_unit_value)
-
-        if price_unit_value <= 0:
-            error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Column "Unit Price" cannot be less than 0.') + '\n'
-            error_line_vals['error'] = True
+            try:
+                price_unit_value = float(price_unit_value)
+                if price_unit_value <= 0:
+                    error_line_vals['error_name'] = error_line_vals[
+                                                        'error_name'] + _(
+                        'Column "Line Unit Price" must be greater than 0.') \
+                                                    + '\n'
+                    error_line_vals['error'] = True
+            except ValueError:
+                error_line_vals['error_name'] = error_line_vals['error_name'] \
+                                                + _('Column "Line Unit '
+                                                    'Price" must be a '
+                                                    'number.') + '\n'
+                error_line_vals['error'] = True
         return qty, price_unit_value
 
     @api.model
@@ -200,7 +214,6 @@ class ImportSale(models.TransientModel):
                 product_dict[product_id_value]
             )  # odoo11
             if not name:
-                #  name = product_data['value']['name']
                 name = product_data.name
 
             state = 'draft'
@@ -638,7 +651,8 @@ class ImportSale(models.TransientModel):
                 error_log_id = self._update_error_log(error_log_id,
                                                       error_line_vals,
                                                       ir_attachment, model,
-                                                      line, order)
+                                                      csv_iterator.line_num,
+                                                      order)
 
                 self._get_order_item_dict(error_log_id, row, order, taxes,
                                           line_name, product_dict,
