@@ -19,13 +19,6 @@ class SaleImportDefault(models.Model):
         required=True,
         string='Shipping Policy',
     )
-    order_policy = fields.Selection([
-        ('manual', 'On Demand'),
-        ('picking', 'On Delivery Order'),
-        ('prepaid', 'Before Delivery')],
-        required=True,
-        string='Create Invoice',
-    )
     customer_invoice_journal_id = fields.Many2one(
         'account.journal',
         required=True,

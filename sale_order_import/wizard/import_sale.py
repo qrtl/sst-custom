@@ -23,8 +23,6 @@ FIELDS_TO_IMPORT = [
     'Notes',
     'Pricelist',
     'Warehouse',
-    'Picking Policy',
-    'Order Policy',
     'Team',
     'Carrier'
 ]
@@ -486,224 +484,150 @@ class ImportSale(models.TransientModel):
                           'order_id': order_id.id}
         return self.env['sale.order.line'].create(orderline_vals)
 
-    @api.multi
     def import_sale_data(self):
-        """Import sale data"""
+        self.ensure_one()
         ctx = self._context.copy()
-        for line in self:
+        model = self.env['ir.model'].search([('model', '=', 'sale.order')])
 
-            model = self.env['ir.model'].search([('model', '=', 'sale.order')])
+        product_dict = {}
+        partner_dict = {}
+        pricelist_dict = {}
+        order_item_dict = {}
+        #  tax_dict = {}
+        order_dict = {}
+        picking_dict = {}
+        warehouse_dict = {}
+        team_dict = {}
+        carrier_dict = {}
+        error_log_id = False
+        ir_attachment_obj = self.env['ir.attachment']
+        ir_attachment = ir_attachment_obj.create({
+            'name': self.datas_fname,
+            'datas': self.input_file,
+            'datas_fname': self.datas_fname
+        })
 
-            product_dict = {}
-            partner_dict = {}
-            pricelist_dict = {}
-            order_item_dict = {}
-            #  tax_dict = {}
-            order_dict = {}
-            picking_dict = {}
-            warehouse_dict = {}
-            team_dict = {}
-            carrier_dict = {}
-            error_log_id = False
-            ir_attachment_obj = self.env['ir.attachment']
-            ir_attachment = ir_attachment_obj.create({
-                'name': self.datas_fname,
-                'datas': self.input_file,
-                'datas_fname': self.datas_fname
-            })
+        # new code to read csv
+        # csv_data = base64.decodestring(self.input_file)
+        csv_data = base64.decodebytes(self.input_file)
+        csv_iterator = pycompat.csv_reader(
+            io.BytesIO(csv_data),
+            quotechar='"',
+            delimiter=','
+        )
+        sheet_fields = next(csv_iterator)
 
-            # new code to read csv
-            # csv_data = base64.decodestring(self.input_file)
-            csv_data = base64.decodebytes(self.input_file)
-            csv_iterator = pycompat.csv_reader(
-                io.BytesIO(csv_data),
-                quotechar='"',
-                delimiter=','
+        #  column validation
+        missing_columns = list(set(FIELDS_TO_IMPORT) - set(sheet_fields))
+        if missing_columns:
+            raise Warning(
+                _('Following columns are missing: \n %s'
+                  % ('\n'.join(missing_columns))
+                  )
             )
-            sheet_fields = next(csv_iterator)
 
-            #  column validation
-            missing_columns = list(set(FIELDS_TO_IMPORT) - set(sheet_fields))
-            if missing_columns:
-                raise Warning(
-                    _('Following columns are missing: \n %s'
-                      % ('\n'.join(missing_columns))
-                      )
-                )
+        order_group = sheet_fields.index('Group')
+        missing_columns.append('Group')
+        partner_name = sheet_fields.index('Customer')
+        partner_tel = sheet_fields.index('Customer Phone/Mobile')
+        product_id = sheet_fields.index('Line Product')
+        line_name = sheet_fields.index('Line Description')
+        price_unit = sheet_fields.index('Line Unit Price')
+        product_qty = sheet_fields.index('Line Qty')
+        taxes_id = sheet_fields.index('Line Tax')
+        notes = sheet_fields.index('Notes')
+        pricelist_id = sheet_fields.index('Pricelist')
+        warehouse_id = sheet_fields.index('Warehouse')
+        team_id = sheet_fields.index('Team')
+        carrier_id = sheet_fields.index('Carrier')
 
-            missing_columns = []
-            order_group = False
-            if 'Group' in sheet_fields:
-                order_group = sheet_fields.index('Group')
-            else:
-                missing_columns.append('Group')
-
-            partner_name = False
-            if 'Customer' in sheet_fields:
-                partner_name = sheet_fields.index('Customer')
-            else:
-                missing_columns.append('Customer')
-
-            partner_tel = False
-            if 'Customer Phone/Mobile' in sheet_fields:
-                partner_tel = sheet_fields.index('Customer Phone/Mobile')
-            else:
-                missing_columns.append('Customer Phone/Mobile')
-
-            product_id = False
-            if 'Line Product' in sheet_fields:
-                product_id = sheet_fields.index('Line Product')
-            else:
-                missing_columns.append('Line Product')
-
-            line_name = False
-            if 'Line Description' in sheet_fields:
-                line_name = sheet_fields.index('Line Description')
-            else:
-                missing_columns.append('Line Description')
-
-            price_unit = False
-            if 'Line Unit Price' in sheet_fields:
-                price_unit = sheet_fields.index('Line Unit Price')
-            else:
-                missing_columns.append('Line Unit Price')
-
-            product_qty = False
-            if 'Line Qty' in sheet_fields:
-                product_qty = sheet_fields.index('Line Qty')
-            else:
-                missing_columns.append('Line Qty')
-
-            taxes_id = False
-            if 'Line Tax' in sheet_fields:
-                taxes_id = sheet_fields.index('Line Tax')
-            else:
-                missing_columns.append('Line Tax')
-
-            notes = False
-            if 'Notes' in sheet_fields:
-                notes = sheet_fields.index('Notes')
-            else:
-                missing_columns.append('Notes')
-
-            pricelist_id = False
-            if 'Pricelist' in sheet_fields:
-                pricelist_id = sheet_fields.index('Pricelist')
-            else:
-                missing_columns.append('Pricelist')
-
-            warehouse_id = False
-            if 'Warehouse' in sheet_fields:
-                warehouse_id = sheet_fields.index('Warehouse')
-            else:
-                missing_columns.append('Warehouse')
-
-            team_id = False
-            if 'Team' in sheet_fields:
-                team_id = sheet_fields.index('Team')
-            else:
-                missing_columns.append('Team')
-
-            carrier_id = False
-            if 'Carrier' in sheet_fields:
-                carrier_id = sheet_fields.index('Carrier')
-            else:
-                missing_columns.append('Carrier')
-
-            if missing_columns:
-                raise Warning(
-                    _('Following columns are missing: \n %s'
-                      % ('\n'.join(missing_columns))
-                      )
-                )
-
-            for row in csv_iterator:
-                check_list = []
-  # Below logic for is row values are empty on all columns then skip that line.
+        for row in csv_iterator:
+            check_list = []
+# Below logic for is row values are empty on all columns then skip that line.
 #                 order_group_value = row[order_group].strip()
-                if not bool(row[order_group].strip()):
-                    for r in row:
-                        if bool(r.strip()):
-                            check_list.append(r)
-                    if not bool(row[order_group].strip()) and not check_list:
-                        continue
+            if not bool(row[order_group].strip()):
+                for r in row:
+                    if bool(r.strip()):
+                        check_list.append(r)
+                if not bool(row[order_group].strip()) and not check_list:
+                    continue
 
-                error_line_vals = {'error_name': '', 'error': False}
-                ctx.update({'partner_name': partner_name})
-                partner_value, product_id_value, pricelist_value,\
-                    warehouse_value, team_value, carrier_value = \
-                    self.with_context(ctx)._get_order_value_dict(
-                        row, error_line_vals, partner_tel, product_id,
-                        pricelist_id, warehouse_id, team_id, carrier_id,
-                        partner_dict,
-                        product_dict, pricelist_dict, picking_dict,
-                        warehouse_dict, team_dict, carrier_dict)
+            error_line_vals = {'error_name': '', 'error': False}
+            ctx.update({'partner_name': partner_name})
+            partner_value, product_id_value, pricelist_value,\
+                warehouse_value, team_value, carrier_value = \
+                self.with_context(ctx)._get_order_value_dict(
+                    row, error_line_vals, partner_tel, product_id,
+                    pricelist_id, warehouse_id, team_id, carrier_id,
+                    partner_dict,
+                    product_dict, pricelist_dict, picking_dict,
+                    warehouse_dict, team_dict, carrier_dict)
 
-                taxes = []
-                qty, price_unit_value = self._get_order_value(row,
-                                                              error_line_vals,
-                                                              taxes,
-                                                              price_unit,
-                                                              taxes_id,
-                                                              product_qty)
-                picking_policy = self.picking_policy
-                order = row[order_group].strip()
-                error_log_id = self._update_error_log(error_log_id,
-                                                      error_line_vals,
-                                                      ir_attachment, model,
-                                                      csv_iterator.line_num,
-                                                      order)
+            taxes = []
+            qty, price_unit_value = self._get_order_value(row,
+                                                          error_line_vals,
+                                                          taxes,
+                                                          price_unit,
+                                                          taxes_id,
+                                                          product_qty)
+            picking_policy = self.picking_policy
+            order = row[order_group].strip()
+            error_log_id = self._update_error_log(error_log_id,
+                                                  error_line_vals,
+                                                  ir_attachment, model,
+                                                  csv_iterator.line_num,
+                                                  order)
 
-                self._get_order_item_dict(error_log_id, row, order, taxes,
-                                          line_name, product_dict,
-                                          product_id_value, order_item_dict,
-                                          qty, price_unit_value)
+            self._get_order_item_dict(error_log_id, row, order, taxes,
+                                      line_name, product_dict,
+                                      product_id_value, order_item_dict,
+                                      qty, price_unit_value)
 
-                self._get_order_dict(error_log_id, order_dict, order,
-                                     partner_dict, partner_value,
-                                     pricelist_dict,
-                                     pricelist_value, picking_dict,
-                                     picking_policy, team_dict, team_value,
-                                     carrier_dict, carrier_value,
-                                     warehouse_dict, warehouse_value, row,
-                                     notes)
+            self._get_order_dict(error_log_id, order_dict, order,
+                                 partner_dict, partner_value,
+                                 pricelist_dict,
+                                 pricelist_value, picking_dict,
+                                 picking_policy, team_dict, team_value,
+                                 carrier_dict, carrier_value,
+                                 warehouse_dict, warehouse_value, row,
+                                 notes)
 
-            if not error_log_id:
-                error_log_id = self.env['error.log'].create({
-                    'input_file': ir_attachment.id,
-                    'import_user_id': self.env.user.id,
-                    'import_date': datetime.now(),
-                    'state': 'done',
-                    'model_id': model.id}).id
-                for item in order_item_dict:
-                    order_id = self._get_order_id(order_dict[item],
-                                                  item, error_log_id)
-                    for so_line in order_item_dict[item]:
-                        self._get_orderline_id(so_line, order_id)
+        if not error_log_id:
+            error_log_id = self.env['error.log'].create({
+                'input_file': ir_attachment.id,
+                'import_user_id': self.env.user.id,
+                'import_date': datetime.now(),
+                'state': 'done',
+                'model_id': model.id}).id
+            for item in order_item_dict:
+                order_id = self._get_order_id(order_dict[item],
+                                              item, error_log_id)
+                for so_line in order_item_dict[item]:
+                    self._get_orderline_id(so_line, order_id)
 #                         orderline_id = \
 #                             self._get_orderline_id(so_line, order_id)
 
-  #                   order_id.signal_workflow('order_confirm')  # odoo11
-                    order_id.action_confirm()  # odoo11
-                    if order_id.picking_ids:
-                        for picking in order_id.picking_ids:
-                            picking.action_assign()
-                            #  available = picking.action_assign()
+#                   order_id.signal_workflow('order_confirm')  # odoo11
+                order_id.action_confirm()  # odoo11
+                if order_id.picking_ids:
+                    for picking in order_id.picking_ids:
+                        picking.action_assign()
+                        #  available = picking.action_assign()
 
-                    #  invoice_ids = order_id.action_invoice_create()  # odoo11
-                    order_id.action_invoice_create()  # odoo11
+                #  invoice_ids = order_id.action_invoice_create()  # odoo11
+                order_id.action_invoice_create()  # odoo11
 
-                    if order_id.invoice_ids:
-                        for invoice in order_id.invoice_ids:
-                            invoice.journal_id = \
-                                self.customer_invoice_journal_id.id
-                            if invoice.state == 'draft':
-  #                                 invoice.signal_workflow('invoice_open')
-                                invoice.action_invoice_open()  # odoo11
-                                invoice.pay_and_reconcile(
-                                    self.customer_payment_journal_id.id
-                                )  # odoo11
-            res = self.env.ref('base_import_log.error_log_action')
-            res = res.read()[0]
-            res['domain'] = str([('id', 'in', [error_log_id])])
-            return res
+                if order_id.invoice_ids:
+                    for invoice in order_id.invoice_ids:
+                        invoice.journal_id = \
+                            self.customer_invoice_journal_id.id
+                        if invoice.state == 'draft':
+#                                 invoice.signal_workflow('invoice_open')
+                            invoice.action_invoice_open()  # odoo11
+                            invoice.pay_and_reconcile(
+                                self.customer_payment_journal_id.id
+                            )  # odoo11
+        res = self.env.ref('base_import_log.error_log_action')
+        res = res.read()[0]
+        res['domain'] = str([('id', 'in', [error_log_id])])
+        return res
