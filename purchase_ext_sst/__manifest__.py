@@ -21,6 +21,7 @@
         'views/request_medium_views.xml',
         'views/purchase_category_views.xml',
         'views/purchase_order_views.xml',
+        'views/hr_employee_views.xml',
     ],
     'installable': True,
 }
