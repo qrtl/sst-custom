@@ -17,8 +17,8 @@ msgstr ""
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "1 hour"
-msgstr "1 時間"
+msgid "1.0 hours"
+msgstr "1.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -27,13 +27,13 @@ msgstr "1.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "10 hours"
-msgstr "10 時間"
+msgid "10.0 hours"
+msgstr "10.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "2 hours"
-msgstr "2 時間"
+msgid "2.0 hours"
+msgstr "2.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -42,8 +42,8 @@ msgstr "2.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "3 hours"
-msgstr "3 時間"
+msgid "3.0 hours"
+msgstr "3.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -52,13 +52,13 @@ msgstr "3.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "30 minutes"
-msgstr "30 分"
+msgid "0.5 hours"
+msgstr "0.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "4 hours"
-msgstr "4 時間"
+msgid "4.0 hours"
+msgstr "4.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -67,8 +67,8 @@ msgstr "4.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "5 hours"
-msgstr "5 時間"
+msgid "5.0 hours"
+msgstr "5.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -77,8 +77,8 @@ msgstr "5.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "6 hours"
-msgstr "6 時間"
+msgid "6.0 hours"
+msgstr "6.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -87,8 +87,8 @@ msgstr "6.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "7 hours"
-msgstr "7 時間"
+msgid "7.0 hours"
+msgstr "7.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -97,8 +97,8 @@ msgstr "7.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "8 hours"
-msgstr "8 時間"
+msgid "8.0 hours"
+msgstr "8.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -107,8 +107,8 @@ msgstr "8.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
-msgid "9 hours"
-msgstr "9 時間"
+msgid "9.0 hours"
+msgstr "9.0 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0

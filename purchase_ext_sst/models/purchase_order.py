@@ -22,27 +22,8 @@ class PurchaseOrder(models.Model):
     remark = fields.Text('Remark')
     delivery_staff = fields.Many2one('res.partner', 'Delivery Staff')
     worked_hours = fields.Selection(
-        [(0.5, '30 minutes'),
-         (1, '1 hour'),
-         (1.5, '1.5 hours'),
-         (2, '2 hours'),
-         (2.5, '2.5 hours'),
-         (3, '3 hours'),
-         (3.5, '3.5 hours'),
-         (4, '4 hours'),
-         (4.5, '4.5 hours'),
-         (5, '5 hours'),
-         (5.5, '5.5 hours'),
-         (6, '6 hours'),
-         (6.5, '6.5 hours'),
-         (7, '7 hours'),
-         (7.5, '7.5 hours'),
-         (8, '8 hours'),
-         (8.5, '8.5 hours'),
-         (9, '9 hours'),
-         (9.5, '9.5 hours'),
-         (10, '10 hours'),],
-        string='Worked Hours'
+        [(num/2, str(num/2) + ' hours') for num in range(1, 21)],
+        string='Worked Hours',
     )
 
     @api.onchange('delivery_staff')
@@ -51,7 +32,6 @@ class PurchaseOrder(models.Model):
             (self.shop_id and self.delivery_staff and \
                 self.delivery_staff.shop_id != self.shop_id):
             self.shop_id = self.delivery_staff.shop_id
-        return {}
 
     @api.onchange('shop_id')
     def onchange_shop_id(self):
