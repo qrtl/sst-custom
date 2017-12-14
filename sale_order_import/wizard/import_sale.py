@@ -521,7 +521,10 @@ class ImportSale(models.TransientModel):
             quotechar='"',
             delimiter=','
         )
-        sheet_fields = next(csv_iterator)
+        try:
+            sheet_fields = next(csv_iterator)
+        except:
+            raise Warning(_("Please import a CSV file with UTF-8 encoding."))
 
         #  column validation
         missing_columns = list(set(FIELDS_TO_IMPORT) - set(sheet_fields))
