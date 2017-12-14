@@ -5,16 +5,6 @@
 from odoo import models, fields
 
 
-class ErrorLog(models.Model):
-    _inherit = 'error.log'
-
-    sale_order_ids = fields.One2many(
-        'sale.order',
-        'error_log_id',
-        string='Related Sale Orders'
-    )
-
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -30,4 +20,9 @@ class SaleOrder(models.Model):
         relation='error.log',
         string='Import Log',
         readonly=True
+    )
+    invoiceable = fields.Boolean(
+        'Invoiceable',
+        readonly=True,
+        default=True,
     )

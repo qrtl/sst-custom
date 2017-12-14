@@ -8,24 +8,26 @@
     'website': 'https://www.odoo-asia.com',
     'category': 'Sales Management',
     'license': "AGPL-3",
-    'description': """ 
+    'description': """
 Imports sales data and processes the following:
  - sales order creation
- - availaibility check on outgoing picking
+ - availability check on outgoing picking
  - customer invoice creation
  - payment creation
     """,
-    'summary':"",
+    'summary': "",
     'depends': [
         'sale_stock',
         'base_import_log',
         'account_voucher',
         'sale_management',
+        'delivery'
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/sale_import_default.xml',
-        'views/sale_view.xml',
+        'views/error_logs_views.xml',
+        'views/sale_order_views.xml',
         'wizard/import_sale_view.xml',
     ],
     'installable': True,
