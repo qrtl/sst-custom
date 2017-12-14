@@ -21,3 +21,8 @@ class SaleOrder(models.Model):
         string='Import Log',
         readonly=True
     )
+    invoiceable = fields.Boolean(
+        'Invoiceable',
+        readonly=True,
+        default=True,
+    )

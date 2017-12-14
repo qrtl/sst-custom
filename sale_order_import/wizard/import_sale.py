@@ -214,6 +214,10 @@ class ImportSale(models.TransientModel):
             if not name:
                 name = product_data.name
 
+            invoiceable = True
+            if product_data.invoice_policy == 'delivery':
+                invoiceable = False
+
             state = 'draft'
             if order not in order_item_dict.keys():
                 order_item_dict[order] = [{
@@ -226,6 +230,7 @@ class ImportSale(models.TransientModel):
                     'price_unit': price_unit_value,
                     'state': state,
                     'tax_id':taxes,
+                    'invoiceable': invoiceable,
                 }]
             else:
                 order_item_dict[order].append({
@@ -238,6 +243,7 @@ class ImportSale(models.TransientModel):
                     'price_unit': price_unit_value,
                     'state': state,
                     'tax_id': taxes,
+                    'invoiceable': invoiceable,
                 })
 
     @api.model
@@ -603,6 +609,8 @@ class ImportSale(models.TransientModel):
                 order_id = self._get_order_id(order_dict[item],
                                               item, error_log_id)
                 for so_line in order_item_dict[item]:
+                    if not so_line['invoiceable']:
+                        order_id.invoiceable = False
                     self._get_orderline_id(so_line, order_id)
 #                         orderline_id = \
 #                             self._get_orderline_id(so_line, order_id)
@@ -615,7 +623,8 @@ class ImportSale(models.TransientModel):
                         #  available = picking.action_assign()
 
                 #  invoice_ids = order_id.action_invoice_create()  # odoo11
-                order_id.action_invoice_create()  # odoo11
+                if order_id.invoiceable:
+                    order_id.action_invoice_create()  # odoo11
 
                 if order_id.invoice_ids:
                     for invoice in order_id.invoice_ids:
