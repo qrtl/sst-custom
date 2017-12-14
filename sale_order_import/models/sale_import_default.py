@@ -2,7 +2,7 @@
 # Copyright 2017 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 
 
 class SaleImportDefault(models.Model):
@@ -18,13 +18,6 @@ class SaleImportDefault(models.Model):
         ('one', 'Deliver all products at once')],
         required=True,
         string='Shipping Policy',
-    )
-    order_policy = fields.Selection([
-        ('manual', 'On Demand'),
-        ('picking', 'On Delivery Order'),
-        ('prepaid', 'Before Delivery')],
-        required=True,
-        string='Create Invoice',
     )
     customer_invoice_journal_id = fields.Many2one(
         'account.journal',
