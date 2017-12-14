@@ -23,12 +23,12 @@ msgstr "1 時間"
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
 msgid "1.5 hours"
-msgstr "1.5　時間"
+msgstr "1.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
 msgid "10 hours"
-msgstr "10　時間"
+msgstr "10 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
