@@ -20,7 +20,7 @@ class PurchaseOrder(models.Model):
     phone = fields.Char(index=True)
     address = fields.Char()
     remark = fields.Text('Remark')
-    delivery_staff_id = fields.Many2one('hr.employee', 'Delivery Staff')
+    purchased_by_id = fields.Many2one('hr.employee', 'Delivery Staff')
     worked_hours = fields.Selection(
         [(num, num + ' hours') for num in ['0.5', '1.0', '1.5', '2.0',
                                            '2.5', '3.0', '3.5', '4.0',
@@ -30,12 +30,12 @@ class PurchaseOrder(models.Model):
         string='Worked Hours',
     )
 
-    @api.onchange('delivery_staff_id')
-    def onchange_delivery_staff_id(self):
-        if (not self.shop_id and self.delivery_staff_id) or \
-            (self.shop_id and self.delivery_staff_id and \
-                self.delivery_staff_id.shop_id != self.shop_id):
-            self.shop_id = self.delivery_staff_id.shop_id
+    @api.onchange('purchased_by_id')
+    def onchange_purchased_by_id(self):
+        if (not self.shop_id and self.purchased_by_id) or \
+            (self.shop_id and self.purchased_by_id and \
+                self.purchased_by_id.shop_id != self.shop_id):
+            self.shop_id = self.purchased_by_id.shop_id
 
     @api.onchange('shop_id')
     def onchange_shop_id(self):
@@ -47,11 +47,11 @@ class PurchaseOrder(models.Model):
             ])
             ids.append(('id', 'in', staffs.ids))
             # Clear the delivery staff value
-            if self.delivery_staff_id and self.delivery_staff_id.shop_id and \
-                    self.delivery_staff_id.shop_id != self.shop_id:
-                self.delivery_staff_id = False
+            if self.purchased_by_id and self.purchased_by_id.shop_id and \
+                    self.purchased_by_id.shop_id != self.shop_id:
+                self.purchased_by_id = False
         return {
-            'domain': {'delivery_staff_id': ids}
+            'domain': {'purchased_by_id': ids}
         }
 
     @api.multi
@@ -67,3 +67,17 @@ class PurchaseOrder(models.Model):
             'context': {},
             'target': 'current',
         }
+
+    @api.multi
+    def write(self, vals):
+        res = super(PurchaseOrder, self).write(vals)
+        for purchase_order in self:
+            for order_line in purchase_order.order_line:
+                product = order_line.product_id.product_tmpl_id
+                if purchase_order.shop_id and product.shop_id != \
+                        purchase_order.shop_id:
+                    product.shop_id = purchase_order.shop_id
+                if purchase_order.purchased_by_id and \
+                   product.purchased_by_id != purchase_order.purchased_by_id:
+                    product.purchased_by_id = purchase_order.purchased_by_id
+        return res

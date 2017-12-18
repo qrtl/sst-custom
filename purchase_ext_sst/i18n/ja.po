@@ -116,7 +116,7 @@ msgid "9.5 hours"
 msgstr "9.5 時間"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_delivery_staff_id
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_purchased_by_id
 msgid "Delivery Staff"
 msgstr "買取担当者"
 
