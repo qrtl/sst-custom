@@ -16,6 +16,7 @@
                         <field name="request_channel_id"/>
                         <field name="request_medium_id"/>
                         <field name="call_back"/>
+                        <field name="worked_hours"/>
                     </group>
                     <group>
                         <field name="employee_id"/>
@@ -26,6 +27,9 @@
                 <group>
                     <field name="remark"/>
                 </group>
+            </xpath>
+            <xpath expr="//field[@name='incoterm_id']" position="after">
+                <field name="delivery_staff_id"/>
             </xpath>
             <xpath expr="//notebook/page[1]//tree/field[@name='date_planned']" position="attributes">
                 <attribute name="invisible">True</attribute>

@@ -16,6 +16,116 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "1.0 hours"
+msgstr "1.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "1.5 hours"
+msgstr "1.5 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "10.0 hours"
+msgstr "10.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "2.0 hours"
+msgstr "2.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "2.5 hours"
+msgstr "2.5 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "3.0 hours"
+msgstr "3.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "3.5 hours"
+msgstr "3.5 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "0.5 hours"
+msgstr "0.5 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "4.0 hours"
+msgstr "4.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "4.5 hours"
+msgstr "4.5 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "5.0 hours"
+msgstr "5.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "5.5 hours"
+msgstr "5.5 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "6.0 hours"
+msgstr "6.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "6.5 hours"
+msgstr "6.5 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "7.0 hours"
+msgstr "7.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "7.5 hours"
+msgstr "7.5 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "8.0 hours"
+msgstr "8.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "8.5 hours"
+msgstr "8.5 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "9.0 hours"
+msgstr "9.0 時間"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "9.5 hours"
+msgstr "9.5 時間"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_delivery_staff_id
+msgid "Delivery Staff"
+msgstr "買取担当者"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_worked_hours
+msgid "Worked Hours"
+msgstr "作業時間"
+
+#. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_active
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_active
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_active

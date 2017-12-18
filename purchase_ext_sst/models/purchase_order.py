@@ -20,16 +20,39 @@ class PurchaseOrder(models.Model):
     phone = fields.Char(index=True)
     address = fields.Char()
     remark = fields.Text('Remark')
+    delivery_staff_id = fields.Many2one('hr.employee', 'Delivery Staff')
+    worked_hours = fields.Selection(
+        [(num, num + ' hours') for num in ['0.5', '1.0', '1.5', '2.0',
+                                           '2.5', '3.0', '3.5', '4.0',
+                                           '4.5', '5.0', '5.5', '6.0',
+                                           '6.5', '7.0', '7.5', '8.0',
+                                           '8.5', '9.0', '9.5', '10.0']],
+        string='Worked Hours',
+    )
 
+    @api.onchange('delivery_staff_id')
+    def onchange_delivery_staff_id(self):
+        if (not self.shop_id and self.delivery_staff_id) or \
+            (self.shop_id and self.delivery_staff_id and \
+                self.delivery_staff_id.shop_id != self.shop_id):
+            self.shop_id = self.delivery_staff_id.shop_id
 
-    @api.onchange('partner_id', 'company_id')
-    def onchange_partner_id(self):
-        super(PurchaseOrder, self).onchange_partner_id()
-        if not self.partner_id:
-            self.shop_id = False
-        else:
-            self.shop_id = self.partner_id.shop_id
-        return {}
+    @api.onchange('shop_id')
+    def onchange_shop_id(self):
+        ids = []
+        if self.shop_id:
+            # Update domain filter on delivery staff
+            staffs = self.env['hr.employee'].search([
+                ('shop_id', '=', self.shop_id.id)
+            ])
+            ids.append(('id', 'in', staffs.ids))
+            # Clear the delivery staff value
+            if self.delivery_staff_id and self.delivery_staff_id.shop_id and \
+                    self.delivery_staff_id.shop_id != self.shop_id:
+                self.delivery_staff_id = False
+        return {
+            'domain': {'delivery_staff_id': ids}
+        }
 
     @api.multi
     def open_record(self):
