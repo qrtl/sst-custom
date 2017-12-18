@@ -279,7 +279,8 @@ class ImportSale(models.TransientModel):
                     or False,
                     'picking_policy': picking_policy,
                     'team_id': team_dict[team_value],
-                    'carrier_id': carrier_dict[carrier_value],
+                    'carrier_id': carrier_dict[carrier_value] if \
+                    carrier_value else False,
                     'warehouse_id': warehouse_dict[warehouse_value],
                     #  'currency_id':
                     #      pricelist_data['value']['currency_id'],  # odoo11
