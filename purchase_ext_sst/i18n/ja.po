@@ -277,6 +277,7 @@ msgid "Sequence"
 msgstr "付番"
 
 #. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_hr_employee_shop_id
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_shop_id
 msgid "Shop"
 msgstr "担当店舗"
