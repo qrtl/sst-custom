@@ -417,17 +417,6 @@ class ImportSale(models.TransientModel):
                     taxes.append(taxdata.id)
 
     @api.model
-    def _check_csv_format(self, row):
-        """Check csv format"""
-        for r in row:
-            try:
-                r.decode('utf-8')
-            except:
-                raise Warning(_(
-                    'Please prepare a CSV file with UTF-8 encoding.!'
-                ))
-
-    @api.model
     def _update_error_log(self, error_log_id, error_line_vals, ir_attachment,
                           model, row_no, order_group_value):
         """Update error log"""
