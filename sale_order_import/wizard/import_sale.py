@@ -141,11 +141,7 @@ class ImportSale(models.TransientModel):
             self._get_team_dict(team_value, team_dict, error_line_vals)
 
         carrier_value = row[carrier_id].strip()
-        if not carrier_value:
-            error_line_vals['error_name'] = error_line_vals['error_name']\
-                + _('Column "Carrier" cannot be empty.') + '\n'
-            error_line_vals['error'] = True
-        else:
+        if carrier_value:
             self._get_carrier_dict(carrier_value, carrier_dict,
                                    error_line_vals)
 
