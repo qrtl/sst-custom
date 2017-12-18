@@ -18,7 +18,6 @@
             <xpath expr="//field[@name='child_ids']/form//field[@name='mobile']" position="after">
                 <field name="identification_type_id" attrs="{'invisible' : [('supplier', '=', False)]}"/>
                 <field name="identification_number" attrs="{'invisible' : [('supplier', '=', False)]}"/>
-                <field name="shop_id" attrs="{'invisible' : [('supplier', '=', False)]}"/>
             </xpath>
         </field>
     </record>
