@@ -16,6 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_import
+#: code:addons/sale_order_import/wizard/import_sale.py:527
+#, python-format
+msgid "Please import a CSV file with UTF-8 encoding."
+msgstr "CSV ファイルの文字コードが「UTF-8」であることを確認ください。"
+
+#. module: sale_order_import
 #: code:addons/sale_order_import/wizard/import_sale.py:315
 #: code:addons/sale_order_import/wizard/import_sale.py:332
 #: code:addons/sale_order_import/wizard/import_sale.py:347
