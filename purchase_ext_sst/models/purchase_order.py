@@ -74,10 +74,8 @@ class PurchaseOrder(models.Model):
         for purchase_order in self:
             for order_line in purchase_order.order_line:
                 product = order_line.product_id.product_tmpl_id
-                if purchase_order.shop_id and product.shop_id != \
-                        purchase_order.shop_id:
+                if product.shop_id != purchase_order.shop_id:
                     product.shop_id = purchase_order.shop_id
-                if purchase_order.purchased_by_id and \
-                   product.purchased_by_id != purchase_order.purchased_by_id:
+                if product.purchased_by_id != purchase_order.purchased_by_id:
                     product.purchased_by_id = purchase_order.purchased_by_id
         return res
