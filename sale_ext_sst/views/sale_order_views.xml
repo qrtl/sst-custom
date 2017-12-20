@@ -15,11 +15,25 @@
         </field>
     </record>
 
-    <record id="sale_sale_order_view_search_inherit_sale" model="ir.ui.view">
-        <field name="name">sale.sale.order.view.search.inherit.sale</field>
+    <record id="sale_viw_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.view.quotation.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="phone"/>
+                <field name="product_id"/>
+                <field name="warehouse_id"/>
+                <field name="team_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale.view.sales.order.filter</field>
         <field name="model">sale.order</field>
         <field name="inherit_id"
-               ref="sale.sale_order_view_search_inherit_sale"/>
+               ref="sale.view_sales_order_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="phone"/>
