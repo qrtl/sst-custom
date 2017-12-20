@@ -48,6 +48,10 @@
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">top</attribute>
             </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="context">{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}</attribute>
+                <attribute name="domain">[('supplier', '=', True)]</attribute>
+            </xpath>
             <xpath expr="//field[@name='name']" position="after">
                 <field name="purchase_category_id"/>
                 <field name="shop_id"/>
