@@ -29,7 +29,7 @@
                 </group>
             </xpath>
             <xpath expr="//field[@name='incoterm_id']" position="after">
-                <field name="delivery_staff_id"/>
+                <field name="purchased_by_id"/>
             </xpath>
             <xpath expr="//notebook/page[1]//tree/field[@name='date_planned']" position="attributes">
                 <attribute name="invisible">True</attribute>
