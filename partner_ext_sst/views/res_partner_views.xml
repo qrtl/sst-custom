@@ -29,25 +29,39 @@
             <xpath expr="//li[@t-if='record.city.raw_value and !record.country_id.raw_value']" position="replace"/>
             <xpath expr="//li[@t-if='!record.city.raw_value and record.country_id.raw_value']" position="replace"/>
             <xpath expr="//li[@t-if='record.city.raw_value and record.country_id.raw_value']" position="replace">
-                <li t-if="record.zip.raw_value"><field name="zip"/></li>
-                <li t-if="record.state_id.raw_value and !record.city.raw_value">
-                    <field name="state_id"/>
+                <li t-if="record.zip.raw_value">〒<field name="zip"/></li>
+                <li t-if="record.state_id.raw_value and !record.city.raw_value and record.street.raw_value">
+                    <field name="state_id"/> <field name="street"/>
                 </li>
-                <li t-if="!record.state_id.raw_value and record.city.raw_value">
-                    <field name="city"/>
+                <li t-if="!record.state_id.raw_value and record.city.raw_value and record.street.raw_value">
+                    <field name="city"/> <field name="street"/>
                 </li>
-                <li t-if="record.state_id.raw_value and record.city.raw_value">
+                <li t-if="record.state_id.raw_value and record.city.raw_value and !record.street.raw_value">
                     <field name="state_id"/> <field name="city"/>
                 </li>
-                <li t-if="record.street.raw_value"><field name="street"/></li>
+                <li t-if="record.state_id.raw_value and !record.city.raw_value and !record.street.raw_value">
+                    <field name="state_id"/>
+                </li>
+                <li t-if="!record.state_id.raw_value and record.city.raw_value and !record.street.raw_value">
+                    <field name="city"/>
+                </li>
+                <li t-if="!record.state_id.raw_value and !record.city.raw_value and record.street.raw_value">
+                    <field name="street"/>
+                </li>
+                <li t-if="record.state_id.raw_value and record.city.raw_value and record.street.raw_value">
+                    <field name="state_id"/> <field name="city"/> <field name="street"/>
+                </li>
                 <li t-if="record.street2.raw_value"><field name="street2"/></li>
             </xpath>
             <xpath expr="//ul" position="inside">
-                <li t-if="record.phone.raw_value">
-                    <i class="fa fa-phone"/> <field name="phone"/>
+                <li t-if="record.phone.raw_value and record.mobile.raw_value">
+                    <i class="fa fa-phone"/> <field name="phone"/>　<i class="fa fa-mobile"/> <field name="mobile"/>
                 </li>
-                <li t-if="record.mobile.raw_value">
+                <li t-if="record.mobile.raw_value and !record.phone.raw_value">
                     <i class="fa fa-mobile"/> <field name="mobile"/>
+                </li>
+                <li t-if="!record.mobile.raw_value and record.phone.raw_value">
+                    <i class="fa fa-phone"/> <field name="phone"/>
                 </li>
             </xpath>
             <xpath expr="//ul//field[@name='email']" position="before">
