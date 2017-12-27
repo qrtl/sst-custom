@@ -17,8 +17,6 @@ Create internal transfer for selected stock quant(s).
     ],
     'data': [
         'wizard/stock_quant_transfer_wizard.xml',
-        'views/stock_quant.xml',
-        'views/stock_picking.xml',
     ],
     'installable': True,
     'application': False,

@@ -116,7 +116,6 @@ class QuantTransferWizard(models.TransientModel):
 
         picking_vals.update({'move_lines': picking_lines})
         picking_id = stock_picking_obj.create(picking_vals)
-        quant_ids.write({'picking_id': picking_id.id})
 
         action = self.env.ref('stock.action_picking_tree_all')
         action_vals = action.read()[0]
