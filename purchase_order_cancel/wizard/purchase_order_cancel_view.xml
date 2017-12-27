@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="cancel_purchase_order_form_view">
+        <field name="name">cancel.purchase.order.from</field>
+        <field name="model">cancel.purchase.order</field>
+            <field name="arch" type="xml">
+                <form string="Cancel Purchase Order">
+                    <p>This wizard will cancel all selected draft purchase orders.</p>
+                    <footer>
+                        <button string="Cancel Purchase Order" groups="purchase.group_purchase_user" name="action_cancel_purchase_order" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+    </record>
+
+    <act_window id="cancel_purchase_order_wizard"
+                name="Cancel Purchase Orders"
+                multi="True"
+                res_model="cancel.purchase.order"
+                src_model="purchase.order"
+                view_mode="form"
+                target="new"
+                groups="purchase.group_purchase_user"
+                key2="client_action_multi"/>
+
+</odoo>
