@@ -41,7 +41,8 @@ class QuantTransferWizard(models.TransientModel):
 
         stock_move_list = stock_move_obj.search([
             ('state', 'not in', ['done', 'cancel']),
-            ('product_id', 'in', quant_ids.product_id.ids)
+            ('picking_id', '!=', False),
+            ('product_id', 'in', [q.product_id.id for q in quant_ids])
         ])
         #  if any quant is already transferred from selected quant then raise
         if stock_move_list:
@@ -54,16 +55,31 @@ class QuantTransferWizard(models.TransientModel):
             location_list.append(location.id)
             location = location.location_id
 
-        warehouse_id = stock_warehouse_obj.search(
+        soruce_warehouse_id = stock_warehouse_obj.search(
             [('view_location_id', 'in', location_list)],
             limit=1
         )
-        if not warehouse_id:
+        if not soruce_warehouse_id:
             raise UserError(_('The stock location does not belong to any '
                               'warehouse.'))
 
-        picking_type_domain = [('code', '=', 'internal')]
-        picking_type_domain.append(('warehouse_id', '=', warehouse_id.id))
+        location_list = []
+        location = self.destination_location_id
+        while location:
+            location_list.append(location.id)
+            location = location.location_id
+
+        destination_warehouse_id = stock_warehouse_obj.search(
+            [('view_location_id', 'in', location_list)],
+            limit=1
+        )
+
+        if destination_warehouse_id != soruce_warehouse_id:
+            picking_type_domain = [('code', '=', 'outgoing')]
+        else:
+            picking_type_domain = [('code', '=', 'internal')]
+
+        picking_type_domain.append(('warehouse_id', '=', soruce_warehouse_id.id))
 
         #  if internal transfer functionality not activated raise warning
         picking_type_id = stock_picking_type_obj.search(
@@ -71,8 +87,8 @@ class QuantTransferWizard(models.TransientModel):
             limit=1
         )
         if not picking_type_id:
-            raise UserError(_('Please check if there is internal operation '
-                              'type for the warehouse'))
+            raise UserError(_('Please check if there is internal/delivery '
+                              'operation type for the warehouse'))
 
         origin_name = ','.join([q.display_name for q in quant_ids])
 
@@ -100,6 +116,7 @@ class QuantTransferWizard(models.TransientModel):
 
         picking_vals.update({'move_lines': picking_lines})
         picking_id = stock_picking_obj.create(picking_vals)
+        quant_ids.write({'picking_id': picking_id.id})
 
         action = self.env.ref('stock.action_picking_tree_all')
         action_vals = action.read()[0]
