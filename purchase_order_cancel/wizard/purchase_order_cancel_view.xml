@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="cancel_purchase_order_form_view">
-        <field name="name">cancel.purchase.order.from</field>
-        <field name="model">cancel.purchase.order</field>
+    <record model="ir.ui.view" id="purchase_order_cancel_form_view">
+        <field name="name">purchase.order.cancel.from</field>
+        <field name="model">purchase.order.cancel</field>
             <field name="arch" type="xml">
                 <form string="Cancel Purchase Order">
                     <p>This wizard will cancel all selected draft purchase orders.</p>
@@ -19,7 +19,7 @@
     <act_window id="cancel_purchase_order_wizard"
                 name="Cancel Purchase Orders"
                 multi="True"
-                res_model="cancel.purchase.order"
+                res_model="purchase.order.cancel"
                 src_model="purchase.order"
                 view_mode="form"
                 target="new"

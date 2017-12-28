@@ -16,7 +16,7 @@ Allow to cancel multiple purchase orders at single click!
         'purchase'
     ],
     'data': [
-        'wizard/purchase_order_view_cancel.xml',
+        'wizard/purchase_order_cancel_view.xml',
     ],
     'installable': True,
 }
