@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-27 12:14+0000\n"
-"PO-Revision-Date: 2017-12-27 12:14+0000\n"
+"POT-Creation-Date: 2017-12-28 04:21+0000\n"
+"PO-Revision-Date: 2017-12-28 04:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "内部移動作成"
 #. module: stock_quant_internal_transfer
 #: model:ir.ui.view,arch_db:stock_quant_internal_transfer.quant_transfer_wizard_form
 msgid "Create internal transfer for selected quants."
-msgstr "選択したプロダクトの内部移動を作成します。"
+msgstr "選択した保管ロットの内部移動を作成します。"
 
 #. module: stock_quant_internal_transfer
 #: model:ir.model.fields,field_description:stock_quant_internal_transfer.field_quant_transfer_wizard_create_uid
@@ -72,22 +72,16 @@ msgid "Last Updated on"
 msgstr "最終更新日"
 
 #. module: stock_quant_internal_transfer
-#: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:90
+#: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:125
 #, python-format
-msgid "Please check if there is internal/delivery operation type for the warehouse"
-msgstr "選択したプロダクトの倉庫の内部移動用または配送用のオペレーションタイプがありません。"
+msgid "Please check if there is internal operation type for the warehouse"
+msgstr "選択したプロダクトの倉庫の内部移動用のオペレーションタイプがありません。"
 
 #. module: stock_quant_internal_transfer
-#: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:31
-#, python-format
-msgid "Please select quant(s) for the internal transfer."
-msgstr "プロダクトを選択してくだいさい。"
-
-#. module: stock_quant_internal_transfer
-#: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:39
+#: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:32
 #, python-format
 msgid "Please select quants that are in the same Location."
-msgstr "同じロケーションにいるプロダクトを選択してください。"
+msgstr "同一ロケーション内の保管ロットを選択してください。"
 
 #. module: stock_quant_internal_transfer
 #: model:ir.ui.view,arch_db:stock_quant_internal_transfer.quant_transfer_wizard_form
@@ -100,13 +94,13 @@ msgid "Quants"
 msgstr "保管ロット"
 
 #. module: stock_quant_internal_transfer
-#: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:49
+#: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:94
 #, python-format
-msgid "Some of the selected quants are being transferred internally."
-msgstr "選択したプロダクトは他の在庫オペレーションで処理されています。"
+msgid "Some of the selected quants are being processed by other internal Stock Move. Please process the following Stock Moves before creating new internal moves:%s"
+msgstr "他の未処理在庫移動で使用されている保管ロットは移動できません、以下の在庫移動を処理してください；%s"
 
 #. module: stock_quant_internal_transfer
-#: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:63
+#: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:115
 #, python-format
 msgid "The stock location does not belong to any warehouse."
 msgstr "選択したプロダクトのロケーションがどの倉庫に属していません。"
