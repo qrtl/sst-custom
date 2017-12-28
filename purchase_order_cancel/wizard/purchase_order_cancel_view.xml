@@ -6,9 +6,9 @@
         <field name="model">purchase.order.cancel</field>
             <field name="arch" type="xml">
                 <form string="Cancel Purchase Order">
-                    <p>This wizard will cancel all selected draft purchase orders.</p>
+                    <p>Are you sure to delete the selected purchase order(s)?</p>
                     <footer>
-                        <button string="Cancel Purchase Order" groups="purchase.group_purchase_user" name="action_cancel_purchase_order" type="object" class="oe_highlight"/>
+                        <button string="Confirm" groups="purchase.group_purchase_user" name="action_cancel_purchase_order" type="object" class="oe_highlight"/>
                         or
                         <button string="Cancel" class="oe_link" special="cancel"/>
                     </footer>
