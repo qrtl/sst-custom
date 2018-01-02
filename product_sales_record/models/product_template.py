@@ -10,8 +10,8 @@ from odoo import models, fields, api
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    list_price_record = fields.Monetary(
-        string='Sale Price Record',
+    sale_price_unit = fields.Monetary(
+        string='Sale Price (Actual)',
         digits = dp.get_precision('Product Price'),
         readonly=True,
         store=True,
@@ -33,14 +33,10 @@ class ProductTemplate(models.Model):
         readonly=True,
     )
 
-    @api.depends('list_price_record', 'list_price', 'standard_price')
+    @api.depends('sale_price_unit', 'list_price', 'standard_price')
     def _compute_gross_profit(self):
-        for product in self:
-            if product.standard_price:
-                if product.list_price_record and \
-                                product.list_price_record != 0:
-                    product.gross_profit = product.list_price_record - \
-                                           product.standard_price
-                elif product.list_price:
-                    product.gross_profit = product.list_price - \
-                                           product.standard_price
+        for pt in self:
+            if pt.sales_count:
+                pt.gross_profit = pt.sale_price_unit - pt.standard_price
+            else:
+                pt.gross_profit = pt.list_price - pt.standard_price

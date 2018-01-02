@@ -7,7 +7,8 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='standard_price_uom']" position="after">
-                <field name="list_price_record"/>
+                <field name="sale_price_unit"/>
+                <field name="gross_profit"/>
                 <field name="confirmation_date"/>
                 <field name="team_id"/>
             </xpath>
@@ -20,7 +21,7 @@
         <field name="inherit_id" ref="product.product_template_tree_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='standard_price']" position="before">
-                <field name="list_price_record"/>
+                <field name="sale_price_unit"/>
             </xpath>
             <xpath expr="//field[@name='standard_price']" position="after">
                 <field name="gross_profit"/>
