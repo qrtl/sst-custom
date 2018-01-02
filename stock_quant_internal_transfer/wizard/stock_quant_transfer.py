@@ -92,10 +92,10 @@ class QuantTransferWizard(models.TransientModel):
                     stock_move.product_id.display_name,
                 )
             raise UserError(_('Some of the selected quants are being '
-                              'processed by other internal Stock Move. '
+                              'processed by other internal Stock Move.\n'
                               'Please process the following Stock Moves '
-                              'before creating new internal moves:%s' %
-                              error_msg))
+                              'before creating new internal moves:%s') %
+                            error_msg)
 
     def get_picking_type(self, location_id):
         stock_picking_type_obj = self.env['stock.picking.type']

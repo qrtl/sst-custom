@@ -96,8 +96,10 @@ msgstr "保管ロット"
 #. module: stock_quant_internal_transfer
 #: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:94
 #, python-format
-msgid "Some of the selected quants are being processed by other internal Stock Move. Please process the following Stock Moves before creating new internal moves:%s"
-msgstr "他の未処理在庫移動で使用されている保管ロットは移動できません、以下の在庫移動を処理してください；%s"
+msgid "Some of the selected quants are being processed by other internal Stock Move.\n"
+"Please process the following Stock Moves before creating new internal moves:%s"
+msgstr "他の未処理在庫移動で使用されている保管ロットは移動できません。\n"
+"以下の在庫移動を処理してください:%s"
 
 #. module: stock_quant_internal_transfer
 #: code:addons/stock_quant_internal_transfer/wizard/stock_quant_transfer.py:115
