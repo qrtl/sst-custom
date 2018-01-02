@@ -6,7 +6,7 @@
     'version': '11.0.1.0.0',
     'author': 'Quartile Limited',
     'website': 'https://www.odoo-asia.com',
-    'category': 'Sales',
+    'category': 'Extra Tools',
     'license': "AGPL-3",
     'description': """
 A cron task that will "Archive" products which have met certain conditions.
@@ -16,7 +16,7 @@ A cron task that will "Archive" products which have met certain conditions.
     'summary': """Make product archive if product virtual quantity
     +  purchase quantity is less the zero""",
     'depends': [
-        'product'
+        'purchase'
     ],
     'data': [
         'data/cron_data.xml',
