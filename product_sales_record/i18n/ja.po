@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_sales_record
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-28 08:02+0000\n"
+"PO-Revision-Date: 2017-12-28 08:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_sales_record
+#: model:ir.model.fields,field_description:product_sales_record.field_product_product_confirmation_date
+#: model:ir.model.fields,field_description:product_sales_record.field_product_template_confirmation_date
+msgid "Confirmation Date"
+msgstr "確認日"
+
+#. module: product_sales_record
+#: model:ir.model.fields,field_description:product_sales_record.field_product_product_gross_profit
+#: model:ir.model.fields,field_description:product_sales_record.field_product_template_gross_profit
+msgid "Gross Profit"
+msgstr "粗利"
+
+#. module: product_sales_record
+#: model:ir.model,name:product_sales_record.model_product_template
+msgid "Product Template"
+msgstr "プロダクトテンプレート"
+
+#. module: product_sales_record
+#: model:ir.model,name:product_sales_record.model_sale_order
+msgid "Quotation"
+msgstr "見積"
+
+#. module: product_sales_record
+#: model:ir.model.fields,field_description:product_sales_record.field_product_product_sale_price_unit
+#: model:ir.model.fields,field_description:product_sales_record.field_product_template_sale_price_unit
+msgid "Sale Price (Actual)"
+msgstr "販売価格(実績)"
+
+#. module: product_sales_record
+#: model:ir.model.fields,field_description:product_sales_record.field_product_product_team_id
+#: model:ir.model.fields,field_description:product_sales_record.field_product_template_team_id
+msgid "Sales Channel"
+msgstr "販売チャネル"
+
+
