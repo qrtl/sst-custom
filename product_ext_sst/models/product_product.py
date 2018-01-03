@@ -2,18 +2,21 @@
 # Copyright 2017 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api
+from odoo import models, api
 
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    barcode = fields.Char(
-        compute="_get_barcode"
-    )
+    @api.multi
+    def write(self, vals):
+        if vals.get('default_code') and vals['default_code'].isdigit():
+            vals['barcode'] = vals['default_code']
+        return super(ProductProduct, self).write(vals)
 
-    @api.depends('default_code')
-    def _get_barcode(self):
-        for pp in self:
-            if pp.default_code and pp.default_code.isdigit():
-                pp.barcode = pp.default_code
+    @api.model
+    def create(self, vals):
+        res = super(ProductProduct, self).create(vals)
+        if res.default_code and res.default_code.isdigit():
+            res.barcode = res.default_code
+        return res
