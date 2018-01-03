@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
         for order_line in self.order_line:
             product = order_line.product_id.product_tmpl_id
             product.write({
-                'sale_price_unit': order_line.price_unit,
+                'sale_price_unit': order_line.price_reduce_taxexcl,
                 'confirmation_date': self.confirmation_date,
                 'team_id': self.team_id.id,
             })
