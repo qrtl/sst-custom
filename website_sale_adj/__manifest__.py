@@ -11,6 +11,8 @@
     'description': """
 This module modify the website_sale module and provide following feature(s):
  - Show product_state_id in the /shop/product page.
+ - Hide the "Shop" menu in header from public user
+ - Hide the /shop and /shop/product pages from public user
     """,
     'depends': [
         'website_sale',
@@ -18,6 +20,7 @@ This module modify the website_sale module and provide following feature(s):
     ],
     'data': [
         'views/templates.xml',
+        'security/website_sale_security.xml',
     ],
     'installable': True,
 }
