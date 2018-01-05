@@ -8,7 +8,10 @@
     'website': 'https://www.odoo-asia.com',
     'category': 'Product',
     'license': "AGPL-3",
-    'description': "",
+    'description': """
+This module modify the website_sale module and provide following feature(s):
+ - Show product_state_id in the /shop/product page.
+    """,
     'depends': [
         'website_sale',
         'product_ext_sst',
