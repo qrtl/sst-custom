@@ -18,6 +18,7 @@ class PurchaseOrder(models.Model):
     call_back = fields.Boolean('Call Back')
     shop_id = fields.Many2one('stock.warehouse', 'Shop')
     phone = fields.Char(index=True)
+    tentative_name = fields.Char('Tentative Name', index=True)
     address = fields.Char()
     remark = fields.Text('Remark')
     purchased_by_id = fields.Many2one('hr.employee', 'Delivery Staff')
@@ -79,3 +80,34 @@ class PurchaseOrder(models.Model):
                 if product.purchased_by_id != purchase_order.purchased_by_id:
                     product.purchased_by_id = purchase_order.purchased_by_id
         return res
+
+    @api.model
+    def create(self, vals):
+        if 'phone' in vals and vals['phone']:
+            company_id = self.env.user.company_id.id
+            default_partner_id = (
+                self.env['ir.default'].get('purchase.order',
+                                           'partner_id',
+                                           user_id=self.env.uid,
+                                           company_id=company_id) or
+                self.env['ir.default'].get('purchase.order',
+                                           'partner_id',
+                                           user_id=False,
+                                           company_id=company_id)
+            ) or False
+            if default_partner_id and vals['partner_id'] == default_partner_id:
+                partners = self.env['res.partner'].search([
+                    '|',
+                    ('mobile', '=', vals['phone']),
+                    ('phone', '=', vals['phone']),
+                ])
+                if not partners and 'tentative_name' in vals and vals[
+                    'tentative_name']:
+                    new_partner = self.env['res.partner'].create({
+                        'name': vals['tentative_name'],
+                        'phone': vals['phone']
+                    })
+                    vals['partner_id'] = new_partner.id
+                elif partners:
+                    vals['partner_id'] = partners[0].id
+        return super(PurchaseOrder, self).create(vals)

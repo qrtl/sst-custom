@@ -60,6 +60,7 @@
                 <field name="request_medium_id"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="tentative_name"/>
                 <field name="phone"/>
                 <field name="address"/>
                 <field name="remark"/>

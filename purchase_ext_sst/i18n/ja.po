@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-11 14:48+0000\n"
-"PO-Revision-Date: 2017-11-11 14:48+0000\n"
+"POT-Creation-Date: 2018-01-09 10:44+0000\n"
+"PO-Revision-Date: 2018-01-09 10:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: purchase_ext_sst
+#: selection:purchase.order,worked_hours:0
+msgid "0.5 hours"
+msgstr "0.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -49,11 +54,6 @@ msgstr "3.0 時間"
 #: selection:purchase.order,worked_hours:0
 msgid "3.5 hours"
 msgstr "3.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "0.5 hours"
-msgstr "0.5 時間"
 
 #. module: purchase_ext_sst
 #: selection:purchase.order,worked_hours:0
@@ -116,16 +116,6 @@ msgid "9.5 hours"
 msgstr "9.5 時間"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_purchased_by_id
-msgid "Delivery Staff"
-msgstr "買取担当者"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_worked_hours
-msgid "Worked Hours"
-msgstr "作業時間"
-
-#. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_active
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_active
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_active
@@ -164,11 +154,21 @@ msgid "Created on"
 msgstr "作成日"
 
 #. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_purchased_by_id
+msgid "Delivery Staff"
+msgstr "買取担当者"
+
+#. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_display_name
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_display_name
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_display_name
 msgid "Display Name"
 msgstr "表示名"
+
+#. module: purchase_ext_sst
+#: model:ir.model,name:purchase_ext_sst.model_hr_employee
+msgid "Employee"
+msgstr "従業員"
 
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_id
@@ -197,6 +197,11 @@ msgstr "最終更新者"
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_write_date
 msgid "Last Updated on"
 msgstr "最終更新日"
+
+#. module: purchase_ext_sst
+#: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
+msgid "Late Scheduled Date"
+msgstr "過去予定日"
 
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_name
@@ -270,6 +275,11 @@ msgid "Request Medium"
 msgstr "媒体"
 
 #. module: purchase_ext_sst
+#: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
+msgid "Scheduled Today"
+msgstr "本日予定日"
+
+#. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_sequence
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_sequence
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_sequence
@@ -281,6 +291,21 @@ msgstr "付番"
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_shop_id
 msgid "Shop"
 msgstr "担当店舗"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_tentative_name
+msgid "Tentative Name"
+msgstr "仮称"
+
+#. module: purchase_ext_sst
+#: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
+msgid "Upcoming Schedule"
+msgstr "将来予定日"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_worked_hours
+msgid "Worked Hours"
+msgstr "作業時間"
 
 #. module: purchase_ext_sst
 #: model:ir.model,name:purchase_ext_sst.model_purchase_category
@@ -297,17 +322,4 @@ msgstr "request.channel"
 msgid "request.medium"
 msgstr "request.medium"
 
-#. module: purchase_ext_sst
-#: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
-msgid "Late Scheduled Date"
-msgstr "過去予定日"
 
-#. module: purchase_ext_sst
-#: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
-msgid "Scheduled Today"
-msgstr "本日予定日"
-
-#. module: purchase_ext_sst
-#: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
-msgid "Upcoming Schedule"
-msgstr "将来予定日"
