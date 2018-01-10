@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="website_sale_product" inherit_id="website_sale.product">
+        <xpath expr="//t[@name='Product']" position="attributes">
+            <attribute name="groups">base.group_user,base.group_portal</attribute>
+        </xpath>
+        <xpath expr="//p[@t-field='product.description_sale']"
+               position="after">
+            <t t-if="product.product_state_id">
+                <br/>
+                <span>Product State:</span>
+                <span t-field="product.product_state_id"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="website_sale_products" inherit_id="website_sale.products">
+        <xpath expr="//t[@name='Products']" position="attributes">
+            <attribute name="groups">base.group_user,base.group_portal</attribute>
+        </xpath>
+    </template>
+</odoo>
