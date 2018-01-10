@@ -95,13 +95,13 @@ msgstr "名称"
 #: model:ir.ui.menu,name:product_ext_sst.menu_product_state
 #: model:ir.ui.view,arch_db:product_ext_sst.form_view_product_state
 msgid "Product State"
-msgstr "プロダクト状態"
+msgstr "商品状態"
 
 #. module: product_ext_sst
 #: model:ir.actions.act_window,name:product_ext_sst.action_product_state
 #: model:ir.ui.view,arch_db:product_ext_sst.tree_view_product_state
 msgid "Product States"
-msgstr "プロダクト状態"
+msgstr "商品状態"
 
 #. module: product_ext_sst
 #: model:ir.model,name:product_ext_sst.model_product_template
