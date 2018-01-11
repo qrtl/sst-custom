@@ -42,4 +42,20 @@
         </field>
     </record>
 
+    <record id="sale_order_view_search_inherit_sale" model="ir.ui.view">
+        <field name="name">sale.order.view.search.inherit.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id"
+               ref="sale.sale_order_view_search_inherit_sale"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_sale_orders_filter']"
+                   position="after">
+                <filter string="Today's Order"
+                        domain="[('confirmation_date','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
+                                 ('confirmation_date','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"
+                        name="today_order"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

@@ -24,3 +24,9 @@ msgstr "電話"
 #: model:ir.model,name:sale_ext_sst.model_sale_order
 msgid "Quotation"
 msgstr "見積"
+
+#. module: sale_ext_sst
+#: model:ir.ui.view,arch_db:sale_ext_sst.sale_order_view_search_inherit_sale
+msgid "Today's Order"
+msgstr "本日のオーダ"
+
