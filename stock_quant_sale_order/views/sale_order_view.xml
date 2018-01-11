@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_order_form_inherit_quant3" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.quant</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                    <button
+                        name="action_open_quants"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-arrows"
+                        attrs="{'invisible': [('quant_count', '=', 0)]}">
+                        <field name="quant_count" widget="statinfo" string="Quants"/>
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="after">
+                    <field name="quant_ids" invisible="True"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
