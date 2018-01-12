@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="quant_sale_order_wizard_form" model="ir.ui.view">
+        <field name="name">quant.sale.order.wizard.form</field>
+        <field name="model">quant.sale.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Quant Transfer">
+                <p class="oe_gray">Create sale order for selected quants.</p>
+                <group>
+                    <group>
+                        <field name="partner_id"/>
+                    </group>
+                </group>
+            <footer>
+                <button name ="action_stock_quant_saleorder" string="Create Sale Order" type="object" class="oe_highlight"/>
+                or
+                <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window
+        id="action_quant_sale_order" 
+        multi="True"
+        key2="client_action_multi"
+        name="Create Sale Order"
+        res_model="quant.sale.order.wizard"
+        src_model="stock.quant"
+        view_mode="form" target="new" 
+        view_type="form"/>
+
+ </odoo>
