@@ -15,13 +15,17 @@ class QuantSaleOrderWizard(models.TransientModel):
         required=True,
     )
 
-    @api.multi
-    def action_stock_quant_saleorder(self):
-        '''This method create a sale order.'''
+    @api.model
+    def default_get(self, fields):
+        """Raise to warning in
+            - selected quants not in same location.
+            - selected quants are already create sale order.
+            - selected quants company is not same to user company.
+        """
         context = dict(self._context or {})
         active_ids = context.get('active_ids', [])
-        stock_quant_obj = self.env['stock.quant']
-        quant_ids = stock_quant_obj.browse(active_ids)
+        active_model = context.get('active_model')
+        quant_ids = self.env[active_model].browse(active_ids)
         source_location = quant_ids[0].location_id
         if any(q.location_id != source_location for q in quant_ids):
             raise UserError(_('Please select quants that are in the same '
@@ -36,6 +40,15 @@ class QuantSaleOrderWizard(models.TransientModel):
             raise UserError(
                 _('You can not create sales order for different company.')
             )
+        return super(QuantSaleOrderWizard, self).default_get(fields)
+
+    @api.multi
+    def action_stock_quant_saleorder(self):
+        '''This method create a sale order.'''
+        context = dict(self._context or {})
+        active_ids = context.get('active_ids', [])
+        stock_quant_obj = self.env['stock.quant']
+        quant_ids = stock_quant_obj.browse(active_ids)
         sale_order_obj = self.env['sale.order']
         sale_order_line_obj = self.env['sale.order.line']
         origin_name = ','.join([q.display_name for q in quant_ids])
