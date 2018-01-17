@@ -1,0 +1,113 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_quant_sale_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-17 03:15+0000\n"
+"PO-Revision-Date: 2018-01-17 03:15+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_quant_sale_order
+#: model:ir.ui.view,arch_db:stock_quant_sale_order.quant_sale_order_wizard_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: stock_quant_sale_order
+#: model:ir.actions.act_window,name:stock_quant_sale_order.action_quant_sale_order
+#: model:ir.ui.view,arch_db:stock_quant_sale_order.quant_sale_order_wizard_form
+msgid "Create Sales Order"
+msgstr "Create Sales Order"
+
+#. module: stock_quant_sale_order
+#: model:ir.ui.view,arch_db:stock_quant_sale_order.quant_sale_order_wizard_form
+msgid "Create sales order for selected quants."
+msgstr "Create sales order for selected quants."
+
+#. module: stock_quant_sale_order
+#: model:ir.model.fields,field_description:stock_quant_sale_order.field_quant_sale_order_wizard_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: stock_quant_sale_order
+#: model:ir.model.fields,field_description:stock_quant_sale_order.field_quant_sale_order_wizard_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: stock_quant_sale_order
+#: model:ir.model.fields,field_description:stock_quant_sale_order.field_quant_sale_order_wizard_partner_id
+msgid "Customer"
+msgstr "顧客"
+
+#. module: stock_quant_sale_order
+#: model:ir.model.fields,field_description:stock_quant_sale_order.field_quant_sale_order_wizard_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: stock_quant_sale_order
+#: model:ir.model.fields,field_description:stock_quant_sale_order.field_quant_sale_order_wizard___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: stock_quant_sale_order
+#: model:ir.model.fields,field_description:stock_quant_sale_order.field_quant_sale_order_wizard_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: stock_quant_sale_order
+#: model:ir.model.fields,field_description:stock_quant_sale_order.field_quant_sale_order_wizard_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: stock_quant_sale_order
+#: code:addons/stock_quant_sale_order/wizard/stock_quant_sale_order.py:39
+#, python-format
+msgid "Please select quants that are in the internal location to create the sales order."
+msgstr "内部ロケーション内の保管ロットを選択してください。"
+
+#. module: stock_quant_sale_order
+#: code:addons/stock_quant_sale_order/wizard/stock_quant_sale_order.py:36
+#, python-format
+msgid "Please select quants that are in the same Location."
+msgstr "同じロケーション内の保管ロットを選択してください。"
+
+#. module: stock_quant_sale_order
+#: model:ir.model.fields,field_description:stock_quant_sale_order.field_quant_sale_order_wizard_team_id
+msgid "Sales Channel"
+msgstr "販売チャネル"
+
+#. module: stock_quant_sale_order
+#: code:addons/stock_quant_sale_order/wizard/stock_quant_sale_order.py:110
+#, python-format
+msgid "The stock location does not belong to any warehouse."
+msgstr "選択した保管ロットのロケーションがどの倉庫に属していません。"
+
+#. module: stock_quant_sale_order
+#: code:addons/stock_quant_sale_order/wizard/stock_quant_sale_order.py:52
+#, python-format
+msgid "There is at least one active sales order that uses the product of a selected quant: %s"
+msgstr "選択された保管ロットのプロダクトを使用したアクティブな販売オーダが少なくとも1つあります: %s"
+
+#. module: stock_quant_sale_order
+#: code:addons/stock_quant_sale_order/wizard/stock_quant_sale_order.py:57
+#, python-format
+msgid "You cannot create sales order from stock quants that belongs to other company."
+msgstr "他の会社の保管ロットから販売オーダを作成することはできません。"
+
+#. module: stock_quant_sale_order
+#: model:ir.ui.view,arch_db:stock_quant_sale_order.quant_sale_order_wizard_form
+msgid "or"
+msgstr "または"
+
+#. module: stock_quant_sale_order
+#: model:ir.model,name:stock_quant_sale_order.model_quant_sale_order_wizard
+msgid "quant.sale.order.wizard"
+msgstr "quant.sale.order.wizard"
+
