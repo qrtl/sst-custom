@@ -24,12 +24,12 @@ msgstr "取消"
 #: model:ir.actions.act_window,name:stock_quant_sale_order.action_quant_sale_order
 #: model:ir.ui.view,arch_db:stock_quant_sale_order.quant_sale_order_wizard_form
 msgid "Create Sales Order"
-msgstr "Create Sales Order"
+msgstr "販売オーダ作成"
 
 #. module: stock_quant_sale_order
 #: model:ir.ui.view,arch_db:stock_quant_sale_order.quant_sale_order_wizard_form
 msgid "Create sales order for selected quants."
-msgstr "Create sales order for selected quants."
+msgstr "選択した保管ロットの販売オーダを作成します。"
 
 #. module: stock_quant_sale_order
 #: model:ir.model.fields,field_description:stock_quant_sale_order.field_quant_sale_order_wizard_create_uid
