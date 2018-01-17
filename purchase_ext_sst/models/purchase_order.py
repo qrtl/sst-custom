@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Quartile Limited
+# Copyright 2017-2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
@@ -101,13 +101,23 @@ class PurchaseOrder(models.Model):
                     ('mobile', '=', vals['phone']),
                     ('phone', '=', vals['phone']),
                 ])
-                if not partners and 'tentative_name' in vals and vals[
-                    'tentative_name']:
+                if not partners:
+                    if 'tentative_name' in vals:
+                        name = vals['tentative_name']
+                    else:
+                        name = '未確認'
                     new_partner = self.env['res.partner'].create({
-                        'name': vals['tentative_name'],
+                        'name': name,
                         'phone': vals['phone']
                     })
                     vals['partner_id'] = new_partner.id
                 elif partners:
                     vals['partner_id'] = partners[0].id
         return super(PurchaseOrder, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if 'tentative_name' in vals and vals['tentative_name']:
+            for purchase_order in self:
+                purchase_order.partner_id.name = vals['tentative_name']
+        return super(PurchaseOrder, self).write(vals)

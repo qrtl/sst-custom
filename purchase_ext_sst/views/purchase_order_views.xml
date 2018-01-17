@@ -5,8 +5,13 @@
         <field name="name">purchase.order.form</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="priority" eval="18"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="tentative_name"
+                       string="Supplier Name Update (Tentative Name)"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_ref']" position="before">
                 <field name="phone"/>
                 <field name="address"/>
             </xpath>
@@ -60,7 +65,6 @@
                 <field name="request_medium_id"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="tentative_name"/>
                 <field name="phone"/>
                 <field name="address"/>
                 <field name="remark"/>
