@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Quartile Limited
+# Copyright 2017-2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Extension for purchase functions',
-    'version': '11.0.1.5.0',
+    'version': '11.0.1.6.0',
     'author': 'Quartile Limited',
     'website': 'https://www.odoo-asia.com',
     'category': 'Purchase',
