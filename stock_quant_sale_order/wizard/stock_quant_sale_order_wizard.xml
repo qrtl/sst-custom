@@ -5,8 +5,8 @@
         <field name="name">quant.sale.order.wizard.form</field>
         <field name="model">quant.sale.order.wizard</field>
         <field name="arch" type="xml">
-            <form string="Quant Transfer">
-                <p class="oe_gray">Create sale order for selected quants.</p>
+            <form string="Create Sales Order">
+                <p class="oe_gray">Create sales order for selected quants.</p>
                 <group>
                     <group>
                         <field name="partner_id"/>
@@ -15,7 +15,8 @@
                 </group>
             <footer>
                 <button name ="action_create_sale_order"
-                        string="Create Sale Order" type="object" class="oe_highlight"/>
+                        string="Create Sales Order" type="object"
+                        class="oe_highlight"/>
                 or
                 <button string="Cancel" class="oe_link" special="cancel" />
             </footer>
@@ -27,7 +28,7 @@
         id="action_quant_sale_order" 
         multi="True"
         key2="client_action_multi"
-        name="Create Sale Order"
+        name="Create Sales Order"
         res_model="quant.sale.order.wizard"
         src_model="stock.quant"
         view_mode="form" target="new" 

@@ -35,6 +35,9 @@ class QuantSaleOrderWizard(models.TransientModel):
         if any(q.location_id != source_location for q in quant_ids):
             raise UserError(_('Please select quants that are in the same '
                               'Location.'))
+        if source_location.usage != 'internal':
+            raise UserError(_('Please select quants that are in the internal '
+                              'location to create the sales order.'))
         order_line_list = self.env['sale.order.line'].search([
             ('state', 'not in', ['done', 'cancel']),
             ('product_id', 'in', [q.product_id.id for q in quant_ids])
@@ -46,8 +49,9 @@ class QuantSaleOrderWizard(models.TransientModel):
                     order_line.order_id.name,
                     order_line.product_id.display_name,
                 )
-            raise UserError(_('Some of the selected quants are already '
-                              'create sale order:%s') % error_msg)
+            raise UserError(_('There is at least one active sales order '
+                              'that uses the product of a selected quant: '
+                              '%s') % error_msg)
         if any(self .env.user.company_id.id != q.company_id.id for q in
                quant_ids):
             raise UserError(_('You cannot create sales order from stock '
@@ -64,14 +68,12 @@ class QuantSaleOrderWizard(models.TransientModel):
         warehouse_id = self.get_warehouse_id(quant_ids[0].location_id)
         sale_order_obj = self.env['sale.order']
         sale_order_line_obj = self.env['sale.order.line']
-        origin_name = ','.join([q.display_name for q in quant_ids])
         order_vals = {
             'partner_id': self.partner_id.id,
             'team_id': self.team_id.id,
             'company_id': self.env.user.company_id.id,
             'state': 'draft',
             'warehouse_id': warehouse_id.id,
-            'origin': origin_name,
         }
         sale_order = sale_order_obj.sudo().create(order_vals)
         sale_order.onchange_partner_id()

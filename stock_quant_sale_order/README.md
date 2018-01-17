@@ -1,1 +1,1 @@
-Create internal transfer for selected quant.
+Create sales order for selected quant.
