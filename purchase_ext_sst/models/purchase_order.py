@@ -73,6 +73,8 @@ class PurchaseOrder(models.Model):
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)
         for purchase_order in self:
+            if 'tentative_name' in vals and vals['tentative_name']:
+                purchase_order.partner_id.name = vals['tentative_name']
             for order_line in purchase_order.order_line:
                 product = order_line.product_id.product_tmpl_id
                 if product.shop_id != purchase_order.shop_id:
@@ -102,22 +104,16 @@ class PurchaseOrder(models.Model):
                     ('phone', '=', vals['phone']),
                 ])
                 if not partners:
-                    if 'tentative_name' in vals:
+                    if 'tentative_name' in vals and vals['tentative_name']:
                         name = vals['tentative_name']
                     else:
                         name = '未確認'
                     new_partner = self.env['res.partner'].create({
                         'name': name,
-                        'phone': vals['phone']
+                        'phone': vals['phone'],
+                        'supplier': True,
                     })
                     vals['partner_id'] = new_partner.id
                 elif partners:
                     vals['partner_id'] = partners[0].id
         return super(PurchaseOrder, self).create(vals)
-
-    @api.multi
-    def write(self, vals):
-        if 'tentative_name' in vals and vals['tentative_name']:
-            for purchase_order in self:
-                purchase_order.partner_id.name = vals['tentative_name']
-        return super(PurchaseOrder, self).write(vals)
