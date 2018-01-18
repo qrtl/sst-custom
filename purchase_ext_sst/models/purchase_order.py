@@ -112,6 +112,7 @@ class PurchaseOrder(models.Model):
                         'name': name,
                         'phone': vals['phone'],
                         'supplier': True,
+                        'customer': False,
                     })
                     vals['partner_id'] = new_partner.id
                 elif partners:
