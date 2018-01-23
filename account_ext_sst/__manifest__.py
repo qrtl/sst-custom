@@ -11,7 +11,7 @@
     'description': "",
     'depends': [
         'account',
-        'purchase',
+        'purchase_ext_sst',
         'sale',
     ],
     'data': [
