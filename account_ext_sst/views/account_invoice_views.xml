@@ -8,8 +8,7 @@
                ref="purchase.view_invoice_supplier_purchase_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='purchase_id']" position="after">
-                <field name="shop_ids" widget="many2many_tags"
-                       options="{'no_create': True}"/>
+                <field name="shop_id" options="{'no_create': True}"/>
             </xpath>
         </field>
     </record>
@@ -20,8 +19,7 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_id']" position="after">
-                <field name="shop_ids" widget="many2many_tags"
-                       options="{'no_create': True}"/>
+                <field name="shop_id" options="{'no_create': True}"/>
             </xpath>
         </field>
     </record>

@@ -8,7 +8,7 @@ from odoo import models, fields, api
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    shop_ids = fields.Many2many(
+    shop_id = fields.Many2one(
         'stock.warehouse',
         string='Shop',
         readonly=True,
@@ -17,14 +17,12 @@ class AccountInvoice(models.Model):
 
     @api.onchange('invoice_line_ids')
     def invoice_line_ids_onchange(self):
-        shop_ids = []
-        if self.invoice_line_ids:
+        if self.invoice_line_ids and not self.shop_id:
             for invoice_line_id in self.invoice_line_ids:
                 if invoice_line_id.purchase_id and \
-                        invoice_line_id.purchase_id.shop_id and \
-                        invoice_line_id.purchase_id.shop_id.id not in shop_ids:
-                    shop_ids.append(invoice_line_id.purchase_id.shop_id.id)
-            self.shop_ids = shop_ids
+                        invoice_line_id.purchase_id.shop_id:
+                    self.shop_id = invoice_line_id.purchase_id.shop_id.id
+                    return
 
     @api.model
     def create(self, vals):
