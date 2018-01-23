@@ -21,7 +21,7 @@ class AccountInvoice(models.Model):
             for invoice_line_id in self.invoice_line_ids:
                 if invoice_line_id.purchase_id and \
                         invoice_line_id.purchase_id.shop_id:
-                    self.shop_id = invoice_line_id.purchase_id.shop_id
+                    self.shop_id = invoice_line_id.purchase_id.shop_id.id
                     return
 
     @api.model
