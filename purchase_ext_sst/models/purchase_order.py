@@ -55,6 +55,15 @@ class PurchaseOrder(models.Model):
             'domain': {'purchased_by_id': ids}
         }
 
+    @api.onchange('employee_id')
+    def onchange_employee_id(self):
+        context = dict(self.env.context or {})
+        if self.employee_id:
+            context.update({'default_employee_id': self.employee_id.id})
+        return {
+            'context': context
+        }
+
     @api.multi
     def open_record(self):
         form_id = self.env.ref('purchase.purchase_order_form')
