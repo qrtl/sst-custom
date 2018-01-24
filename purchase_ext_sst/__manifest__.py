@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Extension for purchase functions',
-    'version': '11.0.1.6.0',
+    'version': '11.0.1.7.0',
     'author': 'Quartile Limited',
     'website': 'https://www.odoo-asia.com',
     'category': 'Purchase',
