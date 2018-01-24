@@ -51,6 +51,16 @@ class PurchaseOrder(models.Model):
             if self.purchased_by_id and self.purchased_by_id.shop_id and \
                     self.purchased_by_id.shop_id != self.shop_id:
                 self.purchased_by_id = False
+            # Update picking_type_id
+            picking_type_id = self.env['stock.picking.type'].search([
+                ('code', '=', 'incoming'),
+                ('warehouse_id', '=', self.shop_id.id),
+                ('warehouse_id.company_id', 'in', [self.env.context.get(
+                    'company_id', self.env.user.company_id.id),
+                    False]),
+            ], limit=1)
+            if picking_type_id:
+                self.picking_type_id = picking_type_id
         return {
             'domain': {'purchased_by_id': ids}
         }
