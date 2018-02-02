@@ -16,6 +16,7 @@
                         <field name="evaluated_by_id"/>
                         <field name="purchased_by_id"/>
                         <field name="shop_id"/>
+                        <field name="purchase_category_id"/>
                     </group>
                 </group>
                 <group>
