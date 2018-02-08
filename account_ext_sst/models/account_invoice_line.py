@@ -17,9 +17,7 @@ class AccountInvoiceLine(models.Model):
     @api.model
     def create(self, vals):
         res = super(AccountInvoiceLine, self).create(vals)
-        if res.sale_line_ids:
-            for order_line in res.sale_line_ids:
-                if order_line.order_id.warehouse_id:
-                    res.invoice_id.shop_id = \
-                        order_line.order_id.warehouse_id.id
-                    return res
+        if res.sale_line_ids and res.sale_line_ids[0].order_id.warehouse_id:
+            res.invoice_id.shop_id = res.sale_line_ids[
+                0].order_id.warehouse_id.id
+        return res
