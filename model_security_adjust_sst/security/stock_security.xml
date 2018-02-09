@@ -9,17 +9,7 @@
 
     <record id="stock.group_stock_manager" model="res.groups">
         <field name="implied_ids"
-               eval="[(3, ref('stock.group_stock_user')), (4, ref('group_stock_operator'))]"/>
-    </record>
-
-    <record id="operator_stock_move_perm" model="ir.rule">
-        <field name="name">operator: stock.move permission</field>
-        <field name="model_id" ref="stock.model_stock_move"/>
-        <field name="groups" eval="[(4, ref('group_stock_operator'))]"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
+               eval="[(6, 0, [ref('group_stock_operator')])]"/>
     </record>
 
 </odoo>

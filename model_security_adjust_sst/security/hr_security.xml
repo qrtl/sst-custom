@@ -9,17 +9,7 @@
 
     <record id="hr.group_hr_user" model="res.groups">
         <field name="implied_ids"
-               eval="[(3, ref('base.group_user')), (4, ref('group_hr_operator'))]"/>
-    </record>
-
-    <record id="operator_hr_employee_perm" model="ir.rule">
-        <field name="name">operator: hr.employee permission</field>
-        <field name="model_id" ref="hr.model_hr_employee"/>
-        <field name="groups" eval="[(4, ref('group_hr_operator'))]"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
+               eval="[(6, 0, [ref('group_hr_operator')])]"/>
     </record>
 
 </odoo>
