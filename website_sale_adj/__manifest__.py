@@ -3,16 +3,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Website Sales Adjustment',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'author': 'Quartile Limited',
-    'website': 'https://www.odoo-asia.com',
+    'website': 'https://www.quartile.co',
     'category': 'Product',
     'license': "AGPL-3",
     'description': """
 This module modify the website_sale module and provide following feature(s):
  - Show product_state_id in the /shop/product page.
- - Hide the "Shop" menu in header from public user
- - Hide the /shop and /shop/product pages from public user
+ - Hide the "Shop" menu in header from public user.
     """,
     'depends': [
         'website_sale',
