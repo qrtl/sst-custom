@@ -15,17 +15,16 @@ class WebsiteSale(WebsiteSale):
         '/shop/category/<model("product.public.category"):category>/page/<int:page>'
     ], type='http', auth="user", website=True)
     def shop(self, page=0, category=None, search='', ppg=False, **post):
-        return super(WebsiteSale, self).shop(page=0, category=None,
-                                             search='', ppg=False, **post)
+        return super(WebsiteSale, self).shop(page, category, search, ppg,
+                                             **post)
 
     @http.route([
         '/shop/product/<model("product.template"):product>'],
         type='http', auth="user", website=True)
     def product(self, product, category='', search='', **kwargs):
-        return super(WebsiteSale, self).product(product, category='',
-                                                search='', **kwargs)
+        return super(WebsiteSale, self).product(product, category, search,
+                                                **kwargs)
 
     @http.route(['/shop/cart'], type='http', auth="user", website=True)
     def cart(self, access_token=None, revive='', **post):
-        return super(WebsiteSale, self).cart(access_token=None, revive='',
-                                             **post)
+        return super(WebsiteSale, self).cart(access_token, revive, **post)
