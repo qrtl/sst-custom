@@ -1,6 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* website_sale_adj
+#   * sale
 #
 msgid ""
 msgstr ""
@@ -21,3 +22,11 @@ msgid "<br/>\n"
 "                <span>Product State:</span>"
 msgstr "<br/>\n"
 "                <span>商品状態:</span>"
+
+#. module: sale
+#: model:ir.ui.view,arch_db:sale.portal_my_home_menu_sale
+#: model:ir.ui.view,arch_db:sale.portal_my_home_sale
+#: model:ir.ui.view,arch_db:sale.portal_my_orders
+msgid "Sales Orders"
+msgstr "購入履歴"
+
