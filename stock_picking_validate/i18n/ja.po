@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_picking_validate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-23 03:57+0000\n"
+"PO-Revision-Date: 2018-02-23 03:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_picking_validate
+#: model:ir.ui.view,arch_db:stock_picking_validate.stock_picking_validate_wizard
+msgid "Cancel"
+msgstr "取消"
+
+#. module: stock_picking_validate
+#: model:ir.model.fields,field_description:stock_picking_validate.field_stock_picking_validate_wizard_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: stock_picking_validate
+#: model:ir.model.fields,field_description:stock_picking_validate.field_stock_picking_validate_wizard_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: stock_picking_validate
+#: model:ir.model.fields,field_description:stock_picking_validate.field_stock_picking_validate_wizard_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: stock_picking_validate
+#: model:ir.model.fields,field_description:stock_picking_validate.field_stock_picking_validate_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_picking_validate
+#: model:ir.model.fields,field_description:stock_picking_validate.field_stock_picking_validate_wizard___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: stock_picking_validate
+#: model:ir.model.fields,field_description:stock_picking_validate.field_stock_picking_validate_wizard_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: stock_picking_validate
+#: model:ir.model.fields,field_description:stock_picking_validate.field_stock_picking_validate_wizard_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: stock_picking_validate
+#: code:addons/stock_picking_validate/wizard/stock_picking_validate.py:21
+#, python-format
+msgid "Please select stock operations with same operation type."
+msgstr "同じオペレーションタイプの在庫移動を選択してください。"
+
+#. module: stock_picking_validate
+#: model:ir.ui.view,arch_db:stock_picking_validate.stock_picking_validate_wizard
+msgid "Stock Picking Validate"
+msgstr "ピッキング一括検証"
+
+#. module: stock_picking_validate
+#: model:ir.ui.view,arch_db:stock_picking_validate.stock_picking_validate_wizard
+msgid "This wizard will validate selected stock pickings at once. Make sure that you have made no mistake with selection."
+msgstr "選択したピッキングを一括検証します。選択に間違いがないことを確認してください。"
+
+#. module: stock_picking_validate
+#: model:ir.actions.act_window,name:stock_picking_validate.action_stock_picking_validate_window
+#: model:ir.ui.view,arch_db:stock_picking_validate.stock_picking_validate_wizard
+msgid "Validate"
+msgstr "一括検証"
+
+#. module: stock_picking_validate
+#: model:ir.ui.view,arch_db:stock_picking_validate.stock_picking_validate_wizard
+msgid "or"
+msgstr "または"
+
+#. module: stock_picking_validate
+#: model:ir.model,name:stock_picking_validate.model_stock_picking_validate
+msgid "stock.picking.validate"
+msgstr "stock.picking.validate"
+
+#. module: stock_picking_validate
+#: model:ir.model,name:stock_picking_validate.model_stock_picking_validate_wizard
+msgid "stock.picking.validate.wizard"
+msgstr "stock.picking.validate.wizard"
+
+
