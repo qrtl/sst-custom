@@ -69,7 +69,7 @@ msgstr "ピッキング一括検証"
 #. module: stock_picking_validate
 #: model:ir.ui.view,arch_db:stock_picking_validate.stock_picking_validate_wizard
 msgid "This wizard will validate selected stock pickings at once. Make sure that you have made no mistake with selection."
-msgstr "選択したピッキングを一括検証ので、選択に間違いがないことを確認してください。"
+msgstr "選択したピッキングを一括検証します。選択に間違いがないことを確認してください。"
 
 #. module: stock_picking_validate
 #: model:ir.actions.act_window,name:stock_picking_validate.action_stock_picking_validate_window
