@@ -2,11 +2,25 @@
 # Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
-class StockPickingValidate(models.TransientModel):
-    _name = 'stock.picking.validate'
+class StockPickingValidateWizard(models.TransientModel):
+    _name = 'stock.picking.validate.wizard'
+
+    @api.model
+    def default_get(self, fields):
+        # Pass the picking types to the view
+        context = dict(self._context or {})
+        active_ids = context.get('active_ids', [])
+        active_model = context.get('active_model')
+        picking_ids = self.env[active_model].browse(active_ids)
+        picking_type_ids = picking_ids.mapped('picking_type_id').ids
+        if len(picking_type_ids) != 1:
+            raise UserError(_('Please select stock operations with same '
+                              'operation type.'))
+        return super(StockPickingValidateWizard, self).default_get(fields)
 
     def action_stock_picking_validate(self):
         context = dict(self._context or {})
