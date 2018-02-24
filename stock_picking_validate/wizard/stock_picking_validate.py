@@ -25,10 +25,13 @@ class StockPickingValidateWizard(models.TransientModel):
     def action_stock_picking_validate(self):
         context = dict(self._context or {})
         active_ids = context.get('active_ids', [])
-        picking_ids = self.env['stock.picking'].browse(active_ids)
-        picking_to_validate = picking_ids.filtered(lambda r: r.state == 'assigned')
+        pickings = self.env['stock.picking'].browse(active_ids)
+        pickings.action_assign()
+        picking_to_validate = pickings.filtered(
+            lambda r: r.state == 'assigned')
         wizard_vals = {'pick_ids': [(6, 0, picking_to_validate.ids)]}
-        validate_wizard = self.env['stock.immediate.transfer'].create(wizard_vals)
+        validate_wizard = self.env['stock.immediate.transfer'].create(
+            wizard_vals)
         validate_wizard.process()
         res = self.env.ref('stock.action_picking_tree_all')
         res = res.read()[0]
