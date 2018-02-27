@@ -30,12 +30,16 @@ class PurchaseOrder(models.Model):
                                            '8.5', '9.0', '9.5', '10.0']],
         string='Worked Hours',
     )
+    supplier_update_lock = fields.Boolean(
+        'Supplier Update Lock',
+        default=False,
+    )
 
     @api.onchange('purchased_by_id')
     def onchange_purchased_by_id(self):
         if (not self.shop_id and self.purchased_by_id) or \
-            (self.shop_id and self.purchased_by_id and \
-                self.purchased_by_id.shop_id != self.shop_id):
+                (self.shop_id and self.purchased_by_id and \
+                             self.purchased_by_id.shop_id != self.shop_id):
             self.shop_id = self.purchased_by_id.shop_id
 
     @api.onchange('shop_id')
@@ -49,7 +53,7 @@ class PurchaseOrder(models.Model):
             ids.append(('id', 'in', staffs.ids))
             # Clear the delivery staff value
             if self.purchased_by_id and self.purchased_by_id.shop_id and \
-                    self.purchased_by_id.shop_id != self.shop_id:
+                            self.purchased_by_id.shop_id != self.shop_id:
                 self.purchased_by_id = False
             # Update picking_type_id
             picking_type_id = self.env['stock.picking.type'].search([
@@ -83,8 +87,15 @@ class PurchaseOrder(models.Model):
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)
         for purchase_order in self:
-            if 'tentative_name' in vals and vals['tentative_name']:
-                purchase_order.partner_id.name = vals['tentative_name']
+            if (('tentative_name' in vals and vals['tentative_name']) or \
+                    ('phone' in vals and vals['phone'])) and \
+                            not purchase_order.supplier_update_lock:
+                purchase_order.partner_id = self.get_purchase_order_partner(
+                    vals)
+                if 'tentative_name' in vals and vals['tentative_name']:
+                    purchase_order.partner_id.name = vals['tentative_name']
+                if purchase_order.phone:
+                    purchase_order.partner_id.phone = purchase_order.phone
             for order_line in purchase_order.order_line:
                 product = order_line.product_id.product_tmpl_id
                 if product.shop_id != purchase_order.shop_id:
@@ -95,36 +106,47 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        if 'phone' in vals and vals['phone']:
-            company_id = self.env.user.company_id.id
-            default_partner_id = (
-                self.env['ir.default'].get('purchase.order',
-                                           'partner_id',
-                                           user_id=self.env.uid,
-                                           company_id=company_id) or
-                self.env['ir.default'].get('purchase.order',
-                                           'partner_id',
-                                           user_id=False,
-                                           company_id=company_id)
-            ) or False
-            if default_partner_id and vals['partner_id'] == default_partner_id:
-                partners = self.env['res.partner'].search([
-                    '|',
-                    ('mobile', '=', vals['phone']),
-                    ('phone', '=', vals['phone']),
-                ])
-                if not partners:
-                    if 'tentative_name' in vals and vals['tentative_name']:
-                        name = vals['tentative_name']
-                    else:
-                        name = '未確認'
-                    new_partner = self.env['res.partner'].create({
-                        'name': name,
-                        'phone': vals['phone'],
-                        'supplier': True,
-                        'customer': False,
-                    })
-                    vals['partner_id'] = new_partner.id
-                elif partners:
-                    vals['partner_id'] = partners[0].id
+        if ('tentative_name' in vals and vals['tentative_name']) or \
+                ('phone' in vals and vals['phone']):
+            vals['partner_id'] = self.get_purchase_order_partner(vals)
         return super(PurchaseOrder, self).create(vals)
+
+    def get_purchase_order_partner(self, vals):
+        partner_id = vals['partner_id'] if 'partner_id' in vals else \
+            self.partner_id.id
+        phone = vals['phone'] if 'phone' in vals else self.phone
+        company_id = self.env.user.company_id.id
+        default_partner_id = (
+             self.env['ir.default'].get('purchase.order',
+                                        'partner_id',
+                                        user_id=self.env.uid,
+                                        company_id=company_id) or
+             self.env['ir.default'].get('purchase.order',
+                                        'partner_id',
+                                        user_id=False,
+                                        company_id=company_id)
+        ) or False
+        if default_partner_id and partner_id == default_partner_id:
+            partners = self.env['res.partner'].search([
+                '|',
+                ('mobile', '=', phone),
+                ('phone', '=', phone),
+            ])
+            if not partners or not phone:
+                if 'tentative_name' in vals and vals['tentative_name']:
+                    name = vals['tentative_name']
+                else:
+                    name = '未確認'
+                new_partner = self.env['res.partner'].create({
+                    'name': name,
+                    'phone': phone,
+                    'supplier': True,
+                    'customer': False,
+                })
+                return new_partner.id
+            elif partners:
+                if 'tentative_name' in vals and vals['tentative_name'] != \
+                        '未確認':
+                    partners[0].name = vals['tentative_name']
+                return partners[0].id
+        return partner_id

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-17 07:00+0000\n"
-"PO-Revision-Date: 2018-01-17 07:00+0000\n"
+"POT-Creation-Date: 2018-02-27 11:11+0000\n"
+"PO-Revision-Date: 2018-02-27 11:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -298,6 +298,11 @@ msgid "Supplier Name Update (Tentative Name)"
 msgstr "名前更新（仮称）"
 
 #. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_supplier_update_lock
+msgid "Supplier Update Lock"
+msgstr "更新ロック"
+
+#. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_tentative_name
 msgid "Tentative Name"
 msgstr "仮称"
@@ -326,6 +331,5 @@ msgstr "request.channel"
 #: model:ir.model,name:purchase_ext_sst.model_request_medium
 msgid "request.medium"
 msgstr "request.medium"
-
 
 
