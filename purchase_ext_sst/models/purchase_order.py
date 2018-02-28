@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class PurchaseOrder(models.Model):
@@ -31,10 +32,7 @@ class PurchaseOrder(models.Model):
                                            '8.5', '9.0', '9.5', '10.0']],
         string='Worked Hours',
     )
-    supplier_update_lock = fields.Boolean(
-        'Supplier Update Lock',
-        default=False,
-    )
+
 
     @api.onchange('purchased_by_id')
     def onchange_purchased_by_id(self):
@@ -87,39 +85,34 @@ class PurchaseOrder(models.Model):
     @api.multi
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)
-        for purchase_order in self:
-            if not purchase_order.supplier_update_lock:
-                if 'phone' in vals and vals['phone'] and \
-                        self.is_default_partner(self.partner_id.id):
-                    purchase_order.partner_id = self.get_purchase_order_partner(
-                        vals)
-                if not self.is_default_partner(self.partner_id.id) and \
-                        purchase_order.tentative_name != '未確認':
-                    purchase_order.partner_id.name = \
-                        purchase_order.tentative_name
-            for order_line in purchase_order.order_line:
-                product = order_line.product_id.product_tmpl_id
-                if product.shop_id != purchase_order.shop_id:
-                    product.shop_id = purchase_order.shop_id
-                if product.purchased_by_id != purchase_order.purchased_by_id:
-                    product.purchased_by_id = purchase_order.purchased_by_id
+        for order in self:
+            if 'phone' in vals and vals['phone']:
+                if self.is_default_partner(self.partner_id.id):
+                    order.partner_id = self.get_partner(vals)
+            elif order.phone and order.tentative_name and \
+                            order.tentative_name != '未確認':
+                #FIXME this check should be handled in res.partner
+                if not order.partner_id.update_lock:
+                    order.partner_id.name = order.tentative_name
+                else:
+                    raise UserError(_(
+                        'Name of this partner cannot be updated.'))
+            for line in order.order_line:
+                product = line.product_id
+                if product.shop_id != order.shop_id:
+                    product.shop_id = order.shop_id
+                if product.purchased_by_id != order.purchased_by_id:
+                    product.purchased_by_id = order.purchased_by_id
         return res
 
     @api.model
     def create(self, vals):
-        if not ('supplier_update_lock' in vals and vals[
-            'supplier_update_lock']):
-            if 'phone' in vals and vals['phone'] and self.is_default_partner(
-                    vals['partner_id']):
-                vals['partner_id'] = self.get_purchase_order_partner(vals)
-            if not self.is_default_partner(vals['partner_id']) and \
-                            'tentative_name' in vals and \
-                            vals['tentative_name'] != '未確認':
-                self.env['res.partner'].browse(vals['partner_id']).name = vals[
-                    'tentative_name']
+        if 'phone' in vals and vals['phone'] and self.is_default_partner(
+                vals['partner_id']):
+            vals['partner_id'] = self.get_partner(vals)
         return super(PurchaseOrder, self).create(vals)
 
-    def get_purchase_order_partner(self, vals):
+    def get_partner(self, vals):
         phone = vals['phone'] if 'phone' in vals else False
         partners = False
         if phone:
@@ -131,6 +124,9 @@ class PurchaseOrder(models.Model):
         if not partners:
             if 'tentative_name' in vals and vals['tentative_name']:
                 name = vals['tentative_name']
+            # in case tentative name had already been saved without phone
+            elif self.tentative_name:
+                name = self.tentative_name
             else:
                 name = '未確認'
             new_partner = self.env['res.partner'].create({
