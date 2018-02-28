@@ -106,16 +106,16 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        if 'phone' in vals and vals['phone'] and self.is_default_partner(
-                vals['partner_id']):
-            vals['partner_id'] = self.get_purchase_order_partner(vals)
-        if not self.is_default_partner(vals['partner_id']) and \
-                        'tentative_name' in vals and \
-                        vals['tentative_name'] != '未確認':
-            if not ('supplier_update_lock' in vals and vals[
-                'supplier_update_lock']):
-                self.env['res.partner'].browse(vals['partner_id']).name = \
-                    vals['tentative_name']
+        if not ('supplier_update_lock' in vals and vals[
+            'supplier_update_lock']):
+            if 'phone' in vals and vals['phone'] and self.is_default_partner(
+                    vals['partner_id']):
+                vals['partner_id'] = self.get_purchase_order_partner(vals)
+            if not self.is_default_partner(vals['partner_id']) and \
+                            'tentative_name' in vals and \
+                            vals['tentative_name'] != '未確認':
+                self.env['res.partner'].browse(vals['partner_id']).name = vals[
+                    'tentative_name']
         return super(PurchaseOrder, self).create(vals)
 
     def get_purchase_order_partner(self, vals):
