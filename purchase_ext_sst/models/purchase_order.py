@@ -91,11 +91,12 @@ class PurchaseOrder(models.Model):
                     order.partner_id = self.get_purchase_order_partner(
                         vals)
                 if not self.is_default_partner(self.partner_id.id) and \
+                        order.tentative_name and \
                         order.tentative_name != '未確認':
                     order.partner_id.name = \
                         order.tentative_name
             for line in order.order_line:
-                product = line.product_id.product_tmpl_id
+                product = line.product_id
                 if product.shop_id != order.shop_id:
                     product.shop_id = order.shop_id
                 if product.purchased_by_id != order.purchased_by_id:
