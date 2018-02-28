@@ -84,22 +84,22 @@ class PurchaseOrder(models.Model):
     @api.multi
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)
-        for purchase_order in self:
-            if not purchase_order.partner_id.update_lock:
+        for order in self:
+            if not order.partner_id.update_lock:
                 if 'phone' in vals and vals['phone'] and \
                         self.is_default_partner(self.partner_id.id):
-                    purchase_order.partner_id = self.get_purchase_order_partner(
+                    order.partner_id = self.get_purchase_order_partner(
                         vals)
                 if not self.is_default_partner(self.partner_id.id) and \
-                        purchase_order.tentative_name != '未確認':
-                    purchase_order.partner_id.name = \
-                        purchase_order.tentative_name
-            for order_line in purchase_order.order_line:
-                product = order_line.product_id.product_tmpl_id
-                if product.shop_id != purchase_order.shop_id:
-                    product.shop_id = purchase_order.shop_id
-                if product.purchased_by_id != purchase_order.purchased_by_id:
-                    product.purchased_by_id = purchase_order.purchased_by_id
+                        order.tentative_name != '未確認':
+                    order.partner_id.name = \
+                        order.tentative_name
+            for line in order.order_line:
+                product = line.product_id.product_tmpl_id
+                if product.shop_id != order.shop_id:
+                    product.shop_id = order.shop_id
+                if product.purchased_by_id != order.purchased_by_id:
+                    product.purchased_by_id = order.purchased_by_id
         return res
 
     @api.model
