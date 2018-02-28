@@ -88,8 +88,8 @@ class PurchaseOrder(models.Model):
         res = super(PurchaseOrder, self).write(vals)
         for purchase_order in self:
             if (('tentative_name' in vals and vals['tentative_name']) or \
-                    ('phone' in vals and vals['phone'])) and \
-                            not purchase_order.supplier_update_lock:
+                        ('phone' in vals and vals['phone'])) and \
+                    not purchase_order.supplier_update_lock:
                 purchase_order.partner_id = self.get_purchase_order_partner(
                     vals)
                 if 'tentative_name' in vals and vals['tentative_name']:
@@ -106,8 +106,9 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        if ('tentative_name' in vals and vals['tentative_name']) or \
-                ('phone' in vals and vals['phone']):
+        if ('tentative_name' in vals and vals['tentative_name'] and vals[
+            'tentative_name'] != '未確認') or ('phone' in vals and vals[
+            'phone']):
             vals['partner_id'] = self.get_purchase_order_partner(vals)
         return super(PurchaseOrder, self).create(vals)
 
@@ -117,22 +118,25 @@ class PurchaseOrder(models.Model):
         phone = vals['phone'] if 'phone' in vals else self.phone
         company_id = self.env.user.company_id.id
         default_partner_id = (
-             self.env['ir.default'].get('purchase.order',
-                                        'partner_id',
-                                        user_id=self.env.uid,
-                                        company_id=company_id) or
-             self.env['ir.default'].get('purchase.order',
-                                        'partner_id',
-                                        user_id=False,
-                                        company_id=company_id)
-        ) or False
+                                 self.env['ir.default'].get('purchase.order',
+                                                            'partner_id',
+                                                            user_id=self.env.uid,
+                                                            company_id=company_id) or
+                                 self.env['ir.default'].get('purchase.order',
+                                                            'partner_id',
+                                                            user_id=False,
+                                                            company_id=company_id)
+                             ) or False
+        partners = False
+        # Check if the current partner is a default partner
         if default_partner_id and partner_id == default_partner_id:
-            partners = self.env['res.partner'].search([
-                '|',
-                ('mobile', '=', phone),
-                ('phone', '=', phone),
-            ])
-            if not partners or not phone:
+            if phone:
+                partners = self.env['res.partner'].search([
+                    '|',
+                    ('mobile', '=', phone),
+                    ('phone', '=', phone),
+                ])
+            if not partners:
                 if 'tentative_name' in vals and vals['tentative_name']:
                     name = vals['tentative_name']
                 else:
@@ -149,4 +153,5 @@ class PurchaseOrder(models.Model):
                         '未確認':
                     partners[0].name = vals['tentative_name']
                 return partners[0].id
-        return partner_id
+        else:
+            return partner_id
