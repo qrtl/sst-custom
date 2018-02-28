@@ -31,10 +31,7 @@ class PurchaseOrder(models.Model):
                                            '8.5', '9.0', '9.5', '10.0']],
         string='Worked Hours',
     )
-    supplier_update_lock = fields.Boolean(
-        'Supplier Update Lock',
-        default=False,
-    )
+
 
     @api.onchange('purchased_by_id')
     def onchange_purchased_by_id(self):
@@ -88,7 +85,7 @@ class PurchaseOrder(models.Model):
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)
         for purchase_order in self:
-            if not purchase_order.supplier_update_lock:
+            if not purchase_order.partner_id.update_lock:
                 if 'phone' in vals and vals['phone'] and \
                         self.is_default_partner(self.partner_id.id):
                     purchase_order.partner_id = self.get_purchase_order_partner(
@@ -107,16 +104,14 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        if not ('supplier_update_lock' in vals and vals[
-            'supplier_update_lock']):
-            if 'phone' in vals and vals['phone'] and self.is_default_partner(
-                    vals['partner_id']):
-                vals['partner_id'] = self.get_purchase_order_partner(vals)
-            if not self.is_default_partner(vals['partner_id']) and \
-                            'tentative_name' in vals and \
-                            vals['tentative_name'] != '未確認':
-                self.env['res.partner'].browse(vals['partner_id']).name = vals[
-                    'tentative_name']
+        if 'phone' in vals and vals['phone'] and self.is_default_partner(
+                vals['partner_id']):
+            vals['partner_id'] = self.get_purchase_order_partner(vals)
+        if not self.is_default_partner(vals['partner_id']) and \
+                        'tentative_name' in vals and \
+                        vals['tentative_name'] != '未確認':
+            self.env['res.partner'].browse(vals['partner_id']).name = vals[
+                'tentative_name']
         return super(PurchaseOrder, self).create(vals)
 
     def get_purchase_order_partner(self, vals):
