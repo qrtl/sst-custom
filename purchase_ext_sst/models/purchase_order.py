@@ -93,9 +93,9 @@ class PurchaseOrder(models.Model):
                         self.is_default_partner(self.partner_id.id):
                     purchase_order.partner_id = self.get_purchase_order_partner(
                         vals)
-                if not self.is_default_partner(self.partner_id.id) and \
-                        'tentative_name' in vals and vals['tentative_name']:
-                    purchase_order.partner_id.name = vals['tentative_name']
+                if not self.is_default_partner(self.partner_id.id):
+                    purchase_order.partner_id.name = \
+                        purchase_order.tentative_name
             for order_line in purchase_order.order_line:
                 product = order_line.product_id.product_tmpl_id
                 if product.shop_id != purchase_order.shop_id:
