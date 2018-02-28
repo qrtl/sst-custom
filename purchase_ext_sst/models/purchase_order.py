@@ -93,7 +93,8 @@ class PurchaseOrder(models.Model):
                         self.is_default_partner(self.partner_id.id):
                     purchase_order.partner_id = self.get_purchase_order_partner(
                         vals)
-                if not self.is_default_partner(self.partner_id.id):
+                if not self.is_default_partner(self.partner_id.id) and \
+                        purchase_order.tentative_name != '未確認':
                     purchase_order.partner_id.name = \
                         purchase_order.tentative_name
             for order_line in purchase_order.order_line:
