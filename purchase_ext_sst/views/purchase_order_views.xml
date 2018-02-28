@@ -45,6 +45,9 @@
             <xpath expr="//notebook/page[2]//field[@name='date_planned']" position="attributes">
                 <attribute name="required">False</attribute>
             </xpath>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="supplier_update_lock" groups="base.group_system"/>
+            </xpath>
         </field>
     </record>
 
@@ -95,7 +98,8 @@
         <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="before">
-                <field name="phone"/>
+                <field name="phone"
+                       filter_domain="['|', ('phone', 'ilike', self), ('phone2', 'ilike', self)]"/>
                 <field name="address"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
