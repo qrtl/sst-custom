@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Extension for purchase functions',
-    'version': '11.0.1.8.0',
+    'version': '11.0.1.8.1',
     'author': 'Quartile Limited',
     'website': 'https://www.quartile.co',
     'category': 'Purchase',
@@ -19,7 +19,6 @@
         'data/purchase_category_data.xml',
         'views/request_channel_views.xml',
         'views/request_medium_views.xml',
-        'views/res_partner_views.xml',
         'views/purchase_category_views.xml',
         'views/purchase_order_views.xml',
         'views/hr_employee_views.xml',
