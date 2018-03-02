@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
 
 
 class PurchaseOrder(models.Model):
@@ -85,68 +84,94 @@ class PurchaseOrder(models.Model):
     @api.multi
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)
+        val_phone = 'phone' in vals and vals['phone'] or False
+        val_tent_name = 'tentative_name' in vals and vals['tentative_name'] \
+                         or False
         for order in self:
-            if 'phone' in vals and vals['phone']:
-                if self.is_default_partner(self.partner_id.id):
-                    order.partner_id = self.get_partner(vals)
-            elif order.phone and order.tentative_name and \
-                            order.tentative_name != '未確認':
-                #FIXME this check should be handled in res.partner
-                if not order.partner_id.update_lock:
-                    order.partner_id.name = order.tentative_name
-                else:
-                    raise UserError(_(
-                        'Name of this partner cannot be updated.'))
-            for line in order.order_line:
-                product = line.product_id
-                if product.shop_id != order.shop_id:
-                    product.shop_id = order.shop_id
-                if product.purchased_by_id != order.purchased_by_id:
-                    product.purchased_by_id = order.purchased_by_id
+            tent_name = val_tent_name or order.tentative_name
+            if self.is_default_partner(order.partner_id.id):
+                if val_phone:
+                    partner_e = self.get_partner_from_phone(val_phone)
+                    if partner_e and order.partner_id != partner_e:
+                        order.partner_id = partner_e
+                    if not partner_e:
+                        order.partner_id = self.create_partner(val_phone)
+                    self.update_partner(order.partner_id, False, tent_name)
+            else:
+                if val_phone or val_tent_name:
+                    partner_e = self.get_partner_from_phone(val_phone)
+                    if partner_e and order.partner_id != partner_e:
+                        self.update_partner(partner_e, val_phone, tent_name)
+                        order.partner_id = partner_e
+                    else:
+                        self.update_partner(order.partner_id, val_phone,
+                                            tent_name)
+
+            if 'order_line' in vals:
+                for line in order.order_line:
+                    product = line.product_id
+                    if product.shop_id != order.shop_id:
+                        product.shop_id = order.shop_id
+                    if product.purchased_by_id != order.purchased_by_id:
+                        product.purchased_by_id = order.purchased_by_id
         return res
 
     @api.model
     def create(self, vals):
-        if 'phone' in vals and vals['phone'] and self.is_default_partner(
-                vals['partner_id']):
-            vals['partner_id'] = self.get_partner(vals)
+        val_phone = 'phone' in vals and vals['phone'] or False
+        val_tent_name = 'tentative_name' in vals and vals['tentative_name'] \
+                         or False
+        if self.is_default_partner(vals['partner_id']):
+            if val_phone:
+                partner_e = self.get_partner_from_phone(val_phone)
+                if partner_e and vals['partner_id'] != partner_e.id:
+                    vals['partner_id'] = partner_e.id
+                if not partner_e:
+                    vals['partner_id'] = self.create_partner(val_phone).id
+                partner = self.env['res.partner'].browse(vals['partner_id'])
+                self.update_partner(partner, False, val_tent_name)
+        else:
+            if val_phone:
+                partner_e = self.get_partner_from_phone(val_phone)
+                if partner_e and vals['partner_id'] != partner_e.id:
+                    vals['partner_id'] = partner_e.id
+                partner = self.env['res.partner'].browse(vals['partner_id'])
+                if val_phone and partner.phone != val_phone:
+                    partner.phone = val_phone
+                self.update_partner(partner, False, val_tent_name)
         return super(PurchaseOrder, self).create(vals)
 
-    def get_partner(self, vals):
-        phone = vals['phone'] if 'phone' in vals else False
-        partners = False
+    def get_partner_from_phone(self, phone):
+        partner = False
         if phone:
             partners = self.env['res.partner'].search([
-                '|',
-                ('mobile', '=', phone),
-                ('phone', '=', phone),
-            ])
-        if not partners:
-            if 'tentative_name' in vals and vals['tentative_name']:
-                name = vals['tentative_name']
-            # in case tentative name had already been saved without phone
-            elif self.tentative_name:
-                name = self.tentative_name
-            else:
-                name = '未確認'
-            new_partner = self.env['res.partner'].create({
-                'name': name,
-                'phone': phone,
-                'supplier': True,
-                'customer': False,
-            })
-            return new_partner.id
-        elif partners:
-            return partners[0].id
+                '|', ('mobile', '=', phone), ('phone', '=', phone)])
+            partner = partners[0] if partners else False
+        return partner
+
+    def create_partner(self, phone):
+        partner = self.env['res.partner'].create({
+            'name': '未確認',
+            'phone': phone,
+            'supplier': True,
+            'customer': False,
+        })
+        return partner
+
+    def update_partner(self, partner, phone, tent_name):
+        if phone and partner.phone != phone:
+            partner.phone = phone
+        if tent_name and partner.name != tent_name:
+            partner.name = tent_name
 
     def is_default_partner(self, partner_id):
         company_id = self.env.user.company_id.id
-        default_partner_id = (self.env['ir.default'].get('purchase.order',
-                                                         'partner_id',
-                                                         user_id=self.env.uid,
-                                                         company_id=company_id) or
-                              self.env['ir.default'].get('purchase.order',
-                                                         'partner_id',
-                                                         user_id=False,
-                                                         company_id=company_id)) or False
-        return partner_id == default_partner_id
+        default_id = self.env['ir.default'].get('purchase.order',
+                                                'partner_id',
+                                                user_id=self.env.uid,
+                                                company_id=company_id) or \
+                     self.env['ir.default'].get('purchase.order',
+                                                'partner_id',
+                                                user_id=False,
+                                                company_id=company_id) or False
+        return partner_id == default_id
