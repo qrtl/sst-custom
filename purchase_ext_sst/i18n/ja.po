@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 11:11+0000\n"
-"PO-Revision-Date: 2018-02-27 11:11+0000\n"
+"POT-Creation-Date: 2018-03-05 08:49+0000\n"
+"PO-Revision-Date: 2018-03-05 08:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -140,6 +140,11 @@ msgid "Company"
 msgstr "会社"
 
 #. module: purchase_ext_sst
+#: model:ir.model,name:purchase_ext_sst.model_res_partner
+msgid "Contact"
+msgstr "連絡先"
+
+#. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_create_uid
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_create_uid
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_create_uid
@@ -204,6 +209,11 @@ msgid "Late Scheduled Date"
 msgstr "過去予定日"
 
 #. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_mobile
+msgid "Mobile"
+msgstr "携帯電話"
+
+#. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_name
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_name
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_name
@@ -231,7 +241,7 @@ msgstr "買取区分"
 #. module: purchase_ext_sst
 #: model:ir.model,name:purchase_ext_sst.model_purchase_order
 msgid "Purchase Order"
-msgstr "発注"
+msgstr "購買オーダ"
 
 #. module: purchase_ext_sst
 #: model:ir.ui.menu,name:purchase_ext_sst.menu_purchase_in_config_purchase
@@ -298,14 +308,15 @@ msgid "Supplier Name Update (Tentative Name)"
 msgstr "名前更新（仮称）"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_supplier_update_lock
-msgid "Supplier Update Lock"
-msgstr "更新ロック"
-
-#. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_tentative_name
 msgid "Tentative Name"
 msgstr "仮称"
+
+#. module: purchase_ext_sst
+#: code:addons/purchase_ext_sst/models/purchase_order.py:173
+#, python-format
+msgid "There is more than one supplier for the phone/mobile."
+msgstr "電話/携帯電話で複数の仕入先が存在します。"
 
 #. module: purchase_ext_sst
 #: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
@@ -331,5 +342,4 @@ msgstr "request.channel"
 #: model:ir.model,name:purchase_ext_sst.model_request_medium
 msgid "request.medium"
 msgstr "request.medium"
-
 
