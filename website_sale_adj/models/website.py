@@ -2,7 +2,8 @@
 # Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import fields, models, api
+from odoo.http import request
 
 
 class Website(models.Model):
@@ -15,3 +16,10 @@ class Website(models.Model):
         help="This payment term will be applied to eCommerce orders if there "
              "is no payment term in customer",
     )
+
+    @api.model
+    def sale_get_payment_term(self, partner):
+        DEFAULT_PAYMENT_TERM = 'account.account_payment_term_immediate'
+        return partner.property_payment_term_id.id or \
+               request.website.property_payment_term_id.id or \
+               self.env.ref(DEFAULT_PAYMENT_TERM, False).id
