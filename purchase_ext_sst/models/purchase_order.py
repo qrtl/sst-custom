@@ -170,8 +170,18 @@ class PurchaseOrder(models.Model):
             partners = Partner.search([
                 ('mobile', '=', mobile), ('supplier', '=', True)])
         if partners and len(partners) > 1:
-            raise UserError(_("There is more than one supplier for the "
-                              "phone/mobile."))
+            conflicts_users_list = ''
+            for partner in partners:
+                conflicts_users_list += _('\n%s\n- Phone: %s\n- '
+                                          'Mobile: %s\n') % (
+                    partner.name,
+                    partner.phone,
+                    partner.mobile
+                )
+            raise UserError(_('The entered phone(%s) / mobile(%s) '
+                              'conflicts with the following user(s):\n%s') %
+                            (phone or 'N/A', mobile or 'N/A',
+                             conflicts_users_list))
         return partners if partners else False
 
     def set_particulars_from_partner(self, partner, phone, mobile):
