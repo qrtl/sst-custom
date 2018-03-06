@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class PurchaseOrder(models.Model):
@@ -18,8 +19,8 @@ class PurchaseOrder(models.Model):
     call_back = fields.Boolean('Call Back')
     shop_id = fields.Many2one('stock.warehouse', 'Shop')
     phone = fields.Char(index=True)
-    phone2 = fields.Char(related='partner_id.mobile', index=True)
-    tentative_name = fields.Char('Tentative Name', index=True)
+    mobile = fields.Char(index=True)
+    tentative_name = fields.Char('Tentative Name')
     address = fields.Char()
     remark = fields.Text('Remark')
     purchased_by_id = fields.Many2one('hr.employee', 'Delivery Staff')
@@ -85,26 +86,34 @@ class PurchaseOrder(models.Model):
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)
         val_phone = 'phone' in vals and vals['phone'] or False
+        val_mobile = 'mobile' in vals and vals['mobile'] or False
         val_tent_name = 'tentative_name' in vals and vals['tentative_name'] \
                          or False
         for order in self:
+            phone = val_phone or order.phone
+            mobile = val_mobile or order.mobile
             tent_name = val_tent_name or order.tentative_name
             if self.is_default_partner(order.partner_id.id):
-                if val_phone:
-                    partner_e = self.get_partner_from_phone(val_phone)
+                if val_phone or val_mobile:
+                    partner_e = self.get_partner_from_phone(phone, mobile)
                     if partner_e and order.partner_id != partner_e:
-                        order.partner_id = partner_e
+                        self.set_particulars_from_partner(partner_e, phone,
+                                                          mobile)
                     if not partner_e:
-                        order.partner_id = self.create_partner(val_phone)
-                    self.update_partner(order.partner_id, False, tent_name)
+                        order.partner_id = self.create_partner(phone, mobile)
+                    self.update_partner(order.partner_id, phone, mobile,
+                                        tent_name)
             else:
-                if val_phone or val_tent_name:
-                    partner_e = self.get_partner_from_phone(val_phone)
+                if val_phone or val_mobile or val_tent_name:
+                    partner_e = self.get_partner_from_phone(phone,
+                                                            mobile)
                     if partner_e and order.partner_id != partner_e:
-                        self.update_partner(partner_e, val_phone, tent_name)
-                        order.partner_id = partner_e
+                        self.update_partner(partner_e, phone, mobile,
+                                            tent_name)
+                        self.set_particulars_from_partner(partner_e, phone,
+                                                          mobile)
                     else:
-                        self.update_partner(order.partner_id, val_phone,
+                        self.update_partner(order.partner_id, phone, mobile,
                                             tent_name)
 
             if 'order_line' in vals:
@@ -119,48 +128,84 @@ class PurchaseOrder(models.Model):
     @api.model
     def create(self, vals):
         val_phone = 'phone' in vals and vals['phone'] or False
+        val_mobile = 'mobile' in vals and vals['mobile'] or False
         val_tent_name = 'tentative_name' in vals and vals['tentative_name'] \
                          or False
         if self.is_default_partner(vals['partner_id']):
-            if val_phone:
-                partner_e = self.get_partner_from_phone(val_phone)
+            if val_phone or val_mobile:
+                partner_e = self.get_partner_from_phone(val_phone, val_mobile)
                 if partner_e and vals['partner_id'] != partner_e.id:
                     vals['partner_id'] = partner_e.id
+                    if not vals['phone']:
+                        vals['phone'] = partner_e.phone
+                    if not vals['mobile']:
+                        vals['mobile'] = partner_e.mobile
                 if not partner_e:
-                    vals['partner_id'] = self.create_partner(val_phone).id
+                    vals['partner_id'] = self.create_partner(val_phone,
+                                                             val_mobile).id
                 partner = self.env['res.partner'].browse(vals['partner_id'])
-                self.update_partner(partner, False, val_tent_name)
+                self.update_partner(partner, val_phone, val_mobile,
+                                    val_tent_name)
         else:
-            if val_phone:
-                partner_e = self.get_partner_from_phone(val_phone)
+            if val_phone or val_mobile:
+                partner_e = self.get_partner_from_phone(val_phone, val_mobile)
                 if partner_e and vals['partner_id'] != partner_e.id:
                     vals['partner_id'] = partner_e.id
                 partner = self.env['res.partner'].browse(vals['partner_id'])
-                if val_phone and partner.phone != val_phone:
-                    partner.phone = val_phone
-                self.update_partner(partner, False, val_tent_name)
+                self.update_partner(partner, val_phone, val_mobile,
+                                    val_tent_name)
         return super(PurchaseOrder, self).create(vals)
 
-    def get_partner_from_phone(self, phone):
-        partner = False
-        if phone:
-            partners = self.env['res.partner'].search([
-                '|', ('mobile', '=', phone), ('phone', '=', phone)])
-            partner = partners[0] if partners else False
-        return partner
+    def get_partner_from_phone(self, phone, mobile):
+        Partner = self.env['res.partner']
+        if phone and mobile:
+            # here we use "or" condition instead of "and"
+            partners = Partner.search([
+                '|', ('phone', '=', phone), ('mobile', '=', mobile),
+                ('supplier', '=', True)])
+        elif phone:
+            partners = Partner.search([
+                ('phone', '=', phone), ('supplier', '=', True)])
+        elif mobile:
+            partners = Partner.search([
+                ('mobile', '=', mobile), ('supplier', '=', True)])
+        if partners and len(partners) > 1:
+            conflicts_users_list = ''
+            for partner in partners:
+                conflicts_users_list += _('\n%s\n- Phone: %s\n- '
+                                          'Mobile: %s\n') % (
+                    partner.name,
+                    partner.phone,
+                    partner.mobile
+                )
+            raise UserError(_('The entered phone(%s) / mobile(%s) '
+                              'conflicts with the following user(s):\n%s') %
+                            (phone or 'N/A', mobile or 'N/A',
+                             conflicts_users_list))
+        return partners if partners else False
 
-    def create_partner(self, phone):
+    def set_particulars_from_partner(self, partner, phone, mobile):
+        self.partner_id = partner
+        if not phone:
+            self.phone = partner.phone
+        if not mobile:
+            self.mobile = partner.mobile
+
+    def create_partner(self, phone, mobile):
         partner = self.env['res.partner'].create({
             'name': '未確認',
             'phone': phone,
+            'mobile': mobile,
             'supplier': True,
             'customer': False,
         })
         return partner
 
-    def update_partner(self, partner, phone, tent_name):
+    def update_partner(self, partner, phone, mobile, tent_name):
         if phone and partner.phone != phone:
             partner.phone = phone
+        if mobile and partner.mobile != mobile:
+            partner.mobile = mobile
         if tent_name and partner.name != tent_name:
             partner.name = tent_name
 
