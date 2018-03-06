@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Website Sales Adjustment',
-    'version': '11.0.1.0.2',
+    'version': '11.0.1.1.0',
     'author': 'Quartile Limited',
     'website': 'https://www.quartile.co',
     'category': 'Product',
@@ -18,6 +18,7 @@ This module modify the website_sale module and provide following feature(s):
         'product_ext_sst',
     ],
     'data': [
+        'views/res_config_settings_views.xml',
         'views/templates.xml',
         'security/website_sale_security.xml',
     ],

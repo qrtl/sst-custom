@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 10:55+0000\n"
-"PO-Revision-Date: 2018-01-04 10:55+0000\n"
+"POT-Creation-Date: 2018-03-05 14:18+0000\n"
+"PO-Revision-Date: 2018-03-05 14:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,43 @@ msgid "<br/>\n"
 "                <span>Product State:</span>"
 msgstr "<br/>\n"
 "                <span>商品状態:</span>"
+
+#. module: website_sale_adj
+#: model:ir.model.fields,field_description:website_sale_adj.field_website_property_payment_term_id
+msgid "Customer Payment Terms"
+msgstr "顧客支払条件"
+
+#. module: website_sale_adj
+#: model:ir.ui.view,arch_db:website_sale_adj.res_config_settings_view_form
+msgid "Default Payment Term"
+msgstr "デフォルト支払条件"
+
+#. module: website_sale_adj
+#: model:ir.ui.view,arch_db:website_sale_adj.res_config_settings_view_form
+msgid "Default payment term applied when customer has no payment term"
+msgstr "顧客に支払条件設定がない場合に適用されるデフォルト支払条件"
+
+#. module: website_sale_adj
+#: model:ir.model.fields,field_description:website_sale_adj.field_res_config_settings_property_payment_term_id
+#: model:ir.ui.view,arch_db:website_sale_adj.res_config_settings_view_form
+msgid "Payment Term"
+msgstr "支払条件"
+
+#. module: website_sale_adj
+#: model:ir.model.fields,help:website_sale_adj.field_res_config_settings_property_payment_term_id
+#: model:ir.model.fields,help:website_sale_adj.field_website_property_payment_term_id
+msgid "This payment term will be applied to eCommerce orders if there is no payment term in customer"
+msgstr "顧客に支払条件設定がない場合、この支払条件がeコマースオーダに適用されます。"
+
+#. module: website_sale_adj
+#: model:ir.model,name:website_sale_adj.model_website
+msgid "Website"
+msgstr "ウェブサイト"
+
+#. module: website_sale_adj
+#: model:ir.model,name:website_sale_adj.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_my_home_menu_sale
