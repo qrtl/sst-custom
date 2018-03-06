@@ -70,7 +70,7 @@
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="phone"/>
-                <field name="mobile"/>
+                <field name="mobile" invisible="1"/>
                 <field name="address"/>
                 <field name="remark"/>
             </xpath>
