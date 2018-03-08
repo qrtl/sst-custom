@@ -1,0 +1,13 @@
+<odoo>
+<data>
+
+    <template id="assets_backend" name="static_resources_demo assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+             <link rel="stylesheet" href="/drag-and-drop/static/src/css/style.css"/>
+             <script type="text/javascript" src="/drag-and-drop/static/src/js/dnd.js"></script>
+        </xpath>
+    </template>
+
+
+</data>
+</odoo>

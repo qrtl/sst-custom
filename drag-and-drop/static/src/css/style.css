@@ -1,0 +1,42 @@
+/*
+Copyright (C) Andreas Wyrobek - All Rights Reserved
+Unauthorized copying of this file, via any medium is strictly prohibited
+Proprietary and confidential
+Written by Andreas Wyrobek <andreas.wyrobek95@gmail.com>, December 2017
+*/
+
+.dnd {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.dnd-hidden {
+    display: none;
+}
+
+.dnd-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: .7;
+    border: 4px dashed #875A7B;
+    border-radius: 4px;
+}
+
+.dnd-box > span {
+    text-align: center;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0; bottom: 0; right: 0;
+    font-size: 4em;
+}
