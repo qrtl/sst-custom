@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* odoo-drag-and-drop
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-25 00:35+0000\n"
+"PO-Revision-Date: 2017-12-25 01:36+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.5\n"
+"Last-Translator: \n"
+"Language: en\n"
+
+#. module: odoo-drag-and-drop
+#. openerp-web
+#: code:addons/odoo-drag-and-drop/static/src/js/dnd.js:113
+#, python-format
+msgid "Attachment(s)"
+msgstr "Attachment(s)"
+
+#. module: odoo-drag-and-drop
+#. openerp-web
+#: code:addons/odoo-drag-and-drop/static/src/js/dnd.js:153
+#, python-format
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: odoo-drag-and-drop
+#. openerp-web
+#: code:addons/odoo-drag-and-drop/static/src/js/dnd.js:147
+#, python-format
+msgid "Filename"
+msgstr "Filename"
+
+#. module: odoo-drag-and-drop
+#. openerp-web
+#: code:addons/odoo-drag-and-drop/static/src/js/dnd.js:221
+#, python-format
+msgid "Message Attachment(s)"
+msgstr "Message Attachment(s)"
+
+#. module: odoo-drag-and-drop
+#. openerp-web
+#: code:addons/odoo-drag-and-drop/static/src/js/dnd.js:219
+#, python-format
+msgid "Notice Attachment(s)"
+msgstr "Notice Attachment(s)"
+
+#. module: odoo-drag-and-drop
+#. openerp-web
+#: code:addons/odoo-drag-and-drop/static/src/js/dnd.js:143
+#, python-format
+msgid "Upload Screenshot"
+msgstr "Upload Screenshot"
+
+#. module: odoo-drag-and-drop
+#. openerp-web
+#: code:addons/odoo-drag-and-drop/static/src/js/dnd.js:152
+#, python-format
+msgid "Upload to attachment(s)"
+msgstr "Upload to attachment(s)"
