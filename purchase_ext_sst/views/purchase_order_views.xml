@@ -13,10 +13,13 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="tentative_name"
                        string="Supplier Name Update (Tentative Name)"/>
+                <field name="supplier_phone"/>
+                <field name="supplier_mobile"/>
             </xpath>
             <xpath expr="//field[@name='partner_ref']" position="before">
-                <field name="phone"/>
-                <field name="mobile"/>
+                <field name="phone_search"/>
+                <field name="phone_update"/>
+                <field name="mobile_update"/>
                 <field name="address"/>
             </xpath>
             <xpath expr="//sheet/group" position="after">
@@ -69,8 +72,7 @@
                 <field name="request_medium_id"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="phone"/>
-                <field name="mobile" invisible="1"/>
+                <field name="phone_search"/>
                 <field name="address"/>
                 <field name="remark"/>
             </xpath>
@@ -97,8 +99,8 @@
         <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="before">
-                <field name="phone"
-                       filter_domain="['|', ('phone', 'ilike', self), ('mobile', 'ilike', self)]"/>
+                <field name="supplier_phone"
+                       filter_domain="['|', ('supplier_phone', 'ilike', self), ('supplier_mobile', 'ilike', self)]"/>
                 <field name="address"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
