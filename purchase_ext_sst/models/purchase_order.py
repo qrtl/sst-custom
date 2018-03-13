@@ -176,8 +176,8 @@ class PurchaseOrder(models.Model):
                 conflicts_users_list += _('\n%s\n- Phone: %s\n- '
                                           'Mobile: %s\n') % (
                     partner.name,
-                    partner.phone,
-                    partner.mobile
+                    partner.phone or '',
+                    partner.mobile or ''
                 )
             raise UserError(_('The entered phone (%s) '
                               'conflicts with the following user(s):\n%s') %
