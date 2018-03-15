@@ -18,18 +18,20 @@ class PurchaseOrder(models.Model):
     )
     call_back = fields.Boolean('Call Back')
     shop_id = fields.Many2one('stock.warehouse', 'Shop')
-    phone_update = fields.Char(index=True)
-    mobile_update = fields.Char(index=True)
-    phone_search = fields.Char(index=True)
+    phone_update = fields.Char()
+    mobile_update = fields.Char()
+    phone_search = fields.Char()
     supplier_phone = fields.Char(
         related='partner_id.phone',
         string='Supplier Phone',
         readonly=True,
+        store=True,
     )
     supplier_mobile = fields.Char(
         related='partner_id.mobile',
         string='Supplier Mobile',
         readonly=True,
+        store=True,
     )
     tentative_name = fields.Char('Tentative Name')
     address = fields.Char()
@@ -95,59 +97,42 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def write(self, vals):
+        val_phone = 'phone_update' in vals and vals['phone_update'] or False
+        val_mobile = 'mobile_update' in vals and vals['mobile_update'] \
+                     or False
         for order in self:
-            val_phone_search = 'phone_search' in vals and vals[
-                'phone_search'] or False
-            val_phone = 'phone_update' in vals and vals['phone_update'] or \
-                        val_phone_search or False
-            val_mobile = 'mobile_update' in vals and vals['mobile_update'] \
-                         or False
             val_tent_name = 'tentative_name' in vals and vals[
                 'tentative_name'] or order.tentative_name
-            vals['partner_id'] = 'partner_id' in vals and vals['partner_id']\
+            partner_id = 'partner_id' in vals and vals['partner_id']\
                                  or order.partner_id.id
-            partner = self.get_partner_from_phone(val_phone, val_mobile)
-            if self.is_default_partner(vals['partner_id']):
-                if partner:
-                    vals['partner_id'] = partner.id
-                elif val_phone or val_mobile:
-                    vals['partner_id'] = self.create_partner(val_phone,
-                                                             val_mobile).id
-            if not self.is_default_partner(vals['partner_id']):
-                partner = self.env['res.partner'].browse(vals['partner_id'])
+            if self.is_default_partner(partner_id) and \
+                    (val_phone or val_mobile):
+                partner_id = self.create_partner(val_phone, val_mobile).id
+            if not self.is_default_partner(partner_id):
+                partner = self.env['res.partner'].browse(partner_id)
                 self.update_partner(partner, val_phone, val_mobile,
                                     val_tent_name)
-        vals['phone_update'] = vals['mobile_update'] = vals['phone_search'] \
-            = False
+        vals['phone_update'] = vals['mobile_update'] = False
         return super(PurchaseOrder, self).write(vals)
 
     @api.model
     def create(self, vals):
-        val_phone_search = 'phone_search' in vals and vals['phone_search'] \
-                           or False
-        val_phone = 'phone_update' in vals and vals['phone_update'] or \
-                    val_phone_search or False
+        val_phone = 'phone_update' in vals and vals['phone_update'] or False
         val_mobile = 'mobile_update' in vals and vals['mobile_update'] or False
         val_tent_name = 'tentative_name' in vals and vals['tentative_name'] \
                          or False
-        partner = self.get_partner_from_phone(val_phone, val_mobile)
-        if self.is_default_partner(vals['partner_id']):
-            if partner:
-                vals['partner_id'] = partner.id
-            elif val_phone or val_mobile:
-                vals['partner_id'] = self.create_partner(val_phone,
-                                                         val_mobile).id
+        if self.is_default_partner(vals['partner_id']) and (val_phone or
+                                                                val_mobile):
+            vals['partner_id'] = self.create_partner(val_phone, val_mobile).id
         if not self.is_default_partner(vals['partner_id']):
             partner = self.env['res.partner'].browse(vals['partner_id'])
             self.update_partner(partner, val_phone, val_mobile, val_tent_name)
-        vals['phone_update'] = vals['mobile_update'] = vals['phone_search'] \
-            = False
+        vals['phone_update'] = vals['mobile_update'] = False
         return super(PurchaseOrder, self).create(vals)
 
     @api.onchange('phone_search')
     def onchange_phone_search(self):
-        if self.phone_search and self.partner_id and \
-                self.is_default_partner(self.partner_id.id):
+        if self.phone_search:
             partner = self.get_partner_from_phone(self.phone_search)
             if partner:
                 self.partner_id = partner
@@ -156,19 +141,16 @@ class PurchaseOrder(models.Model):
             else:
                 self.phone_update = self.phone_search
 
-    def get_partner_from_phone(self, *phones):
+    def get_partner_from_phone(self, phone):
         Partner = self.env['res.partner']
-        phone_list = []
         partners = False
-        for phone in phones:
-            if phone:
-                phone_list.append(phone)
         # here we use "or" condition instead of "and"
-        if phone_list:
+        if phone:
             partners = Partner.search([
                 '|',
-                ('phone', 'in', list(phone_list)),
-                ('mobile', 'in', list(phone_list)),
+                ('phone', '=', phone),
+                ('mobile', '=', phone),
+                ('active', '=', True),
                 ('supplier', '=', True)])
         if partners and len(partners) > 1:
             conflicts_users_list = ''
@@ -181,8 +163,7 @@ class PurchaseOrder(models.Model):
                 )
             raise UserError(_('The entered phone (%s) '
                               'conflicts with the following user(s):\n%s') %
-                            (','.join(list(phone_list)) or 'N/A',
-                             conflicts_users_list))
+                            (phone or 'N/A', conflicts_users_list))
         return partners if partners else False
 
     def create_partner(self, phone, mobile):

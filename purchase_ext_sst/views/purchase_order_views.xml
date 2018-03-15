@@ -10,17 +10,21 @@
             <xpath expr="//field[@name='product_id']" position="attributes">
                 <attribute name="context">{"default_evaluated_by_id": parent.employee_id, "default_purchase_category_id": parent.purchase_category_id}</attribute>
             </xpath>
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="phone_search"/>
+            </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="tentative_name"
-                       string="Supplier Name Update (Tentative Name)"/>
                 <field name="supplier_phone"/>
                 <field name="supplier_mobile"/>
             </xpath>
             <xpath expr="//field[@name='partner_ref']" position="before">
-                <field name="phone_search"/>
+                <field name="address"/>
+            </xpath>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="tentative_name"
+                       string="Supplier Name Update (Tentative Name)"/>
                 <field name="phone_update"/>
                 <field name="mobile_update"/>
-                <field name="address"/>
             </xpath>
             <xpath expr="//sheet/group" position="after">
                 <group>
