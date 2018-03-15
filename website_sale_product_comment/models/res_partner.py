@@ -11,7 +11,7 @@ class ResPartner(models.Model):
     @api.multi
     def _notify(self, message, force_send=False, send_after_commit=True,
                 user_signature=True):
-        if message.model == 'product.template':
+        if message.model == 'product.template' and message.res_id:
             product = self.env['product.template'].browse(message.res_id)
             if product:
                 base_url = self.env['ir.config_parameter'].sudo().get_param(
