@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, api
-from odoo.http import request
 
 
 class ResPartner(models.Model):
@@ -12,9 +11,12 @@ class ResPartner(models.Model):
     @api.multi
     def _notify(self, message, force_send=False, send_after_commit=True,
                 user_signature=True):
-        if message.model == 'product.template' and request and \
-                request.httprequest:
-            message.product_url = request.httprequest.referrer
+        if message.model == 'product.template' and message.res_id:
+            product = self.env['product.template'].browse(message.res_id)
+            if product:
+                base_url = self.env['ir.config_parameter'].sudo().get_param(
+                    'web.base.url')
+                message.product_url = base_url + product.website_url
         res = super(ResPartner, self)._notify(
             message=message,
             force_send=force_send,
