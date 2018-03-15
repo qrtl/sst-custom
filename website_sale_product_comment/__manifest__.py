@@ -18,6 +18,7 @@ who have already added comment for product on other comment by customer.
     ],
     'data': [
         'data/templates.xml',
+        'security/base_security.xml',
         'views/website_templates.xml'
     ],
     'installable': True,

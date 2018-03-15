@@ -102,10 +102,6 @@
     </ul>
 % endif
 
-% if ctx.get('signature'):
-    ${ctx['signature'] | safe}
-% endif
-<br/>
 <p style="color: #555555;">
     Sent by
     % if ctx.get('website_url'):
