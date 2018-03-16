@@ -97,7 +97,10 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def write(self, vals):
-        val_phone = 'phone_update' in vals and vals['phone_update'] or False
+        val_phone_search = 'phone_search' in vals and vals['phone_search'] \
+                           or False
+        val_phone = 'phone_update' in vals and vals['phone_update'] or \
+                    val_phone_search or False
         val_mobile = 'mobile_update' in vals and vals['mobile_update'] \
                      or False
         for order in self:
@@ -117,7 +120,10 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        val_phone = 'phone_update' in vals and vals['phone_update'] or False
+        val_phone_search = 'phone_search' in vals and vals['phone_search'] \
+                           or False
+        val_phone = 'phone_update' in vals and vals['phone_update'] or \
+                    val_phone_search or False
         val_mobile = 'mobile_update' in vals and vals['mobile_update'] or False
         val_tent_name = 'tentative_name' in vals and vals['tentative_name'] \
                          or False
@@ -133,13 +139,58 @@ class PurchaseOrder(models.Model):
     @api.onchange('phone_search')
     def onchange_phone_search(self):
         if self.phone_search:
+            self.phone_update = False
+            self.mobile_update = False
             partner = self.get_partner_from_phone(self.phone_search)
             if partner:
                 self.partner_id = partner
-                self.phone_update = False
-                self.mobile_update = False
-            else:
-                self.phone_update = self.phone_search
+            elif self.partner_id:
+                if self.is_default_partner(self.partner_id.id):
+                    self.phone_update = self.phone_search
+
+    @api.onchange('phone_update')
+    def onchange_phone_update(self):
+        if self.phone_update:
+            partner = self.get_partner_from_phone(self.phone_update)
+            if self.partner_id and partner and partner != self.partner_id:
+                conflicts_user = _('\n%s\n- Phone: %s\n- Mobile: %s\n') % (
+                    partner.name,
+                    partner.phone or '',
+                    partner.mobile or ''
+                )
+                phone_update = self.phone_update
+                return {
+                    'warning': {
+                        'message': _('The entered phone (%s) conflicts with '
+                                     'the following user(s):\n%s') % (
+                            phone_update or 'N/A', conflicts_user)
+                    },
+                    'value': {
+                        'phone_update': False
+                    }
+                }
+
+    @api.onchange('mobile_update')
+    def onchange_mobile_update(self):
+        if self.mobile_update:
+            partner = self.get_partner_from_phone(self.mobile_update)
+            if self.partner_id and partner and partner != self.partner_id:
+                conflicts_user = _('\n%s\n- Phone: %s\n- Mobile: %s\n') % (
+                    partner.name,
+                    partner.phone or '',
+                    partner.mobile or ''
+                )
+                mobile_update = self.mobile_update
+                return {
+                    'warning': {
+                        'message': _('The entered phone (%s) conflicts with '
+                                     'the following user(s):\n%s') % (
+                            mobile_update or 'N/A', conflicts_user)
+                    },
+                    'value':{
+                        'mobile_update': False
+                    }
+                }
 
     def get_partner_from_phone(self, phone):
         Partner = self.env['res.partner']

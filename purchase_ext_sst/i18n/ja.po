@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_ext_sst
+#       * purchase_ext_sst
 #
 msgid ""
 msgstr ""
@@ -329,7 +329,7 @@ msgstr "電話(仕入先)"
 #. module: purchase_ext_sst
 #: model:ir.ui.view,arch_db:purchase_ext_sst.purchase_order_form
 msgid "Supplier Name Update (Tentative Name)"
-msgstr "名前更新（仮称）"
+msgstr "名前更新(仮称)"
 
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_supplier_phone
@@ -346,7 +346,7 @@ msgstr "仮称"
 #, python-format
 msgid "The entered phone (%s) conflicts with the following user(s):\n"
 "%s"
-msgstr "入力した電話（%s）につきコンフリクトがあります。\n下記のレコードを確認ください。\n"
+msgstr "入力した電話(%s)につきコンフリクトがあります。\n下記のレコードを確認ください。\n"
 "%s"
 
 #. module: purchase_ext_sst
@@ -373,5 +373,4 @@ msgstr "request.channel"
 #: model:ir.model,name:purchase_ext_sst.model_request_medium
 msgid "request.medium"
 msgstr "request.medium"
-
 
