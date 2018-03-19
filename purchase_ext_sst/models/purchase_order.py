@@ -162,18 +162,28 @@ class PurchaseOrder(models.Model):
                                             'mobile_update')
 
     def check_onchange_phone(self, phone, field):
-        partner = self.get_partner_from_phone(phone)
-        if self.partner_id and partner and partner != self.partner_id:
-            conflicts_user = _('\n%s\n- Phone: %s\n- Mobile: %s\n') % (
-                partner.name,
-                partner.phone or '',
-                partner.mobile or ''
-            )
+        try:
+            partner = self.get_partner_from_phone(phone)
+            if self.partner_id and partner and partner != self.partner_id:
+                conflicts_user = _('\n%s\n- Phone: %s\n- Mobile: %s\n') % (
+                    partner.name,
+                    partner.phone or '',
+                    partner.mobile or ''
+                )
+                return {
+                    'warning': {
+                        'message': _('The entered phone (%s) conflicts with '
+                                     'the following user(s):\n%s') %
+                                   (phone or 'N/A', conflicts_user)
+                    },
+                    'value': {
+                        field: False
+                    }
+                }
+        except UserError as e:
             return {
                 'warning': {
-                    'message': _('The entered phone (%s) conflicts with '
-                                 'the following user(s):\n%s') % (
-                        phone or 'N/A', conflicts_user)
+                    'message': e.name
                 },
                 'value': {
                     field: False
