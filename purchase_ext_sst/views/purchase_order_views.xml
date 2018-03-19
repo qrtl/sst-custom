@@ -1,25 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="purchase_order_user_purchase_order_form_inherit"
+            model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id"
+               ref="purchase_order_user.purchase_order_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="po_so_field_purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="po_so_field.purchase_order_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_order_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <record id="purchase_order_form" model="ir.ui.view">
         <field name="name">purchase.order.form</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="priority" eval="18"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="replace"/>
             <xpath expr="//field[@name='product_id']" position="attributes">
                 <attribute name="context">{"default_evaluated_by_id": parent.employee_id, "default_purchase_category_id": parent.purchase_category_id}</attribute>
             </xpath>
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="phone_search"/>
+            </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="supplier_phone"/>
+                <field name="supplier_mobile"/>
+            </xpath>
+            <xpath expr="//field[@name='date_order']" position="after">
                 <field name="tentative_name"
                        string="Supplier Name Update (Tentative Name)"/>
-            </xpath>
-            <xpath expr="//field[@name='partner_ref']" position="before">
-                <field name="phone"/>
-                <field name="mobile"/>
-                <field name="address"/>
+                <field name="phone_update"/>
+                <field name="mobile_update"/>
             </xpath>
             <xpath expr="//sheet/group" position="after">
+                <group>
+                    <group>
+                        <field name="address"/>
+                        <field name="partner_ref"/>
+                    </group>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="sale_order_id"/>
+                    </group>
+                </group>
                 <group>
                     <group>
                         <field name="request_channel_id"/>
@@ -69,8 +108,7 @@
                 <field name="request_medium_id"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="phone"/>
-                <field name="mobile" invisible="1"/>
+                <field name="phone_search"/>
                 <field name="address"/>
                 <field name="remark"/>
             </xpath>
@@ -97,8 +135,8 @@
         <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="before">
-                <field name="phone"
-                       filter_domain="['|', ('phone', 'ilike', self), ('mobile', 'ilike', self)]"/>
+                <field name="supplier_phone"
+                       filter_domain="['|', ('supplier_phone', 'ilike', self), ('supplier_mobile', 'ilike', self)]"/>
                 <field name="address"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">

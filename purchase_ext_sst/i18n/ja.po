@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_ext_sst
+#       * purchase_ext_sst
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-06 07:06+0000\n"
-"PO-Revision-Date: 2018-03-06 07:06+0000\n"
+"POT-Creation-Date: 2018-03-13 08:53+0000\n"
+"PO-Revision-Date: 2018-03-13 08:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:175
+#: code:addons/purchase_ext_sst/models/purchase_order.py:168
+#: code:addons/purchase_ext_sst/models/purchase_order.py:207
 #, python-format
 msgid "\n"
 "%s\n"
@@ -223,9 +224,9 @@ msgid "Late Scheduled Date"
 msgstr "過去予定日"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_mobile
-msgid "Mobile"
-msgstr "携帯電話"
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_mobile_update
+msgid "Mobile Update"
+msgstr "携帯電話(更新用)"
 
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_name
@@ -235,9 +236,14 @@ msgid "Name"
 msgstr "名称"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_phone
-msgid "Phone"
-msgstr "電話"
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_phone_search
+msgid "Phone Search"
+msgstr "電話(検索用)"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_phone_update
+msgid "Phone Update"
+msgstr "電話(更新用)"
 
 #. module: purchase_ext_sst
 #: model:ir.actions.act_window,name:purchase_ext_sst.action_purchase_category
@@ -317,9 +323,19 @@ msgid "Shop"
 msgstr "担当店舗"
 
 #. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_supplier_mobile
+msgid "Supplier Mobile"
+msgstr "電話(仕入先)"
+
+#. module: purchase_ext_sst
 #: model:ir.ui.view,arch_db:purchase_ext_sst.purchase_order_form
 msgid "Supplier Name Update (Tentative Name)"
-msgstr "名前更新（仮称）"
+msgstr "名前更新(仮称)"
+
+#. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_supplier_phone
+msgid "Supplier Phone"
+msgstr "携帯電話(仕入先)"
 
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_tentative_name
@@ -327,11 +343,13 @@ msgid "Tentative Name"
 msgstr "仮称"
 
 #. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:181
+#: code:addons/purchase_ext_sst/models/purchase_order.py:175
+#: code:addons/purchase_ext_sst/models/purchase_order.py:213
 #, python-format
-msgid "The entered phone(%s) / mobile(%s) conflicts with the following user(s):\n"
+msgid "The entered phone (%s) conflicts with the following user(s):\n"
 "%s"
-msgstr "入力した電話（%s）または携帯電話（%s）につきコンフリクトがあります。\n下記のレコードを確認ください。\n"
+msgstr "入力した電話（%s）につきコンフリクトがあります。\n"
+"下記のレコードを確認ください。\n"
 "%s"
 
 #. module: purchase_ext_sst
@@ -358,5 +376,4 @@ msgstr "request.channel"
 #: model:ir.model,name:purchase_ext_sst.model_request_medium
 msgid "request.medium"
 msgstr "request.medium"
-
 

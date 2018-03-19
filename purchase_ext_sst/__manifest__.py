@@ -12,6 +12,8 @@
     'depends': [
         'hr',
         'purchase',
+        'purchase_order_user',
+        'po_so_field',
     ],
     'data': [
         'security/ir.model.access.csv',
