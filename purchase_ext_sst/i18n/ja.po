@@ -342,11 +342,13 @@ msgid "Tentative Name"
 msgstr "仮称"
 
 #. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:179
+#: code:addons/purchase_ext_sst/models/purchase_order.py:175
+#: code:addons/purchase_ext_sst/models/purchase_order.py:213
 #, python-format
 msgid "The entered phone (%s) conflicts with the following user(s):\n"
 "%s"
-msgstr "入力した電話(%s)につきコンフリクトがあります。\n下記のレコードを確認ください。\n"
+msgstr "入力した電話（%s）につきコンフリクトがあります。\n"
+"下記のレコードを確認ください。\n"
 "%s"
 
 #. module: purchase_ext_sst
