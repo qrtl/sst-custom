@@ -16,7 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:173
+#: code:addons/purchase_ext_sst/models/purchase_order.py:168
+#: code:addons/purchase_ext_sst/models/purchase_order.py:207
 #, python-format
 msgid "\n"
 "%s\n"
