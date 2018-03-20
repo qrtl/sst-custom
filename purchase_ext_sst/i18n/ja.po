@@ -325,7 +325,7 @@ msgstr "担当店舗"
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_supplier_mobile
 msgid "Supplier Mobile"
-msgstr "電話(仕入先)"
+msgstr "携帯電話(仕入先)"
 
 #. module: purchase_ext_sst
 #: model:ir.ui.view,arch_db:purchase_ext_sst.purchase_order_form
@@ -335,7 +335,7 @@ msgstr "名前更新(仮称)"
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_supplier_phone
 msgid "Supplier Phone"
-msgstr "携帯電話(仕入先)"
+msgstr "電話(仕入先)"
 
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_tentative_name
