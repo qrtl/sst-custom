@@ -23,7 +23,8 @@ class PurchaseOrder(models.Model):
     phone_search = fields.Char(
         states = {
             'purchase': [('readonly', True)],
-            'done': [('readonly', True)]
+            'done': [('readonly', True)],
+            'cancel': [('readonly', True)],
         },
     )
     supplier_phone = fields.Char(
