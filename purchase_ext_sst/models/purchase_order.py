@@ -116,6 +116,7 @@ class PurchaseOrder(models.Model):
                 partner = self.env['res.partner'].browse(partner_id)
                 self.update_partner(partner, val_phone, val_mobile,
                                     val_tent_name)
+        vals['partner_id'] = partner_id
         vals['phone_update'] = vals['mobile_update'] = False
         return super(PurchaseOrder, self).write(vals)
 
