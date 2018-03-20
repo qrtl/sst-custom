@@ -20,7 +20,12 @@ class PurchaseOrder(models.Model):
     shop_id = fields.Many2one('stock.warehouse', 'Shop')
     phone_update = fields.Char()
     mobile_update = fields.Char()
-    phone_search = fields.Char()
+    phone_search = fields.Char(
+        states = {
+            'purchase': [('readonly', True)],
+            'done': [('readonly', True)]
+        },
+    )
     supplier_phone = fields.Char(
         related='partner_id.phone',
         string='Supplier Phone',
