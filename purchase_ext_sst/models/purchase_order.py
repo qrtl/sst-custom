@@ -52,7 +52,6 @@ class PurchaseOrder(models.Model):
         string='Worked Hours',
     )
 
-
     @api.onchange('purchased_by_id')
     def onchange_purchased_by_id(self):
         if (not self.shop_id and self.purchased_by_id) or \
@@ -103,28 +102,42 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def write(self, vals):
-        val_phone_search = 'phone_search' in vals and vals['phone_search'] \
-                           or False
-        val_phone = 'phone_update' in vals and vals['phone_update'] or False
-        val_mobile = 'mobile_update' in vals and vals['mobile_update'] \
-                     or False
-        for order in self:
-            val_tent_name = 'tentative_name' in vals and vals[
-                'tentative_name'] or order.tentative_name
-            partner_id = 'partner_id' in vals and vals['partner_id']\
-                                 or order.partner_id.id
-            if self.is_default_partner(partner_id) and \
-                    (val_phone or val_mobile or val_phone_search):
-                partner_id = self.create_partner(val_phone or
-                                                 val_phone_search,
-                                                 val_mobile).id
-            if not self.is_default_partner(partner_id):
-                partner = self.env['res.partner'].browse(partner_id)
-                self.update_partner(partner, val_phone, val_mobile,
-                                    val_tent_name)
-        vals['partner_id'] = partner_id
-        vals['phone_update'] = vals['mobile_update'] = False
-        return super(PurchaseOrder, self).write(vals)
+        # Propose supplier logic
+        if 'phone_search' in vals or 'phone_update' in vals or \
+                        'mobile_update' in vals or 'tentative_name' in vals:
+            val_phone_search = 'phone_search' in vals and vals['phone_search'] \
+                               or False
+            val_phone = 'phone_update' in vals and vals['phone_update'] or False
+            val_mobile = 'mobile_update' in vals and vals['mobile_update'] \
+                         or False
+            for order in self:
+                val_tent_name = 'tentative_name' in vals and vals[
+                    'tentative_name'] or order.tentative_name
+                partner_id = 'partner_id' in vals and vals['partner_id']\
+                                     or order.partner_id.id
+                if self.is_default_partner(partner_id) and \
+                        (val_phone or val_mobile or val_phone_search):
+                    partner_id = self.create_partner(val_phone or
+                                                     val_phone_search,
+                                                     val_mobile).id
+                if not self.is_default_partner(partner_id):
+                    partner = self.env['res.partner'].browse(partner_id)
+                    self.update_partner(partner, val_phone, val_mobile,
+                                        val_tent_name)
+                vals['partner_id'] = partner_id
+            vals['phone_update'] = vals['mobile_update'] = False
+        res = super(PurchaseOrder, self).write(vals)
+        # Update product shop_id and purchase_by_id
+        if 'order_line' in vals or 'shop_id' in vals or 'purchased_by_id' in\
+                vals:
+            for order in self:
+                for line in order.order_line:
+                    product = line.product_id
+                    if product.shop_id != order.shop_id:
+                        product.shop_id = order.shop_id
+                    if product.purchased_by_id != order.purchased_by_id:
+                        product.purchased_by_id = order.purchased_by_id
+        return res
 
     @api.model
     def create(self, vals):
