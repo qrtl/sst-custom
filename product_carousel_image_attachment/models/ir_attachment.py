@@ -2,7 +2,8 @@
 # Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models, tools
+from odoo import api, models
+from odoo.tools import image_resize_image
 
 IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/bmp', 'image/gif']
 
@@ -16,7 +17,11 @@ class IrAttachment(models.Model):
         if vals.get('res_model') in ['product.template', 'product.product']:
             mimetype = vals.get('mimitype') or self._compute_mimetype(vals)
             if mimetype in IMAGE_TYPES:
-                vals['datas'] = tools.image_resize_image_big(vals['datas'])
+                vals['datas'] = image_resize_image(vals['datas'],
+                                                   size=(1600, 1600),
+                                                   encoding='base64',
+                                                   filetype=None,
+                                                   avoid_if_small=True)
         attachment = super(IrAttachment, self).create(vals)
         if attachment and attachment.mimetype in IMAGE_TYPES and \
                         attachment.res_model in ['product.template',
