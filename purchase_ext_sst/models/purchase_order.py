@@ -101,20 +101,6 @@ class PurchaseOrder(models.Model):
         }
 
     @api.multi
-    def open_product_record(self):
-        form_id = self.env.ref('product.product_normal_form_view')
-        return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'product.product',
-            'res_id': self.id,
-            'view_type': 'form',
-            'view_mode': 'form',
-            'view_id': form_id.id,
-            'context': {},
-            'target': 'current',
-        }
-
-    @api.multi
     def write(self, vals):
         # Propose supplier logic
         if 'phone_search' in vals or 'phone_update' in vals or \
