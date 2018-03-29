@@ -181,6 +181,14 @@ class PurchaseOrder(models.Model):
             return self.check_onchange_phone(self.mobile_update,
                                             'mobile_update')
 
+    @api.multi
+    def button_confirm(self):
+        for purchase_order in self:
+            if self.is_default_partner(purchase_order.partner_id.id):
+                raise UserError(_('Purchase order cannot be confirmed with '
+                                  'default guest user.'))
+        return super(PurchaseOrder, self).button_confirm()
+
     def check_onchange_phone(self, phone, field):
         try:
             partner = self.get_partner_from_phone(phone)
@@ -264,3 +272,4 @@ class PurchaseOrder(models.Model):
                                                 user_id=False,
                                                 company_id=company_id) or False
         return partner_id == default_id
+
