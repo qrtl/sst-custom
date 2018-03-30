@@ -23,9 +23,12 @@ class IrAttachment(models.Model):
                                                    filetype=None,
                                                    avoid_if_small=True)
         attachment = super(IrAttachment, self).create(vals)
+        #if datas_fname is False, then we judge it as the main image, and we
+        #do not want to add carousel image for that
         if attachment and attachment.mimetype in IMAGE_TYPES and \
                         attachment.res_model in ['product.template',
-                                                 'product.product']:
+                                                 'product.product'] and \
+                        attachment.datas_fname:
             #FIXME in case variants are used, how should we normalize the value
             #assignment for pt and pp below?
             if attachment.res_model == 'product.template':
