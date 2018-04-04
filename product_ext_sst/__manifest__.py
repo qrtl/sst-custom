@@ -3,15 +3,16 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Extension for product',
-    'version': '11.0.1.2.1',
+    'version': '11.0.1.2.2',
     'author': 'Quartile Limited',
-    'website': 'https://www.odoo-asia.com',
+    'website': 'https://www.quartile.co',
     'category': 'Product',
     'license': "AGPL-3",
     'description': "",
     'depends': [
         'website_sale',
         'purchase_ext_sst',
+        'product_yahoo_auction_sst',
     ],
     'data': [
         'security/ir.model.access.csv',
