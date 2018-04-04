@@ -68,4 +68,39 @@
         </field>
     </record>
 
+    <record id="sale_product_template_tree_view" model="ir.ui.view">
+        <field name="name">sale.product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field eval="20" name="priority"/>
+        <field name="arch" type="xml">
+            <tree string="Product" editable="top">
+                <field name="sequence" widget="handle"/>
+                <field name="default_code"/>
+                <field name="shop_id"/>
+                <field name="title"/>
+                <field name="product_category"/>
+                <field name="product_condition_comment"/>
+                <field name="accessories"/>
+                <field name="remark"/>
+                <field name="standard_price"/>
+                <field name="auction_start_price"/>
+                <field name="auction_buyout_price"/>
+                <field name="carrier_id"/>
+                <field name="carrier_size_id"/>
+                <field name="delivery_cites"/>
+                <field name="yahoo_product_state_id"/>
+                <field name="staff_in_charge"/>
+                <field name="type" invisible="1"/>
+                <field name="uom_id" options="{'no_open': True, 'no_create': True}"
+                       groups="product.group_uom"/>
+                <field name="active" invisible="1"/>
+                <button name="open_record" type="object" icon="fa-sign-in"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product.product_template_action" model="ir.actions.act_window">
+        <field name="view_id" ref="sale_product_template_tree_view"/>
+    </record>
+
 </odoo>
