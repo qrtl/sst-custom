@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 10:00+0000\n"
-"PO-Revision-Date: 2017-12-04 10:00+0000\n"
+"POT-Creation-Date: 2018-04-06 06:44+0000\n"
+"PO-Revision-Date: 2018-04-06 06:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_ext_sst
+#: model:ir.model.fields,field_description:sale_ext_sst.field_sale_order_invoice_residual
+msgid "Invoice Amount Due"
+msgstr "未払額"
 
 #. module: sale_ext_sst
 #: model:ir.model.fields,field_description:sale_ext_sst.field_sale_order_phone
@@ -24,6 +29,11 @@ msgstr "電話"
 #: model:ir.model,name:sale_ext_sst.model_sale_order
 msgid "Quotation"
 msgstr "見積"
+
+#. module: sale_ext_sst
+#: model:ir.model.fields,help:sale_ext_sst.field_sale_order_invoice_residual
+msgid "Remaining amount due of invoice(s)."
+msgstr "請求書の未払額。"
 
 #. module: sale_ext_sst
 #: model:ir.ui.view,arch_db:sale_ext_sst.sale_order_view_search_inherit_sale
