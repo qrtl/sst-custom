@@ -15,3 +15,19 @@ class SaleOrder(models.Model):
     requested_date = fields.Datetime(
         readonly=False,
     )
+    invoice_residual = fields.Monetary(
+        'Invoice Amount Due',
+        compute='_compute_invoice_residual',
+        store=True,
+        help='Remaining amount due of invoice(s).',
+    )
+
+    @api.multi
+    @api.depends('invoice_ids.residual')
+    def _compute_invoice_residual(self):
+        for order in self:
+            order.invoice_residual = order.amount_total
+            for invoice in order.invoice_ids:
+                if invoice.state not in ('draft', 'cancel'):
+                    order.invoice_residual -= invoice.amount_total \
+                                              - invoice.residual
