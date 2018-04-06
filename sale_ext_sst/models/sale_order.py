@@ -27,5 +27,7 @@ class SaleOrder(models.Model):
     def _compute_invoice_residual(self):
         for order in self:
             order.invoice_residual = order.amount_total
-            for invoice in  order.invoice_ids:
-                order.invoice_residual -= invoice.residual
+            for invoice in order.invoice_ids:
+                if invoice.state not in ('draft', 'cancel'):
+                    order.invoice_residual -= invoice.amount_total \
+                                              - invoice.residual
