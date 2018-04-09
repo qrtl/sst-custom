@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_stock_move_operator,access_stock_move_operator,stock.model_stock_move,model_security_adjust_sst.group_stock_operator,1,1,1,1
 access_hr_employee_operator,access_hr_employee_operator,hr.model_hr_employee,model_security_adjust_sst.group_hr_operator,1,1,0,0
+access_product_image_purchase_user,access_product_image_purchase_user,website_sale.model_product_image,purchase.group_purchase_user,1,1,1,1
