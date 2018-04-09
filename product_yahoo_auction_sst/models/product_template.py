@@ -9,7 +9,9 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     title = fields.Char(
+        compute="_get_title",
         string='Title',
+        store=True,
     )
     product_category = fields.Char(
         string='Product Category',
@@ -66,3 +68,8 @@ class ProductTemplate(models.Model):
             ])
             domain.append(('id', 'in', carrier_sizes.ids))
         return {'domain': {'carrier_size_id': domain}}
+
+    @api.depends('default_code')
+    def _get_title(self):
+        for pt in self:
+            pt.title = pt.default_code
