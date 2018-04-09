@@ -10,7 +10,7 @@
                 <page string="Yahoo Auctions">
                     <group>
                         <group>
-                            <field name="title"/>
+                            <field name="title" readonly="0"/>
                             <field name="product_category"/>
                             <field name="product_condition_comment"/>
                             <field name="accessories"/>

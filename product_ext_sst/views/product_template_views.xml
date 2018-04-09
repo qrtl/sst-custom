@@ -77,7 +77,7 @@
                 <field name="sequence" widget="handle"/>
                 <field name="default_code"/>
                 <field name="shop_id"/>
-                <field name="title"/>
+                <field name="title" readonly="0"/>
                 <field name="product_category"/>
                 <field name="product_condition_comment"/>
                 <field name="accessories"/>
