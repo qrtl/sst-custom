@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Quartile Limited
+# Copyright 2017-2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Product Archive Cron',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'author': 'Quartile Limited',
-    'website': 'https://www.odoo-asia.com',
+    'website': 'https://www.quartile.co',
     'category': 'Extra Tools',
     'license': "AGPL-3",
     'description': """
