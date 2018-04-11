@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Quartile Limited
+# Copyright 2017-2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, api
@@ -17,7 +17,7 @@ class ProductProduct(models.Model):
             FROM
                 purchase_order_line
             WHERE
-                state = 'draft'
+                state in ('sent', 'draft')
             GROUP BY
                 product_id
         """)
