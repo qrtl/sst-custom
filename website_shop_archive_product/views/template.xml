@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="shop_products_archive" inherit_id="website_sale.products" active="False" customize_show="True" name="eCommerce Archive Product">
+        <xpath expr="//div[@id='products_grid_before']" position="inside">
+            <label class="switch">
+              <a t-if="not request.session.product_archive" href="/shop/active" class="btn btn-success" role="button">Show Archived Products</a>
+              <a t-if="request.session.product_archive" href="/shop/in_active" class="btn btn-danger" role="button">Hide Archived Products</a><br/>
+            </label>
+        </xpath>
+        <xpath expr="//div[@id='products_grid_before']" position="attributes">
+            <attribute name="class">col-md-3 col-sm-4 col-xs-12</attribute>
+        </xpath>
+        <xpath expr="//div[@id='products_grid']" position="attributes">
+            <attribute name="class">col-md-9 col-sm-8</attribute>
+        </xpath>
+    </template>
+</odoo>
