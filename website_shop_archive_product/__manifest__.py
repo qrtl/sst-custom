@@ -16,7 +16,7 @@ This module show to archive product in website.
         'website_sale'
     ],
     'data': [
-        'views/template.xml',
+        'views/templates.xml',
     ],
     'installable': True,
 }
