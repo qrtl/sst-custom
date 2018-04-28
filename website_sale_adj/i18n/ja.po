@@ -67,3 +67,32 @@ msgstr "res.config.settings"
 msgid "Sales Orders"
 msgstr "購入履歴"
 
+#. module: website_sale
+#: code:addons/website_sale/controllers/main.py:768
+#: model:ir.ui.view,arch_db:website_sale.payment
+#, python-format
+msgid "Pay Now"
+msgstr "注文確認"
+
+#. module: website_sale_wishlist
+#: model:ir.ui.view,arch_db:website_sale_wishlist.product_wishlist
+msgid "Add <span class=\"hidden-xs\">to Cart</span>"
+msgstr "<span class=\"hidden-xs\">カートに追加</span>"
+
+#. module: website_sale_comparison
+#. openerp-web
+#: code:addons/website_sale_comparison/static/src/js/website_sale_comparison.js:45
+#: model:ir.ui.view,arch_db:website_sale_comparison.product_compare
+#, python-format
+msgid "Compare Products"
+msgstr "製品の比較"
+
+#. module: website_sale_comparison
+#. openerp-web
+#: code:addons/website_sale_comparison/static/src/xml/comparison.xml:8
+#: code:addons/website_sale_comparison/static/src/xml/comparison.xml:20
+#: model:ir.ui.view,arch_db:website_sale_comparison.add_to_compare
+#: model:ir.ui.view,arch_db:website_sale_comparison.product_add_to_compare
+#, python-format
+msgid "Compare"
+msgstr "比較する"
