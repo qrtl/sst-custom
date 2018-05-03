@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
+from odoo.addons import decimal_precision as dp
 
 
 class ProductTemplate(models.Model):
@@ -29,11 +30,13 @@ class ProductTemplate(models.Model):
         'hr.employee',
         string='Staff in charge',
     )
-    auction_start_price = fields.Monetary(
+    auction_start_price = fields.Float(
         string='Auction Starting Price',
+        digits=dp.get_precision('Product Price'),
     )
-    auction_buyout_price = fields.Monetary(
+    auction_buyout_price = fields.Float(
         string='Auction Buyout Price',
+        digits=dp.get_precision('Product Price'),
     )
     product_condition = fields.Selection(
         [('new', 'New'), ('used', 'Used')],

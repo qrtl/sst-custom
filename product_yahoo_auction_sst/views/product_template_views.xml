@@ -18,8 +18,8 @@
                             <field name="staff_in_charge"/>
                         </group>
                         <group>
-                            <field name="auction_start_price"/>
-                            <field name="auction_buyout_price"/>
+                            <field name="auction_start_price" widget='monetary'/>
+                            <field name="auction_buyout_price" widget='monetary'/>
                             <field name="product_condition"/>
                             <field name="carrier_id"/>
                             <field name="carrier_size_id"/>
