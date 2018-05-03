@@ -85,6 +85,7 @@
                 <field name="standard_price"/>
                 <field name="auction_start_price"/>
                 <field name="auction_buyout_price"/>
+                <field name="list_price"/>
                 <field name="carrier_id"/>
                 <field name="carrier_size_id"/>
                 <field name="delivery_cites"/>
