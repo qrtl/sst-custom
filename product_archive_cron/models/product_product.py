@@ -29,7 +29,8 @@ class ProductProduct(models.Model):
 
         for prod in self.search(
                 [('type', '=', 'product'), ('active', '=', True)]):
-            if prod.virtual_available + purch_vals.get(prod.id, 0) <= 0:
+            if prod.virtual_available + purch_vals.get(prod.id, 0) + \
+                    prod.draft_sale_qty + prod.sent_sale_qty <= 0:
                 # if product has reordering rules then deactivate first
                 if prod.orderpoint_ids:
                     prod.orderpoint_ids.write({'active': False})
