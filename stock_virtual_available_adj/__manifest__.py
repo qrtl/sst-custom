@@ -15,6 +15,10 @@ calculation.
     """,
     'depends': [
         'stock',
+        'website_sale',
+    ],
+    'data': [
+        'views/product_views.xml',
     ],
     'installable': True,
 }
