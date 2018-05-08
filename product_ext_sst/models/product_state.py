@@ -7,7 +7,7 @@ from odoo import models, fields, api
 
 class ProductState(models.Model):
     _name = 'product.state'
-    _order = 'sequence, name'
+    _order = 'sequence, rank'
 
     rank = fields.Char('Rank', required=True)
     description = fields.Char('Description', required=True)
