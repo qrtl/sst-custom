@@ -10,7 +10,8 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="rank"/>
+                            <field name="description"/>
                         </group>
                         <group>
                             <field name="active"/>
@@ -30,7 +31,8 @@
         <field name='arch' type='xml'>
             <tree string='Product States'>
                 <field name="sequence" widget="handle"/>
-                <field name="name"/>
+                <field name="rank"/>
+                <field name="description"/>
                 <field name="active"/>
                 <field name="company_id"/>
             </tree>
