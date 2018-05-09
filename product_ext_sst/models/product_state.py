@@ -26,3 +26,13 @@ class ProductState(models.Model):
         for record in self:
             res.append((record.id, record.rank + "：" + record.description))
         return res
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        args = args or []
+        domain = []
+        if name:
+            domain = ['|', ('rank', operator, name),
+                      ('description', operator, name)]
+        product_states = self.search(domain + args, limit=limit)
+        return product_states.name_get()
