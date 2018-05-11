@@ -40,6 +40,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='list_price']" position="before">
                 <field name="yahoo_product_state_id"/>
+                <field name="auction_buyout_price"/>
             </xpath>
         </field>
     </record>
