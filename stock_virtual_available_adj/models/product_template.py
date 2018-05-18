@@ -22,3 +22,13 @@ class ProductTemplate(models.Model):
                 pt.website_sale_available_qty += pp.virtual_available - \
                                                  pp.sent_sale_qty - \
                                                  pp.draft_sale_qty
+
+    # Since access to stock.move model is being restricted by marketplace
+    # module, sudo() is needed for seller accounts.
+    def _compute_quantities(self):
+        res = self.sudo()._compute_quantities_dict()
+        for template in self:
+            template.qty_available = res[template.id]['qty_available']
+            template.virtual_available = res[template.id]['virtual_available']
+            template.incoming_qty = res[template.id]['incoming_qty']
+            template.outgoing_qty = res[template.id]['outgoing_qty']
