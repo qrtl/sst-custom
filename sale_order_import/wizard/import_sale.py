@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Quartile Limited
+# Copyright 2017-2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
@@ -7,6 +7,7 @@ from datetime import datetime
 import io
 
 from odoo import models, fields, api, _
+from odoo.addons.queue_job.job import job
 from odoo.exceptions import Warning
 from odoo.tools import pycompat
 
@@ -80,6 +81,11 @@ class ImportSale(models.TransientModel):
         required=True,
         default=_default_customer_payment_journal,
     )
+    asynchronous = fields.Boolean(
+        string="Process import asynchronously",
+        default=True,
+    )
+
 
     @api.model
     def _get_order_value_dict(self, row, error_vals, partner_tel,
@@ -407,41 +413,6 @@ class ImportSale(models.TransientModel):
                 'log_id': error_log_id})
         return error_log_id
 
-    @api.model
-    def _get_order_id(self, order_data, item, error_log_id):
-        """Get order id"""
-        order_vals = {
-            'partner_id': order_data['partner_id'],
-            'partner_invoice_id': order_data['partner_invoice_id'],
-            'pricelist_id': order_data['pricelist_id'],
-            'partner_shipping_id': order_data['partner_shipping_id'],
-            'payment_term_id': order_data['payment_term'],
-            'state': 'draft',
-            'picking_policy': order_data['picking_policy'],
-            'note': order_data['note'],
-            'error_log_id': error_log_id,
-            'imported_order': True,
-            'order_ref': item,
-            'team_id': order_data['team_id'],
-            'warehouse_id': order_data['warehouse_id'],
-            'carrier_id': order_data['carrier_id'],
-            }
-        return self.env['sale.order'].create(order_vals)
-
-    @api.model
-    def _get_orderline_id(self, so_line, order_id):
-        """Get order line id"""
-        orderline_vals = {'name': so_line['name'],
-                          'product_id': so_line['product_id'],
-                          'product_uom_qty': so_line['product_uom_qty'],
-                          'product_uom': so_line['product_uom'],
-                          #  'invoiced': False,  # odoo11
-                          'price_unit': so_line['price_unit'],
-                          'state': so_line['state'],
-                          'tax_id': [(6, 0, so_line['tax_id'])],
-                          'order_id': order_id.id}
-        return self.env['sale.order.line'].create(orderline_vals)
-
     def import_sale_data(self):
         self.ensure_one()
         ctx = self._context.copy()
@@ -556,30 +527,74 @@ class ImportSale(models.TransientModel):
                 'import_date': datetime.now(),
                 'state': 'done',
                 'model_id': model.id}).id
-            for item in order_item_dict:
-                order_id = self._get_order_id(order_dict[item],
-                                              item, error_log_id)
-                for so_line in order_item_dict[item]:
-                    if not so_line['invoiceable']:
-                        order_id.invoiceable = False
-                    self._get_orderline_id(so_line, order_id)
-                order_id.action_confirm()  # odoo11
-                if order_id.picking_ids:
-                    for picking in order_id.picking_ids:
-                        picking.action_assign()
-                if order_id.invoiceable:
-                    order_id.action_invoice_create()  # odoo11
+            if not self.asynchronous:
+                for item in order_item_dict:
+                    self._process_order(
+                        order_dict[item], order_item_dict[item],
+                        item, error_log_id, self.customer_invoice_journal_id,
+                        self.customer_payment_journal_id)
+            else:
+                for item in order_item_dict:
+                    self.env[self._name].with_delay()._process_order(
+                        order_dict[item], order_item_dict[item],
+                        item, error_log_id, self.customer_invoice_journal_id,
+                        self.customer_payment_journal_id)
 
-                if order_id.invoice_ids:
-                    for invoice in order_id.invoice_ids:
-                        invoice.journal_id = \
-                            self.customer_invoice_journal_id.id
-                        if invoice.state == 'draft':
-                            invoice.action_invoice_open()  # odoo11
-                            invoice.pay_and_reconcile(
-                                self.customer_payment_journal_id.id
-                            )  # odoo11
         res = self.env.ref('base_import_log.error_log_action')
         res = res.read()[0]
         res['domain'] = str([('id', 'in', [error_log_id])])
         return res
+
+    @job()
+    def _process_order(self, order_data, line_data, item, error_log_id,
+                       invoice_journal, payment_journal):
+        order = self._create_order(order_data, item, error_log_id)
+        for line in line_data:
+            if not line['invoiceable']:
+                order.invoiceable = False
+            self._create_order_line(line, order)
+        order.action_confirm()
+        if order.picking_ids:
+            for picking in order.picking_ids:
+                picking.action_assign()
+        if order.invoiceable:
+            order.action_invoice_create()
+        if order.invoice_ids:
+            for invoice in order.invoice_ids:
+                invoice.journal_id = invoice_journal.id
+                if invoice.state == 'draft':
+                    invoice.action_invoice_open()
+                    invoice.pay_and_reconcile(payment_journal)
+
+    @api.model
+    def _create_order(self, order_data, item, error_log_id):
+        order_vals = {
+            'partner_id': order_data['partner_id'],
+            'partner_invoice_id': order_data['partner_invoice_id'],
+            'pricelist_id': order_data['pricelist_id'],
+            'partner_shipping_id': order_data['partner_shipping_id'],
+            'payment_term_id': order_data['payment_term'],
+            'state': 'draft',
+            'picking_policy': order_data['picking_policy'],
+            'note': order_data['note'],
+            'error_log_id': error_log_id,
+            'imported_order': True,
+            'order_ref': item,
+            'team_id': order_data['team_id'],
+            'warehouse_id': order_data['warehouse_id'],
+            'carrier_id': order_data['carrier_id'],
+        }
+        return self.env['sale.order'].create(order_vals)
+
+    @api.model
+    def _create_order_line(self, line, order):
+        line_vals = {
+            'name': line['name'],
+            'product_id': line['product_id'],
+            'product_uom_qty': line['product_uom_qty'],
+            'product_uom': line['product_uom'],
+            'price_unit': line['price_unit'],
+            'state': line['state'],
+            'tax_id': [(6, 0, line['tax_id'])],
+            'order_id': order.id}
+        return self.env['sale.order.line'].create(line_vals)
