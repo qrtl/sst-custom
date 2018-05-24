@@ -13,6 +13,9 @@
                             <field name="input_file" filename="datas_fname"/>
                             <field name="datas_fname" invisible="1"/>
                         </group>
+                        <group>
+                            <field name="asynchronous"/>
+                        </group>
                     </group>
                     <group>
                         <group>

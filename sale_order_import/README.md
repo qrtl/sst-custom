@@ -9,8 +9,8 @@ This module provides following functions:
  * Customer Invoice
  * Customer Payment
  
-This module depends on `base_import_log` module.
- 
+This module depends on `base_import_log` and `queue_job` modules.
+
 
 Installation
 ============
@@ -24,6 +24,9 @@ Configuration
 * User should belong to 'Data Import' group.  Adjust the user access right settings from `Settings > Users > (the user) > Access Rights > Technical Settings`.
 * Select default journals ('Invoice Journal' and 'Payment Journal') in "Sales Import Defaults" screen.  The values are used to propose journals in "Sales Data Import" wizard.
 * Selece default 'Shipping Policy' and 'Create Invoice' in "Sales Import Defaults" screen.  If 'On Delivery Order' or 'Create Invoice' is selected, customer invoice and payment will not be created.
+* Set Implementation of Customer Invoices sequence to "Standard" (instead of
+  "No Gap". Queue jobs seem to fail for not being able to obtain lock on
+  ir_sequence row.
 
 
 Usage
