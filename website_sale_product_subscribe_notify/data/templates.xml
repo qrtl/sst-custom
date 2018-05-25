@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="email_template_product_public_category" model="mail.template">
+        <field name="name">product public category- Send by Email</field>
+        <field name="email_from">${object.company_id.email}</field>
+        <field name="subject">Subscription Notification from ${object.get_website_name()}</field>
+        <field name="partner_to">${ctx['partner_id']}</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="body_html"><![CDATA[
+<p>Hello ${ctx['partner_name']}
+,</p>
+<p>
+<p style="color:#eeeeee;">
+    <img src="/web/image/product.template/${object.id}/image" height="100px" width="100px"></img>
+</p>
+<strong>${object.name}</strong><br/>
+A product in one of your subscripted category has been updated.<br/>
+Price: ${ctx['list_price']}
+</p>
+<br/><br/>
+<center>
+    <a target="_blank" href="/shop/product/${object.id}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Product</a>
+    <br/><br/>
+</center>
+<br/>
+${object.get_website_name()}
+<p style="color:#eeeeee;">
+% if object.user_id and object.user_id.signature:
+    ${object.user_id.signature | safe}
+% endif
+</p>
+]]></field>
+    </record>
+
+</odoo>
