@@ -18,7 +18,7 @@ class IrAttachment(models.Model):
             mimetype = vals.get('mimitype') or self._compute_mimetype(vals)
             if mimetype in IMAGE_TYPES:
                 vals['datas'] = image_resize_image(vals['datas'],
-                                                   size=(1600, 1600),
+                                                   size=(1024, 1024),
                                                    encoding='base64',
                                                    filetype=None,
                                                    avoid_if_small=True)
