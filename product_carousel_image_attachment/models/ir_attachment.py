@@ -14,7 +14,8 @@ class IrAttachment(models.Model):
     @api.model
     def create(self, vals):
         #here we resize the image first to avoid bloating the filestore
-        if vals.get('res_model') in ['product.template', 'product.product']:
+        if vals.get('res_model') in ['product.template', 'product.product',
+                                     'mail.compose.message']:
             mimetype = vals.get('mimitype') or self._compute_mimetype(vals)
             if mimetype in IMAGE_TYPES:
                 vals['datas'] = image_resize_image(vals['datas'],
