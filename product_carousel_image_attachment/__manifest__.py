@@ -14,7 +14,7 @@
 corresponding product.image record for the attached file.
     """,
     'depends': [
-        'product_video_player',
+        'base',
     ],
     'installable': True,
 }
