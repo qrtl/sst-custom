@@ -19,7 +19,6 @@ any following fields of the product is updated,
     'website': 'https://www.quartile.co',
     'depends': [
         'mail_adj_sst',
-        'product_video_player',
         'website_sale',
     ],
     'data':[

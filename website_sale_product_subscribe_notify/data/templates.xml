@@ -14,7 +14,9 @@
 <p style="color:#eeeeee;">
     <img src="/web/image/product.template/${object.id}/image" height="100px" width="100px"></img>
 </p>
-The following product has been updated in one of your subscripted category <strong>${object.name}</strong>
+<strong>${object.name}</strong><br/>
+A product in one of your subscripted category has been updated.<br/>
+Price: ${ctx['list_price']}
 </p>
 <br/><br/>
 <center>
@@ -22,8 +24,7 @@ The following product has been updated in one of your subscripted category <stro
     <br/><br/>
 </center>
 <br/>
-<p>Thank you,</p>
-
+${object.get_website_name()}
 <p style="color:#eeeeee;">
 % if object.user_id and object.user_id.signature:
     ${object.user_id.signature | safe}

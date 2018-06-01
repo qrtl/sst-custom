@@ -13,9 +13,9 @@ class ProductTemplate(models.Model):
         result = super(ProductTemplate, self).write(vals)
         for rec in self:
             if rec.website_published:
-                if vals.get("website_published") or vals.get("vid_path") and \
-                        rec.vid_path or vals.get("list_price") or vals.get(
-                    'description_sale') and rec.description_sale:
+                if vals.get("website_published") or vals.get("list_price") \
+                        or vals.get('description_sale') and \
+                                rec.description_sale:
                     ctx = self._context.copy()
                     template = self.env.ref(
                         'website_sale_product_subscribe_notify.email_template_product_public_category',
@@ -23,10 +23,12 @@ class ProductTemplate(models.Model):
                     )
                     partner_ids = rec.get_product_category_followers_ids()
                     partners = rec.env['res.partner'].browse(partner_ids)
+                    list_price = "%d" % int(rec.list_price)
                     for partner in partners:
                         ctx.update({
                             'partner_name': partner.name,
-                            'partner_id': partner.id
+                            'partner_id': partner.id,
+                            'list_price': list_price
                         })
                         template.with_context(ctx).send_mail(rec.id)
         return result
