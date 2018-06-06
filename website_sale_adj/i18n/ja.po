@@ -1,14 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* website_sale_adj
-#	* sale
+#       * sale
+#       * website_sale
+#       * website_sale_wishlist
+#       * website_sale_comparison
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-05 14:18+0000\n"
-"PO-Revision-Date: 2018-03-05 14:18+0000\n"
+"POT-Creation-Date: 2018-06-06 11:14+0000\n"
+"PO-Revision-Date: 2018-06-06 11:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,6 +25,11 @@ msgid "<br/>\n"
 "                <span>Product State:</span>"
 msgstr "<br/>\n"
 "                <span>商品状態:</span>"
+
+#. module: website_sale_adj
+#: model:ir.ui.view,arch_db:website_sale_adj.cart
+msgid "<font class=\"text-gamma\" style=\"\">Products that left in the cart for over two days will be removed.</font>"
+msgstr "<font class=\"text-gamma\" style=\"\">2日以上経過した商品はカートから消える可能性がございます。</font>"
 
 #. module: website_sale_adj
 #: model:ir.model.fields,field_description:website_sale_adj.field_website_property_payment_term_id
@@ -40,12 +48,16 @@ msgstr "顧客に支払条件設定がない場合に適用されるデフォル
 
 #. module: website_sale_adj
 #: model:ir.model.fields,field_description:website_sale_adj.field_res_config_settings_property_payment_term_id
+#: model:ir.model.fields,field_description:website_sale_adj.field_webkul_website_addons_property_payment_term_id
+#: model:ir.model.fields,field_description:website_sale_adj.field_website_order_notes_settings_property_payment_term_id
 #: model:ir.ui.view,arch_db:website_sale_adj.res_config_settings_view_form
 msgid "Payment Term"
 msgstr "支払条件"
 
 #. module: website_sale_adj
 #: model:ir.model.fields,help:website_sale_adj.field_res_config_settings_property_payment_term_id
+#: model:ir.model.fields,help:website_sale_adj.field_webkul_website_addons_property_payment_term_id
+#: model:ir.model.fields,help:website_sale_adj.field_website_order_notes_settings_property_payment_term_id
 #: model:ir.model.fields,help:website_sale_adj.field_website_property_payment_term_id
 msgid "This payment term will be applied to eCommerce orders if there is no payment term in customer"
 msgstr "顧客に支払条件設定がない場合、この支払条件がeコマースオーダに適用されます。"
