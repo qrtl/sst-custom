@@ -16,6 +16,10 @@ class IrAttachment(models.Model):
         #here we resize the image first to avoid bloating the filestore
         mimetype = vals.get('mimitype') or self._compute_mimetype(vals)
         if mimetype in IMAGE_TYPES:
+            # image_resize_image requires a binary object instead of string.
+            # For situations like adding images to the product_image_ids
+            # through Odoo's standard way, vals['datas'] will be in string
+            # form therefore conversion is needed
             datas = vals['datas'].encode('utf8') if type(vals['datas']) is \
                                                     str else vals['datas']
             vals['datas'] = image_resize_image(datas,
