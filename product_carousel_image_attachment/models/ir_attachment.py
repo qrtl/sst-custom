@@ -14,14 +14,15 @@ class IrAttachment(models.Model):
     @api.model
     def create(self, vals):
         #here we resize the image first to avoid bloating the filestore
-        if vals.get('res_model') in ['product.template', 'product.product']:
-            mimetype = vals.get('mimitype') or self._compute_mimetype(vals)
-            if mimetype in IMAGE_TYPES:
-                vals['datas'] = image_resize_image(vals['datas'],
-                                                   size=(1600, 1600),
-                                                   encoding='base64',
-                                                   filetype=None,
-                                                   avoid_if_small=True)
+        mimetype = vals.get('mimitype') or self._compute_mimetype(vals)
+        if mimetype in IMAGE_TYPES:
+            datas = vals['datas'].encode('utf8') if type(vals['datas']) is \
+                                                    str else vals['datas']
+            vals['datas'] = image_resize_image(datas,
+                                               size=(1600, 1600),
+                                               encoding='base64',
+                                               filetype=None,
+                                               avoid_if_small=True)
         attachment = super(IrAttachment, self).create(vals)
         #if datas_fname is False, then we judge it as the main image, and we
         #do not want to add carousel image for that
@@ -29,20 +30,16 @@ class IrAttachment(models.Model):
                         attachment.res_model in ['product.template',
                                                  'product.product'] and \
                         attachment.datas_fname:
-            #FIXME in case variants are used, how should we normalize the value
-            #assignment for pt and pp below?
+            #assignment for pt
             if attachment.res_model == 'product.template':
                 pt = self.env['product.template'].browse(attachment.res_id)
-                pp = pt.product_variant_id
             if attachment.res_model == 'product.product':
-                pp = self.env['product.product'].browse(attachment.res_id)
-                pt = pp.product_tmpl_id
+                pt = self.env['product.product'].browse(
+                    attachment.res_id).product_tmpl_id
             vals = {
                 'name': attachment.name,
                 'image': attachment.datas,
-                'image_url': attachment.local_url,
                 'product_tmpl_id': pt.id,
-                'product_variant_id': pp.id,
             }
             self.env['product.image'].sudo().create(vals)
         return attachment
