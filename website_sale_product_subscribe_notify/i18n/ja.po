@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-31 11:35+0000\n"
-"PO-Revision-Date: 2018-05-31 11:35+0000\n"
+"POT-Creation-Date: 2018-06-06 09:09+0000\n"
+"PO-Revision-Date: 2018-06-06 09:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -79,6 +79,11 @@ msgid "My Subscriptions"
 msgstr "お気に入りカテゴリ"
 
 #. module: website_sale_product_subscribe_notify
+#: model:mail.template,subject:website_sale_product_subscribe_notify.email_template_product_public_category
+msgid "Product Information Update Notification (${object.get_website_name()})"
+msgstr "商品更新のお知らせ（${object.get_website_name()}）"
+
+#. module: website_sale_product_subscribe_notify
 #: model:ir.model,name:website_sale_product_subscribe_notify.model_product_template
 msgid "Product Template"
 msgstr "製品テンプレート"
@@ -92,11 +97,6 @@ msgstr "戻す"
 #: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.display_product_subscriptions
 msgid "Submit"
 msgstr "確認"
-
-#. module: website_sale_product_subscribe_notify
-#: model:mail.template,subject:website_sale_product_subscribe_notify.email_template_product_public_category
-msgid "Subscription Notification from ${object.get_website_name()}"
-msgstr "${object.get_website_name()}からサブスクリプションお知らせ"
 
 #. module: website_sale_product_subscribe_notify
 #: model:ir.model,name:website_sale_product_subscribe_notify.model_product_public_category
