@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (c) 2015-2016 ACSONE SA/NV (<http://acsone.eu>)
 # Copyright 2015-2016 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
@@ -150,6 +149,9 @@ ERROR_RECOVERY_DELAY = 5
 _logger = logging.getLogger(__name__)
 
 
+session = requests.Session()
+
+
 # Unfortunately, it is not possible to extend the Odoo
 # server command line arguments, so we resort to environment variables
 # to configure the runner (channels mostly).
@@ -177,7 +179,17 @@ def _odoo_now():
     return _datetime_to_epoch(dt)
 
 
+session = requests.Session()
+
+
 def _async_http_get(scheme, host, port, user, password, db_name, job_uuid):
+    if not session.cookies:
+        # obtain an anonymous session
+        _logger.info("obtaining an anonymous session for the job runner")
+        url = ('http://localhost:%s/queue_job/session' % (port,))
+        response = session.get(url, timeout=30)
+        response.raise_for_status()
+
     # Method to set failed job (due to timeout, etc) as pending,
     # to avoid keeping it as enqueued.
     def set_job_pending():
@@ -203,7 +215,7 @@ def _async_http_get(scheme, host, port, user, password, db_name, job_uuid):
                 auth = (user, password)
             # we are not interested in the result, so we set a short timeout
             # but not too short so we trap and log hard configuration errors
-            response = requests.get(url, timeout=1, auth=auth)
+            response = session.get(url, timeout=1, auth=auth)
 
             # raise_for_status will result in either nothing, a Client Error
             # for HTTP Response codes between 400 and 500 or a Server Error
@@ -213,6 +225,7 @@ def _async_http_get(scheme, host, port, user, password, db_name, job_uuid):
             set_job_pending()
         except:
             _logger.exception("exception in GET %s", url)
+            session.cookies.clear()
             set_job_pending()
     thread = threading.Thread(target=urlopen)
     thread.daemon = True
@@ -231,6 +244,10 @@ class Database(object):
             self._initialize()
 
     def close(self):
+        # pylint: disable=except-pass
+        # if close fail for any reason, it's either because it's already closed
+        # and we don't care, or for any reason but anyway it will be closed on
+        # del
         try:
             self.conn.close()
         except:
@@ -277,6 +294,10 @@ class Database(object):
             cr.execute("LISTEN queue_job")
 
     def select_jobs(self, where, args):
+        # pylint: disable=sql-injection
+        # the checker thinks we are injecting values but we are not, we are
+        # adding the where conditions, values are added later properly with
+        # parameters
         query = ("SELECT channel, uuid, id as seq, date_created, "
                  "priority, EXTRACT(EPOCH FROM eta), state "
                  "FROM queue_job WHERE %s" %

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013-2016 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
@@ -18,8 +17,8 @@ from ..fields import JobSerialized
 _logger = logging.getLogger(__name__)
 
 
-def channel_func_name(method):
-    return '<%s>.%s' % (method.__self__._name, method.__name__)
+def channel_func_name(model, method):
+    return '<%s>.%s' % (model._name, method.__name__)
 
 
 class QueueJob(models.Model):
@@ -32,6 +31,7 @@ class QueueJob(models.Model):
     _order = 'date_created DESC, date_done DESC'
 
     _removal_interval = 30  # days
+    _default_related_action = 'related_action_open_record'
 
     uuid = fields.Char(string='UUID',
                        readonly=True,
@@ -53,18 +53,17 @@ class QueueJob(models.Model):
                               readonly=True, store=True)
 
     state = fields.Selection(STATES,
-                             string='State',
                              readonly=True,
                              required=True,
                              index=True)
     priority = fields.Integer()
     exc_info = fields.Text(string='Exception Info', readonly=True)
-    result = fields.Text(string='Result', readonly=True)
+    result = fields.Text(readonly=True)
 
     date_created = fields.Datetime(string='Created Date', readonly=True)
     date_started = fields.Datetime(string='Start Date', readonly=True)
     date_enqueued = fields.Datetime(string='Enqueue Time', readonly=True)
-    date_done = fields.Datetime(string='Date Done', readonly=True)
+    date_done = fields.Datetime(readonly=True)
 
     eta = fields.Datetime(string='Execute only after')
     retry = fields.Integer(string='Current try')
@@ -104,7 +103,7 @@ class QueueJob(models.Model):
         for record in self:
             model = self.env[record.model_name]
             method = getattr(model, record.method_name)
-            channel_method_name = channel_func_name(method)
+            channel_method_name = channel_func_name(model, method)
             func_model = self.env['queue.job.function']
             function = func_model.search([('name', '=', channel_method_name)])
             record.channel_method_name = channel_method_name
@@ -131,7 +130,7 @@ class QueueJob(models.Model):
         job = Job.load(self.env, self.uuid)
         action = job.related_action()
         if action is None:
-            raise exceptions.Warning(_('No action available for this job'))
+            raise exceptions.UserError(_('No action available for this job'))
         return action
 
     @api.multi
@@ -221,6 +220,40 @@ class QueueJob(models.Model):
         jobs.unlink()
         return True
 
+    @api.multi
+    def related_action_open_record(self):
+        """Open a form view with the record(s) of the job.
+
+        For instance, for a job on a ``product.product``, it will open a
+        ``product.product`` form view with the product record(s) concerned by
+        the job. If the job concerns more than one record, it opens them in a
+        list.
+
+        This is the default related action.
+
+        """
+        self.ensure_one()
+        model_name = self.model_name
+        records = self.env[model_name].browse(self.record_ids).exists()
+        if not records:
+            return None
+        action = {
+            'name': _('Related Record'),
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': records._name,
+        }
+        if len(records) == 1:
+            action['res_id'] = records.id
+        else:
+            action.update({
+                'name': _('Related Records'),
+                'view_mode': 'tree,form',
+                'domain': [('id', 'in', records.ids)],
+            })
+        return action
+
 
 class RequeueJob(models.TransientModel):
     _name = 'queue.requeue.job'
@@ -252,7 +285,6 @@ class JobChannel(models.Model):
 
     name = fields.Char()
     complete_name = fields.Char(compute='_compute_complete_name',
-                                string='Complete Name',
                                 store=True,
                                 readonly=True)
     parent_id = fields.Many2one(comodel_name='queue.job.channel',
@@ -355,8 +387,8 @@ class JobFunction(models.Model):
         return channel
 
     @api.model
-    def _register_job(self, job_method):
-        func_name = channel_func_name(job_method)
+    def _register_job(self, model, job_method):
+        func_name = channel_func_name(model, job_method)
         if not self.search_count([('name', '=', func_name)]):
             channel = self._find_or_create_channel(job_method.default_channel)
             self.create({'name': func_name, 'channel_id': channel.id})
