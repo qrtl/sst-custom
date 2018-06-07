@@ -23,7 +23,7 @@ class IrAttachment(models.Model):
             datas = vals['datas'].encode('utf8') if type(vals['datas']) is \
                                                     str else vals['datas']
             vals['datas'] = image_resize_image(datas,
-                                               size=(1600, 1600),
+                                               size=(1024, 1024),
                                                encoding='base64',
                                                filetype=None,
                                                avoid_if_small=True)
