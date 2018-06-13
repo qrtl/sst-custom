@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Stock Virtual Available Adjust',
-    'version': '11.0.1.1.0',
+    'version': '11.0.1.2.0',
     'author': 'Quartile Limited',
     'website': 'https://www.quartile.co',
     'category': 'Warehouse',
@@ -16,6 +16,7 @@ calculation.
     'depends': [
         'stock',
         'website_sale',
+        'product_ext_sst',
     ],
     'data': [
         'views/product_views.xml',
