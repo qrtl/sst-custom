@@ -24,4 +24,4 @@ msgstr "<span class=\"o_stat_text\">EC利用可能数量</span>"
 #: model:ir.model.fields,field_description:stock_virtual_available_adj.field_product_product_website_sale_available_qty
 #: model:ir.model.fields,field_description:stock_virtual_available_adj.field_product_template_website_sale_available_qty
 msgid "Available Quantity in eCommerce"
-msgstr "EC利用可能数量"
+msgstr "EC見通数量"
