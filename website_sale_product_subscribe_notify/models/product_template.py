@@ -13,9 +13,7 @@ class ProductTemplate(models.Model):
         result = super(ProductTemplate, self).write(vals)
         for rec in self:
             if rec.website_published:
-                if vals.get("website_published") or vals.get("list_price") \
-                        or vals.get('description_sale') and \
-                                rec.description_sale:
+                if vals.get("website_published") or vals.get("list_price"):
                     ctx = self._context.copy()
                     template = self.env.ref(
                         'website_sale_product_subscribe_notify.email_template_product_public_category',
