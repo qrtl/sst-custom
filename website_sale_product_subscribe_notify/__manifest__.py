@@ -13,7 +13,6 @@ any following fields of the product is updated,
 - website_published
 - vid_path
 - list_price
-- description_sale
     """,
     'author': 'Quartile Limited',
     'website': 'https://www.quartile.co',
