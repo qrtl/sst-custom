@@ -1,24 +1,24 @@
-
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="product_normal_form_view_sync_history" model="ir.ui.view">
-            <field name="name">product.product.sync.history</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
-            <field name="arch" type="xml">
-                <xpath expr="//notebook/page[last()]" position="after">
-                    <page name="sync_history" string="Sync History">
-                        <field name="sync_history_ids" readonly="True">
-                            <tree>
-                                <field name="field_name"/>
-                                <field name="field_value"/>
-                                <field name="is_sync"/>
-                                <field name="sync_date"/>
-                            </tree>
-                        </field>
-                    </page>
-                </xpath>
-            </field>
-        </record>
-    </data>
+
+    <record id="product_normal_form_view_sync_history" model="ir.ui.view">
+        <field name="name">product.product.sync.history</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page name="sync_history" string="Sync History">
+                    <field name="sync_history_ids" readonly="True">
+                        <tree>
+                            <field name="field_name"/>
+                            <field name="field_value"/>
+                            <field name="is_sync"/>
+                            <field name="sync_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

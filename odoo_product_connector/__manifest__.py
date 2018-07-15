@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Quartile Limited
+# Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 {
     'name': 'Odoo Product Connector',
-    'version': '1.0',
-    'category' : 'Sales',
-    'license': 'Other proprietary',
+    'version': '11.0.1.0.0',
+    'category' : 'Connector',
+    'license': 'AGPL-3',
     'summary': """This module allow to send product updates to the other Database.""",
     'description': """
     - This module allow to send product updates to the another Databse
@@ -23,18 +21,18 @@
 
     """,
     'author': 'Quartile Limited',
-    'website': 'https://www.odoo-asia.com',
+    'website': 'https://www.quartile.co',
     'depends': [
         'product',
         'queue_job',
     ],
+    'external_dependencies': {
+        'python': ['odoorpc'],
+    },
     'data':[
         'wizard/product_sync_view.xml',
         'views/product_view.xml',
         'views/res_company_view.xml',
     ],
-    'installable' : True,
-    'application' : False,
+    'installable': True,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

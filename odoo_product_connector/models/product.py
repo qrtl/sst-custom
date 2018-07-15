@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -75,5 +74,3 @@ class Product(models.Model):
         vals.update({'sync_history_ids': sync_history_lst})
 
         return super(Product, self).write(vals)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

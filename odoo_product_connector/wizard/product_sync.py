@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Quartile Limited
+# Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
@@ -44,5 +43,3 @@ class ProductSync(models.TransientModel):
                 product_model = self.env['product.product']
                 description = "Update data from Source Databse of product.product %s Database to destination Database in product.product"%(product)
                 product_model.with_delay(description=description).product_sync(product_sync_dict)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
