@@ -9,6 +9,9 @@ class ResCompany(models.Model):
     db_name = fields.Char(
         "Database Name",
     )
+    port = fields.Char(
+        "Port",
+    )
     password = fields.Char(
         'Password',
         size=40

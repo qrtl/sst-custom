@@ -12,6 +12,7 @@
                         <group>
                             <field name="db_name"/>
                             <field name="host_name"/>
+                            <field name="port"/>
                             <field name="user_name"/>
                             <field name="password"/>
                         </group>
