@@ -37,12 +37,12 @@ class Product(models.Model):
         PASSWORD = company_id.password
         HOSTNAME = company_id.host_name
         DATABASE = company_id.db_name
-        PORT = 8000
+        PORT = company_id.port
 
         for product_data in data:
             # connection = odoolib.get_connection(hostname=HOSTNAME, database=DATABASE, \
             #             login=USER, password=PASSWORD)
-            odoo = odoorpc.ODOO(HOSTNAME, port=8069)
+            odoo = odoorpc.ODOO(HOSTNAME, port=PORT)
             odoo.login(DATABASE, USER, PASSWORD)
             product_id = self.browse(int(data[product_data].get('product_id')))
 
