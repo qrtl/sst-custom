@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sync_history_user,access_sync_history_user,model_product_sync_history,base.group_user,1,1,1,1

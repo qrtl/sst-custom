@@ -30,6 +30,7 @@
         'python': ['odoorpc'],
     },
     'data':[
+        'security/ir.model.access.csv',
         'wizard/product_sync_view.xml',
         'views/product_view.xml',
         'views/res_company_view.xml',
