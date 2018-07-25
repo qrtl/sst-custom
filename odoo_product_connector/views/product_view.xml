@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="product_normal_form_view_sync_history" model="ir.ui.view">
-        <field name="name">product.product.sync.history</field>
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_normal_form_view"/>
+    <record id="product_template_form_view_sync_history" model="ir.ui.view">
+        <field name="name">product.template.sync.history</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[last()]" position="after">
                 <page name="sync_history" string="Sync History">
+                    <field name="ext_sync_product_id"/>
                     <field name="sync_history_ids" readonly="True">
                         <tree>
                             <field name="field_name"/>

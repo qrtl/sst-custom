@@ -24,4 +24,12 @@
         view_id="product_sync_form_view"
         key2="client_action_multi" target="new"/>
 
+    <act_window id="action_product_template_sync"
+        name="Product Sync "
+        src_model="product.template"
+        res_model="product.sync"
+        view_type="form" view_mode="form"
+        view_id="product_sync_form_view"
+        key2="client_action_multi" target="new"/>
+
 </odoo>
