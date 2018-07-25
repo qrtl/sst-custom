@@ -6,6 +6,13 @@
         <field name="model">product.public.category</field>
         <field name="inherit_id" ref="website_sale.product_public_category_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="child_id" invisible="1"/>
+                <field name="subscribe_point"
+                       attrs="{'invisible': [('child_id', '!=', [])]}"/>
+                <field name="total_subscribe_points"
+                       attrs="{'invisible': [('child_id', '=', [])]}"/>
+            </xpath>
             <xpath expr="//sheet" position="after">
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>

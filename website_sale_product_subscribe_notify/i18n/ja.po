@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-06 09:09+0000\n"
-"PO-Revision-Date: 2018-06-06 09:09+0000\n"
+"POT-Creation-Date: 2018-07-25 03:50+0000\n"
+"PO-Revision-Date: 2018-07-25 03:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -74,9 +74,84 @@ msgstr "<span class=\"hidden-xs\">戻る</span>\n"
 "                        <span class=\"fa fa-long-arrow-left\"/>"
 
 #. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_res_partner_remaining_point_limit
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_res_users_remaining_point_limit
+msgid "Available Points"
+msgstr "利用可能な購読ポイント"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.display_product_subscriptions
+msgid "Available Subscription Points:"
+msgstr "利用可能な購読ポイント："
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model,name:website_sale_product_subscribe_notify.model_res_partner
+msgid "Contact"
+msgstr "連絡先"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_name
+msgid "Group Name"
+msgstr "グループ名"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_id
+msgid "ID"
+msgstr "ID"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_res_partner_member_group_id
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_res_users_member_group_id
+#: model:ir.ui.menu,name:website_sale_product_subscribe_notify.menu_member_group
+#: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.form_view_member_group
+msgid "Member Group"
+msgstr "メンバーグループ"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.actions.act_window,name:website_sale_product_subscribe_notify.action_member_group
+#: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.tree_view_member_group
+msgid "Member Groups"
+msgstr "メンバーグループ"
+
+#. module: website_sale_product_subscribe_notify
 #: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.portal_my_home_product_category_subscription
 msgid "My Subscriptions"
 msgstr "お気に入りカテゴリ"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_point_limit
+msgid "Points Limit"
+msgstr "購読ポイントリミット"
 
 #. module: website_sale_product_subscribe_notify
 #: model:mail.template,subject:website_sale_product_subscribe_notify.email_template_product_public_category
@@ -99,6 +174,16 @@ msgid "Submit"
 msgstr "確認"
 
 #. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_product_public_category_subscribe_point
+msgid "Subscription Points"
+msgstr "購読ポイント"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_product_public_category_total_subscribe_points
+msgid "Total Subscribe Points"
+msgstr "購読ポイント"
+
+#. module: website_sale_product_subscribe_notify
 #: model:ir.model,name:website_sale_product_subscribe_notify.model_product_public_category
 msgid "Website Product Category"
 msgstr "ウェブサイト製品カテゴリ"
@@ -114,6 +199,12 @@ msgid "You have unsubscribed categories:"
 msgstr "下記のカテゴリに登録を解除しました："
 
 #. module: website_sale_product_subscribe_notify
+#: code:addons/website_sale_product_subscribe_notify/controller/main.py:73
+#, python-format
+msgid "You subscription point is not enough to subscribe the selected categories."
+msgstr "購読ポイントが足りません。ご確認してください。"
+
+#. module: website_sale_product_subscribe_notify
 #: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.display_product_subscriptions
 msgid "Your Product Category Subscriptions"
 msgstr "お気に入りカテゴリ"
@@ -122,5 +213,15 @@ msgstr "お気に入りカテゴリ"
 #: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.template_thanks_message
 msgid "Your subscriptions have been updated"
 msgstr "お気に入りカテゴリが更新されました。"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model,name:website_sale_product_subscribe_notify.model_member_group
+msgid "member.group"
+msgstr "member.group"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.display_product_subscription
+msgid "pt&amp;nbsp;"
+msgstr "pt&amp;nbsp;"
 
 

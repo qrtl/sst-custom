@@ -21,4 +21,9 @@ odoo.define('website_sale_product_subscribe_notify.product_subscribe', function 
         $(this).hide()
     });
 
+    $("input[name='categ_subscribe']").on('click', function(el){
+        var checked = $(this).prop('checked')
+        $(this).parent().find('input').prop('checked', checked)
+    });
+
 });
