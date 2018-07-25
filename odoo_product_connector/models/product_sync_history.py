@@ -23,5 +23,9 @@ class ProductSyncHistory(models.Model):
     )
     product_id = fields.Many2one(
         'product.product',
+        string='Product Variant',
+    )
+    product_tmpl_id = fields.Many2one(
+        'product.template',
         string='Product',
     )
