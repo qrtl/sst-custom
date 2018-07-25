@@ -70,7 +70,7 @@ class CustomerPortal(CustomerPortal):
             if not subscribe_category.child_id:
                 subscribe_count += subscribe_category.subscribe_point
         if partner.member_group_id and partner.member_group_id.point_limit < \
-                subscribe_count:
+                subscribe_count or not partner.member_group_id:
             return self.portal_product_subscriptions(
                 error=_('You subscription point is not enough to subscribe '
                         'the selected categories.'))

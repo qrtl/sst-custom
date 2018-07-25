@@ -33,6 +33,7 @@ class ResPartner(models.Model):
                 ('id', 'in', category_id_list)
             ])
             subscribe_count = 0
+            partner.remaining_point_limit = 0
             for subscribe_category in subscribe_category_list:
                 subscribe_count += subscribe_category.subscribe_point
             if partner.member_group_id:
