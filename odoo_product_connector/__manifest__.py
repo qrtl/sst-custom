@@ -35,7 +35,6 @@
         'wizard/product_sync_view.xml',
         'views/backend_view.xml',
         'views/product_view.xml',
-#        'views/res_company_view.xml',
     ],
     'installable': True,
 }

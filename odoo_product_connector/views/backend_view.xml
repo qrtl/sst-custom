@@ -67,6 +67,6 @@
 		</record>
 
 		<menuitem id="menu_odoo_external_backend" parent="connector.menu_connector"
-			sequence="20" action="act_open_odoo_external_backend_view" />
+			sequence="30" action="act_open_odoo_external_backend_view" />
 	</data>
 </odoo>
