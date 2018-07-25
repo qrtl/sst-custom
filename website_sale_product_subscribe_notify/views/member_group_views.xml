@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='form_view_member_group' model='ir.ui.view'>
+        <field name='name'>form.view.member.group</field>
+        <field name='model'>member.group</field>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+            <form string='Member Group'>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="point_limit"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='tree_view_member_group' model='ir.ui.view'>
+        <field name='name'>tree.view.member.group</field>
+        <field name='model'>member.group</field>
+        <field name='type'>tree</field>
+        <field name='arch' type='xml'>
+            <tree string='Member Groups'>
+                <field name="name"/>
+                <field name="point_limit"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="member_group_search_view" model="ir.ui.view">
+        <field name="name">member.group.search</field>
+        <field name="model">member.group</field>
+        <field name="arch" type="xml">
+            <search string="Member Group">
+                <field name="name"/>
+                <field name="point_limit"/>
+            </search>
+        </field>
+    </record>
+
+    <record id='action_member_group' model='ir.actions.act_window'>
+        <field name='name'>Member Groups</field>
+        <field name='res_model'>member.group</field>
+        <field name='view_type'>form</field>
+        <field name='view_mode'>tree,form</field>
+        <field name="search_view_id" ref="member_group_search_view"/>
+    </record>
+
+    <menuitem id="menu_member_group" name="Member Group"
+              parent="website_sale.menu_ecommerce_settings"
+              action='action_member_group' sequence="10"/>
+
+</odoo>

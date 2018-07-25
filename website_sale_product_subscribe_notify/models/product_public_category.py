@@ -2,7 +2,7 @@
 # Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, api
+from odoo import models, fields, api
 
 
 class ProductPublicCategory(models.Model):
@@ -13,6 +13,15 @@ class ProductPublicCategory(models.Model):
         'mail.activity.mixin',
         'portal.mixin'
     ]
+
+    subscribe_point = fields.Integer(
+        string='Subscription Points',
+        required=True,
+        default=1,
+    )
+    total_subscribe_points = fields.Integer(
+        compute = '_compute_total_subscribe_points',
+    )
 
     @api.model
     def _get_child_category(self):
@@ -62,3 +71,14 @@ class ProductPublicCategory(models.Model):
                 category_ids.message_unsubscribe(partner_ids=partner.ids)
                 unsubscribe_categories += category_ids
         return unsubscribe_categories
+
+    @api.multi
+    def _compute_total_subscribe_points(self):
+        for category in self:
+            category.total_subscribe_points = 0
+            if category.child_id:
+                child_category_list = category._get_child_category()
+                for child_category in child_category_list:
+                    if not child_category.child_id:
+                        category.total_subscribe_points += \
+                            child_category.subscribe_point
