@@ -46,3 +46,32 @@ class ProductTemplate(models.Model):
             'context': {},
             'target': 'current',
         }
+
+    @api.model
+    def create(self, vals):
+        if 'title' in vals:
+            query = """
+                        SELECT
+                            price
+                        FROM
+                            product_price_record
+                        WHERE
+                            %s LIKE '%%' || string || '%%'
+                    """
+            query_param = [vals['title']]
+            if 'product_state_id' in vals:
+                query += """
+                AND
+                    product_state_id = %s
+                """
+                query_param.append(vals['product_state_id'])
+            query += """
+                ORDER BY CHAR_LENGTH(string) DESC
+                LIMIT 1;
+            """
+            if not 'list_price' in vals or vals['list_price'] == 0:
+                self.env.cr.execute(query, query_param)
+                result = self.env.cr.fetchone()
+                if result:
+                    vals['list_price'] = result[0]
+        return super(ProductTemplate, self).create(vals)
