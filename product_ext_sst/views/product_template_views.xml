@@ -6,6 +6,11 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="Propose Sales Price"
+                        name="action_propose_list_price"
+                        type="object" class="oe_read_only"/>
+            </xpath>
             <xpath expr="//page[@name='general_information']/group" position="after">
                 <group>
                     <group>
@@ -43,6 +48,10 @@
                 <field name="website_published" string="Visible in Website"/>
                 <field name="public_categ_ids" widget="many2many_tags"/>
                 <field name="product_state_id"/>
+            </xpath>
+            <xpath expr="//field[@name='list_price']" position="before">
+                <button name="action_propose_list_price"
+                        type="object" icon="fa-jpy"/>
             </xpath>
             <xpath expr="//field[@name='type']" position="attributes">
                 <attribute name="invisible">True</attribute>

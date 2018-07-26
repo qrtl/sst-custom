@@ -96,6 +96,7 @@ msgid "Product"
 msgstr "プロダクト"
 
 #. module: product_ext_sst
+#: model:ir.model.fields,field_description:product_ext_sst.field_product_price_record_product_state_id
 #: model:ir.model.fields,field_description:product_ext_sst.field_product_product_product_state_id
 #: model:ir.model.fields,field_description:product_ext_sst.field_product_template_product_state_id
 #: model:ir.ui.menu,name:product_ext_sst.menu_product_state
@@ -159,4 +160,40 @@ msgstr "ウェブサイトに表示"
 msgid "product.state"
 msgstr "product.state"
 
+#. module: product_ext_sst
+#: model:ir.model.fields,field_description:product_ext_sst.field_product_price_record_price
+msgid "Price"
+msgstr "価格"
+
+#. module: product_ext_sst
+#: model:ir.actions.act_window,name:product_ext_sst.action_product_price_record
+#: model:ir.ui.menu,name:product_ext_sst.menu_product_price_record
+#: model:ir.ui.view,arch_db:product_ext_sst.tree_view_product_price_record
+msgid "Product Price Record"
+msgstr "プロダクト価格レコード"
+
+#. module: product_ext_sst
+#: model:ir.ui.view,arch_db:product_ext_sst.product_price_record_search_view
+msgid "Search Record"
+msgstr "レコード検索"
+
+#. module: product_ext_sst
+#: model:ir.ui.view,arch_db:product_ext_sst.product_state_search_view
+msgid "Search State"
+msgstr "商品状態検索"
+
+#. module: product_ext_sst
+#: model:ir.model.fields,field_description:product_ext_sst.field_product_price_record_string
+msgid "String Pattern"
+msgstr "文字列パターン"
+
+#. module: product_ext_sst
+#: model:ir.ui.view,arch_db:product_ext_sst.product_template_form_view
+msgid "Propose Sales Price"
+msgstr "販売価格提案"
+
+#. module: product_ext_sst
+#: model:ir.model.fields,field_description:product_ext_sst.field_product_price_record_public_categ_id
+msgid "Website Product Category"
+msgstr "ウェブサイトプロダクトカテゴリ"
 
