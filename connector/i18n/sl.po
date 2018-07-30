@@ -1,0 +1,302 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * connector
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-05 16:56+0000\n"
+"PO-Revision-Date: 2018-01-05 16:56+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: connector
+#: code:addons/connector/models/checkpoint.py:119
+#, python-format
+msgid "A %s needs a review."
+msgstr "Potrebna je revizija %s ."
+
+#. module: connector
+#: model:ir.ui.view,arch_db:connector.view_connector_config_settings
+msgid "Apply"
+msgstr "Uporabi"
+
+#. module: connector
+#: model:ir.ui.view,arch_db:connector.view_connector_config_settings
+msgid "Backends"
+msgstr "Ozadja"
+
+#. module: connector
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_review
+#: model:ir.ui.view,arch_db:connector.view_connector_config_settings
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: connector
+#: model:ir.ui.menu,name:connector.menu_checkpoint
+msgid "Checkpoint"
+msgstr "Kontrolna točka"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_review_checkpoint_ids
+msgid "Checkpoints"
+msgstr "Kontrolne točke"
+
+#. module: connector
+#: model:ir.model,name:connector.model_connector_checkpoint_review
+msgid "Checkpoints Review"
+msgstr "Preverjanje kontrolnih točk"
+
+#. module: connector
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_form
+msgid "Click on the"
+msgstr "Kliknite na"
+
+#. module: connector
+#: model:ir.actions.act_window,name:connector.action_connector_config_settings
+#: model:ir.ui.view,arch_db:connector.view_connector_config_settings
+msgid "Configure Connector"
+msgstr "Nastavitve povezovalnika"
+
+#. module: connector
+#: model:ir.module.category,name:connector.module_category_connector
+#: model:ir.ui.menu,name:connector.menu_connector_config_settings
+msgid "Connector"
+msgstr "Povezovalnik"
+
+#. module: connector
+#: model:ir.model,name:connector.model_connector_backend
+msgid "Connector Backend"
+msgstr "Ozadje povezovalnika"
+
+#. module: connector
+#: model:ir.actions.act_window,name:connector.action_connector_checkpoint
+#: model:ir.model,name:connector.model_connector_checkpoint
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_form
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_search
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_tree
+msgid "Connector Checkpoint"
+msgstr "Kontrolna točka povezovalnika"
+
+#. module: connector
+#: model:ir.model,name:connector.model_connector_config_settings
+msgid "Connector Configuration"
+msgstr "Nastavitve povezovalnika"
+
+#. module: connector
+#: model:res.groups,name:connector.group_connector_manager
+msgid "Connector Manager"
+msgstr "Upravitelj povezovalnika"
+
+#. module: connector
+#: model:ir.ui.menu,name:connector.menu_connector
+#: model:ir.ui.menu,name:connector.menu_connector_root
+#: model:ir.ui.view,arch_db:connector.view_partner_connector_form
+msgid "Connectors"
+msgstr "Konektorji"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_create_uid
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_review_create_uid
+#: model:ir.model.fields,field_description:connector.field_connector_config_settings_create_uid
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_create_date
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_review_create_date
+#: model:ir.model.fields,field_description:connector.field_connector_config_settings_create_date
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_backend_display_name
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_display_name
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_review_display_name
+#: model:ir.model.fields,field_description:connector.field_connector_config_settings_display_name
+#: model:ir.model.fields,field_description:connector.field_external_binding_display_name
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: connector
+#: model:ir.model,name:connector.model_external_binding
+msgid "External Binding (abstract)"
+msgstr "Zunanja povezava (povzetek)"
+
+#. module: connector
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_search
+msgid "Group By..."
+msgstr "Združi po..."
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_backend_id
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_id
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_review_id
+#: model:ir.model.fields,field_description:connector.field_connector_config_settings_id
+#: model:ir.model.fields,field_description:connector.field_external_binding_id
+msgid "ID"
+msgstr "ID"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_backend_id
+msgid "Imported from"
+msgstr "Uvoženo iz"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_backend___last_update
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint___last_update
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_review___last_update
+#: model:ir.model.fields,field_description:connector.field_connector_config_settings___last_update
+#: model:ir.model.fields,field_description:connector.field_external_binding___last_update
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_review_write_uid
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_write_uid
+#: model:ir.model.fields,field_description:connector.field_connector_config_settings_write_uid
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_review_write_date
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_write_date
+#: model:ir.model.fields,field_description:connector.field_connector_config_settings_write_date
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_test_binding_sync_date
+#: model:ir.model.fields,field_description:connector.field_external_binding_sync_date
+#: model:ir.model.fields,field_description:connector.field_no_inherits_binding_sync_date
+msgid "Last synchronization date"
+msgstr "Datum zadnje sinhronizacije"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_model_id
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_search
+msgid "Model"
+msgstr "Model"
+
+#. module: connector
+#: model:ir.model.fields,help:connector.field_connector_checkpoint_name
+msgid "Name of the record to review"
+msgstr ""
+
+#. module: connector
+#: selection:connector.checkpoint,state:0
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_search
+msgid "Need Review"
+msgstr "Potrebna revizija"
+
+#. module: connector
+#: model:ir.actions.act_window,help:connector.action_connector_checkpoint
+msgid "No record to check."
+msgstr ""
+
+#. module: connector
+#: model:ir.actions.client,name:connector.action_client_connector_menu
+msgid "Open Connector Menu"
+msgstr "Odpri meni povezovalnika"
+
+#. module: connector
+#: model:ir.model,name:connector.model_queue_job
+msgid "Queue Job"
+msgstr "Delo čakalne vrste"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_record
+msgid "Record"
+msgstr ""
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_record_id
+msgid "Record ID"
+msgstr "ID zapisa"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_name
+msgid "Record Name"
+msgstr ""
+
+#. module: connector
+#: code:addons/connector/models/queue_job.py:31
+#, python-format
+msgid "Related Record"
+msgstr "Povezani zapis"
+
+#. module: connector
+#: model:ir.actions.act_window,name:connector.action_connector_checkpoint_review
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_review
+msgid "Review Checkpoints"
+msgstr "Pregled kontrolnih točk"
+
+#. module: connector
+#: selection:connector.checkpoint,state:0
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_form
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_search
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_tree
+msgid "Reviewed"
+msgstr "Pregledano"
+
+#. module: connector
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_review
+msgid "Set as reviewed"
+msgstr "Nastavi kot pregledano"
+
+#. module: connector
+#: model:ir.model.fields,field_description:connector.field_connector_checkpoint_state
+msgid "Status"
+msgstr "Status"
+
+#. module: connector
+#: model:ir.actions.act_window,help:connector.action_connector_checkpoint
+msgid ""
+"The connectors list the new records to verify\n"
+"                based on their type.  Only some need a manual\n"
+"                review."
+msgstr ""
+
+#. module: connector
+#: model:ir.model.fields,help:connector.field_connector_checkpoint_backend_id
+msgid "The record has been imported from this backend"
+msgstr "Zapis je bil uvožen iz tega ozadja."
+
+#. module: connector
+#: model:ir.model.fields,help:connector.field_connector_checkpoint_record
+msgid "The record to review."
+msgstr ""
+
+#. module: connector
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_review
+msgid "The selected checkpoints will be set as reviewed."
+msgstr "Izbrane kontrolne točke bodo označene kot pregledane."
+
+#. module: connector
+#: model:ir.actions.act_window,help:connector.action_connector_checkpoint
+msgid ""
+"When a connector imports new records which have\n"
+"                configuration or reviews to do manually, they\n"
+"                will appear in this list.  Once a record has been\n"
+"                checked, click on the 'Reviewed' button."
+msgstr ""
+
+#. module: connector
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_review
+#: model:ir.ui.view,arch_db:connector.view_connector_config_settings
+msgid "or"
+msgstr "ali"
+
+#. module: connector
+#: model:ir.ui.view,arch_db:connector.view_connector_checkpoint_form
+msgid "to verify it:"
+msgstr "za preverjanje:"
