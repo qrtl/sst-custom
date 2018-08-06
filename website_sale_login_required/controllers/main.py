@@ -3,10 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import http, tools, _
-from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo.addons.website_sale_options.controllers.main import WebsiteSaleOptions
 
 
-class WebsiteSale(WebsiteSale):
+class WebsiteSale(WebsiteSaleOptions):
 
     @http.route([
         '/shop',
