@@ -6,6 +6,11 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="Propose Sales Price"
+                        name="action_propose_list_price"
+                        type="object" class="oe_read_only"/>
+            </xpath>
             <xpath expr="//page[@name='general_information']/group" position="after">
                 <group>
                     <group>
