@@ -24,3 +24,7 @@ class ProductPriceRecord(models.Model):
         required=True,
         default=0.0
     )
+    public_categ_id = fields.Many2one(
+        'product.public.category',
+        'Website Product Category',
+    )

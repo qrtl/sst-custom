@@ -192,3 +192,8 @@ msgstr "文字列パターン"
 msgid "Propose Sales Price"
 msgstr "販売価格提案"
 
+#. module: product_ext_sst
+#: model:ir.model.fields,field_description:product_ext_sst.field_product_price_record_public_categ_id
+msgid "Website Product Category"
+msgstr "ウェブサイトプロダクトカテゴリ"
+
