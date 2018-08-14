@@ -9,6 +9,7 @@
             <tree string='Product Price Record' editable="top">
                 <field name="string"/>
                 <field name="product_state_id"/>
+                <field name="public_categ_id"/>
                 <field name="price"/>
             </tree>
         </field>
@@ -21,6 +22,7 @@
             <search string="Search Record">
                 <field name="string"/>
                 <field name="product_state_id"/>
+                <field name="public_categ_id"/>
                 <field name="price"/>
             </search>
         </field>
