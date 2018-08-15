@@ -12,3 +12,7 @@ class StockQuant(models.Model):
         related='product_tmpl_id.team_ids',
         string='Sales Channels',
     )
+    product_type = fields.Selection(
+        related='product_tmpl_id.type',
+        store=True,
+    )

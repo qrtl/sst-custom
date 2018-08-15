@@ -45,3 +45,14 @@ msgstr "販売候補"
 #: model:ir.ui.menu,name:stock_quant_list_view.menu_stock_quant
 msgid "Stock Quant"
 msgstr "店舗在庫"
+
+#. module: stock_quant_list_view
+#: model:ir.ui.view,arch_db:stock_quant_list_view.quant_search_view
+msgid "Stockable"
+msgstr "在庫可能"
+
+#. module: stock_quant_list_view
+#: model:ir.model.fields,field_description:stock_quant_list_view.field_stock_quant_product_type
+msgid "Product Type"
+msgstr "プロダクトタイプ"
+
