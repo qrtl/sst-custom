@@ -45,3 +45,4 @@ msgstr "販売候補"
 #: model:ir.ui.menu,name:stock_quant_list_view.menu_stock_quant
 msgid "Stock Quant"
 msgstr "店舗在庫"
+
