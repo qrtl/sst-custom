@@ -68,7 +68,7 @@ msgstr "公開"
 #. module: stock_ext_sst
 #: model:ir.actions.act_window,name:stock_ext_sst.action_stock_quant_publish_window
 msgid "Publish to website"
-msgstr "ウェブに表示"
+msgstr "ウェブ表示"
 
 #. module: stock_ext_sst
 #: model:ir.model,name:stock_ext_sst.model_stock_quant
