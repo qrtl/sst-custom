@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Quartile Limited
+# Copyright 2017-2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Extension for inventory functions',
@@ -12,13 +12,13 @@
     'depends': [
         'stock',
         'delivery',
-        'product_ext_sst',
+        'product_yahoo_auction_sst',
         'stock_quant_list_view',
     ],
     'data': [
-        'data/ir_actions.xml',
         'views/stock_picking_views.xml',
         'views/stock_quant_views.xml',
+        'wizard/stock_quant_publish_wizard.xml',
     ],
     'installable': True,
 }

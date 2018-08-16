@@ -12,16 +12,11 @@ class StockQuant(models.Model):
         related='product_id.product_tmpl_id.website_published',
         string='Visible in Website',
     )
-    product_state_id = fields.Many2one(
-        related='product_id.product_tmpl_id.product_state_id',
-        string='Product State'
+    yahoo_product_state_id = fields.Many2one(
+        related='product_id.product_tmpl_id.yahoo_product_state_id',
+        string='Yahoo Product State',
     )
     list_price = fields.Float(
         related='product_id.product_tmpl_id.list_price',
         string='Sale Price',
     )
-
-    @api.multi
-    def action_website_publish(self):
-        for quant in self:
-            quant.product_id.product_tmpl_id.website_published = True
