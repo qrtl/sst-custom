@@ -20,3 +20,6 @@ class StockQuant(models.Model):
         related='product_id.product_tmpl_id.list_price',
         string='Sale Price',
     )
+    product_id = fields.Many2one(
+        auto_join=True,
+    )

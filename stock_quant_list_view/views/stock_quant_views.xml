@@ -17,7 +17,6 @@
                 <field name="quantity" string="On Hand"/>
                 <field name="product_uom_id" groups="product.group_uom"/>
                 <field name='company_id' groups="base.group_multi_company"/>
-                <field name="product_type" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -42,18 +41,6 @@
          <field name="view_id" ref="view_stock_quant_tree"/>
          <field name="context">{'search_default_internal_loc': 1, 'search_default_stockable': 1}</field>
          <field name="search_view_id" ref="stock.quant_search_view"/>
-    </record>
-
-    <record id="quant_search_view" model="ir.ui.view">
-        <field name="name">stock.quant.search</field>
-        <field name="model">stock.quant</field>
-        <field name="inherit_id" ref="stock.quant_search_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//filter[@name='stockable']"
-                   position="replace">
-                <filter name="stockable" string="Stockable" domain="[('product_type', '=', 'product')]"/>
-            </xpath>
-        </field>
     </record>
 
     <menuitem action="action_stock_quant"
