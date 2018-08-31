@@ -76,6 +76,8 @@ class QuantSaleOrderWizard(models.TransientModel):
             'warehouse_id': warehouse_id.id,
         }
         sale_order = sale_order_obj.sudo().create(order_vals)
+        sale_order.onchange_partner_id()
+        sale_order.team_id = self.team_id.id
         sale_order.user_id = self.env.uid
 
         for quant in quant_ids:
