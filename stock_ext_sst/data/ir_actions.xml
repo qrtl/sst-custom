@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_website_publish" model="ir.actions.server">
+        <field name="name">Publish to website</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="stock.model_stock_quant"/>
+        <field name="binding_model_id" ref="stock.model_stock_quant"/>
+        <field name="state">code</field>
+        <field name="code">model.browse(env.context.get('active_ids', [])).action_website_publish()</field>
+    </record>
+
+</odoo>

@@ -16,9 +16,9 @@
         'stock_quant_list_view',
     ],
     'data': [
+        'data/ir_actions.xml',
         'views/stock_picking_views.xml',
         'views/stock_quant_views.xml',
-        'wizard/stock_quant_publish_wizard.xml',
     ],
     'installable': True,
 }
