@@ -23,3 +23,14 @@ class StockQuant(models.Model):
     product_id = fields.Many2one(
         auto_join=True,
     )
+
+    @api.multi
+    def action_website_publish(self):
+        yahoo_product_state_id = self.env['ir.config_parameter'].sudo().\
+            get_param('product_yahoo_auction_sst.publish_yahoo_state_id')
+        values = {
+            'website_published': True,
+            'yahoo_product_state_id': int(yahoo_product_state_id)
+        }
+        for quant in self:
+            quant.product_id.product_tmpl_id.sudo().write(values)

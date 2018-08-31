@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-06 02:44+0000\n"
-"PO-Revision-Date: 2017-12-06 02:44+0000\n"
+"POT-Creation-Date: 2018-08-31 07:36+0000\n"
+"PO-Revision-Date: 2018-08-31 07:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -75,6 +75,11 @@ msgstr "発送サイズ"
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_yahoo_product_state_display_name
 msgid "Display Name"
 msgstr "表示名"
+
+#. module: product_yahoo_auction_sst
+#: model:ir.ui.view,arch_db:product_yahoo_auction_sst.product_template_search_view
+msgid "Group By"
+msgstr "グループ化"
 
 #. module: product_yahoo_auction_sst
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_delivery_carrier_size_id
@@ -174,9 +179,19 @@ msgid "Yahoo Product State"
 msgstr "商品化ステータス"
 
 #. module: product_yahoo_auction_sst
+#: model:ir.ui.view,arch_db:product_yahoo_auction_sst.res_config_settings_view_form
+msgid "Yahoo State Settings"
+msgstr "商品化ステータス設定"
+
+#. module: product_yahoo_auction_sst
 #: model:ir.model,name:product_yahoo_auction_sst.model_delivery_carrier_size
 msgid "delivery.carrier.size"
 msgstr "delivery.carrier.size"
+
+#. module: product_yahoo_auction_sst
+#: model:ir.model,name:product_yahoo_auction_sst.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
 
 #. module: product_yahoo_auction_sst
 #: model:ir.model,name:product_yahoo_auction_sst.model_yahoo_product_state
@@ -184,12 +199,14 @@ msgid "yahoo.product.state"
 msgstr "yahoo.product.state"
 
 #. module: product_yahoo_auction_sst
+#: model:delivery.carrier,name:product_yahoo_auction_sst.delivery_carrier_yu_pack
 #: model:product.product,name:product_yahoo_auction_sst.product_product_yu_pack
 #: model:product.template,name:product_yahoo_auction_sst.product_product_yu_pack_product_template
 msgid "ゆうパック"
 msgstr "ゆうパック"
 
 #. module: product_yahoo_auction_sst
+#: model:delivery.carrier,name:product_yahoo_auction_sst.delivery_carrier_kazai_bin
 #: model:product.product,name:product_yahoo_auction_sst.product_product_kazai_bin
 #: model:product.template,name:product_yahoo_auction_sst.product_product_kazai_bin_product_template
 msgid "家財便"

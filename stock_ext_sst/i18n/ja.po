@@ -106,3 +106,10 @@ msgstr "商品化ステータス"
 msgid "or"
 msgstr "または"
 
+#: model:ir.model.fields,field_description:stock_ext_sst.field_res_config_settings_publish_yahoo_state_id
+#: model:ir.model.fields,field_description:stock_ext_sst.field_test_config_settings_publish_yahoo_state_id
+#: model:ir.model.fields,field_description:stock_ext_sst.field_webkul_website_addons_publish_yahoo_state_id
+#: model:ir.model.fields,field_description:stock_ext_sst.field_website_order_notes_settings_publish_yahoo_state_id
+msgid "Yahoo Product State For Published Product"
+msgstr "商品公開用ステータス"
+
