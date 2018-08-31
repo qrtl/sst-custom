@@ -113,3 +113,8 @@ msgstr "または"
 msgid "Yahoo Product State For Published Product"
 msgstr "商品公開用ステータス"
 
+#. module: stock_ext_sst
+#: model:ir.actions.server,name:stock_ext_sst.action_website_publish
+msgid "Publish to website"
+msgstr "ウェブ表示"
+
