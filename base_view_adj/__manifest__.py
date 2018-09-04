@@ -8,7 +8,10 @@
     'category': 'Usability',
     'license': "AGPL-3",
     'description': """
-This module removes the Odoo.com link from the user dropdown.
+This module removes following items from the user dropdown.
+    - Documentation
+    - Support
+    - My Odoo.com account
     """,
     'summary': "",
     'depends': [
