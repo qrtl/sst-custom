@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="cart_lines" inherit_id="website_sale.cart_lines">
+        <xpath expr="//div[@class='css_quantity input-group oe_website_spinner']"
+               position="attributes">
+            <attribute name="t-if">not line.is_penalty</attribute>
+        </xpath>
+        <xpath expr="//div[@class='css_quantity input-group oe_website_spinner']"
+               position="after">
+            <div class="css_quantity text-center" t-if="line.is_penalty">
+                <span t-field="line.product_uom_qty" style="white-space: nowrap;"/>
+            </div>
+        </xpath>
+        <xpath expr="//a[@class='js_delete_product hidden-xs no-decoration']"
+               position="attributes">
+            <attribute name="t-if">not line.is_penalty</attribute>
+        </xpath>
+    </template>
+
+</odoo>
