@@ -10,7 +10,6 @@
     'license': "AGPL-3",
     'description': "",
     'depends': [
-        'sale',
         'stock',
         'delivery',
         'product_yahoo_auction_sst',
