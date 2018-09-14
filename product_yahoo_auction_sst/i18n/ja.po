@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-06 02:44+0000\n"
-"PO-Revision-Date: 2017-12-06 02:44+0000\n"
+"POT-Creation-Date: 2018-09-14 06:41+0000\n"
+"PO-Revision-Date: 2018-09-14 06:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -75,6 +75,11 @@ msgstr "発送サイズ"
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_yahoo_product_state_display_name
 msgid "Display Name"
 msgstr "表示名"
+
+#. module: product_yahoo_auction_sst
+#: model:ir.ui.view,arch_db:product_yahoo_auction_sst.product_template_search_view
+msgid "Group By"
+msgstr "グループ化"
 
 #. module: product_yahoo_auction_sst
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_delivery_carrier_size_id
@@ -162,6 +167,11 @@ msgid "Used"
 msgstr "中古"
 
 #. module: product_yahoo_auction_sst
+#: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_yahoo_product_state_website_published
+msgid "Visible in Website"
+msgstr "ウェブサイトに表示"
+
+#. module: product_yahoo_auction_sst
 #: model:ir.ui.view,arch_db:product_yahoo_auction_sst.product_template_form_view
 msgid "Yahoo Auctions"
 msgstr "ヤフオク"
@@ -169,8 +179,15 @@ msgstr "ヤフオク"
 #. module: product_yahoo_auction_sst
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_product_yahoo_product_state_id
 #: model:ir.model.fields,field_description:product_yahoo_auction_sst.field_product_template_yahoo_product_state_id
+#: model:ir.ui.menu,name:product_yahoo_auction_sst.menu_yahoo_product_state
 #: model:ir.ui.view,arch_db:product_yahoo_auction_sst.product_template_search_view
 msgid "Yahoo Product State"
+msgstr "商品化ステータス"
+
+#. module: product_yahoo_auction_sst
+#: model:ir.actions.act_window,name:product_yahoo_auction_sst.action_yahoo_product_state
+#: model:ir.ui.view,arch_db:product_yahoo_auction_sst.tree_view_yahoo_product_state
+msgid "Yahoo Product States"
 msgstr "商品化ステータス"
 
 #. module: product_yahoo_auction_sst
@@ -184,15 +201,15 @@ msgid "yahoo.product.state"
 msgstr "yahoo.product.state"
 
 #. module: product_yahoo_auction_sst
+#: model:delivery.carrier,name:product_yahoo_auction_sst.delivery_carrier_yu_pack
 #: model:product.product,name:product_yahoo_auction_sst.product_product_yu_pack
 #: model:product.template,name:product_yahoo_auction_sst.product_product_yu_pack_product_template
 msgid "ゆうパック"
 msgstr "ゆうパック"
 
 #. module: product_yahoo_auction_sst
+#: model:delivery.carrier,name:product_yahoo_auction_sst.delivery_carrier_kazai_bin
 #: model:product.product,name:product_yahoo_auction_sst.product_product_kazai_bin
 #: model:product.template,name:product_yahoo_auction_sst.product_product_kazai_bin_product_template
 msgid "家財便"
 msgstr "家財便"
-
-
