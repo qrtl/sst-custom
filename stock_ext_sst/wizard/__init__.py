@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import stock_quant_publish
+from . import stock_quant_status_update_wizard

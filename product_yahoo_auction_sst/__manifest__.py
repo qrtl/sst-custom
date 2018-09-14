@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Products\' Yahoo Auction information',
-    'version': '11.0.1.1.2',
+    'version': '11.0.1.2.0',
     'author': 'Quartile Limited',
     'website': 'https://www.quartile.co',
     'category': 'Product',
@@ -20,6 +20,7 @@
         'data/delivery_carrier_size_data.xml',
         'data/yahoo_product_state.xml',
         'views/product_template_views.xml',
+        'views/yahoo_product_state_views.xml',
     ],
     'installable': True,
 }

@@ -1,3 +1,4 @@
+
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* stock_ext_sst
@@ -6,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-16 09:13+0000\n"
-"PO-Revision-Date: 2018-08-16 09:13+0000\n"
+"POT-Creation-Date: 2018-09-14 10:17+0000\n"
+"PO-Revision-Date: 2018-09-14 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,54 +22,44 @@ msgid "Base price to compute the customer price. Sometimes called the catalog pr
 msgstr "顧客価格を計算するための基準価格。カタログ価格と呼ぶこともあります。"
 
 #. module: stock_ext_sst
-#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
 msgid "Cancel"
 msgstr "取消"
 
 #. module: stock_ext_sst
-#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_create_uid
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_create_uid
 msgid "Created by"
 msgstr "作成者"
 
 #. module: stock_ext_sst
-#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_create_date
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_create_date
 msgid "Created on"
 msgstr "作成日"
 
 #. module: stock_ext_sst
-#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_display_name
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_display_name
 msgid "Display Name"
 msgstr "表示名"
 
 #. module: stock_ext_sst
-#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_id
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_id
 msgid "ID"
 msgstr "ID"
 
 #. module: stock_ext_sst
-#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard___last_update
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard___last_update
 msgid "Last Modified on"
 msgstr "最終更新日"
 
 #. module: stock_ext_sst
-#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_write_uid
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_write_uid
 msgid "Last Updated by"
 msgstr "最終更新者"
 
 #. module: stock_ext_sst
-#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_write_date
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_write_date
 msgid "Last Updated on"
 msgstr "最終更新日"
-
-#. module: stock_ext_sst
-#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard
-msgid "Publish"
-msgstr "公開"
-
-#. module: stock_ext_sst
-#: model:ir.actions.act_window,name:stock_ext_sst.action_stock_quant_publish_window
-msgid "Publish to website"
-msgstr "ウェブ表示"
 
 #. module: stock_ext_sst
 #: model:ir.model,name:stock_ext_sst.model_stock_quant
@@ -81,14 +72,32 @@ msgid "Sale Price"
 msgstr "販売価格"
 
 #. module: stock_ext_sst
-#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard
-msgid "Stock Quant Publish"
-msgstr "ウェブサイトに公開"
+#: model:ir.model.fields,field_description:stock_ext_sst.field_res_config_settings_picking_product_state_id
+#: model:ir.model.fields,field_description:stock_ext_sst.field_webkul_website_addons_picking_product_state_id
+#: model:ir.model.fields,field_description:stock_ext_sst.field_website_order_notes_settings_picking_product_state_id
+#: model:ir.ui.view,arch_db:stock_ext_sst.res_config_settings_view_form
+msgid "State For Finished Picking Product"
+msgstr "店舗在庫ピッキング済ステータス"
 
 #. module: stock_ext_sst
-#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard
-msgid "This wizard will publish selected stock quants to website at once."
-msgstr "選択した保管ロットをウェブサイトに公開します。"
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
+msgid "Stock Quant Status Update"
+msgstr "店舗在庫ステータス更新"
+
+#. module: stock_ext_sst
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
+msgid "This wizard will update the status of selected stock quants at once."
+msgstr "選択した保管ロット情報を更新します。"
+
+#. module: stock_ext_sst
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
+msgid "Update"
+msgstr "更新"
+
+#. module: stock_ext_sst
+#: model:ir.actions.act_window,name:stock_ext_sst.stock_quant_status_update_wizard
+msgid "Update Stock Quant Status"
+msgstr "店舗在庫ステータス更新"
 
 #. module: stock_ext_sst
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_website_published
@@ -96,13 +105,33 @@ msgid "Visible in Website"
 msgstr "ウェブサイトに表示"
 
 #. module: stock_ext_sst
-#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_yahoo_product_state_id
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_yahoo_product_state_id
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_yahoo_product_state_id
+#: model:ir.ui.view,arch_db:stock_ext_sst.res_config_settings_view_form
 msgid "Yahoo Product State"
 msgstr "商品化ステータス"
 
 #. module: stock_ext_sst
-#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard
+#: model:ir.ui.view,arch_db:stock_ext_sst.res_config_settings_view_form
+msgid "Yahoo Product State Settings"
+msgstr "商品化ステータス設定"
+
+#. module: stock_ext_sst
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
 msgid "or"
 msgstr "または"
 
+#. module: stock_ext_sst
+#: model:ir.model,name:stock_ext_sst.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
+
+#. module: stock_ext_sst
+#: model:ir.model,name:stock_ext_sst.model_stock_quant_publish_wizard
+msgid "stock.quant.publish.wizard"
+msgstr "stock.quant.publish.wizard"
+
+#. module: stock_ext_sst
+#: model:ir.model,name:stock_ext_sst.model_stock_quant_status_update_wizard
+msgid "stock.quant.status.update.wizard"
+msgstr "stock.quant.status.update.wizard"

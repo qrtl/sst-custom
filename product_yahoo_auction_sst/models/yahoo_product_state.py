@@ -12,3 +12,7 @@ class YahooProductState(models.Model):
         string='Status',
         require=True,
     )
+    website_published = fields.Boolean(
+        string="Visible in Website",
+        default=False,
+    )
