@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     # Follows the set_delivery_line in the website_sale_delivery
-    def _create_order_line(self, product_id):
+    def _create_order_line(self, product_id, quantity):
         # Apply fiscal position
         taxes = product_id.taxes_id.filtered(
             lambda t: t.company_id.id == self.company_id.id)
@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
         # Create the penalty product order line
         values = {
             'order_id': self.id,
-            'product_uom_qty': 1,
+            'product_uom_qty': quantity,
             'product_uom': product_id.uom_id.id,
             'product_id': product_id.id,
             'price_unit': product_id.list_price,
