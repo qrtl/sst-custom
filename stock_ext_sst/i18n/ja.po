@@ -1,4 +1,3 @@
-
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* stock_ext_sst
@@ -7,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-14 10:17+0000\n"
-"PO-Revision-Date: 2018-09-14 10:17+0000\n"
+"POT-Creation-Date: 2018-09-20 09:41+0000\n"
+"PO-Revision-Date: 2018-09-20 09:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,21 +21,25 @@ msgid "Base price to compute the customer price. Sometimes called the catalog pr
 msgstr "顧客価格を計算するための基準価格。カタログ価格と呼ぶこともあります。"
 
 #. module: stock_ext_sst
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard_form
 #: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
 msgid "Cancel"
 msgstr "取消"
 
 #. module: stock_ext_sst
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_create_uid
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_create_uid
 msgid "Created by"
 msgstr "作成者"
 
 #. module: stock_ext_sst
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_create_date
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_create_date
 msgid "Created on"
 msgstr "作成日"
 
 #. module: stock_ext_sst
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_display_name
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_display_name
 msgid "Display Name"
 msgstr "表示名"
@@ -47,19 +50,32 @@ msgid "ID"
 msgstr "ID"
 
 #. module: stock_ext_sst
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard___last_update
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard___last_update
 msgid "Last Modified on"
 msgstr "最終更新日"
 
 #. module: stock_ext_sst
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_write_uid
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_write_uid
 msgid "Last Updated by"
 msgstr "最終更新者"
 
 #. module: stock_ext_sst
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_write_date
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_write_date
 msgid "Last Updated on"
 msgstr "最終更新日"
+
+#. module: stock_ext_sst
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard_form
+msgid "Publish"
+msgstr "公開"
+
+#. module: stock_ext_sst
+#: model:ir.actions.act_window,name:stock_ext_sst.action_stock_quant_publish_window
+msgid "Publish to website"
+msgstr "ウェブ表示"
 
 #. module: stock_ext_sst
 #: model:ir.model,name:stock_ext_sst.model_stock_quant
@@ -80,9 +96,19 @@ msgid "State For Finished Picking Product"
 msgstr "店舗在庫ピッキング済ステータス"
 
 #. module: stock_ext_sst
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard_form
+msgid "Stock Quant Publish"
+msgstr "ウェブサイトに公開"
+
+#. module: stock_ext_sst
 #: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
 msgid "Stock Quant Status Update"
 msgstr "店舗在庫ステータス更新"
+
+#. module: stock_ext_sst
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard_form
+msgid "This wizard will publish selected stock quants to website at once."
+msgstr "選択した保管ロットをウェブサイトに公開します。"
 
 #. module: stock_ext_sst
 #: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
@@ -90,6 +116,7 @@ msgid "This wizard will update the status of selected stock quants at once."
 msgstr "選択した保管ロット情報を更新します。"
 
 #. module: stock_ext_sst
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard_form
 #: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
 msgid "Update"
 msgstr "更新"
@@ -105,6 +132,7 @@ msgid "Visible in Website"
 msgstr "ウェブサイトに表示"
 
 #. module: stock_ext_sst
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_publish_wizard_yahoo_product_state_id
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_status_update_wizard_yahoo_product_state_id
 #: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_yahoo_product_state_id
 #: model:ir.ui.view,arch_db:stock_ext_sst.res_config_settings_view_form
@@ -117,6 +145,7 @@ msgid "Yahoo Product State Settings"
 msgstr "商品化ステータス設定"
 
 #. module: stock_ext_sst
+#: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_publish_wizard_form
 #: model:ir.ui.view,arch_db:stock_ext_sst.stock_quant_status_update_wizard_form
 msgid "or"
 msgstr "または"
@@ -135,3 +164,5 @@ msgstr "stock.quant.publish.wizard"
 #: model:ir.model,name:stock_ext_sst.model_stock_quant_status_update_wizard
 msgid "stock.quant.status.update.wizard"
 msgstr "stock.quant.status.update.wizard"
+
+
