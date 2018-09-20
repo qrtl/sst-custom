@@ -5,24 +5,21 @@
 from odoo import models, fields, api
 
 
-class StockQuantStatusUpdate(models.TransientModel):
-    _name = 'stock.quant.status.update.wizard'
+class StockQuantPublish(models.TransientModel):
+    _name = 'stock.quant.publish.wizard'
 
     yahoo_product_state_id = fields.Many2one(
         'yahoo.product.state',
         string='Yahoo Product State',
     )
 
-    def action_stock_quant_status_update(self):
+    def action_stock_quant_publish(self):
         context = dict(self._context or {})
         active_ids = context.get('active_ids', [])
         quants = self.env['stock.quant'].browse(active_ids)
         values = {
+            'website_published': True,
             'yahoo_product_state_id': self.yahoo_product_state_id.id
         }
         for quant in quants:
             quant.product_id.product_tmpl_id.sudo().write(values)
-            if self.yahoo_product_state_id.id == int(self.env[
-                'ir.config_parameter'].sudo().get_param(
-                'stock_ext_sst.picking_product_state_id')):
-                quant.update_stock_move_done_qty()

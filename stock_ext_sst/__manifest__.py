@@ -19,6 +19,7 @@
         'views/res_config_settings_views.xml',
         'views/stock_picking_views.xml',
         'views/stock_quant_views.xml',
+        'wizard/stock_quant_publish_wizard.xml',
         'wizard/stock_quant_status_update_wizard.xml',
     ],
     'installable': True,
