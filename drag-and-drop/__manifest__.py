@@ -20,7 +20,7 @@
 	'images': ['images/main_screenshot.png'],
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'document', 'web'],
+    'depends': ['base', 'document', 'web', 'mail'],
 
     # always loaded
     'data': [
