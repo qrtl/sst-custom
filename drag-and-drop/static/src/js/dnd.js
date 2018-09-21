@@ -97,6 +97,7 @@ FormController.include({
     init: function (parent, model, renderer, params) {
         var _super = this._super.apply(this, arguments);
         var self = this;
+        $(document).off("refresh_attachment");
         $(document).on("refresh_attachment", function() {
             self.sidebar.updateEnv(self.sidebar.env);
         });
@@ -207,6 +208,7 @@ Chatter.include({
     init: function (parent, record, mailFields, options) {
         var response = this._super.apply(this, arguments);
         var self = this;
+        $(document).off("refresh_attachment_from_note");
         $(document).on("refresh_attachment_from_note", function(e, s, file) {
             self.composer.on_attachment_change_per_dnd(file);
             uploadAttachment(s.$('.o_chatter').find('form.o_form_binary_form'), [file], function(data){
