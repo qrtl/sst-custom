@@ -37,17 +37,18 @@
         </xpath>
         <xpath expr="//tbody//tr//td[@class='td-product_name']//a[@href='#']"
                position="attributes">
-            <attribute name="class">js_delete_product_cart_update js_delete_product hidden-xs no-decoration</attribute>
+            <attribute name="class">js_delete_product_cart_update js_delete_product hidden-xs no-decoration
+            </attribute>
         </xpath>
         <xpath expr="//tbody//tr//td[@class='text-center td-qty']//div[@class='css_quantity input-group oe_website_spinner']"
                position="attributes">
-            <attribute name="class">oe_website_spinner_cart_update css_quantity input-group oe_website_spinner</attribute>
+            <attribute name="class">oe_website_spinner_cart_update css_quantity input-group oe_website_spinner
+            </attribute>
         </xpath>
         <xpath expr="//tbody//tr//td[@class='text-center td-qty']"
                position="inside">
-            <span t-if='not line.is_penalty' id="span_js_product_qty"
-                  class="span_js_product_qty"
-                  t-field="line.product_uom_qty"/>
+            <span id="span_js_product_qty" class="span_js_product_qty"
+                  t-att-data-line-id="line.id" t-if='not line.is_penalty'/>
         </xpath>
     </template>
 
@@ -72,7 +73,7 @@
                data-html="true"
                data-toggle="modal"
                data-target="#cart_update_confirm_msg">
-                <span class="hidden-xs">Update Cart Content</span>
+                <span>Update Cart Content</span>
             </a>
         </xpath>
         <xpath expr="//t[@t-call='website_sale.cart_lines']" position="after">
