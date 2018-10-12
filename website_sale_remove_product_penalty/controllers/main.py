@@ -1,7 +1,7 @@
 # Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import http
+from odoo import http, _
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 
@@ -38,6 +38,14 @@ class WebsiteSale(WebsiteSale):
                     # Add a new penalty order line
                 if not penalty_flag:
                     sale_order._create_order_line(penalty_product, quantity)
+                # Record the deletion to the removal history
+                sale_order.sudo().write({
+                    'cart_product_removal_history_ids': [(0, 0, {
+                        'product_id': sale_order_line.product_id.id,
+                        'reason': _('Removed by user'),
+                        'is_read': True,
+                    })]
+                })
         return super(WebsiteSale, self).cart_update_json(
             product_id, line_id=line_id, add_qty=add_qty, set_qty=set_qty,
             display=display)
