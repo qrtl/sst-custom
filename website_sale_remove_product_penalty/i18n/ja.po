@@ -84,4 +84,9 @@ msgstr "または"
 msgid "res.config.settings"
 msgstr "res.config.settings"
 
+#. module: website_sale_remove_product_penalty
+#: code:addons/website_sale_remove_product_penalty/controllers/main.py:45
+#, python-format
+msgid "Removed by user"
+msgstr "削除されました"
 
