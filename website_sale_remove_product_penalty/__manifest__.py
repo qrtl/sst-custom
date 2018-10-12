@@ -14,6 +14,7 @@ portal user tires to remove a product from the cart.
     'depends': [
         'sales_team',
         'website_sale',
+        'website_sale_cart_product_check',
     ],
     'data': [
         'views/res_config_settings_views.xml',
