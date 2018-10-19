@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_odoo_root"
+        parent="connector.menu_connector_root"
+        name="Odoo"
+        sequence="10"
+        groups="connector.group_connector_manager"/>
+
+    <menuitem id="menu_odoo_backend"
+        name="Backends"
+        parent="menu_odoo_root"
+        action="action_odoo_backend"/>
+
+</odoo>

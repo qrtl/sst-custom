@@ -32,10 +32,12 @@
     },
     'data':[
         'security/ir.model.access.csv',
-        'wizard/product_sync_view.xml',
-        'views/backend_view.xml',
-        'views/product_view.xml',
-#        'views/res_company_view.xml',
+        # 'wizard/product_sync_view.xml',
+        # 'views/backend_view.xml',
+        # 'views/product_view.xml',
+        'views/odoo_backend_views.xml',
+        'views/connector_odoo_menu.xml',
+        'data/connector_odoo_data.xml',
     ],
     'installable': True,
 }
