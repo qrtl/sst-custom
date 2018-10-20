@@ -50,6 +50,10 @@ class OdooBackend(models.Model):
         required=True,
         help="Url to magento application",
     )
+    db_name = fields.Char(
+        string='Database Name',
+        required=True,
+    )
     admin_location = fields.Char(string='Admin Location')
     use_custom_api_path = fields.Boolean(
         string='Custom Api Path',
@@ -192,6 +196,7 @@ class OdooBackend(models.Model):
             self = self.with_context(lang=lang.code)
         odoo_location = OdooLocation(
             self.location,
+            self.db_name,
             self.username,
             self.password,
             use_custom_api_path=self.use_custom_api_path

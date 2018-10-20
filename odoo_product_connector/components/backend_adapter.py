@@ -25,9 +25,10 @@ MAGENTO_DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 class OdooLocation(object):
 
-    def __init__(self, location, username, password,
+    def __init__(self, location, db_name, username, password,
                  use_custom_api_path=False):
         self._location = location
+        self.db_name = db_name
         self.username = username
         self.password = password
         self.use_custom_api_path = use_custom_api_path
@@ -97,7 +98,7 @@ class OdooAPI(object):
             try:
                 # result = self.api.call(method, arguments)
                 odoo.login(
-                    'ssttest11',
+                    self._location.db_name,
                     self._location.username,
                     self._location.password
                 )
