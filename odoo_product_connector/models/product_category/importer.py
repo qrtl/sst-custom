@@ -84,6 +84,7 @@ class ProductCategoryImportMapper(Component):
 
     direct = [
         ('description', 'description'),
+        # ('parent_id', 'parent_id'),  # YT test
     ]
 
     @mapping

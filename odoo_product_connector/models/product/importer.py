@@ -181,7 +181,6 @@ class ProductImportMapper(Component):
               ('description_sale', 'description_sale'),
               ('default_code', 'default_code'),
               ('type', 'type'),
-              ('categ_id', 'categ_id'),
               # (normalize_datetime('created_at'), 'created_at'),
               # (normalize_datetime('updated_at'), 'updated_at'),
               ('created_date', 'create_date'),
@@ -200,59 +199,21 @@ class ProductImportMapper(Component):
         return {'list_price': record.get('price', 0.0)}
 
     @mapping
-    def type(self, record):
-        if record['type_id'] == 'simple':
-            return {'type': 'product'}
-        elif record['type_id'] in ('virtual', 'downloadable', 'giftcard'):
-            return {'type': 'service'}
-        return
-
-    # @mapping
-    # def website_ids(self, record):
-    #     website_ids = []
-    #     binder = self.binder_for('odoo.website')
-    #     for mag_website_id in record['websites']:
-    #         website_binding = binder.to_internal(mag_website_id)
-    #         website_ids.append((4, website_binding.id))
-    #     return {'website_ids': website_ids}
-
-    # @mapping
-    # def categories(self, record):
-    #     result = {}  # qtl add
-    #     # mag_categories = record['categories']
-    #     odoo_categ_id = record['categ_id'][0]
-    #     binder = self.binder_for('odoo.product.category')
-    #
-    #     # category_ids = []
-    #     # main_categ_id = None
-    #     #
-    #     # for mag_category_id in mag_categories:
-    #     #     cat = binder.to_internal(mag_category_id, unwrap=True)
-    #     #     if not cat:
-    #     #         raise MappingError("The product category with "
-    #     #                            "odoo id %s is not imported." %
-    #     #                            mag_category_id)
-    #     #
-    #     #     category_ids.append(cat.id)
-    #     cat = binder.to_internal(odoo_categ_id, unwrap=True)
-    #     if not cat:
-    #         raise MappingError("The product category with "
-    #                                    "odoo id %s is not imported." %
-    #                                    odoo_categ_id)
-    #
-    #     # if category_ids:
-    #     #     main_categ_id = category_ids.pop(0)
-    #     #
-    #     # if main_categ_id is None:
-    #     #     default_categ = self.backend_record.default_category_id
-    #     #     if default_categ:
-    #     #         main_categ_id = default_categ.id
-    #
-    #     # result = {'categ_ids': [(6, 0, category_ids)]}
-    #     # if main_categ_id:  # OpenERP assign 'All Products' if not specified
-    #     #     result['categ_id'] = main_categ_id
-    #     result['categ_id'] = odoo_categ_id
-    #     return result
+    def categories(self, record):
+        result = {}
+        odoo_categ_name = record['categ_id'][1]
+        # FIXME consider the case where multiple records exist for the name
+        categ_id = self.env['product.category'].search([
+            ('name', '=', odoo_categ_name),
+        ])[0]
+        if categ_id:
+            result['categ_id'] = categ_id.id
+        elif self.backend_record.default_category_id:
+            result['categ_id'] = self.backend_record.default_category_id.id
+        else:
+            raise MappingError("The product category %s cannot be found."
+                               % odoo_categ_name)
+        return result
 
     @mapping
     def backend_id(self, record):
@@ -271,31 +232,6 @@ class ProductImporter(Component):
             for selection in option['selections']:
                 self._import_dependency(selection['product_id'],
                                         'odoo.product.product')
-
-    def _import_dependencies(self):
-        """ Import the dependencies for the record"""
-        record = self.odoo_record
-        # import related categories
-        # for odoo_category_id in record['categ_id']:
-        #     self._import_dependency(odoo_category_id,
-        #                             'odoo.product.category')
-        odoo_categ_id = record['categ_id'][0]
-        self._import_dependency(odoo_categ_id, 'odoo.product.category')
-        # if record['type_id'] == 'bundle':
-        #     self._import_bundle_dependencies()
-
-    def _validate_product_type(self, data):
-        """ Check if the product type is in the selection (so we can
-        prevent the `except_orm` and display a better error message).
-        """
-        product_type = data['product_type']
-        product_model = self.env['odoo.product.product']
-        types = product_model.product_type_get()
-        available_types = [typ[0] for typ in types]
-        if product_type not in available_types:
-            raise InvalidDataError("The product type '%s' is not "
-                                   "yet supported in the connector." %
-                                   product_type)
 
     def _must_skip(self):
         """ Hook called right after we read the data from the backend.
@@ -321,7 +257,7 @@ class ProductImporter(Component):
 
         Raise `InvalidDataError`
         """
-        self._validate_product_type(data)
+        return
 
     def _create(self, data):
         binding = super(ProductImporter, self)._create(data)
