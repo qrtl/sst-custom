@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_connector_odoo_backend_manager,connector odoo backend manager,model_odoo_backend,connector.group_connector_manager,1,1,1,1
+access_odoo_product_category_backend_manager,odoo product category backend manager,model_odoo_product_category,connector.group_connector_manager,1,1,1,1
+access_odoo_product_backend_manager,odoo product backend manager,model_odoo_product_product,connector.group_connector_manager,1,1,1,1
