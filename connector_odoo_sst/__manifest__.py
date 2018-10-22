@@ -3,7 +3,7 @@
 # Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
-    'name': 'Odoo Product Connector',
+    'name': 'Odoo Connector',
     'version': '11.0.1.0.0',
     'category' : 'Connector',
     'license': 'AGPL-3',
