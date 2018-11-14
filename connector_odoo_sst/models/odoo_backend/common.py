@@ -121,6 +121,7 @@ class OdooBackend(models.Model):
     default_category_id = fields.Many2one(
         comodel_name='product.category',
         string='Default Product Category',
+        required=True,
         help='If a default category is selected, products imported '
              'without a category will be linked to it.',
     )
