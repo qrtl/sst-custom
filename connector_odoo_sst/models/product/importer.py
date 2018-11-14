@@ -201,18 +201,8 @@ class ProductImportMapper(Component):
     @mapping
     def categories(self, record):
         result = {}
-        odoo_categ_name = record['categ_id'][1]
-        # FIXME consider the case where multiple records exist for the name
-        categ_id = self.env['product.category'].search([
-            ('name', '=', odoo_categ_name),
-        ])[0]
-        if categ_id:
-            result['categ_id'] = categ_id.id
-        elif self.backend_record.default_category_id:
-            result['categ_id'] = self.backend_record.default_category_id.id
-        else:
-            raise MappingError("The product category %s cannot be found."
-                               % odoo_categ_name)
+        # Use the default category
+        result['categ_id'] = self.backend_record.default_category_id.id
         return result
 
     @mapping
