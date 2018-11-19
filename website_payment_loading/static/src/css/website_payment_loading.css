@@ -1,0 +1,27 @@
+/* Copyright 2018 Soliton Systems
+ * Copyright 2018 Alliance Software Inc.
+ * Copyright 2018 Quartile Limited
+ * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).*/
+
+.loading-modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 250, 250, 250, .8)
+}
+#wrap.loading {
+    overflow: hidden;
+}
+#wrap.loading .loading-modal {
+    display: block;
+}
+.loading-display {
+    position:   fixed;
+    top:        50%;
+    left:       50%;
+    transform:  translate(-50%,-50%);
+}

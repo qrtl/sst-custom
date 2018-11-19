@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend_inherit_paynow_hide" name="assets_frontend_paynow_hide" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/website_payment_loading/static/src/css/website_payment_loading.css"/>
+            <script type="text/javascript" src="/website_payment_loading/static/src/js/website_payment_loading.js"/>
+        </xpath>
+    </template>
+    
+    <template id="website_paynow_payment_acquirers" inherit_id="website_sale.payment" customize_show="True" name="Paynow loading">
+        <xpath expr="//div[@id='payment_method'][1]" position="inside">
+            <!-- Loading modal -->
+	        <div class="loading-modal">
+	            <div class="loading-display">
+	                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"/>
+	                <div style="margin-top: 10px;">
+	                    <span>Loading</span>
+                    </div>
+                </div>
+            </div>
+	    </xpath>
+    </template>
+
+</odoo>
