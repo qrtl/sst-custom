@@ -10,7 +10,7 @@
     
     <template id="website_paynow_payment_acquirers" inherit_id="website_sale.payment" customize_show="True" name="Paynow loading">
         <xpath expr="//div[@id='payment_method'][1]" position="inside">
-	         <!-- Loading modal -->
+            <!-- Loading modal -->
 	        <div class="loading-modal">
 	            <div class="loading-display">
 	                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"/>
