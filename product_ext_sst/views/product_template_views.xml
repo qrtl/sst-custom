@@ -11,6 +11,13 @@
                         name="action_propose_list_price"
                         type="object" class="oe_read_only"/>
             </xpath>
+            <xpath expr="//h1" position="replace">
+                <h2><field name="name" placeholder="Product Name"/></h2>
+            </xpath>
+            <xpath expr="//field[@name='image_medium']" position="replace"/>
+            <xpath expr="//div[@name='options']" position="inside">
+                <field name="image_medium" widget="image" class="oe_avatar"/>
+            </xpath>
             <xpath expr="//page[@name='general_information']/group" position="after">
                 <group>
                     <group>
@@ -25,8 +32,21 @@
                     </group>
                 </group>
                 <group>
-                    <field name="product_state_id"/>
+                    <field name="product_state_id" widget="selection"/>
                 </group>
+            </xpath>
+            <xpath expr="//page[@name='general_information']"
+                   position="before">
+                <page string="Purchase Input" name="purchase_input">
+                    <group>
+                        <field name="team_ids" widget="many2many_tags"/>
+                        <field name="product_state_id" widget="selection"/>
+                        <field name="description_sale"/>
+                        <field name="list_price" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                        <field name="evaluated_by_id"/>
+                        <field name="yahoo_product_state_id"/>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>
