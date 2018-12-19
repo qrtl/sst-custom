@@ -14,6 +14,14 @@
 <p style="color:#eeeeee;">
     <img src="/web/image/product.template/${object.id}/image" height="100px" width="100px"></img>
 </p>
+<h3>
+% if ctx['list_price_update']:
+    <span style="color: red">List Price Updated</span>
+% endif
+% if ctx['website_published_update']:
+    <span style="color: blue">Published</span>
+% endif
+</h3>
 <strong>${object.name}</strong><br/>
 A product in one of your subscripted category has been updated.<br/>
 Price: ${ctx['list_price']}
