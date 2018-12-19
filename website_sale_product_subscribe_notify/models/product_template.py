@@ -24,6 +24,9 @@ class ProductTemplate(models.Model):
                     list_price = "%d" % int(rec.list_price)
                     for partner in partners:
                         ctx.update({
+                            'website_published_update': vals.get(
+                                "website_published"),
+                            'list_price_update': vals.get("list_price"),
                             'partner_name': partner.name,
                             'partner_id': partner.id,
                             'list_price': list_price
