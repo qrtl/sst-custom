@@ -18,7 +18,9 @@ def onchange_product_id(self):
         return result
 
     # Reset date, price and quantity since _onchange_quantity will provide default values
-    self.date_planned = datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+    self.date_planned = datetime.today().strftime(
+        DEFAULT_SERVER_DATETIME_FORMAT) if not self.order_id.date_planned \
+        else self.order_id.date_planned
     # Modified by QTL >>>
     # self.price_unit = self.product_qty = 0.0
     self.product_qty = 0.0
