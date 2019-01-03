@@ -53,6 +53,7 @@ class PurchaseOrder(models.Model):
     )
     date_planned = fields.Datetime(
         compute=False,
+        default=fields.Datetime.now(),
     )
 
     @api.onchange('purchased_by_id')
@@ -190,10 +191,6 @@ class PurchaseOrder(models.Model):
             if self.is_default_partner(purchase_order.partner_id.id):
                 raise UserError(_('Purchase order cannot be confirmed with '
                                   'default guest user.'))
-            if not purchase_order.date_planned:
-                purchase_order.date_planned = fields.Datetime.now()
-                for order_line in purchase_order.order_line:
-                    order_line.date_planned = purchase_order.date_planned
         return super(PurchaseOrder, self).button_confirm()
 
     def check_onchange_phone(self, phone, field):
