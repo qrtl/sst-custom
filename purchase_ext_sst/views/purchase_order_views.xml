@@ -62,9 +62,6 @@
             <xpath expr="//notebook/page[1]//tree/field[@name='date_planned']" position="attributes">
                 <attribute name="invisible">True</attribute>
             </xpath>
-            <xpath expr="//notebook/page[2]//field[@name='date_planned']" position="attributes">
-                <attribute name="required">False</attribute>
-            </xpath>
         </field>
     </record>
 
