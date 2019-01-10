@@ -53,7 +53,6 @@ class PurchaseOrder(models.Model):
     )
     date_planned = fields.Datetime(
         compute=False,
-        required=True,
         default=fields.Datetime.now(),
     )
 
