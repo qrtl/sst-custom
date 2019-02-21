@@ -67,7 +67,6 @@ class QuantSaleOrderWizard(models.TransientModel):
         quant_ids = stock_quant_obj.browse(active_ids)
         warehouse_id = self.get_warehouse_id(quant_ids[0].location_id)
         sale_order_obj = self.env['sale.order']
-        sale_order_line_obj = self.env['sale.order.line']
         order_vals = {
             'partner_id': self.partner_id.id,
             'team_id': self.team_id.id,
@@ -80,13 +79,77 @@ class QuantSaleOrderWizard(models.TransientModel):
         sale_order.team_id = self.team_id.id
         sale_order.user_id = self.env.uid
 
+        # A list to store the values of sale.order.line's required fieds
+        order_lines_value_list = []
+        # A dict to store the tax_id of each product
+        product_tax_id = {}
         for quant in quant_ids:
-            line_vals = {
-                'product_id': quant.product_id.id,
-                'product_uom_qty': quant.quantity,
-                'order_id': sale_order.id,
-            }
-            sale_order_line_obj.sudo().create(line_vals)
+            product = quant.product_id
+            # Calculate the tax_id and price_unit of the order line
+            if product.id not in product_tax_id:
+                tax_id = self.get_tax_id(sale_order, product)
+                product_tax_id[product.id] = tax_id
+            price_unit = self.env[
+                'account.tax']._fix_tax_included_price_company(
+                self.get_display_price(sale_order, product, quant.quantity),
+                product.taxes_id, product_tax_id[product.id], sale_order.company_id) if \
+                sale_order.pricelist_id else product.list_price
+            # get order line description
+            name = product.name_get()[0][1]
+            if product.description_sale:
+                name += '\n' + product.description_sale
+            # get purchase_price
+            purchase_price = self.env['sale.order.line']._get_purchase_price(
+                sale_order.pricelist_id,
+                product,
+                product.uom_id,
+                fields.Date.context_today(self)
+            )['purchase_price']
+            # Add all the required values to the list
+            order_lines_value_list.append(
+                "('%s', %s, %s, %s, %s, %s, %s, %s, %s, 0, 0, %s, 0, 'f', "
+                "'f', %s, (now() at time zone 'UTC'))" % (
+                    name,
+                    product.id,
+                    int(quant.quantity),
+                    product.uom_id.id,
+                    sale_order.id,
+                    int(price_unit),
+                    int(price_unit),
+                    int(purchase_price),
+                    product.product_tmpl_id.sale_delay,
+                    int(quant.quantity),
+                    self.env.user.id
+                )
+            )
+        order_lines_values = ','.join(order_lines_value_list)
+        # Use Insert SQL to improve the performance, create() takes much longer time on
+        # multiple records creation.
+        self.env.cr.execute("""
+            INSERT INTO sale_order_line (
+                name,
+                product_id,
+                product_uom_qty,
+                product_uom,
+                order_id,
+                price_unit,
+                price_reduce,
+                purchase_price,
+                customer_lead,
+                discount,
+                qty_delivered,
+                qty_to_deliver,
+                qty_invoiced,
+                is_downpayment,
+                is_delivery,
+                create_uid,
+                create_date
+            )
+            VALUES %s
+        """ % order_lines_values)
+        # Update the tax_id
+        for order_line in sale_order.order_line:
+            order_line.tax_id = product_tax_id[order_line.product_id.id]
 
         action = self.env.ref('sale.action_quotations')
         action_vals = action.read()[0]
@@ -111,3 +174,40 @@ class QuantSaleOrderWizard(models.TransientModel):
             raise UserError(_('The stock location does not belong to any '
                               'warehouse.'))
         return warehouse_id
+
+    # Same logic as sale.order.line's _compute_tax_id(), but the method will
+    # return the account.tax record(s)
+    # https://github.com/odoo/odoo/blob/11.0/addons/sale/models/sale.py#L836-L842
+    def get_tax_id(self, sale_order, product):
+        fpos = sale_order.fiscal_position_id or \
+               sale_order.partner_id.property_account_position_id
+        taxes = product.taxes_id.filtered(
+            lambda r: not sale_order.company_id or r.company_id ==
+                      sale_order.company_id)
+        return fpos.map_tax(taxes, product,
+                            sale_order.partner_shipping_id) if fpos else taxes
+
+    # Same logic as sale.order.line's get_display_price()
+    # https://github.com/odoo/odoo/blob/11.0/addons/sale/models/sale.py#L1036-L1047
+    def get_display_price(self, sale_order, product, product_uom_qty):
+        if sale_order.pricelist_id.discount_policy == 'with_discount':
+            return product.with_context(
+                pricelist=sale_order.pricelist_id.id).price
+        product_context = dict(self.env.context,
+                               partner_id=sale_order.partner_id.id,
+                               date=sale_order.date_order,
+                               uom=product.uom_id.id)
+        final_price, rule_id = sale_order.pricelist_id.with_context(
+            product_context).get_product_price_rule(product,
+                                                    product_uom_qty or
+                                                    1.0, sale_order.partner_id)
+        base_price, currency_id = self.with_context(
+            product_context)._get_real_price_currency(product, rule_id,
+                                                      product_uom_qty,
+                                                      product.product_uom,
+                                                      sale_order.pricelist_id.id)
+        if currency_id != sale_order.pricelist_id.currency_id.id:
+            base_price = self.env['res.currency'].browse(
+                currency_id).with_context(product_context).compute(
+                base_price, sale_order.pricelist_id.currency_id)
+        return max(base_price, final_price)
