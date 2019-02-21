@@ -94,16 +94,32 @@ class QuantSaleOrderWizard(models.TransientModel):
                 self.get_display_price(sale_order, product, quant.quantity),
                 product.taxes_id, product_tax_id[product.id], sale_order.company_id) if \
                 sale_order.pricelist_id else product.list_price
+            # get order line description
+            name = product.name_get()[0][1]
+            if product.description_sale:
+                name += '\n' + product.description_sale
+            # get purchase_price
+            purchase_price = self.env['sale.order.line']._get_purchase_price(
+                sale_order.pricelist_id,
+                product,
+                product.uom_id,
+                fields.Date.context_today(self)
+            )['purchase_price']
             # Add all the required values to the list
             order_lines_value_list.append(
-                "('%s', %s, %s, %s, %s, %s, %s)" % (
-                    product.name,
+                "('%s', %s, %s, %s, %s, %s, %s, %s, %s, 0, 0, %s, 0, 'f', "
+                "'f', %s, (now() at time zone 'UTC'))" % (
+                    name,
                     product.id,
-                    quant.quantity,
+                    int(quant.quantity),
                     product.uom_id.id,
                     sale_order.id,
-                    price_unit,
-                    product.product_tmpl_id.sale_delay
+                    int(price_unit),
+                    int(price_unit),
+                    int(purchase_price),
+                    product.product_tmpl_id.sale_delay,
+                    int(quant.quantity),
+                    self.env.user.id
                 )
             )
         order_lines_values = ','.join(order_lines_value_list)
@@ -115,7 +131,17 @@ class QuantSaleOrderWizard(models.TransientModel):
                 product_uom,
                 order_id,
                 price_unit,
-                customer_lead
+                price_reduce,
+                purchase_price,
+                customer_lead,
+                discount,
+                qty_delivered,
+                qty_to_deliver,
+                qty_invoiced,
+                is_downpayment,
+                is_delivery,
+                create_uid,
+                create_date
             )
             VALUES %s
         """ % order_lines_values)
