@@ -123,6 +123,8 @@ class QuantSaleOrderWizard(models.TransientModel):
                 )
             )
         order_lines_values = ','.join(order_lines_value_list)
+        # Use Insert SQL to improve the performance, create() takes much longer time on
+        # multiple records creation.
         self.env.cr.execute("""
             INSERT INTO sale_order_line (
                 name,
