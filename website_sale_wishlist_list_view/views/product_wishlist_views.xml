@@ -8,8 +8,8 @@
         <field name='arch' type='xml'>
             <tree string='Product Wishlist'>
                 <field name="product_id"/>
-                <field name="partner_id"/>
-                <field name="create_date"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="create_date" string="Added Date"/>
             </tree>
         </field>
     </record>
