@@ -12,4 +12,4 @@ class ProductWishlist(models.Model):
         wishlist_records = self.search([('active', '=', True)])
         for record in wishlist_records:
             if not record.product_id.active:
-                record.active = True
+                record.active = False
