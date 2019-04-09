@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_tree" model="ir.ui.view">
+        <field name="name">purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_ext_sst.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='address']" position="replace">
+                <field name="zipcode"/>
+                <field name="city"/>
+                <field name="street"/>
+                <field name="street2"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_ext_sst.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='address']" position="replace">
+                <field name="zipcode"/>
+                <field name="street"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_ext_sst.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='address']" position="replace">
+                <field name="zip"/>
+                <field name="zipcode"/>
+                <field name="state_id"/>
+                <field name="city"/>
+                <field name="street"/>
+                <field name="street2"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

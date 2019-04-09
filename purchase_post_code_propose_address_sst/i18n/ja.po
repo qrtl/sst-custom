@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_post_code_propose_address_sst
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-09 09:48+0000\n"
+"PO-Revision-Date: 2019-04-09 09:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_post_code_propose_address_sst
+#: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_city
+msgid "City"
+msgstr "市区町村"
+
+#. module: purchase_post_code_propose_address_sst
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:65
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:85
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:93
+#, python-format
+msgid "Error"
+msgstr "エラー"
+
+#. module: purchase_post_code_propose_address_sst
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:86
+#, python-format
+msgid "Only digits are allowed."
+msgstr "数値のみで入力してください。"
+
+#. module: purchase_post_code_propose_address_sst
+#: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_zipcode
+msgid "Post Code (Search)"
+msgstr "郵便番号(検索用)"
+
+#. module: purchase_post_code_propose_address_sst
+#: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_zip
+msgid "Post Code (Supplier)"
+msgstr "郵便番号(仕入先)"
+
+#. module: purchase_post_code_propose_address_sst
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:94
+#, python-format
+msgid "Post code should be 7 digits."
+msgstr "郵便番号には7桁の数値を入れてください。"
+
+#. module: purchase_post_code_propose_address_sst
+#: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_state_id
+msgid "Prefecture"
+msgstr "都道府県"
+
+#. module: purchase_post_code_propose_address_sst
+#: model:ir.model,name:purchase_post_code_propose_address_sst.model_purchase_order
+msgid "Purchase Order"
+msgstr "発注"
+
+#. module: purchase_post_code_propose_address_sst
+#: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_street
+msgid "Street"
+msgstr "町名番地"
+
+#. module: purchase_post_code_propose_address_sst
+#: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_street2
+msgid "Street2"
+msgstr "町名番地2"
+
+
