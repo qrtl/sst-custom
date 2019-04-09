@@ -53,7 +53,8 @@ class PurchaseOrder(models.Model):
             request_url = 'http://zipcloud.ibsnet.co.jp/api/search?zipcode' \
                           '=%s' % self.zipcode
             request = urllib.request.Request(request_url)
-            response_data = json.loads(urllib.request.urlopen(request).read())
+            response_data = json.loads(
+                urllib.request.urlopen(request).read().decode('utf-8'))
             self.state_id = False
             self.city = False
             self.street = False
