@@ -9,6 +9,7 @@
             <xpath expr="//field[@name='address']" position="replace">
                 <field name="zipcode"/>
                 <field name="city"/>
+                <field name="state_id" invisible="1"/>
                 <field name="street"/>
                 <field name="street2"/>
             </xpath>

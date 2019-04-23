@@ -26,7 +26,7 @@ class PurchaseOrder(models.Model):
     street2 = fields.Char(
         string='Street2',
     )
-    zipcode= fields.Char(
+    zipcode = fields.Char(
         string='Post Code (Search)',
     )
     zip = fields.Char(
