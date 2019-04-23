@@ -7,8 +7,10 @@
         <field name="inherit_id" ref="purchase_ext_sst.purchase_order_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='address']" position="replace">
-                <field name="zip"/>
+                <field name="zipcode"/>
+                <field name="city"/>
                 <field name="street"/>
+                <field name="street2"/>
             </xpath>
         </field>
     </record>
@@ -19,7 +21,7 @@
         <field name="inherit_id" ref="purchase_ext_sst.view_purchase_order_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='address']" position="replace">
-                <field name="zip"/>
+                <field name="zipcode"/>
                 <field name="street"/>
             </xpath>
         </field>
