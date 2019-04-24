@@ -12,6 +12,10 @@ from odoo import models, fields, api, _
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
+    country_id = fields.Many2one(
+        string='Country',
+        default=lambda self: self.env.ref('base.jp')
+    )
     state_id = fields.Many2one(
         'res.country.state',
         string='Prefecture',
