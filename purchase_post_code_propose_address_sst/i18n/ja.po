@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-09 09:48+0000\n"
-"PO-Revision-Date: 2019-04-09 09:48+0000\n"
+"POT-Creation-Date: 2019-04-26 07:18+0000\n"
+"PO-Revision-Date: 2019-04-26 07:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,20 +16,31 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_post_code_propose_address_sst
+#: model:ir.ui.view,arch_db:purchase_post_code_propose_address_sst.purchase_order_form
+msgid "Address"
+msgstr "アドレス"
+
+#. module: purchase_post_code_propose_address_sst
 #: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_city
+#: model:ir.ui.view,arch_db:purchase_post_code_propose_address_sst.purchase_order_form
 msgid "City"
 msgstr "市区町村"
 
 #. module: purchase_post_code_propose_address_sst
-#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:65
-#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:85
-#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:93
+#: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_country_id
+msgid "Country"
+msgstr "国"
+
+#. module: purchase_post_code_propose_address_sst
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:70
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:90
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:98
 #, python-format
 msgid "Error"
 msgstr "エラー"
 
 #. module: purchase_post_code_propose_address_sst
-#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:86
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:91
 #, python-format
 msgid "Only digits are allowed."
 msgstr "数値のみで入力してください。"
@@ -45,7 +56,7 @@ msgid "Post Code (Supplier)"
 msgstr "郵便番号(仕入先)"
 
 #. module: purchase_post_code_propose_address_sst
-#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:94
+#: code:addons/purchase_post_code_propose_address_sst/models/purchase_order.py:99
 #, python-format
 msgid "Post code should be 7 digits."
 msgstr "郵便番号には7桁の数値を入れてください。"
@@ -61,13 +72,27 @@ msgid "Purchase Order"
 msgstr "発注"
 
 #. module: purchase_post_code_propose_address_sst
+#: model:ir.ui.view,arch_db:purchase_post_code_propose_address_sst.purchase_order_form
+msgid "State"
+msgstr "都道府県"
+
+#. module: purchase_post_code_propose_address_sst
 #: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_street
 msgid "Street"
 msgstr "町名番地"
 
 #. module: purchase_post_code_propose_address_sst
+#: model:ir.ui.view,arch_db:purchase_post_code_propose_address_sst.purchase_order_form
+msgid "Street 2..."
+msgstr "町名番地2…"
+
+#. module: purchase_post_code_propose_address_sst
+#: model:ir.ui.view,arch_db:purchase_post_code_propose_address_sst.purchase_order_form
+msgid "Street..."
+msgstr "町名番地…"
+
+#. module: purchase_post_code_propose_address_sst
 #: model:ir.model.fields,field_description:purchase_post_code_propose_address_sst.field_purchase_order_street2
 msgid "Street2"
 msgstr "町名番地2"
-
 
