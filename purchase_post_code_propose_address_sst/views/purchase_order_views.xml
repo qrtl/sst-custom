@@ -35,13 +35,24 @@
         <field name="inherit_id" ref="purchase_ext_sst.purchase_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='address']" position="replace">
-                <field name="zip"/>
-                <field name="zipcode"/>
-                <field name="country_id" invisible="1"/>
-                <field name="state_id" domain="[('country_id','=',country_id)]"/>
-                <field name="city"/>
-                <field name="street"/>
-                <field name="street2"/>
+                <label for="zip"/>
+                <div>
+                    〒 <field name="zip"/>
+                </div>
+                <label for="zipcode"/>
+                <div>
+                    <span class="oe_read_only">〒 </span><field name="zipcode"/>
+                </div>
+                <label for="state_id" string="Address"/>
+                <div class="o_address_format">
+                    <div>
+                        <field name="state_id" class="o_address_state" placeholder="State" domain="[('country_id','=',country_id)]"/>
+                        <field name="city" class="o_address_city" placeholder="City"/>
+                    </div>
+                    <field name="street" class="o_address_street" placeholder="Street..."/>
+                    <field name="street2" class="o_address_street" placeholder="Street 2..."/>
+                    <field name="country_id" invisible="1"/>
+                </div>
             </xpath>
         </field>
     </record>
