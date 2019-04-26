@@ -32,11 +32,11 @@
                 <group>
                     <group>
                         <field name="address"/>
-                        <field name="partner_ref"/>
                     </group>
                     <group>
                         <field name="user_id"/>
                         <field name="sale_order_id"/>
+                        <field name="partner_ref"/>
                     </group>
                 </group>
                 <group>
