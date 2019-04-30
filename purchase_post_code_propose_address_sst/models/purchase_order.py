@@ -42,7 +42,7 @@ class PurchaseOrder(models.Model):
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
-        if self.partner_id:
+        if self.partner_id and not self.zipcode and not self.street:
             self.state_id = self.partner_id.state_id
             self.city = self.partner_id.city
             self.street = self.partner_id.street
