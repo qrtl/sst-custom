@@ -56,5 +56,5 @@ msgstr "お買上可能"
 #: code:addons/website_sale_stock_virtual_availability/static/src/xml/website_sale_stock_product_availability.xml:20
 #, python-format
 msgid "in your cart."
-msgstr "の在庫商品がカートに入れた"
+msgstr "の在庫商品がカートに入れました"
 
