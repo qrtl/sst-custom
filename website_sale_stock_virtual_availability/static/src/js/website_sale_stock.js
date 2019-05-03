@@ -37,8 +37,6 @@ $('.oe_website_sale').each(function() {
         and its variants on the product website page.
     */
     $(oe_website_sale).on('change', 'ul[data-attribute_value_ids]', function(event) {
-        debugger;
-        debugger;
         var $ul = $(event.target).closest('.js_add_cart_variants');
         var $parent = $ul.closest('.js_product');
         var variant_ids = $ul.data("attribute_value_ids");
@@ -54,7 +52,6 @@ $('.oe_website_sale').each(function() {
             if (_.isEmpty(_.difference(variant_ids[k][1], values))) {
                 // clone so permanent object is not modified
                 var info = _.clone(variant_ids[k][4]);
-                debugger;
                 if(_.contains(['always', 'threshold'], info['inventory_availability'])) {
                     // >> QTL ADD
                     // The website_sale_available_qty already reflects the remaining available quantity
