@@ -9,8 +9,7 @@
     'category': 'Website',
     'license': "AGPL-3",
     'description': """
-This module retricts the access of guest user to the following pages:
-
+This module retricts the access of guest user to the website forum pages.
     """,
     'summary': "",
     'depends': [

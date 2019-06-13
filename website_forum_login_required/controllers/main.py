@@ -2,7 +2,7 @@
 # Copyright 2019 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import http, tools, _
+from odoo import http
 from odoo.addons.website_forum.controllers.main import WebsiteForum
 
 
@@ -33,3 +33,25 @@ class WebsiteForum(WebsiteForum):
     @http.route(['/forum/<model("forum.forum"):forum>/tag', '/forum/<model("forum.forum"):forum>/tag/<string:tag_char>'], type='http', auth="user", website=True, sitemap=False)
     def tags(self, forum, tag_char=None, **post):
         return super(WebsiteForum, self).tags(forum, tag_char=tag_char, **post)
+
+    @http.route(['/forum/<model("forum.forum"):forum>/user/<int:user_id>'], type='http', auth="user", website=True)
+    def open_user(self, forum, user_id=0, **post):
+        return super(WebsiteForum, self).open_user(forum, user_id=user_id, **post)
+
+    @http.route(['/forum/<model("forum.forum"):forum>/partner/<int:partner_id>'], type='http', auth="user", website=True)
+    def open_partner(self, forum, partner_id=0, **post):
+        return super(WebsiteForum, self).open_partner(forum, partner_id=partner_id, **post)
+
+    @http.route(['/forum/user/<int:user_id>/avatar'], type='http', auth="user", website=True, sitemap=False)
+    def user_avatar(self, user_id=0, **post):
+        return super(WebsiteForum, self).user_avatar(user_id=user_id, **post)
+
+    @http.route(['/forum/<model("forum.forum"):forum>/users',
+                 '/forum/<model("forum.forum"):forum>/users/page/<int:page>'],
+                type='http', auth="user", website=True)
+    def users(self, forum, page=1, **searches):
+        return super(WebsiteForum, self).users(forum, page=page, **searches)
+
+    @http.route(['/forum/<model("forum.forum"):forum>/faq'], type='http', auth="user", website=True)
+    def forum_faq(self, forum, **post):
+        return super(WebsiteForum, self).forum_faq(forum, **post)
