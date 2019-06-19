@@ -28,4 +28,4 @@ class SaleOrder(models.Model):
         for order in self:
             for order_line in order.order_line:
                 order_line.product_id.in_cart = False
-        return super(SaleOrderLine, self).unlink()
+        return super(SaleOrder, self).unlink()
