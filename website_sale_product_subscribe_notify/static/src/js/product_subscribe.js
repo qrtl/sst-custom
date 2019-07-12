@@ -11,19 +11,30 @@ odoo.define('website_sale_product_subscribe_notify.product_subscribe', function 
 
     $("i[name='plus_circle']").on('click', function(el){
         $(this).parent().find('i.fa-times-circle').show();
-        var li = $(this).parents('li').find('ul').show()
-        $(this).hide()
+        var li = $(this).parents('li').find('ul').show();
+        $(this).hide();
     });
 
     $("i[name='cross_circle']").on('click', function(el){
         $(this).parent().find('i.fa-plus-circle').show();
-        var li = $(this).parents('li').find('ul').hide()
-        $(this).hide()
+        var li = $(this).parents('li').find('ul').hide();
+        $(this).hide();
     });
 
     $("input[name='categ_subscribe']").on('click', function(el){
-        var checked = $(this).prop('checked')
-        $(this).parent().find('input').prop('checked', checked)
+        var checked = $(this).prop('checked');
+        $(this).parent().find('input').prop('checked', checked);
+        if(checked != true){
+            // Loop back to upper parent and uncheck the parent select checkbox.
+            // Check class to avoid looping too top and unchecking the first checkbox.
+            var is_hierachy_parent = $(this).parent().parent().parent().prevObject.hasClass('nav-hierarchy');
+            var parent = $(this).parent().parent().parent();
+            while(is_hierachy_parent == true){
+                parent.find('input')[0].checked = checked;
+                parent = parent.parent().parent();
+                is_hierachy_parent = parent.prevObject.hasClass('nav-hierarchy');
+            }
+        }
     });
 
 });
