@@ -25,6 +25,8 @@ odoo.define('website_sale_product_subscribe_notify.product_subscribe', function 
         var checked = $(this).prop('checked');
         $(this).parent().find('input').prop('checked', checked);
         if(checked != true){
+            // Loop back to upper parent and uncheck the parent select checkbox.
+            // Check class to avoid looping too top and unchecking the first checkbox.
             var is_hierachy_parent = $(this).parent().parent().parent().prevObject.hasClass('nav-hierarchy');
             var parent = $(this).parent().parent().parent();
             while(is_hierachy_parent == true){
