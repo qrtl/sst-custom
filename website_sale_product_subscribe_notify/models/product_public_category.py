@@ -20,7 +20,7 @@ class ProductPublicCategory(models.Model):
         default=1,
     )
     total_subscribe_points = fields.Integer(
-        compute = '_compute_total_subscribe_points',
+        compute='_compute_total_subscribe_points',
     )
 
     @api.model
@@ -51,26 +51,6 @@ class ProductPublicCategory(models.Model):
         category_ids.append(self.id)
         category_ids = self.browse(category_ids)
         return category_ids
-
-    @api.multi
-    def _add_category_follower(self, partner):
-        subscribe_categories = self.browse()
-        if partner:
-            for category in self:
-                category_ids = category._get_child_category()
-                category_ids.message_subscribe(partner_ids=partner.ids)
-                subscribe_categories += category_ids
-        return subscribe_categories
-
-    @api.multi
-    def _remove_category_follower(self, partner):
-        unsubscribe_categories = self.browse()
-        if partner:
-            for category in self:
-                category_ids = category._get_child_category()
-                category_ids.message_unsubscribe(partner_ids=partner.ids)
-                unsubscribe_categories += category_ids
-        return unsubscribe_categories
 
     @api.multi
     def _compute_total_subscribe_points(self):
