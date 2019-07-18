@@ -38,7 +38,8 @@ class CustomerPortal(CustomerPortal):
             ('parent_id', '=', False)
         ])
         product_public_category_lst = product_public_category.search([]).\
-            filtered(lambda categ: request.env.user.partner_id.id in categ.message_partner_ids.ids).ids
+            filtered(
+                lambda categ: request.env.user.partner_id.id in categ.message_partner_ids.ids).ids
         if 'error' in kw:
             values.update({
                 'error': kw.get('error'),
@@ -55,49 +56,46 @@ class CustomerPortal(CustomerPortal):
             values
         )
 
-    @http.route('/my/product_subscribes', type='http', auth="user",
-                methods=['POST'], website=True)
+    @http.route('/my/product_subscribes', type='http', auth="user", methods=['POST'], website=True)
     def product_subscribes(self, **kw):
         partner = request.env.user.partner_id
+        # Retrieve the categories selection from the form
+        category_list = [
+            int(i) for i in request.httprequest.form.getlist('categ_subscribe')]
+        selected_category_list = request.env['product.public.category'].sudo().browse(
+            category_list)
 
-        public_categ_obj = request.env['product.public.category'].sudo()
-        category_list = request.httprequest.form.getlist('categ_subscribe')
-
-        category_list = [int(i) for i in category_list]
-        selected_category_list = public_categ_obj.browse(category_list)
-        subscribe_count = 0
+        # Check total points needed for the categories and partner's point limit
+        subscribe_point_count = 0
         for subscribe_category in selected_category_list:
             if not subscribe_category.child_id:
-                subscribe_count += subscribe_category.subscribe_point
+                subscribe_point_count += subscribe_category.subscribe_point
         if partner.member_group_id and partner.member_group_id.point_limit < \
-                subscribe_count or not partner.member_group_id:
+                subscribe_point_count or not partner.member_group_id:
             return self.portal_product_subscriptions(
                 error=_('You subscription point is not enough to subscribe '
                         'the selected categories.'))
+
+        # Filter and subscribe the selected categories that are not yet subscribed
         subscribe_category_ids = selected_category_list.filtered(
             lambda i: partner.id not in i.message_partner_ids.ids
         )
-        subscribe_categories = public_categ_obj.browse()
-        if subscribe_category_ids:
-            subscribe_categories = subscribe_category_ids.\
-                _add_category_follower(partner)
+        subscribe_category_ids.sudo().message_subscribe(
+            partner_ids=[partner.id])
 
-        domain = [
-            ('id', 'not in', subscribe_categories.ids + category_list),
-        ]
-        unsubscribe_category_ids = public_categ_obj.search(domain)
+        # Check and unsubscribe unselected categories
+        unsubscribe_category_ids = request.env['product.public.category'].sudo().search(
+            [('id', 'not in', category_list)])
         unsubscribe_category_ids = unsubscribe_category_ids.filtered(
             lambda i: partner.id in i.message_partner_ids.ids
         )
+        unsubscribe_category_ids.sudo().message_unsubscribe(
+            partner_ids=[partner.id])
 
-        unsubscribe_categories = public_categ_obj.browse()
-        if unsubscribe_category_ids:
-            unsubscribe_categories = unsubscribe_category_ids.\
-                _remove_category_follower(partner)
-
+        # Return the subscriptions updates
         vals = {
-            'unsubscribe_category_ids': unsubscribe_categories,
-            'subscribe_category_ids': subscribe_categories
+            'unsubscribe_category_ids': unsubscribe_category_ids,
+            'subscribe_category_ids': subscribe_category_ids,
         }
         return request.render(
             "website_sale_product_subscribe_notify.template_thanks_message",
