@@ -43,11 +43,8 @@ class ProductTemplate(models.Model):
     def get_product_category_followers_ids(self):
         partner_ids = []
         for category in self.public_categ_ids:
-            category_id = category
-            while(category_id):
-                partner_ids += list(
-                    set(category_id.message_partner_ids.ids) -
-                    set(partner_ids)
-                )
-                category_id = category_id.parent_id
+            partner_ids += list(
+                set(category.message_partner_ids.ids) -
+                set(partner_ids)
+            )
         return partner_ids
