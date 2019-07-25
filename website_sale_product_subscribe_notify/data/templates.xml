@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<odoo noupdate="1">
 
     <record id="email_template_product_public_category" model="mail.template">
         <field name="name">product public category- Send by Email</field>
@@ -12,7 +12,7 @@
 ,</p>
 <p>
 <p style="color:#eeeeee;">
-    <img src="/web/image/product.template/${object.id}/image" height="100px" width="100px"></img>
+<img src="/web/image/product.template/${object.id}/image" height="100px" width="100px"></img>
 </p>
 <h3>
 % if not ctx['website_published_update'] and ctx['list_price_update']:
@@ -31,8 +31,8 @@ Price: ${ctx['list_price']}
 </p>
 <br/><br/>
 <center>
-    <a target="_blank" href="/shop/product/${object.id}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Product</a>
-    <br/><br/>
+<a target="_blank" href="/shop/product/${object.id}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Product</a>
+<br/><br/>
 </center>
 <br/>
 ${object.get_website_name()}
@@ -41,7 +41,7 @@ ${object.get_website_name()}
     ${object.user_id.signature | safe}
 % endif
 </p>
-]]></field>
+]]>        </field>
     </record>
 
 </odoo>
