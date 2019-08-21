@@ -27,6 +27,7 @@ class StockQuant(models.Model):
         related='product_id.barcode',
         store=True,
         readonly=True,
+        index=True,
     )
 
     def update_stock_move_done_qty(self):
