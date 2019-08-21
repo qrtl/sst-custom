@@ -23,6 +23,10 @@ class StockQuant(models.Model):
     product_id = fields.Many2one(
         auto_join=True,
     )
+    barcode = fields.Char(
+        related='product_id.barcode',
+        store=True,
+    )
 
     def update_stock_move_done_qty(self):
         stock_moves = self.env['stock.move'].search([
