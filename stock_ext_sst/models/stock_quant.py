@@ -24,8 +24,7 @@ class StockQuant(models.Model):
         auto_join=True,
     )
     barcode = fields.Char(
-        related='product_id.default_code',
-        string='Barcode',
+        related='product_id.barcode',
         store=True,
         readonly=True,
         index=True,
