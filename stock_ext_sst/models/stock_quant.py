@@ -23,8 +23,9 @@ class StockQuant(models.Model):
     product_id = fields.Many2one(
         auto_join=True,
     )
-    barcode = fields.Char(
-        related='product_id.barcode',
+    default_code = fields.Char(
+        related='product_id.default_code',
+        string='Barcode',
         store=True,
         readonly=True,
         index=True,

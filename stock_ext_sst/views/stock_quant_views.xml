@@ -21,7 +21,7 @@
         <field name="inherit_id" ref="stock.quant_search_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_id']" position="before">
-                <field name="barcode"/>
+                <field name="default_code"/>
             </xpath>
         </field>
     </record>
