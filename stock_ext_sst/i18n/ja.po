@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_ext_sst
-#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_barcode
+#: model:ir.model.fields,field_description:stock_ext_sst.field_stock_quant_default_code
 msgid "Barcode"
 msgstr "バーコード"
 
