@@ -9,12 +9,11 @@ class ResPartner(models.Model):
 
     @api.model
     def _notify_prepare_email_values(self, message):
-        mail_values = super(ResPartner, self)._notify_prepare_email_values(message)
-        print(message.model)
+        mail_values = super(
+            ResPartner, self)._notify_prepare_email_values(message)
         if message.model and message.model == 'forum.post':
-            forum_mail_server_id = self.env['website'].sudo().get_current_website().forum_mail_server_id
+            forum_mail_server_id = self.env['website'].sudo(
+            ).get_current_website().forum_mail_server_id
             if forum_mail_server_id:
                 mail_values['mail_server_id'] = forum_mail_server_id.id
-
-        print(mail_values)
         return mail_values
