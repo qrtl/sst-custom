@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* website_forum_adj
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-17 08:02+0000\n"
+"PO-Revision-Date: 2019-09-17 08:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_forum_adj
+#: model:ir.model,name:website_forum_adj.model_res_partner
+msgid "Contact"
+msgstr "連絡先"
+
+#. module: website_forum_adj
+#: model:ir.model.fields,field_description:website_forum_adj.field_ir_mail_server_smtp_from
+msgid "Email From"
+msgstr "差出人"
+
+#. module: website_forum_adj
+#: model:ir.model.fields,field_description:website_forum_adj.field_res_config_settings_forum_mail_server_id
+#: model:ir.model.fields,field_description:website_forum_adj.field_webkul_website_addons_forum_mail_server_id
+#: model:ir.model.fields,field_description:website_forum_adj.field_website_forum_mail_server_id
+msgid "Mail Server for Forum's Updates"
+msgstr "フォーラム更新用メールサーバ"
+
+#. module: website_forum_adj
+#: model:ir.ui.view,arch_db:website_forum_adj.res_config_settings_view_form
+msgid "Mail Server for Forum\\'s Updates"
+msgstr "フォーラム更新用メールサーバ"
+
+#. module: website_forum_adj
+#: model:ir.model,name:website_forum_adj.model_website
+msgid "Website"
+msgstr "ウェブサイト"
+
+#. module: website_forum_adj
+#: model:ir.ui.view,arch_db:website_forum_adj.res_config_settings_view_form
+msgid "Website Forum Configuration"
+msgstr "ウェブサイトフォーラム設定"
+
