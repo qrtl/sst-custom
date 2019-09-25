@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     
-    <!--Overwrite default Notification Email template -->
-    <delete id="mail.mail_template_data_notification_email_default"
-            model="mail.template"/>
-    <record id="mail.mail_template_data_notification_email_default"
-            model="mail.template">
+    <delete id="mail.mail_template_data_notification_email_default" model="mail.template"/>
+    <!--Default Notification Email template -->
+    <record id="mail.mail_template_data_notification_email_default" model="mail.template">
         <field name="name">Notification Email</field>
         <field name="subject">${object.subject or (object.record_name and 'Re: %s' % object.record_name) or (object.parent_id and object.parent_id.subject and 'Re: %s' % object.parent_id.subject) or (object.parent_id and object.parent_id.record_name and 'Re: %s' % object.parent_id.record_name)}</field>
         <field name="model_id" ref="mail.model_mail_message"/>
@@ -69,30 +67,7 @@
 </div>
 % endif
 <div>
-    % if object.product_url:
-         <p>
-            <strong>${object.record_name}</strong> received a new comment
-            % if object.author_id:
-                from ${object.author_id.name}
-            % endif
-            :
-         </p>
-         <br/>
-    % endif
     ${object.body | safe}
-    % if object.product_url:
-         <br>
-         <p>
-             Please check the following link to see all the comment(s)
-         </p>
-         <br/>
-         <a href="${object.product_url}"
-             style="background-color: #1abc9c; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;"
-             class="o_default_snippet_text">
-             View Comment
-         </a>
-         <br>
-    % endif
 </div>
 % if object.model and object.model == 'forum.post':    
     <br> <p>Please do not reply to this email.</p> <br>
@@ -105,6 +80,10 @@
     </ul>
 % endif
 
+% if ctx.get('signature'):
+    ${ctx['signature'] | safe}
+% endif
+<br/>
 <p style="color: #555555;">
     Sent by
     % if ctx.get('website_url'):
@@ -114,6 +93,8 @@
     % if ctx.get('website_url'):
     </a>
     % endif
+    using
+    <a target="_blank" href="https://www.odoo.com" style="text-decoration:none; color: #875A7B;">Odoo</a>.
 </p>
 </div>]]></field>
     </record>
