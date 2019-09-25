@@ -16,6 +16,7 @@ on website forum.
         'website_forum',
     ],
     'data': [
+        'data/mail_data.xml',
         'views/ir_mail_server_views.xml',
         'views/res_config_settings_views.xml',
         'views/website_forum.xml',
