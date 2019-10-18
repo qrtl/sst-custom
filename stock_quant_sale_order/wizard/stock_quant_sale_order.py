@@ -107,10 +107,13 @@ class QuantSaleOrderWizard(models.TransientModel):
             )['purchase_price']
             # Add all the required values to the list
             order_lines_value_list.append(
-                "('%s', %s, %s, %s, %s, %s, %s, %s, %s, 0, 0, %s, 0, 'f', "
-                "'f', %s, (now() at time zone 'UTC'))" % (
+                "('%s', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 0, 0, %s, 0, 'f', "
+                "'f', '%s', %s, %s, (now() at time zone 'UTC'))" % (
                     name,
                     product.id,
+                    sale_order.partner_id.id,
+                    sale_order.user_id.id,
+                    sale_order.currency_id.id,
                     int(quant.quantity),
                     product.uom_id.id,
                     sale_order.id,
@@ -119,6 +122,8 @@ class QuantSaleOrderWizard(models.TransientModel):
                     int(purchase_price),
                     product.product_tmpl_id.sale_delay,
                     int(quant.quantity),
+                    sale_order.state,
+                    sale_order.company_id.id,
                     self.env.user.id
                 )
             )
@@ -129,6 +134,9 @@ class QuantSaleOrderWizard(models.TransientModel):
             INSERT INTO sale_order_line (
                 name,
                 product_id,
+                order_partner_id,
+                salesman_id,
+                currency_id,
                 product_uom_qty,
                 product_uom,
                 order_id,
@@ -142,6 +150,8 @@ class QuantSaleOrderWizard(models.TransientModel):
                 qty_invoiced,
                 is_downpayment,
                 is_delivery,
+                state,
+                company_id,
                 create_uid,
                 create_date
             )
@@ -180,10 +190,10 @@ class QuantSaleOrderWizard(models.TransientModel):
     # https://github.com/odoo/odoo/blob/11.0/addons/sale/models/sale.py#L836-L842
     def get_tax_id(self, sale_order, product):
         fpos = sale_order.fiscal_position_id or \
-               sale_order.partner_id.property_account_position_id
+            sale_order.partner_id.property_account_position_id
         taxes = product.taxes_id.filtered(
             lambda r: not sale_order.company_id or r.company_id ==
-                      sale_order.company_id)
+            sale_order.company_id)
         return fpos.map_tax(taxes, product,
                             sale_order.partner_shipping_id) if fpos else taxes
 
