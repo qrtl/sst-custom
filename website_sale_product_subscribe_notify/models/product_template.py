@@ -24,17 +24,19 @@ class ProductTemplate(models.Model):
                     partner_ids = rec.get_product_category_followers_ids()
                     partners = rec.env['res.partner'].browse(partner_ids)
                     list_price = "%d" % int(rec.list_price)
+                    multi_partner_id = ''
                     for partner in partners:
-                        ctx.update({
+                        multi_partner_id = multi_partner_id + str(partner.id) + ','
+                    ctx.update({
                             'website_published_update': vals.get(
                                 "website_published"),
                             'list_price_update': vals.get("list_price"),
                             'description_sale_update': vals.get("description_sale"),
                             'partner_name': partner.name,
-                            'partner_id': partner.id,
+                            'partner_id': multi_partner_id,
                             'list_price': list_price
-                        })
-                        template.with_context(ctx).send_mail(rec.id)
+                    })
+                    template.with_context(ctx).send_mail(rec.id)
         return result
 
     def get_website_name(self):

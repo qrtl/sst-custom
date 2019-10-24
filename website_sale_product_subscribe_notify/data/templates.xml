@@ -8,9 +8,6 @@
         <field name="partner_to">${ctx['partner_id']}</field>
         <field name="model_id" ref="product.model_product_template"/>
         <field name="body_html"><![CDATA[
-<p>Hello ${ctx['partner_name']}
-,</p>
-<p>
 <p style="color:#eeeeee;">
 <img src="/web/image/product.template/${object.id}/image" height="100px" width="100px"></img>
 </p>
