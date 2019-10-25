@@ -24,7 +24,6 @@ class ProductTemplate(models.Model):
                     partner_ids = rec.get_product_category_followers_ids()
                     partners = rec.env['res.partner'].browse(partner_ids)
                     list_price = "%d" % int(rec.list_price)
-                    limit_recipient = rec.get_limit_email_recipient()
                     ctx.update({
                             'website_published_update': vals.get(
                                 "website_published"),
@@ -34,7 +33,6 @@ class ProductTemplate(models.Model):
                             'list_price': list_price
                     })
                     template.with_context(ctx).send_mail(rec.id)
-                    print("limit_recipient", limit_recipient)
         return result
 
     def get_website_name(self):
@@ -48,6 +46,3 @@ class ProductTemplate(models.Model):
                 set(partner_ids)
             )
         return partner_ids
-
-    def get_limit_email_recipient(self):
-        return self.env['website'].browse(['limit_email_recipient '])
