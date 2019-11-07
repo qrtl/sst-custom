@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
+import math
 
 
 class ProductTemplate(models.Model):
@@ -25,9 +26,8 @@ class ProductTemplate(models.Model):
                     partners = rec.env['res.partner'].browse(partner_ids)
                     list_price = "%d" % int(rec.list_price)
                     limit_recipient = rec.env['ir.default'].get('res.config.settings', 'email_recipient_limit')
-                    number_of_loop = len(partners)/limit_recipient
-                    if number_of_loop%1 != 0 : number_of_loop += 1 
-                    for n in range(int(number_of_loop)):
+                    number_of_loop = math.ceil(len(partners)/float(limit_recipient))
+                    for n in range(number_of_loop):
                         ctx.update({
                             'website_published_update': vals.get(
                                 "website_published"),

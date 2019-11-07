@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
+from odoo.exceptions import Warning
 
 
 class ResConfigSettings(models.TransientModel):
@@ -19,7 +20,12 @@ class ResConfigSettings(models.TransientModel):
         res = super(ResConfigSettings, self).get_values()
         email_recipient_limit = self.env['ir.default'].get('res.config.settings', 'email_recipient_limit')
         res.update(
-           email_recipient_limit = email_recipient_limit,
+            email_recipient_limit = email_recipient_limit,
         )
         return res
 
+    @api.constrains('email_recipient_limit')
+    def _check_email_recipient_limit(self):
+        if self.email_recipient_limit <= 0:
+            raise Warning("Email Recipient should be greater than 0!")
+            
