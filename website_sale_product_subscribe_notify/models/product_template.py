@@ -25,17 +25,20 @@ class ProductTemplate(models.Model):
                     partners = rec.env['res.partner'].browse(partner_ids)
                     list_price = "%d" % int(rec.list_price)
                     limit_recipient = rec.env['ir.default'].get('res.config.settings', 'email_recipient_limit')
-                    number_of_loop = round(len(partners)/limit_recipient)
-
-                    ctx.update({
-                            'website_published_update': vals.get(
-                                "website_published"),
-                            'list_price_update': vals.get("list_price"),
-                            'description_sale_update': vals.get("description_sale"),
-                            'partner_ids': ','.join([str(partner.id) for partner in partners[:limit_recipient]]),
-                            'list_price': list_price
-                    })
-                    template.with_context(ctx).send_mail(rec.id)
+                    number_of_loop = len(partners)/limit_recipient
+                    if number_of_loop%1 != 0 :
+                        number_of_loop += 1 
+                        print("float",number_of_loop)
+                    for n in range(int(number_of_loop)):
+                        ctx.update({
+                                'website_published_update': vals.get(
+                                    "website_published"),
+                                'list_price_update': vals.get("list_price"),
+                                'description_sale_update': vals.get("description_sale"),
+                                'partner_ids': ','.join([str(partner.id) for partner in partners[n*limit_recipient:(n+1)*limit_recipient]]),
+                                'list_price': list_price
+                        })
+                        template.with_context(ctx).send_mail(rec.id)
         return result
 
     def get_website_name(self):
