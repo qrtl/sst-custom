@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Odoo Product Subscribe Notify',
-    'version': '11.0.1.1.0',
+    'version': '11.0.2.0.0',
     'category' : 'Website',
     'license': 'Other proprietary',
     'summary': "Send notification to subscribers",
@@ -25,6 +25,7 @@ any following fields of the product is updated,
         'data/templates.xml',
         'views/member_group_views.xml',
         'views/product_public_category_view.xml',
+        'views/res_config_settings_views.xml',
         'views/res_partner_views.xml',
         'views/website_templates.xml',
     ],
