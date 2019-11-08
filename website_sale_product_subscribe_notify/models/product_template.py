@@ -25,8 +25,10 @@ class ProductTemplate(models.Model):
                     partner_ids = rec.get_product_category_followers_ids()
                     partners = rec.env['res.partner'].browse(partner_ids)
                     list_price = "%d" % int(rec.list_price)
-                    limit_recipient = rec.env['ir.default'].get('res.config.settings', 'email_recipient_limit')
-                    number_of_loop = math.ceil(len(partners)/float(limit_recipient))
+                    limit_recipient = rec.env['ir.default'].get(
+                        'res.config.settings', 'email_recipient_limit')
+                    number_of_loop = math.ceil(
+                        len(partners)/float(limit_recipient))
                     for n in range(number_of_loop):
                         ctx.update({
                             'website_published_update': vals.get(

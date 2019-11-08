@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-25 03:50+0000\n"
-"PO-Revision-Date: 2018-07-25 03:50+0000\n"
+"POT-Creation-Date: 2019-11-08 10:24+0000\n"
+"PO-Revision-Date: 2019-11-08 10:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,10 +17,7 @@ msgstr ""
 
 #. module: website_sale_product_subscribe_notify
 #: model:mail.template,body_html:website_sale_product_subscribe_notify.email_template_product_public_category
-msgid "\n"
-"<p>Hello ${ctx['partner_name']}\n"
-",</p>\n"
-"<p>\n"
+msgid "<p>\n"
 "<p style=\"color:#eeeeee;\">\n"
 "    <img src=\"/web/image/product.template/${object.id}/image\" height=\"100px\" width=\"100px\"></img>\n"
 "</p>\n"
@@ -52,10 +49,7 @@ msgid "\n"
 "% endif\n"
 "</p>\n"
 ""
-msgstr "\n"
-"<p>${ctx['partner_name']}　様\n"
-"</p>\n"
-"<p>\n"
+msgstr "<p>\n"
 "<p style=\"color:#eeeeee;\">\n"
 "    <img src=\"/web/image/product.template/${object.id}/image\" height=\"100px\" width=\"100px\"></img>\n"
 "</p>\n"
@@ -127,6 +121,11 @@ msgid "Display Name"
 msgstr "表示名"
 
 #. module: website_sale_product_subscribe_notify
+#: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.res_config_settings_view_form
+msgid "Email Recipient Limit"
+msgstr "メール宛先制限"
+
+#. module: website_sale_product_subscribe_notify
 #: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_name
 msgid "Group Name"
 msgstr "グループ名"
@@ -156,6 +155,7 @@ msgstr "最終更新日"
 #: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_res_users_member_group_id
 #: model:ir.ui.menu,name:website_sale_product_subscribe_notify.menu_member_group
 #: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.form_view_member_group
+#: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.member_group_search_view
 msgid "Member Group"
 msgstr "メンバーグループ"
 
@@ -171,6 +171,18 @@ msgid "My Subscriptions"
 msgstr "お気に入りカテゴリ"
 
 #. module: website_sale_product_subscribe_notify
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_res_config_settings_email_recipient_limit
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_webkul_website_addons_email_recipient_limit
+#: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_website_order_notes_settings_email_recipient_limit
+msgid "Number of Recipients Per Email"
+msgstr "メールの宛先数"
+
+#. module: website_sale_product_subscribe_notify
+#: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.res_config_settings_view_form
+msgid "Odoo Product Subscribe Notify"
+msgstr "商品更新のお知らせ"
+
+#. module: website_sale_product_subscribe_notify
 #: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_member_group_point_limit
 msgid "Points Limit"
 msgstr "購読ポイントリミット"
@@ -183,7 +195,7 @@ msgstr "商品更新のお知らせ（${object.get_website_name()}）"
 #. module: website_sale_product_subscribe_notify
 #: model:ir.model,name:website_sale_product_subscribe_notify.model_product_template
 msgid "Product Template"
-msgstr "製品テンプレート"
+msgstr "プロダクトテンプレート"
 
 #. module: website_sale_product_subscribe_notify
 #: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.display_product_subscriptions
@@ -191,9 +203,14 @@ msgid "Return"
 msgstr "戻す"
 
 #. module: website_sale_product_subscribe_notify
+#: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.res_config_settings_view_form
+msgid "Set the maximun of recipients per email for Odoo Product Subscribe Notify"
+msgstr "「商品更新のお知らせ」メールの宛先制限を設定"
+
+#. module: website_sale_product_subscribe_notify
 #: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.display_product_subscriptions
 msgid "Submit"
-msgstr "確認"
+msgstr "申請"
 
 #. module: website_sale_product_subscribe_notify
 #: model:ir.model.fields,field_description:website_sale_product_subscribe_notify.field_product_public_category_subscribe_point
@@ -221,7 +238,7 @@ msgid "You have unsubscribed categories:"
 msgstr "下記のカテゴリに登録を解除しました："
 
 #. module: website_sale_product_subscribe_notify
-#: code:addons/website_sale_product_subscribe_notify/controller/main.py:73
+#: code:addons/website_sale_product_subscribe_notify/controller/main.py:76
 #, python-format
 msgid "You subscription point is not enough to subscribe the selected categories."
 msgstr "購読ポイントが足りません。ご確認してください。"
@@ -246,4 +263,8 @@ msgstr "member.group"
 msgid "pt&amp;nbsp;"
 msgstr "pt&amp;nbsp;"
 
+#. module: website_sale_product_subscribe_notify
+#: model:ir.model,name:website_sale_product_subscribe_notify.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
 
