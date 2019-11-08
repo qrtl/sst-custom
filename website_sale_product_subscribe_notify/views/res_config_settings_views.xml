@@ -17,7 +17,7 @@
                                 <div class="text-muted">
                                     To set the maximun of recipients per email record of Odoo Product Subscribe Notify 
                                 </div>
-                                <span class="col-md-3"><field name="email_recipient_limit"/></span>
+                                <span class="col-md-4"><field name="email_recipient_limit"/></span>
                             </div>
                         </div>
                     </div>

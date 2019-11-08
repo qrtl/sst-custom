@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
-from odoo.exceptions import Warning
+from odoo.exceptions import ValidationError
 
 
 class ResConfigSettings(models.TransientModel):
@@ -26,6 +26,6 @@ class ResConfigSettings(models.TransientModel):
 
     @api.constrains('email_recipient_limit')
     def _check_email_recipient_limit(self):
-        if self.email_recipient_limit <= 0:
-            raise Warning("Email Recipient should be greater than 0!")
+        if (self.email_recipient_limit <= 0 or self.email_recipient_limit > 100):
+            raise ValidationError("Limit Email Recipient needs to be greater than 0 and less than 100.")
             
