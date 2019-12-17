@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2018 Quartile Limited
+# Copyright 2018-2019 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
@@ -35,7 +35,7 @@ class ProductTemplate(models.Model):
                                 "website_published"),
                             'list_price_update': vals.get("list_price"),
                             'description_sale_update': vals.get("description_sale"),
-                            'partner_ids': ','.join([str(partner.id) for partner in partners[n*limit_recipient:(n+1)*limit_recipient]]),
+                            'email_bcc': ','.join([str(partner.email) for partner in partners[n * limit_recipient: (n + 1) * limit_recipient]]),
                             'list_price': list_price
                         })
                         template.with_context(ctx).send_mail(rec.id)

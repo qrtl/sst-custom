@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2018 Quartile Limited
+# Copyright 2018-2019 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Odoo Product Subscribe Notify',
     'version': '11.0.2.0.0',
-    'category' : 'Website',
+    'category': 'Website',
     'license': 'Other proprietary',
     'summary': "Send notification to subscribers",
     'description': """
@@ -20,15 +20,17 @@ any following fields of the product is updated,
         'mail_adj_sst',
         'website_sale',
     ],
-    'data':[
+    'data': [
         'security/ir.model.access.csv',
         'data/templates.xml',
+        'views/mail_mail_views.xml',
+        'views/mail_template_views.xml',
         'views/member_group_views.xml',
         'views/product_public_category_view.xml',
         'views/res_config_settings_views.xml',
         'views/res_partner_views.xml',
         'views/website_templates.xml',
     ],
-    'installable' : True,
-    'application' : False,
+    'installable': True,
+    'application': False,
 }
