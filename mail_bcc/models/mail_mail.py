@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -106,11 +105,9 @@ class MailMail(models.Model):
                         body=email.get('body'),
                         body_alternative=email.get('body_alternative'),
                         email_cc=tools.email_split(mail.email_cc),
-                        # <<< QTL EDIT
                         # Strange that build_email() supports BCC but Odoo
                         # does not add bcc in this method.
                         email_bcc=tools.email_split(mail.email_bcc),
-                        # >>> QTL EDIT
                         reply_to=mail.reply_to,
                         attachments=attachments,
                         message_id=mail.message_id,

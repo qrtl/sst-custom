@@ -64,7 +64,12 @@ class SaleOrder(models.Model):
             if email_act and email_act.get('context'):
                 email_ctx = email_act['context']
                 email_ctx.update(default_email_from=order.company_id.email)
-                # order.with_context(email_ctx).message_post_with_template(email_ctx.get('default_template_id'))
+                # order.with_context(email_ctx).message_post_with_template(
+                #     email_ctx.get('default_template_id'))
+                email_ctx['email_bcc'] = ','.join(
+                    [str(partner.email) for partner in order.message_partner_ids])
+                email_ctx['reply_to'] = order.message_get_reply_to(
+                    [order.id], default=email_ctx['default_email_from'])[order.id]
                 self.env['mail.template'].browse(email_ctx.get(
                     'default_template_id')).with_context(email_ctx).send_mail(order.id)
                 if 'mark_so_as_sent' in email_ctx and email_ctx['mark_so_as_sent'] and order.state == 'draft':
