@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale.email_template_edi_sale" model="mail.template">
+        <field name="reply_to">${ctx['reply_to'] | safe}</field>
+    </record>
+
+</odoo>
