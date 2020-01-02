@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="cart_commission" name="Order Commission" inherit_id="website_sale.total">
+        <xpath expr="//div[@id='order_total_untaxed']" position="before">
+            <div class="row" id="cart_commission" t-if="website_sale_order and website_sale_order.amount_commission">
+                  <span class="col-xs-6 text-right text-muted"> Commission:</span>
+                  <span class="col-xs-6 text-right-not-xs text-left-xs text-muted">
+                      <span t-field="website_sale_order.amount_commission" style="white-space: nowrap;" t-options='{
+                              "widget": "monetary",
+                              "display_currency": website_sale_order.currency_id,
+                          }'/>
+                  </span>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
