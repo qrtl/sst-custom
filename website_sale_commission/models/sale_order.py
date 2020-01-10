@@ -42,6 +42,7 @@ class SaleOrder(models.Model):
                 self.env['sale.order.line'].sudo().create({
                     'order_id': self.id,
                     'is_commission': True,
+                    'website_readonly': True,
                     'product_id': int(website_commission_product_id),
                     'product_uom_qty': 1.0,
                     'price_unit': commission_amount,
@@ -51,9 +52,3 @@ class SaleOrder(models.Model):
                     'product_id': int(website_commission_product_id),
                     'price_unit': commission_amount,
                 })
-
-    @api.one
-    def _compute_website_order_line(self):
-        super(SaleOrder, self)._compute_website_order_line()
-        self.website_order_line = self.website_order_line.filtered(
-            lambda l: not l.is_commission)
