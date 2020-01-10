@@ -11,12 +11,10 @@
 Internal user can assign a commission product to online cart.
     """,
     'depends': [
-        'sales_team',
-        'website_sale',
+        'website_sale_cart_line_readonly',
     ],
     'data': [
         'views/res_config_settings_views.xml',
-        'views/templates.xml',
     ],
     'installable': True,
 }
