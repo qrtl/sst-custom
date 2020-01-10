@@ -13,7 +13,7 @@ portal user tires to remove a product from the cart.
     """,
     'depends': [
         'sales_team',
-        'website_sale',
+        'website_sale_cart_line_readonly',
         'website_sale_cart_product_check',
     ],
     'data': [

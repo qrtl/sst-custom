@@ -24,7 +24,8 @@ class SaleOrder(models.Model):
             'product_id': product_id.id,
             'price_unit': product_id.list_price,
             'tax_id': [(6, 0, taxes_ids)],
-            'is_penalty': True
+            'is_penalty': True,
+            'website_readonly': True
         }
         if self.order_line:
             values['sequence'] = self.order_line[-1].sequence + 1
