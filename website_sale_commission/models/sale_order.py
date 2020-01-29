@@ -35,7 +35,7 @@ class SaleOrder(models.Model):
                     float(website_commission_percentage) / 100
             else:
                 commission_amount = self.env['product.product'].browse(
-                    website_commission_product_id).list_price
+                    int(website_commission_product_id)).list_price
             commission_line = self.order_line.filtered(
                 lambda l: l.is_commission)
             if not commission_line:

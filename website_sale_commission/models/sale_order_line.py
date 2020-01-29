@@ -44,3 +44,11 @@ class SaleOrderLine(models.Model):
                     o.team_id.team_type == 'website'):
                 order.update_website_sale_commission()
         return res
+
+    # Override _get_display_price() to avoid Odoo from displaying the list
+    # price of the commission product on Website, the display price should
+    # also be controlled by the update_website_sale_commission()
+    @api.multi
+    def _get_display_price(self, product):
+        price = super(SaleOrderLine, self)._get_display_price(product)
+        return self.price_unit if self.is_commission else price
