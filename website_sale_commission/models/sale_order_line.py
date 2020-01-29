@@ -51,4 +51,4 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _get_display_price(self, product):
         price = super(SaleOrderLine, self)._get_display_price(product)
-        return self.price_unit if self.is_commission else price
+        return self.price_total if self.is_commission else price
