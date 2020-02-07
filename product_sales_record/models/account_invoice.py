@@ -12,12 +12,11 @@ class AccountInvoice(models.Model):
     def invoice_validate(self):
         result = super(AccountInvoice, self).invoice_validate()
         for account_invoice in self:
-            if account_invoice.state == 'open' and account_invoice.type == \
+            if account_invoice.state in ('open', 'paid') and account_invoice.type == \
                     'out_invoice':
-                for inovice_line in account_invoice.invoice_line_ids:
-                    product = inovice_line.product_id.product_tmpl_id
+                for invoice_line in account_invoice.invoice_line_ids:
+                    product = invoice_line.product_id.product_tmpl_id
                     product.write({
-                        'sale_price_unit': inovice_line.price_subtotal /
-                                           inovice_line.quantity,
+                        'sale_price_unit': invoice_line.price_total/invoice_line.quantity,
                     })
         return result
