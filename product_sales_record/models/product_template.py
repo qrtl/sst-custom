@@ -12,7 +12,7 @@ class ProductTemplate(models.Model):
 
     sale_price_unit = fields.Monetary(
         string='Sale Price (Actual)',
-        digits = dp.get_precision('Product Price'),
+        digits=dp.get_precision('Product Price'),
         readonly=True,
         store=True,
     )
@@ -40,3 +40,21 @@ class ProductTemplate(models.Model):
                 pt.gross_profit = pt.sale_price_unit - pt.standard_price
             else:
                 pt.gross_profit = pt.list_price - pt.standard_price
+
+    @api.multi
+    def _update_sale_price_unit(self):
+        for pt in self:
+            invoice_line = self.env['account.invoice.line'].search([
+                ('product_id.product_tmpl_id', '=', pt.id),
+                ('invoice_type', '=', 'out_invoice'),
+                ('invoice_id.state', 'in', ('open', 'paid')),
+            ], limit=1)
+            if invoice_line:
+                pt.sale_price_unit = invoice_line.price_total / invoice_line.quantity
+            else:
+                order_line = self.env['sale.order.line'].search([
+                    ('product_id.product_tmpl_id', '=', pt.id),
+                    ('state', 'in', ('confirm', 'done')),
+                ], limit=1)
+                if order_line:
+                    pt.sale_price_unit = order_line.price_reduce_taxinc
