@@ -49,4 +49,8 @@ msgstr "販売価格(実績)"
 msgid "Sales Channel"
 msgstr "販売チャネル"
 
+#. module: product_sales_record
+#: model:ir.actions.server,name:product_sales_record.update_product_template_sale_price_unit_action
+msgid "Update Sale Price (Actual)"
+msgstr "販売価格(実績)更新"
 
