@@ -18,6 +18,8 @@ class WebsiteSale(WebsiteSale):
         request.website.sale_get_order(force_create=True)
         return res
 
+    # Overwrite _get_search_order() so the product will be sorted by
+    # write_date in the website
     def _get_search_order(self, post):
         # OrderBy will be parsed in orm and so no direct sql injection
         # id is added to be sure that order is a unique sort key
