@@ -21,5 +21,5 @@ class Website(models.Model):
     def sale_get_payment_term(self, partner):
         DEFAULT_PAYMENT_TERM = 'account.account_payment_term_immediate'
         return partner.property_payment_term_id.id or \
-               request.website.property_payment_term_id.id or \
-               self.env.ref(DEFAULT_PAYMENT_TERM, False).id
+            request.website.property_payment_term_id.id or \
+            self.env.ref(DEFAULT_PAYMENT_TERM, False).id
