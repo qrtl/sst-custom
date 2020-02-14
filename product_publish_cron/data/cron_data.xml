@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo noupdate="1">
+
+    <record model="ir.cron" id="ir_cron_action_update_quant">
+        <field name="name">Product: Publish Products</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="state">code</field>
+        <field name="code">
+# Publish product with custom domain and update custom fields
+# def _publish_product_custom(domain, fields)
+# @param {list} custom_domain: condition/domain of products to be updated
+# @param {dict} custom_fields: fields and the corresponding values to be applied
+model._publish_product_custom([], {})
+        </field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_stock_quant"/>
+    </record>
+
+</odoo>
