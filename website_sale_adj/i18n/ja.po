@@ -119,3 +119,15 @@ msgstr "製品の比較"
 #, python-format
 msgid "Compare"
 msgstr "比較する"
+
+#. module: website_sale_adj
+#: model:ir.actions.server,name:website_sale_adj.update_product_template_website_sequence_date_action
+msgid "Update Website Sequence"
+msgstr "ウェブ表示順更新"
+
+#. module: website_sale_adj
+#: model:ir.model.fields,field_description:website_sale_adj.field_product_product_website_sequence_date
+#: model:ir.model.fields,field_description:website_sale_adj.field_product_template_website_sequence_date
+msgid "Website Sequence Date"
+msgstr "ウェブ更新日"
+

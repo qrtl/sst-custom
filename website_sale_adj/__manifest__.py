@@ -19,6 +19,7 @@ This module modify the website_sale module and provide following feature(s):
         'website_sale',
     ],
     'data': [
+        'data/ir_actions.xml',
         'data/mail_template_data.xml',
         'views/res_config_settings_views.xml',
         'views/templates.xml',
