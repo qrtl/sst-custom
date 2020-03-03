@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='yahoo_product_state_tree_view' model='ir.ui.view'>
+        <field name='name'>yahoo.product.state.tree.view</field>
+        <field name='model'>yahoo.product.state</field>
+        <field name='type'>tree</field>
+        <field name='arch' type='xml'>
+            <tree string='Yahoo Product State' editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='action_yahoo_product_state' model='ir.actions.act_window'>
+        <field name='name'>Yahoo Product State</field>
+        <field name='res_model'>yahoo.product.state</field>
+        <field name='view_type'>form</field>
+        <field name='view_mode'>tree</field>
+    </record>
+
+    <menuitem id="menu_yahoo_product_state" name="Yahoo Product State"
+              parent="sale.menu_sale_config" action='action_yahoo_product_state' sequence="10"/>
+
+</odoo>
