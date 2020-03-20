@@ -12,7 +12,7 @@
     'depends': [
         'crm',
         'hr',
-        'stock_account'',
+        'stock_account',
         'purchase',
         'website_sale',
     ],
