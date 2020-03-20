@@ -6,6 +6,11 @@
                eval="[(6, 0, [ref('group_stock_operator')])]"/>
     </record>
 
+    <record model="ir.ui.menu" id="stock_account.menu_valuation">
+        <field name="groups_id"
+               eval="[(6, 0, [ref('group_stock_operator')])]"/>
+    </record>
+
     <record model="ir.ui.menu" id="crm.menu_crm_opportunities">
         <field name="groups_id"
                eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
