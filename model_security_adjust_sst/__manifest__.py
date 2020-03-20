@@ -10,6 +10,7 @@
     'license': "AGPL-3",
     'description': "",
     'depends': [
+        'crm',
         'hr',
         'stock',
         'purchase',
