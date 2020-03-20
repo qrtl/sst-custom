@@ -19,7 +19,7 @@
         'security/hr_security.xml',
         'security/stock_security.xml',
         'security/ir.model.access.csv',
-        'views/stock_menu_views.xml',
+        'views/ir_ui_menu_views.xml',
     ],
     'installable': True,
 }
