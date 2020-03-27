@@ -1,5 +1,5 @@
 # Copyright 2020 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import time
 
@@ -86,7 +86,7 @@ class WebsiteSaleAdj(common.TransactionCase):
             'website_published': True,
         })
         product_3 = self.env['product.template'].create({
-            'name': 'Test 002',
+            'name': 'Test 003',
             'website_published': True,
         })
         product_order_list = self.env['product.template'].search(
