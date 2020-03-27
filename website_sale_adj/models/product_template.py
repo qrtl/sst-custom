@@ -10,6 +10,7 @@ class ProductTemplate(models.Model):
 
     website_sequence_date = fields.Datetime(
         string='Website Sequence Date',
+        default=fields.Datetime.now,
     )
 
     @api.multi
