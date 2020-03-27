@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api
 
@@ -10,6 +10,7 @@ class ProductTemplate(models.Model):
 
     website_sequence_date = fields.Datetime(
         string='Website Sequence Date',
+        default=fields.Datetime.now,
     )
 
     @api.multi

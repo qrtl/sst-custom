@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     'name': 'Website Sales Adjustment',
-    'version': '11.0.1.1.1',
+    'version': '11.0.1.2.0',
     'author': 'Quartile Limited',
     'website': 'https://www.quartile.co',
     'category': 'Product',
-    'license': "AGPL-3",
+    'license': "LGPL-3",
     'description': """
 This module modify the website_sale module and provide following feature(s):
  - Show product_state_id in the /shop/product page.
