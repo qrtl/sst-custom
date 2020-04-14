@@ -9,6 +9,5 @@ class ProductTemplate(models.Model):
 
     shelf_id = fields.Char(
         string="Shelf ID",
-        default=False,
         copy=False
     )
