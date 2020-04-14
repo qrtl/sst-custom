@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018-2019 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     'name': 'Odoo Product Subscribe Notify',
     'version': '11.0.2.0.1',
     'category': 'Website',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'summary': "Send notification to subscribers",
     'description': """
 This module allows to send notification to the subscribers of the category if
