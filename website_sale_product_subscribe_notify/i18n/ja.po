@@ -235,7 +235,7 @@ msgstr "下記のカテゴリに登録しました："
 #. module: website_sale_product_subscribe_notify
 #: model:ir.ui.view,arch_db:website_sale_product_subscribe_notify.template_thanks_message
 msgid "You have unsubscribed categories:"
-msgstr "下記のカテゴリに登録を解除しました："
+msgstr "下記のカテゴリへの登録を解除しました："
 
 #. module: website_sale_product_subscribe_notify
 #: code:addons/website_sale_product_subscribe_notify/controller/main.py:76
