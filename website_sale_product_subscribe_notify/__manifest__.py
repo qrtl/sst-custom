@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Odoo Product Subscribe Notify',
-    'version': '11.0.2.0.0',
+    'version': '11.0.2.0.1',
     'category': 'Website',
     'license': 'Other proprietary',
     'summary': "Send notification to subscribers",
