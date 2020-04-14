@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from . import member_group
 from . import product_public_category
 from . import product_template
