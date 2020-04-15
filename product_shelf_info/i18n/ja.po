@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_shelf_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-14 09:48+0000\n"
+"PO-Revision-Date: 2020-04-14 09:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_shelf_info
+#: model:ir.model,name:product_shelf_info.model_product_template
+msgid "Product Template"
+msgstr "プロダクトテンプレート"
+
+#. module: product_shelf_info
+#: model:ir.model.fields,field_description:product_shelf_info.field_product_product_shelf_id
+#: model:ir.model.fields,field_description:product_shelf_info.field_product_template_shelf_id
+msgid "Shelf ID"
+msgstr "保管ID"
+
+#. module: product_shelf_info
+#: model:ir.ui.view,arch_db:product_shelf_info.report_delivery_document
+msgid "Shelf:"
+msgstr "保管:"
+
