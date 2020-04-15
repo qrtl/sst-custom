@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_shelf_management
+#	* product_shelf_info
 #
 msgid ""
 msgstr ""
@@ -15,13 +15,19 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: product_shelf_management
-#: model:ir.model,name:product_shelf_management.model_product_template
+#. module: product_shelf_info
+#: model:ir.model,name:product_shelf_info.model_product_template
 msgid "Product Template"
 msgstr "プロダクトテンプレート"
 
-#. module: product_shelf_management
-#: model:ir.model.fields,field_description:product_shelf_management.field_product_product_shelf_id
-#: model:ir.model.fields,field_description:product_shelf_management.field_product_template_shelf_id
+#. module: product_shelf_info
+#: model:ir.model.fields,field_description:product_shelf_info.field_product_product_shelf_id
+#: model:ir.model.fields,field_description:product_shelf_info.field_product_template_shelf_id
 msgid "Shelf ID"
 msgstr "保管ID"
+
+#. module: product_shelf_info
+#: model:ir.ui.view,arch_db:product_shelf_info.report_delivery_document
+msgid "Shelf:"
+msgstr "保管:"
+
