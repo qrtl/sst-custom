@@ -16,10 +16,10 @@ class WebsiteSale(WebsiteSale):
     def get_attribute_value_ids(self, product):
         res = super(WebsiteSale, self).get_attribute_value_ids(product)
         variant_ids = [r[0] for r in res]
-        for r, varient in izip(
+        for r, variant in izip(
             res, request.env["product.product"].sudo().browse(variant_ids)
         ):
             # Directly refer [4] since 'res' is a list instead of a dict object
-            qty = varient.sudo().website_sale_available_qty
+            qty = variant.sudo().website_sale_available_q
             r[4].update({"website_sale_available_qty": qty})
         return res
