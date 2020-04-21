@@ -8,13 +8,17 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@id='webmaster_settings']" position="after">
                 <h2>Website Forum Configuration</h2>
-                <div class="row mt16 o_settings_container" id="web_fourm_settings">
-                    <div class="col-xs-12 col-md-6 o_setting_box" id="website_forum_setting">
+                <div class="row mt16 o_settings_container"
+                     id="web_fourm_settings">
+                    <div class="col-xs-12 col-md-6 o_setting_box"
+                         id="website_forum_setting">
                         <div class="o_setting_right_pane">
                             <div class="content-group">
                                 <div class="row mt16">
-                                    <label class="col-md-3 o_light_label" string="Mail Server for Forum\'s Updates"/>
-                                    <field name="forum_mail_server_id" widget="selection"/>
+                                    <label class="col-md-3 o_light_label"
+                                           string="Mail Server for Forum\'s Updates"/>
+                                    <field name="forum_mail_server_id"
+                                           widget="selection"/>
                                 </div>
                             </div>
                         </div>

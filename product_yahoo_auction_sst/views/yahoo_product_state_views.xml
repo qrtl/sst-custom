@@ -20,6 +20,7 @@
     </record>
 
     <menuitem id="menu_yahoo_product_state" name="Yahoo Product State"
-              parent="sale.menu_sale_config" action='action_yahoo_product_state' sequence="10"/>
+              parent="sale.menu_sale_config"
+              action='action_yahoo_product_state' sequence="10"/>
 
 </odoo>

@@ -13,25 +13,25 @@
                         <field name="team_id"/>
                     </group>
                 </group>
-            <footer>
-                <button name ="action_create_sale_order"
-                        string="Create Sales Order" type="object"
-                        class="oe_highlight"/>
-                or
-                <button string="Cancel" class="oe_link" special="cancel" />
-            </footer>
+                <footer>
+                    <button name="action_create_sale_order"
+                            string="Create Sales Order" type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
             </form>
         </field>
     </record>
 
     <act_window
-        id="action_quant_sale_order" 
+        id="action_quant_sale_order"
         multi="True"
         key2="client_action_multi"
         name="Create Sales Order"
         res_model="quant.sale.order.wizard"
         src_model="stock.quant"
-        view_mode="form" target="new" 
+        view_mode="form" target="new"
         view_type="form"/>
 
- </odoo>
+</odoo>

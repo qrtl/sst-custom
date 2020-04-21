@@ -4,7 +4,9 @@
     <record id="email_template_product_public_category" model="mail.template">
         <field name="name">product public category- Send by Email</field>
         <field name="email_from">${object.company_id.email}</field>
-        <field name="subject">Product Information Update Notification (${object.get_website_name()})</field>
+        <field name="subject">Product Information Update Notification
+            (${object.get_website_name()})
+        </field>
         <field name="email_to">${object.company_id.email}</field>
         <field name="email_bcc">${ctx['email_bcc']}</field>
         <field name="model_id" ref="product.model_product_template"/>

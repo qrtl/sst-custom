@@ -5,10 +5,10 @@
         <field name="name">error.log.form</field>
         <field name="model">error.log</field>
         <field name="arch" type="xml">
-             <form string="Error Logs" create="false" edit="false">
-                 <header>
-                     <field name="state" widget="statusbar"/>
-                 </header>
+            <form string="Error Logs" create="false" edit="false">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
@@ -34,7 +34,7 @@
                         </page>
                     </notebook>
                 </sheet>
-             </form>
+            </form>
         </field>
     </record>
 
@@ -42,14 +42,14 @@
         <field name="name">error.log.tree</field>
         <field name="model">error.log</field>
         <field name="arch" type="xml">
-             <tree string="Error Logs" create="false" edit="false"
-                   colors="red:state == 'failed';"
-                   default_order="import_date desc">
+            <tree string="Error Logs" create="false" edit="false"
+                  colors="red:state == 'failed';"
+                  default_order="import_date desc">
                 <field name="import_date"/>
                 <field name="import_user_id"/>
                 <field name="model_id"/>
                 <field name="state"/>
-             </tree>
+            </tree>
         </field>
     </record>
 
@@ -60,19 +60,19 @@
             <search string="Search Logs">
                 <group>
                     <field name="state"/>
-                    <field name="import_user_id" />
+                    <field name="import_user_id"/>
                     <field name="import_date"/>
                     <field name="model_id"/>
                 </group>
                 <group expand="0" string="Group By...">
                     <filter string="Status" name="state"
-                            context="{'group_by':'state'}" />
+                            context="{'group_by':'state'}"/>
                     <filter string="Imported By" name="import_user_id"
-                            context="{'group_by':'import_user_id'}" />
+                            context="{'group_by':'import_user_id'}"/>
                     <filter string="Import Date" name="import_date"
-                            context="{'group_by':'import_date'}" />
+                            context="{'group_by':'import_date'}"/>
                     <filter string="Model" name="model_id"
-                            context="{'group_by':'model_id'}" />
+                            context="{'group_by':'model_id'}"/>
                 </group>
             </search>
         </field>

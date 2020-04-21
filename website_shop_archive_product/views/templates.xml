@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="shop_products_archive" inherit_id="website_sale.products" active="False" customize_show="True" name="eCommerce Archive Product">
+    <template id="shop_products_archive" inherit_id="website_sale.products"
+              active="False" customize_show="True"
+              name="eCommerce Archive Product">
         <xpath expr="//div[@id='products_grid_before']" position="before">
             <div>
                 <label class="switch">
-                  <a t-if="not request.session.product_archive" href="/shop/active" class="btn btn-success" role="button">Show Archived Products</a>
-                  <a t-if="request.session.product_archive" href="/shop/in_active" class="btn btn-danger" role="button">Show Active Products</a><br/>
+                    <a t-if="not request.session.product_archive"
+                       href="/shop/active" class="btn btn-success"
+                       role="button">Show Archived Products
+                    </a>
+                    <a t-if="request.session.product_archive"
+                       href="/shop/in_active" class="btn btn-danger"
+                       role="button">Show Active Products
+                    </a>
+                    <br/>
                 </label>
 
             </div>

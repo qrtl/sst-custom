@@ -44,6 +44,8 @@
         <field name='view_mode'>tree,form</field>
     </record>
 
-    <menuitem id="menu_request_medium" name="Request Media" parent="menu_purchase_in_config_purchase" action='action_request_medium' sequence="20"/>
+    <menuitem id="menu_request_medium" name="Request Media"
+              parent="menu_purchase_in_config_purchase"
+              action='action_request_medium' sequence="20"/>
 
 </odoo>

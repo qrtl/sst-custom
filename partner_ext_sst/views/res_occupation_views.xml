@@ -36,6 +36,8 @@
         <field name='view_mode'>tree,form</field>
     </record>
 
-    <menuitem id="menu_occupation" name="Occupations" parent="menu_vendor_in_config_purchase" action='action_occupation' sequence="15"/>
+    <menuitem id="menu_occupation" name="Occupations"
+              parent="menu_vendor_in_config_purchase"
+              action='action_occupation' sequence="15"/>
 
 </odoo>

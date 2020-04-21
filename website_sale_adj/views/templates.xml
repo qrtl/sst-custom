@@ -14,7 +14,11 @@
     <template id="cart" inherit_id="website_sale.cart">
         <xpath expr="//h2[@class='mb8 mt8']"
                position="after">
-            <p><font class="text-gamma" style="">Products that left in the cart for over two days will be removed.</font></p>
+            <p>
+                <font class="text-gamma" style="">Products that left in the
+                    cart for over two days will be removed.
+                </font>
+            </p>
         </xpath>
     </template>
 

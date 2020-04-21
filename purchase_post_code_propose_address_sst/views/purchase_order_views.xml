@@ -20,7 +20,8 @@
     <record id="view_purchase_order_filter" model="ir.ui.view">
         <field name="name">request.quotation.select</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_ext_sst.view_purchase_order_filter"/>
+        <field name="inherit_id"
+               ref="purchase_ext_sst.view_purchase_order_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='address']" position="replace">
                 <field name="zipcode"/>
@@ -37,20 +38,27 @@
             <xpath expr="//field[@name='address']" position="replace">
                 <label for="zip"/>
                 <div>
-                    〒 <field name="zip"/>
+                    〒
+                    <field name="zip"/>
                 </div>
                 <label for="zipcode"/>
                 <div>
-                    <span class="oe_read_only">〒 </span><field name="zipcode"/>
+                    <span class="oe_read_only">〒</span>
+                    <field name="zipcode"/>
                 </div>
                 <label for="state_id" string="Address"/>
                 <div class="o_address_format">
                     <div>
-                        <field name="state_id" class="o_address_state" placeholder="State" domain="[('country_id','=',country_id)]"/>
-                        <field name="city" class="o_address_city" placeholder="City"/>
+                        <field name="state_id" class="o_address_state"
+                               placeholder="State"
+                               domain="[('country_id','=',country_id)]"/>
+                        <field name="city" class="o_address_city"
+                               placeholder="City"/>
                     </div>
-                    <field name="street" class="o_address_street" placeholder="Street..."/>
-                    <field name="street2" class="o_address_street" placeholder="Street 2..."/>
+                    <field name="street" class="o_address_street"
+                           placeholder="Street..."/>
+                    <field name="street2" class="o_address_street"
+                           placeholder="Street 2..."/>
                     <field name="country_id" invisible="1"/>
                 </div>
             </xpath>

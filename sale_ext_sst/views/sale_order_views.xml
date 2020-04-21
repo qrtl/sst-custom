@@ -72,6 +72,6 @@
                        attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}"/>
             </xpath>
         </field>
-     </record>
+    </record>
 
 </odoo>

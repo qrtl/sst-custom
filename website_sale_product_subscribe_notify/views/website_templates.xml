@@ -54,7 +54,9 @@
               name="Display Product Subscriptions">
         <t t-call="portal.portal_layout">
             <h3 class="page-header">Your Product Category Subscriptions</h3>
-            <h5>Available Subscription Points: <span t-field="website.env.user.remaining_point_limit"/></h5>
+            <h5>Available Subscription Points:
+                <span t-field="website.env.user.remaining_point_limit"/>
+            </h5>
             <p class="alert alert-danger" t-if="error">
                 <t t-esc="error"/>
             </p>
@@ -73,7 +75,8 @@
                         Submit
                     </button>
                     <a class="btn btn-default mb32"
-                       href="/my/home">Return</a>
+                       href="/my/home">Return
+                    </a>
                 </form>
             </div>
         </t>

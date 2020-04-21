@@ -4,7 +4,7 @@
     <record id="view_delivery_carrier_form" model="ir.ui.view">
         <field name="name">delivery.carrier.form</field>
         <field name="model">delivery.carrier</field>
-        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_id']" position="after">
                 <field name="delivery_warehouse_id"/>
@@ -15,7 +15,7 @@
     <record id="view_delivery_carrier_tree" model="ir.ui.view">
         <field name="name">delivery.carrier.tree</field>
         <field name="model">delivery.carrier</field>
-        <field name="inherit_id" ref="delivery.view_delivery_carrier_tree" />
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='delivery_type']" position="after">
                 <field name="delivery_warehouse_id"/>

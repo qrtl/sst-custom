@@ -6,7 +6,8 @@
         <field name="model">stock.quant</field>
         <field eval="10" name="priority"/>
         <field name="arch" type="xml">
-            <tree string="Inventory Valuation" create="0" delete="0" decoration-danger="quantity &lt; 0">
+            <tree string="Inventory Valuation" create="0" delete="0"
+                  decoration-danger="quantity &lt; 0">
                 <field name="product_id"/>
                 <field name="team_ids" widget="many2many_tags"/>
                 <field name="location_id"/>
@@ -34,13 +35,15 @@
     </record>
 
     <record id="action_stock_quant" model="ir.actions.act_window">
-         <field name="name">Stock Quant</field>
-         <field name="res_model">stock.quant</field>
-         <field name="type">ir.actions.act_window</field>
-         <field name="view_type">form</field>
-         <field name="view_id" ref="view_stock_quant_tree"/>
-         <field name="context">{'search_default_internal_loc': 1, 'search_default_stockable': 1}</field>
-         <field name="search_view_id" ref="stock.quant_search_view"/>
+        <field name="name">Stock Quant</field>
+        <field name="res_model">stock.quant</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_stock_quant_tree"/>
+        <field name="context">{'search_default_internal_loc': 1,
+            'search_default_stockable': 1}
+        </field>
+        <field name="search_view_id" ref="stock.quant_search_view"/>
     </record>
 
     <menuitem action="action_stock_quant"

@@ -44,6 +44,8 @@
         <field name='view_mode'>tree,form</field>
     </record>
 
-    <menuitem id="menu_purchase_category" name="Purchase Categories" parent="menu_purchase_in_config_purchase" action='action_purchase_category' sequence="30"/>
+    <menuitem id="menu_purchase_category" name="Purchase Categories"
+              parent="menu_purchase_in_config_purchase"
+              action='action_purchase_category' sequence="30"/>
 
 </odoo>

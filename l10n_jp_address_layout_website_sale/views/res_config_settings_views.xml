@@ -7,8 +7,10 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@id='webmaster_settings']" position="after">
                 <h2>Website Address Input</h2>
-                <div class="row mt16 o_settings_container" id="website_default_country_setting">
-                    <div class="col-xs-12 col-md-6 o_setting_box" id="website_default_country_setting">
+                <div class="row mt16 o_settings_container"
+                     id="website_default_country_setting">
+                    <div class="col-xs-12 col-md-6 o_setting_box"
+                         id="website_default_country_setting">
                         <div class="o_setting_right_pane">
                             <div class="content-group">
                                 <div class="row mt16">

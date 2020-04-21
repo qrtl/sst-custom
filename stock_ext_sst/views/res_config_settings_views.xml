@@ -13,7 +13,8 @@
                          id="picking_product_state_settins"
                          groups="base.group_no_one">
                         <div class="o_setting_right_pane">
-                            <label string="State For Finished Picking Product"/>
+                            <label
+                                string="State For Finished Picking Product"/>
                             <div class="content-group">
                                 <div class="row mt16">
                                     <label class="o_light_label col-md-3"

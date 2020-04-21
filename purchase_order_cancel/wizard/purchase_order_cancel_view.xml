@@ -4,16 +4,19 @@
     <record model="ir.ui.view" id="purchase_order_cancel_form_view">
         <field name="name">purchase.order.cancel.from</field>
         <field name="model">purchase.order.cancel</field>
-            <field name="arch" type="xml">
-                <form string="Cancel Purchase Order">
-                    <p>Are you sure to delete the selected purchase order(s)?</p>
-                    <footer>
-                        <button string="Confirm" groups="purchase.group_purchase_user" name="action_cancel_purchase_order" type="object" class="oe_highlight"/>
-                        or
-                        <button string="Cancel" class="oe_link" special="cancel"/>
-                    </footer>
-                </form>
-            </field>
+        <field name="arch" type="xml">
+            <form string="Cancel Purchase Order">
+                <p>Are you sure to delete the selected purchase order(s)?</p>
+                <footer>
+                    <button string="Confirm"
+                            groups="purchase.group_purchase_user"
+                            name="action_cancel_purchase_order" type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
     </record>
 
     <act_window id="cancel_purchase_order_wizard"

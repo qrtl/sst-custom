@@ -12,13 +12,16 @@
                         type="object" class="oe_read_only"/>
             </xpath>
             <xpath expr="//h1" position="replace">
-                <h2><field name="name" placeholder="Product Name"/></h2>
+                <h2>
+                    <field name="name" placeholder="Product Name"/>
+                </h2>
             </xpath>
             <xpath expr="//field[@name='image_medium']" position="replace"/>
             <xpath expr="//div[@name='options']" position="inside">
                 <field name="image_medium" widget="image" class="oe_avatar"/>
             </xpath>
-            <xpath expr="//page[@name='general_information']/group" position="after">
+            <xpath expr="//page[@name='general_information']/group"
+                   position="after">
                 <group>
                     <group>
                         <field name="team_ids" widget="many2many_tags"/>
@@ -42,7 +45,8 @@
                         <field name="team_ids" widget="many2many_tags"/>
                         <field name="product_state_id" widget="selection"/>
                         <field name="description_sale"/>
-                        <field name="list_price" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                        <field name="list_price" widget='monetary'
+                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
                         <field name="evaluated_by_id"/>
                         <field name="yahoo_product_state_id"/>
                     </group>
@@ -121,7 +125,8 @@
                 <field name="yahoo_product_state_id"/>
                 <field name="staff_in_charge"/>
                 <field name="type" invisible="1"/>
-                <field name="uom_id" options="{'no_open': True, 'no_create': True}"
+                <field name="uom_id"
+                       options="{'no_open': True, 'no_create': True}"
                        groups="product.group_uom"/>
                 <field name="active" invisible="1"/>
                 <button name="open_record" type="object" icon="fa-sign-in"/>

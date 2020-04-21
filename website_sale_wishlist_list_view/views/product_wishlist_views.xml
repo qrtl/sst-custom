@@ -20,8 +20,10 @@
         <field name="arch" type="xml">
             <search string="Product Wishlist">
                 <group expand="0" string="Group By">
-                    <filter string="Product" domain="[]" context="{'group_by':'product_id'}"/>
-                    <filter string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Product" domain="[]"
+                            context="{'group_by':'product_id'}"/>
+                    <filter string="Customer" domain="[]"
+                            context="{'group_by':'partner_id'}"/>
                 </group>
                 <field name="product_id"/>
                 <field name="partner_id"/>
@@ -41,6 +43,6 @@
     <menuitem id="menu_product_wishlist" name="Product Wishlist"
               parent="website_sale.menu_catalog"
               action="action_product_wishlist" sequence="10"/>
-    
-    
+
+
 </odoo>

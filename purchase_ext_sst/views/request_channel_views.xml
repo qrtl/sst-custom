@@ -44,7 +44,11 @@
         <field name='view_mode'>tree,form</field>
     </record>
 
-    <menuitem id="menu_purchase_in_config_purchase" name="Purchases" parent="purchase.menu_purchase_config" sequence="50" groups="base.group_no_one"/>
-    <menuitem id="menu_request_channel" name="Request Channels" parent="menu_purchase_in_config_purchase" action='action_request_channel' sequence="10"/>
+    <menuitem id="menu_purchase_in_config_purchase" name="Purchases"
+              parent="purchase.menu_purchase_config" sequence="50"
+              groups="base.group_no_one"/>
+    <menuitem id="menu_request_channel" name="Request Channels"
+              parent="menu_purchase_in_config_purchase"
+              action='action_request_channel' sequence="10"/>
 
 </odoo>

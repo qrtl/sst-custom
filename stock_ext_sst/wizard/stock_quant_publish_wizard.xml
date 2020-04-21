@@ -6,14 +6,16 @@
         <field name="model">stock.quant.publish.wizard</field>
         <field name="arch" type="xml">
             <form string="Stock Quant Publish">
-                <p class="oe_gray">This wizard will publish selected stock quants to website at once.</p>
+                <p class="oe_gray">This wizard will publish selected stock
+                    quants to website at once.
+                </p>
                 <group>
                     <group>
                         <field name="yahoo_product_state_id"/>
                     </group>
                 </group>
                 <footer>
-                    <button name ="action_stock_quant_publish"
+                    <button name="action_stock_quant_publish"
                             string="Publish" type="object"
                             class="oe_highlight"/>
                     or

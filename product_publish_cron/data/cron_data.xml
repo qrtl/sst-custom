@@ -8,11 +8,13 @@
         <field name="numbercall">-1</field>
         <field name="state">code</field>
         <field name="code">
-# Publish product with custom domain and update custom fields
-# def _publish_product_custom(domain, fields)
-# @param {list} custom_domain: condition/domain of products to be updated
-# @param {dict} custom_fields: fields and the corresponding values to be applied
-model._publish_product_custom([], {})
+            # Publish product with custom domain and update custom fields
+            # def _publish_product_custom(domain, fields)
+            # @param {list} custom_domain: condition/domain of products to be
+            updated
+            # @param {dict} custom_fields: fields and the corresponding values
+            to be applied
+            model._publish_product_custom([], {})
         </field>
         <field name="doall" eval="False"/>
         <field name="model_id" ref="model_stock_quant"/>

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2013 Guewen Baconnier,Camptocamp SA,Akretion
 # © 2016 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -7,9 +6,9 @@ from odoo.addons.component.core import AbstractComponent
 
 
 class OdooImportMapper(AbstractComponent):
-    _name = 'odoo.import.mapper'
-    _inherit = ['base.odoo.connector', 'base.import.mapper']
-    _usage = 'import.mapper'
+    _name = "odoo.import.mapper"
+    _inherit = ["base.odoo.connector", "base.import.mapper"]
+    _usage = "import.mapper"
 
 
 # class OdooExportMapper(AbstractComponent):
@@ -24,7 +23,8 @@ def normalize_datetime(field):
     OpenERP"""
 
     def modifier(self, record, to_attr):
-        if record[field] == '0000-00-00 00:00:00':
+        if record[field] == "0000-00-00 00:00:00":
             return None
         return record[field]
+
     return modifier

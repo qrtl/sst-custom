@@ -5,7 +5,7 @@
         <field name="name">sale_import.defaul.tree</field>
         <field name="model">sale.import.default</field>
         <field name="arch" type="xml">
-             <tree string="Default Tree" editable="bottom">
+            <tree string="Default Tree" editable="bottom">
                 <field name="company_id"/>
                 <field name="picking_policy"/>
                 <field name="customer_invoice_journal_id"
@@ -14,7 +14,7 @@
                 <field name="customer_payment_journal_id"
                        domain="['|',('type','=','cash'),('type','=','bank'),
                                     ('company_id','=',company_id)]"/>
-             </tree>
+            </tree>
         </field>
     </record>
 
