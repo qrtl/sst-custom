@@ -1,0 +1,18 @@
+# Copyright 2020 Quartile Limited
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+{
+    'name': 'Website blog\'s Mail Server',
+    'version': '11.0.1.0.0',
+    'author': 'Quartile Limited',
+    'website': 'https://www.quartile.co',
+    'category': 'Website',
+    'license': "LGPL-3",
+    'depends': [
+        'website_blog',
+        'ir_mail_server_email_from',
+    ],
+    'data': [
+        'views/res_config_settings_views.xml',
+    ],
+    'installable': True,
+}
