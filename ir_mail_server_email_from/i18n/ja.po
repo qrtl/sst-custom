@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ir_mail_server_email_from
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-24 08:12+0000\n"
+"PO-Revision-Date: 2020-04-24 08:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ir_mail_server_email_from
+#: model:ir.model,name:ir_mail_server_email_from.model_ir_mail_server
+msgid "ir.mail_server"
+msgstr "ir.mail_server"
+
+#. module: ir_mail_server_email_from
+#: model:ir.model.fields,field_description:ir_mail_server_email_from.field_ir_mail_server_smtp_from
+msgid "Email From"
+msgstr "差出人"
+
+#. module: ir_mail_server_email_from
+#: model:ir.model.fields,help:ir_mail_server_email_from.field_ir_mail_server_smtp_from
+msgid "Set this in order to email from a specific address."
+msgstr "メールの差出人をマニュアルに設定します。"
+
