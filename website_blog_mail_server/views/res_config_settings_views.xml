@@ -13,7 +13,7 @@
                             <div class="content-group">
                                 <div class="row mt16">
                                     <label class="col-md-3 o_light_label" string="Mail Server for Blog's Updates"/>
-                                    <field name="website_blog_mail_server_id" widget="selection"/>
+                                    <field name="blog_mail_server_id" widget="selection"/>
                                 </div>
                             </div>
                         </div>

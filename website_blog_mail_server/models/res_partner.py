@@ -12,8 +12,8 @@ class ResPartner(models.Model):
         mail_values = super(
             ResPartner, self)._notify_prepare_email_values(message)
         if message.model and message.model in ('blog.post', 'blog.blog'):
-            website_blog_mail_server_id = self.env['website'].sudo(
-            ).get_current_website().website_blog_mail_server_id
-            if website_blog_mail_server_id:
-                mail_values['mail_server_id'] = website_blog_mail_server_id.id
+            blog_mail_server_id = self.env['website'].sudo(
+            ).get_current_website().blog_mail_server_id
+            if blog_mail_server_id:
+                mail_values['mail_server_id'] = blog_mail_server_id.id
         return mail_values

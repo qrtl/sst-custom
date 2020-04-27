@@ -7,8 +7,8 @@ from odoo import models, fields
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    website_blog_mail_server_id = fields.Many2one(
+    blog_mail_server_id = fields.Many2one(
         'ir.mail_server',
-        related='website_id.website_blog_mail_server_id',
+        related='website_id.blog_mail_server_id',
         string='Mail Server for Blog\'s Updates',
     )
