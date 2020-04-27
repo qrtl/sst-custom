@@ -73,9 +73,6 @@ jobs:
     - stage: install
       env:
         - TESTS="1" ODOO_REPO="odoo/odoo" MAKEPOT="1" TEST_ENABLE="0" EXCLUDE=""
-    - stage: install
-      env:
-        - TESTS="1" ODOO_REPO="OCA/OCB" TEST_ENABLE="0" EXCLUDE=""
 
 env:
   global:
@@ -94,7 +91,7 @@ env:
     # Use the above line to install dependencies that are required for website repos:
     # * SASS & Bootstrap-SASS
     # * Compass
-    - EXCLUDE="partner_category_hierarchy,website_forum_visibility"
+    - EXCLUDE=""
     # Exclude modules that do not maintained by QRTL and failed the unit-tests in the module
 
 install:
