@@ -130,7 +130,6 @@ class APIController(http.Controller):
         """
         ioc_name = model
         model = request.env[self._model].sudo().search([("model", "=", model)], limit=1)
-        print(model)
         if model:
             try:
                 resource = request.env[model.model].sudo().create(payload)

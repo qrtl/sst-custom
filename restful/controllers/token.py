@@ -51,7 +51,6 @@ class AccessToken(http.Controller):
         """
         _token = request.env["api.access_token"]
         params = ["db", "login", "password"]
-        print(post)
         params = {key: post.get(key) for key in params if post.get(key)}
         db, username, password = (
             params.get("db"),
