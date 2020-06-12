@@ -10,4 +10,12 @@
             </td>
         </xpath>
     </template>
+    <template id="portal_invoice_report" inherit_id="account.portal_invoice_report">
+        <xpath expr="//div[@t-if='invoice.name']" position="after">
+            <div class="col-xs-2" t-if="invoice.sale_order_warehouse_id">
+                <strong>Warehouse:</strong>
+                <p t-field="invoice.sale_order_warehouse_id"/>
+            </div>
+        </xpath>
+    </template>
 </odoo>
