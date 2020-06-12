@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="portal_my_invoices" inherit_id="account.portal_my_invoices">
+        <xpath expr="//th[1]" position="after">
+            <th>Warehouse</th>
+        </xpath>
+        <xpath expr="//td[1]" position="after">
+            <td>
+                <span t-field="invoice.sale_order_warehouse_id" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
