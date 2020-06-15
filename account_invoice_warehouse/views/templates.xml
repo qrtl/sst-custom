@@ -6,15 +6,15 @@
         </xpath>
         <xpath expr="//td[1]" position="after">
             <td>
-                <span t-field="invoice.sale_order_warehouse_id" />
+                <span t-field="invoice.warehouse_id" />
             </td>
         </xpath>
     </template>
     <template id="portal_invoice_report" inherit_id="account.portal_invoice_report">
         <xpath expr="//div[@t-if='invoice.name']" position="after">
-            <div class="col-xs-2" t-if="invoice.sale_order_warehouse_id">
+            <div class="col-xs-2" t-if="invoice.warehouse_id">
                 <strong>Warehouse:</strong>
-                <p t-field="invoice.sale_order_warehouse_id"/>
+                <p t-field="invoice.warehouse_id" />
             </div>
         </xpath>
     </template>

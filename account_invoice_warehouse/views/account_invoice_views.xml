@@ -9,7 +9,7 @@
                 expr="//page[@name='other_info']//field[@name='name']"
                 position="after"
             >
-                <field name="sale_order_warehouse_id" />
+                <field name="warehouse_id" />
             </xpath>
         </field>
     </record>
