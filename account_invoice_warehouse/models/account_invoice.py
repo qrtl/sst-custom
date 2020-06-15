@@ -11,6 +11,7 @@ class AccountInvoice(models.Model):
         "stock.warehouse",
         string="Sale Order Warehouse",
         compute="_compute_warehouse_id",
+        help="Store the warehouse_id of the sale order.",
     )
 
     @api.multi
