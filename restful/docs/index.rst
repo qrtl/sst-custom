@@ -99,4 +99,3 @@ To delete acccess-token
 
     p = requests.delete('http://theninnercicle.com.ng/api/res.partner/68', headers=headers)
     print(p.content)
-
