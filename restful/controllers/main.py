@@ -124,12 +124,9 @@ class APIController(http.Controller):
         ioc_name = model
         model = request.env[self._model].sudo().search([("model", "=", model)], limit=1)
         if model:
-            # print(request.env["product.image"].search([('image', '!=', False)], limit=1).image)
-            print(payload)
             try:
                 resource = request.env[model.model].sudo().create(payload)
             except Exception as e:
-                print(e)
                 return invalid_response("params", e)
             else:
                 data = {"id": resource.id}
