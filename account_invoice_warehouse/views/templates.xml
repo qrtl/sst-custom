@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="portal_my_invoices" inherit_id="account.portal_my_invoices">
+        <xpath expr="//th[1]" position="after">
+            <th>Warehouse</th>
+        </xpath>
+        <xpath expr="//td[1]" position="after">
+            <td>
+                <span t-field="invoice.warehouse_id" />
+            </td>
+        </xpath>
+    </template>
+    <template id="portal_invoice_report" inherit_id="account.portal_invoice_report">
+        <xpath expr="//div[@t-if='invoice.name']" position="after">
+            <div class="col-xs-2" t-if="invoice.warehouse_id">
+                <strong>Warehouse:</strong>
+                <p t-field="invoice.warehouse_id" />
+            </div>
+        </xpath>
+    </template>
+</odoo>
