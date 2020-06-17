@@ -5,6 +5,7 @@ import logging
 import werkzeug.wrappers
 
 from odoo.http import request
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 try:
@@ -49,13 +50,16 @@ def invalid_response(typ, message=None, status=401):
 def extract_arguments(payloads, offset=0, limit=0, order=None):
     """."""
     fields, domain, payload = [], [], {}
-    data = str(payloads)[2:-2]
     try:
-        payload = json.loads(data)
+        # QRTL Edit
+        # Assume payloads is a json formatted string
+        payload = json.loads(payloads)
     except JSONDecodeError as e:
         _logger.error(e)
     if payload.get("domain"):
-        for _domain in payload.get("domain"):
+        # QRTL Edit
+        # Loads tuple from the domain
+        for _domain in safe_eval(payload.get("domain")):
             l, o, r = _domain
             if o == "': '":
                 o = "="

@@ -5,8 +5,9 @@ import logging
 import werkzeug.wrappers
 
 from odoo import http
-from odoo.addons.restful.common import invalid_response, valid_response
 from odoo.http import request
+
+from odoo.addons.restful.common import invalid_response, valid_response
 
 _logger = logging.getLogger(__name__)
 
@@ -77,7 +78,7 @@ class AccessToken(http.Controller):
             request.session.authenticate(db, username, password)
         except Exception as e:
             # Invalid database:
-            info = "The database name is not valid {}".format((e))
+            info = "The database name is not valid {}".format(e)
             error = "invalid_database"
             _logger.error(info)
             return invalid_response("wrong database name", error, info)

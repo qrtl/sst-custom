@@ -4,12 +4,13 @@ import functools
 import logging
 
 from odoo import http
+from odoo.http import request
+
 from odoo.addons.restful.common import (
     extract_arguments,
     invalid_response,
     valid_response,
 )
-from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
@@ -62,40 +63,32 @@ class APIController(http.Controller):
     def get(self, model=None, id=None, **payload):
         ioc_name = model
         model = request.env[self._model].sudo().search([("model", "=", model)], limit=1)
-        if model:
-            domain, fields, offset, limit, order = extract_arguments(payload)
-            data = (
-                request.env[model.model]
-                .sudo()
-                .search_read(
-                    domain=domain,
-                    fields=fields,
-                    offset=offset,
-                    limit=limit,
-                    order=order,
-                )
+        # QRTL Edit
+        # Retrieve search_params from request header
+        search_params = request.httprequest.headers.get("search_params", False)
+        if not model:
+            return invalid_response(
+                "invalid object model",
+                "The model %s is not available in the registry." % ioc_name,
             )
-            if id:
-                domain = [("id", "=", int(id))]
-                data = (
-                    request.env[model.model]
-                    .sudo()
-                    .search_read(
-                        domain=domain,
-                        fields=fields,
-                        offset=offset,
-                        limit=limit,
-                        order=order,
-                    )
-                )
-            if data:
-                return valid_response(data)
-            else:
-                return valid_response(data)
-        return invalid_response(
-            "invalid object model",
-            "The model %s is not available in the registry." % ioc_name,
+        if not search_params:
+            # QRTL Edit
+            # Return invalid if search_params is missing
+            return invalid_response(
+                "missing search_params",
+                "search_params is missing from the request header",
+            )
+        domain, fields, offset, limit, order = extract_arguments(search_params)
+        if id:
+            domain = [("id", "=", int(id))]
+        data = (
+            request.env[model.model]
+            .sudo()
+            .search_read(
+                domain=domain, fields=fields, offset=offset, limit=limit, order=order,
+            )
         )
+        return valid_response(data)
 
     @validate_token
     @http.route(_routes, type="http", auth="none", methods=["POST"], csrf=False)
@@ -171,7 +164,7 @@ class APIController(http.Controller):
             return invalid_response("exception", e.name)
         else:
             return valid_response(
-                "update %s record with id %s successfully!" % (_model.model, _id)
+                "update {} record with id {} successfully!".format(_model.model, _id)
             )
 
     @validate_token

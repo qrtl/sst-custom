@@ -1,11 +1,17 @@
 ### Odoo RESTful API(restful)
 
-This is an HTTP framework that only cares about generating an HTTP response for each HTTP
-request. 
-In other to use this module, a basic understating of Odoo RPC interface is required(though not that neccessary) especially when dealing with Many2many and One2many relationship. The implementation sits on the existing Odoo RPC features, data structures  and format when creating or delecting Odoo's records are still applicable. I will be demostrating the usage using python request library.
+This is an HTTP framework that only cares about generating an HTTP response for each
+HTTP request. In other to use this module, a basic understating of Odoo RPC interface is
+required(though not that neccessary) especially when dealing with Many2many and One2many
+relationship. The implementation sits on the existing Odoo RPC features, data structures
+and format when creating or delecting Odoo's records are still applicable. I will be
+demostrating the usage using python request library.
 
 #### Access token request
-An access token is required in other to be able to perform any operations and ths token once generated should alway be send a long side any subsequents request.
+
+An access token is required in other to be able to perform any operations and ths token
+once generated should alway be send a long side any subsequents request.
+
 ```python
 import requests, json
 
@@ -28,12 +34,15 @@ content = json.loads(req.content.decode('utf-8'))
 headers['access-token'] = content.get('access_token') # add the access token to the header
 print(headers)
 ```
+
 ### To delete acccess-token
 
 ```python
 req = requests.delete('%s/api/auth/token'%base_url, data=data, headers=headers)
 ```
+
 ### [GET]
+
 ```python
 req = requests.get('{}/api/sale.order/'.format(base_url), headers=headers,
                    data={'limit': 10, 'domain': []})
@@ -46,8 +55,10 @@ req = requests.get('{}/api/sale.order/'.format(base_url), headers=headers,
 print(req.content)
 
 ```
+
 ### [POST]
-```python
+
+````python
 
 **POST request**
 ```python
@@ -61,9 +72,10 @@ p = requests.post('%s/api/res.partner/'%base_url, headers=headers,
     }
 ))
 print(p.content)
-```
+````
 
 **PUT Request**
+
 ```python
 p = requests.put('http://theninnercicle.com.ng/api/res.partner/68', headers=headers,
                  data=json.dumps({
@@ -76,6 +88,7 @@ print(p.content)
 ```
 
 **DELETE Request**
+
 ```python
 p = requests.delete('http://theninnercicle.com.ng/api/res.partner/68', headers=headers)
 print(p.content)
