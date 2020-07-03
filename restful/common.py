@@ -52,7 +52,9 @@ def extract_arguments(payloads, offset=0, limit=0, order=None):
     fields, domain, payload = [], [], {}
     try:
         # QRTL Edit
-        # Assume payloads is a json formatted string
+        # Assume payloads is a json formatted string with the outermost
+        # curly brackets
+        payloads = "{%s}" % payloads
         payload = json.loads(payloads)
     except JSONDecodeError as e:
         _logger.error(e)
