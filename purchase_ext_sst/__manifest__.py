@@ -1,14 +1,12 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017-2018 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017-2020 Quartile Limited
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     'name': 'Extension for purchase functions',
-    'version': '11.0.1.12.0',
+    'version': '11.0.1.12.1',
     'author': 'Quartile Limited',
     'website': 'https://www.quartile.co',
     'category': 'Purchase',
-    'license': "AGPL-3",
-    'description': "",
+    'license': "LGPL-3",
     'depends': [
         'hr',
         'purchase',
