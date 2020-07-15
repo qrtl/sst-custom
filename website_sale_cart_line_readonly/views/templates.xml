@@ -1,66 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <template id="cart_lines" inherit_id="website_sale.cart_lines">
-        <xpath expr="//td[@class='td-product_name']//div//a"
-               position="attributes">
+        <xpath expr="//td[@class='td-product_name']//div//a" position="attributes">
             <attribute name="t-if">not line.website_readonly</attribute>
         </xpath>
-        <xpath expr="//td[@class='td-product_name']//div//a"
-               position="after">
-            <strong t-if="line.website_readonly"
-                    t-esc="line.product_id.with_context(display_default_code=False).display_name"/>
+        <xpath expr="//td[@class='td-product_name']//div//a" position="after">
+            <strong
+        t-if="line.website_readonly"
+        t-esc="line.product_id.with_context(display_default_code=False).display_name"
+      />
         </xpath>
         <xpath
-            expr="//div[@class='css_quantity input-group oe_website_spinner']"
-            position="attributes">
+      expr="//div[@class='css_quantity input-group oe_website_spinner']"
+      position="attributes"
+    >
             <attribute name="t-if">not line.website_readonly</attribute>
         </xpath>
         <xpath
-            expr="//div[@class='css_quantity input-group oe_website_spinner']"
-            position="after">
+      expr="//div[@class='css_quantity input-group oe_website_spinner']"
+      position="after"
+    >
             <div class="css_quantity text-center" t-if="line.website_readonly">
-                <span t-field="line.product_uom_qty"
-                      style="white-space: nowrap;"/>
+                <span t-field="line.product_uom_qty" style="white-space: nowrap;" />
             </div>
         </xpath>
-        <xpath expr="//a[@class='js_delete_product hidden-xs no-decoration']"
-               position="attributes">
+        <xpath
+      expr="//a[@class='js_delete_product hidden-xs no-decoration']"
+      position="attributes"
+    >
             <attribute name="t-if">not line.website_readonly</attribute>
         </xpath>
-        <xpath expr="//tbody//tr//td[@class='td-product_name']//a[@href='#']"
-               position="attributes">
+        <xpath
+      expr="//tbody//tr//td[@class='td-product_name']//a[@href='#']"
+      position="attributes"
+    >
             <attribute name="class">js_delete_product_cart_update
                 js_delete_product hidden-xs no-decoration
             </attribute>
         </xpath>
         <xpath
-            expr="//tbody//tr//td[@class='text-center td-qty']//div[@class='css_quantity input-group oe_website_spinner']"
-            position="attributes">
+      expr="//tbody//tr//td[@class='text-center td-qty']//div[@class='css_quantity input-group oe_website_spinner']"
+      position="attributes"
+    >
             <attribute name="class">oe_website_spinner_cart_update css_quantity
                 input-group oe_website_spinner
             </attribute>
         </xpath>
-        <xpath expr="//tbody//tr//td[@class='text-center td-qty']"
-               position="inside">
-            <span id="span_js_product_qty" class="span_js_product_qty"
-                  t-att-data-line-id="line.id"
-                  t-if='not line.website_readonly'/>
+        <xpath expr="//tbody//tr//td[@class='text-center td-qty']" position="inside">
+            <span
+        id="span_js_product_qty"
+        class="span_js_product_qty"
+        t-att-data-line-id="line.id"
+        t-if='not line.website_readonly'
+      />
         </xpath>
     </template>
 
     <template id="cart_popover" inherit_id="website_sale.cart_popover">
         <xpath
-            expr="//a[@t-attf-href='/shop/product/#{ slug(line.product_id.product_tmpl_id) }']"
-            position="attributes">
+      expr="//a[@t-attf-href='/shop/product/#{ slug(line.product_id.product_tmpl_id) }']"
+      position="attributes"
+    >
             <attribute name="t-if">not line.website_readonly</attribute>
         </xpath>
         <xpath
-            expr="//a[@t-attf-href='/shop/product/#{ slug(line.product_id.product_tmpl_id) }']"
-            position="after">
-            <span t-if="line.website_readonly"
-                  t-esc="line.product_id.with_context(display_default_code=False).display_name"
-                  class="h6"/>
+      expr="//a[@t-attf-href='/shop/product/#{ slug(line.product_id.product_tmpl_id) }']"
+      position="after"
+    >
+            <span
+        t-if="line.website_readonly"
+        t-esc="line.product_id.with_context(display_default_code=False).display_name"
+        class="h6"
+      />
         </xpath>
     </template>
 

@@ -1,81 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="product_subscribe_tmpl" name="product_subscribe_tmpl"
-              inherit_id="web.assets_frontend">
+    <template
+    id="product_subscribe_tmpl"
+    name="product_subscribe_tmpl"
+    inherit_id="web.assets_frontend"
+  >
         <xpath expr="." position="inside">
-            <script type="text/javascript"
-                    src="/website_sale_product_subscribe_notify/static/src/js/product_subscribe.js"/>
+            <script
+        type="text/javascript"
+        src="/website_sale_product_subscribe_notify/static/src/js/product_subscribe.js"
+      />
         </xpath>
     </template>
 
-    <template id="portal_my_home_product_category_subscription"
-              name="Portal My Home : subscription entry"
-              inherit_id="portal.portal_my_home">
+    <template
+    id="portal_my_home_product_category_subscription"
+    name="Portal My Home : subscription entry"
+    inherit_id="portal.portal_my_home"
+  >
         <xpath expr="//ul[hasclass('o_portal_docs')]" position="inside">
             <li class="list-group-item">
-                <span class="badge" t-esc="product_subscription_count"/>
+                <span class="badge" t-esc="product_subscription_count" />
                 <a href="/my/product_subscriptions">My Subscriptions</a>
             </li>
         </xpath>
     </template>
 
-    <template id="display_product_subscription"
-              name="Display Product Subscription">
+    <template id="display_product_subscription" name="Display Product Subscription">
         <li>
-            <input type="checkbox" id="categ_subscribe" name="categ_subscribe"
-                   t-att-value="categ.id"
-                   t-att-checked="'checked' if categ.id in product_public_category_lst else None"/>
-            <span t-field="categ.name"/>
-            <i t-if="categ.child_id and not categ.parent_id"
-               class="fa fa-plus-circle pull-right" name="plus_circle"/>
-            <i t-if="categ.child_id and not categ.parent_id"
-               class="fa fa-times-circle pull-right" name="cross_circle"/>
+            <input
+        type="checkbox"
+        id="categ_subscribe"
+        name="categ_subscribe"
+        t-att-value="categ.id"
+        t-att-checked="'checked' if categ.id in product_public_category_lst else None"
+      />
+            <span t-field="categ.name" />
+            <i
+        t-if="categ.child_id and not categ.parent_id"
+        class="fa fa-plus-circle pull-right"
+        name="plus_circle"
+      />
+            <i
+        t-if="categ.child_id and not categ.parent_id"
+        class="fa fa-times-circle pull-right"
+        name="cross_circle"
+      />
             <div style="float: right">
                 <t t-if="categ.child_id">
-                    <span t-field="categ.total_subscribe_points"/>pt&amp;nbsp;
+                    <span t-field="categ.total_subscribe_points" />pt&amp;nbsp;
                 </t>
                 <t t-if="not categ.child_id">
-                    <span t-field="categ.subscribe_point"/>pt&amp;nbsp;
+                    <span t-field="categ.subscribe_point" />pt&amp;nbsp;
                 </t>
             </div>
-            <hr style="margin-top: 10px; margin-bottom: 10px;"/>
-            <ul t-if="categ.child_id"
-                class="nav nav-pills nav-stacked nav-hierarchy ml32"
-                style="'display:block;'" id="child_categ">
+            <hr style="margin-top: 10px; margin-bottom: 10px;" />
+            <ul
+        t-if="categ.child_id"
+        class="nav nav-pills nav-stacked nav-hierarchy ml32"
+        style="'display:block;'"
+        id="child_categ"
+      >
                 <t t-foreach="categ.child_id" t-as="categ">
-                    <t t-call="website_sale_product_subscribe_notify.display_product_subscription"/>
+                    <t
+            t-call="website_sale_product_subscribe_notify.display_product_subscription"
+          />
                 </t>
             </ul>
         </li>
     </template>
 
-    <template id="display_product_subscriptions"
-              name="Display Product Subscriptions">
+    <template id="display_product_subscriptions" name="Display Product Subscriptions">
         <t t-call="portal.portal_layout">
             <h3 class="page-header">Your Product Category Subscriptions</h3>
             <h5>Available Subscription Points:
-                <span t-field="website.env.user.remaining_point_limit"/>
+                <span t-field="website.env.user.remaining_point_limit" />
             </h5>
             <p class="alert alert-danger" t-if="error">
-                <t t-esc="error"/>
+                <t t-esc="error" />
             </p>
             <div>
                 <form action="/my/product_subscribes" method="post">
-                    <input type="hidden" name="csrf_token"
-                           t-att-value="request.csrf_token()"/>
+                    <input
+            type="hidden"
+            name="csrf_token"
+            t-att-value="request.csrf_token()"
+          />
                     <ul class="nav nav-pills nav-stacked mt16">
-                        <t t-foreach="parent_product_subscription"
-                           t-as="categ">
-                            <t t-call="website_sale_product_subscribe_notify.display_product_subscription"/>
+                        <t t-foreach="parent_product_subscription" t-as="categ">
+                            <t
+                t-call="website_sale_product_subscribe_notify.display_product_subscription"
+              />
                         </t>
                     </ul>
-                    <button type="submit"
-                            class="btn btn-default btn-primary mb32">
+                    <button type="submit" class="btn btn-default btn-primary mb32">
                         Submit
                     </button>
-                    <a class="btn btn-default mb32"
-                       href="/my/home">Return
+                    <a class="btn btn-default mb32" href="/my/home">Return
                     </a>
                 </form>
             </div>
@@ -85,30 +107,34 @@
     <template id="template_thanks_message" name="Thanks Message">
         <t t-call="website.layout">
             <div id="wrap">
-                <div class="oe_structure"/>
+                <div class="oe_structure" />
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <br/>
+                            <br />
                             <div class="alert alert-success">
                                 <h2>Your subscriptions have been updated</h2>
-                                <br/>
+                                <br />
                                 <h4>You have subscribed categories:</h4>
                                 <ul class="list-unstyled">
-                                    <t t-foreach="subscribe_category_ids"
-                                       t-as="categ_id">
+                                    <t
+                    t-foreach="subscribe_category_ids"
+                    t-as="categ_id"
+                  >
                                         <li>
-                                            <span t-field="categ_id.name"/>
+                                            <span t-field="categ_id.name" />
                                         </li>
                                     </t>
                                 </ul>
-                                <br/>
+                                <br />
                                 <h4>You have unsubscribed categories:</h4>
                                 <ul class="list-unstyled">
-                                    <t t-foreach="unsubscribe_category_ids"
-                                       t-as="cate_id">
+                                    <t
+                    t-foreach="unsubscribe_category_ids"
+                    t-as="cate_id"
+                  >
                                         <li>
-                                            <span t-field="cate_id.name"/>
+                                            <span t-field="cate_id.name" />
                                         </li>
                                     </t>
                                 </ul>
@@ -117,13 +143,12 @@
                     </div>
                 </div>
                 <p class="container">
-                    <a class="btn btn-default mb32"
-                       href="/my/home">
+                    <a class="btn btn-default mb32" href="/my/home">
                         <span class="hidden-xs">Return</span>
-                        <span class="fa fa-long-arrow-left"/>
+                        <span class="fa fa-long-arrow-left" />
                     </a>
                 </p>
-                <div class="oe_structure"/>
+                <div class="oe_structure" />
             </div>
         </t>
     </template>

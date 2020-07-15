@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id='form_view_member_group' model='ir.ui.view'>
@@ -10,8 +10,8 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="point_limit"/>
+                            <field name="name" />
+                            <field name="point_limit" />
                         </group>
                     </group>
                 </sheet>
@@ -25,8 +25,8 @@
         <field name='type'>tree</field>
         <field name='arch' type='xml'>
             <tree string='Member Groups'>
-                <field name="name"/>
-                <field name="point_limit"/>
+                <field name="name" />
+                <field name="point_limit" />
             </tree>
         </field>
     </record>
@@ -36,8 +36,8 @@
         <field name="model">member.group</field>
         <field name="arch" type="xml">
             <search string="Member Group">
-                <field name="name"/>
-                <field name="point_limit"/>
+                <field name="name" />
+                <field name="point_limit" />
             </search>
         </field>
     </record>
@@ -47,11 +47,15 @@
         <field name='res_model'>member.group</field>
         <field name='view_type'>form</field>
         <field name='view_mode'>tree,form</field>
-        <field name="search_view_id" ref="member_group_search_view"/>
+        <field name="search_view_id" ref="member_group_search_view" />
     </record>
 
-    <menuitem id="menu_member_group" name="Member Group"
-              parent="website_sale.menu_ecommerce_settings"
-              action='action_member_group' sequence="10"/>
+    <menuitem
+    id="menu_member_group"
+    name="Member Group"
+    parent="website_sale.menu_ecommerce_settings"
+    action='action_member_group'
+    sequence="10"
+  />
 
 </odoo>

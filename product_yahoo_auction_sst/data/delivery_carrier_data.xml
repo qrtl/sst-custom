@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
 
     <record id="product_product_yu_pack" model="product.product">
         <field name="name">ゆうパック</field>
         <field name="default_code">Delivery</field>
         <field name="type">service</field>
-        <field name="categ_id" ref="product.product_category_all"/>
-        <field name="sale_ok" eval="False"/>
-        <field name="purchase_ok" eval="False"/>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="False" />
         <field name="list_price">10.0</field>
     </record>
     <record id="delivery_carrier_yu_pack" model="delivery.carrier">
@@ -15,17 +15,19 @@
         <field name="fixed_price">10.0</field>
         <field name="sequence">3</field>
         <field name="delivery_type">fixed</field>
-        <field name="product_id"
-               ref="product_yahoo_auction_sst.product_product_yu_pack"/>
+        <field
+      name="product_id"
+      ref="product_yahoo_auction_sst.product_product_yu_pack"
+    />
     </record>
 
     <record id="product_product_kazai_bin" model="product.product">
         <field name="name">家財便</field>
         <field name="default_code">Delivery</field>
         <field name="type">service</field>
-        <field name="categ_id" ref="product.product_category_all"/>
-        <field name="sale_ok" eval="False"/>
-        <field name="purchase_ok" eval="False"/>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="False" />
         <field name="list_price">10.0</field>
     </record>
     <record id="delivery_carrier_kazai_bin" model="delivery.carrier">
@@ -33,8 +35,10 @@
         <field name="fixed_price">10.0</field>
         <field name="sequence">3</field>
         <field name="delivery_type">fixed</field>
-        <field name="product_id"
-               ref="product_yahoo_auction_sst.product_product_kazai_bin"/>
+        <field
+      name="product_id"
+      ref="product_yahoo_auction_sst.product_product_kazai_bin"
+    />
     </record>
 
 </odoo>

@@ -29,7 +29,8 @@
     <t t-name="website_forum.social_message_question">
         <p>On average, <b>45% of questions shared</b> on social networks get an
             answer within
-            5 hours. Questions shared on two social networks have <b>65% more chance to get an
+            5 hours. Questions shared on two social networks have <b
+      >65% more chance to get an
         answer</b> !</p>
     </t>
     <t t-name="website_forum.social_message_answer">
@@ -39,7 +40,8 @@
             <a href="/forum/help-1/faq" target="_blank">here</a>.</p>
     </t>
     <t t-name="website_forum.social_message_default">
-        <p>Share this content to increase your chances to be featured on the front page and attract more visitors.</p>
+        <p
+    >Share this content to increase your chances to be featured on the front page and attract more visitors.</p>
     </t>
 
     <t t-name="website.social_alert">
@@ -48,15 +50,19 @@
                 <span aria-hidden="true">&#215;</span>
                 <span class="sr-only">Close</span>
             </button>
-            <p>Move this question to the top of the list by sharing it on social networks.</p>
-            <br/>
+            <p
+      >Move this question to the top of the list by sharing it on social networks.</p>
+            <br />
             <div>
                 <t t-foreach="medias" t-as="media">
-                    <a style="cursor: pointer"
-                       t-attf-class="fa-stack fa-lg share oe_share_bump #{media}">
-                        <span class="fa fa-square fa-stack-2x"></span>
+                    <a
+            style="cursor: pointer"
+            t-attf-class="fa-stack fa-lg share oe_share_bump #{media}"
+          >
+                        <span class="fa fa-square fa-stack-2x" />
                         <span
-                            t-attf-class="oe_social_#{media} fa fa-#{media} fa-stack-1x fa-inverse"></span>
+              t-attf-class="oe_social_#{media} fa fa-#{media} fa-stack-1x fa-inverse"
+            />
                     </a>
                 </t>
             </div>

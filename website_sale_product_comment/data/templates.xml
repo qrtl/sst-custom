@@ -1,18 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <!--Overwrite default Notification Email template -->
-    <delete id="mail.mail_template_data_notification_email_default"
-            model="mail.template"/>
-    <record id="mail.mail_template_data_notification_email_default"
-            model="mail.template">
+    <delete
+    id="mail.mail_template_data_notification_email_default"
+    model="mail.template"
+  />
+    <record
+    id="mail.mail_template_data_notification_email_default"
+    model="mail.template"
+  >
         <field name="name">Notification Email</field>
         <field name="subject">
             ${object.subject or (object.record_name and 'Re: %s' % object.record_name) or (object.parent_id and object.parent_id.subject and 'Re: %s' % object.parent_id.subject) or (object.parent_id and object.parent_id.record_name and 'Re: %s' % object.parent_id.record_name)}
         </field>
-        <field name="model_id" ref="mail.model_mail_message"/>
-        <field name="auto_delete" eval="True"/>
-        <field name="body_html"><![CDATA[
+        <field name="model_id" ref="mail.model_mail_message" />
+        <field name="auto_delete" eval="True" />
+        <field
+      name="body_html"
+    ><![CDATA[
 % set company = ctx.get('company', user.company_id)
 <div>
 % if ctx.get('has_button_access'):

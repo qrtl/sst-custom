@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="quant_transfer_wizard_form" model="ir.ui.view">
@@ -11,29 +11,36 @@
                 </p>
                 <group>
                     <group>
-                        <field name="destination_location_id"
-                               domain="[('usage', '=', 'internal')]"/>
+                        <field
+              name="destination_location_id"
+              domain="[('usage', '=', 'internal')]"
+            />
                     </group>
                 </group>
                 <footer>
-                    <button name="action_stock_quant_transfer"
-                            string="Create a Transfer" type="object"
-                            class="oe_highlight"/>
+                    <button
+            name="action_stock_quant_transfer"
+            string="Create a Transfer"
+            type="object"
+            class="oe_highlight"
+          />
                     or
-                    <button string="Cancel" class="oe_link" special="cancel"/>
+                    <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>
         </field>
     </record>
 
     <act_window
-        id="action_quant_transfer"
-        multi="True"
-        key2="client_action_multi"
-        name="Create a Transfer"
-        res_model="quant.transfer.wizard"
-        src_model="stock.quant"
-        view_mode="form" target="new"
-        view_type="form"/>
+    id="action_quant_transfer"
+    multi="True"
+    key2="client_action_multi"
+    name="Create a Transfer"
+    res_model="quant.transfer.wizard"
+    src_model="stock.quant"
+    view_mode="form"
+    target="new"
+    view_type="form"
+  />
 
 </odoo>

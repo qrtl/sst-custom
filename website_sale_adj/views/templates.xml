@@ -1,19 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="website_sale_product" inherit_id="website_sale.product">
-        <xpath expr="//p[@t-field='product.description_sale']"
-               position="after">
+        <xpath expr="//p[@t-field='product.description_sale']" position="after">
             <t t-if="product.product_state_id">
-                <br/>
+                <br />
                 <span>Product State:</span>
-                <span t-field="product.product_state_id"/>
+                <span t-field="product.product_state_id" />
             </t>
         </xpath>
     </template>
 
     <template id="cart" inherit_id="website_sale.cart">
-        <xpath expr="//h2[@class='mb8 mt8']"
-               position="after">
+        <xpath expr="//h2[@class='mb8 mt8']" position="after">
             <p>
                 <font class="text-gamma" style="">Products that left in the
                     cart for over two days will be removed.
@@ -22,15 +20,19 @@
         </xpath>
     </template>
 
-    <template id="product" name="Product Publish Button"
-              inherit_id="website_sale.product">
-        <xpath expr="//div[@id='website_published_button']"
-               position="inside">
-            <t t-call="website.publish_management"
-               groups="sales_team.group_sale_manager">
-                <t t-set="object" t-value="product"/>
-                <t t-set="publish_edit" t-value="True"/>
-                <t t-set="action" t-value="'product.product_template_action'"/>
+    <template
+    id="product"
+    name="Product Publish Button"
+    inherit_id="website_sale.product"
+  >
+        <xpath expr="//div[@id='website_published_button']" position="inside">
+            <t
+        t-call="website.publish_management"
+        groups="sales_team.group_sale_manager"
+      >
+                <t t-set="object" t-value="product" />
+                <t t-set="publish_edit" t-value="True" />
+                <t t-set="action" t-value="'product.product_template_action'" />
             </t>
         </xpath>
     </template>

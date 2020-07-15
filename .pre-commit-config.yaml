@@ -15,6 +15,7 @@ exclude: |
   ^\.travis\.yml$|
   # For v11.0 and before, exclude all oca modules
   connector_odoo_sst/|
+  restful/|
   component_event/|
   access_apps/|
   base_technical_features/|
