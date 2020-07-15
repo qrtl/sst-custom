@@ -48,23 +48,23 @@ repos:
       - id: prettier
   # TODO Avoid awebdeveloper/pre-commit-prettier if possible
   # HACK https://github.com/prettier/prettier/issues/7407
-  # - repo: https://github.com/awebdeveloper/pre-commit-prettier
-  #   rev: v0.0.1
-  #   hooks:
-  #     - id: prettier
-  #       name: prettier xml plugin
-  #       additional_dependencies:
-  #         - "prettier@1.19.1"
-  #         - "@prettier/plugin-xml@0.5.0"
-  #       files: \.xml$
-  #  - repo: https://github.com/pre-commit/mirrors-eslint
-  #    rev: v6.8.0
-  #    hooks:
-  #      - id: eslint
-  #        verbose: true
-  #        args:
-  #          - --color
-  #          - --fix
+  - repo: https://github.com/awebdeveloper/pre-commit-prettier
+    rev: v0.0.1
+    hooks:
+      - id: prettier
+        name: prettier xml plugin
+        additional_dependencies:
+          - "prettier@1.19.1"
+          - "@prettier/plugin-xml@0.5.0"
+        files: \.xml$
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v6.8.0
+    hooks:
+      - id: eslint
+        exclude: /README\.rst$|\.pot?$|\.js?$
+        verbose: true
+        args:
+          - --color - --fix
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.4.0
     hooks:
