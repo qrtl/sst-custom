@@ -7,7 +7,7 @@
     "website": "https://www.odoo-asia.com",
     "category": "Extra Tools",
     "license": "AGPL-3",
-    "summary": """
+    "description": """
 This module provides the Japan address input field layout in E-commerce.
 The following default address input form are change:
 
