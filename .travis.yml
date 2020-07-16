@@ -97,7 +97,7 @@ env:
     # Use the above line to install dependencies that are required for website repos:
     # * SASS & Bootstrap-SASS
     # * Compass
-    - EXCLUDE=""
+    - EXCLUDE="odoo_marketplace,web_debranding"
     # Exclude modules that do not maintained by QRTL and failed the unit-tests in the module
 
 install:
