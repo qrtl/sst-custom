@@ -106,6 +106,7 @@
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
                 <field name="purchase_category_id"/>
+                <field name="picking_type_id" invisible="1"/>
                 <field name="shop_id"/>
                 <field name="call_back"/>
                 <field name="request_channel_id"/>
