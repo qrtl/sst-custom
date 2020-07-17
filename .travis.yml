@@ -97,7 +97,7 @@ env:
     # Use the above line to install dependencies that are required for website repos:
     # * SASS & Bootstrap-SASS
     # * Compass
-    - EXCLUDE="odoo_marketplace,web_debranding,connector_odoo_sst,restful,component_event,access_apps,base_technical_features,drag-and-drop,mail_bcc,web_responsive,access_restricted,component,ir_rule_protected,queue_job,website_no_crawler,access_settings_menu,connector,l10n_jp_country_state,web_debranding,website_sale_search_clear,base_country_state_translatable,dbfilter_from_header,l10n_jp_partner_title_qweb,web_environment_ribbon"
+    - EXCLUDE="odoo_marketplace,connector_odoo_sst,restful,component_event,access_apps,base_technical_features,drag-and-drop,mail_bcc,web_responsive,access_restricted,component,ir_rule_protected,queue_job,website_no_crawler,access_settings_menu,connector,l10n_jp_country_state,web_debranding,website_sale_search_clear,base_country_state_translatable,dbfilter_from_header,l10n_jp_partner_title_qweb,web_environment_ribbon"
     # Exclude modules that do not maintained by QRTL and failed the unit-tests in the module
 
 install:
