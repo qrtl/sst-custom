@@ -113,19 +113,3 @@ class TestProduct(common.TransactionCase):
             90,
             'Check website sale available qty'
         )
-
-
-
-
-
-        # # Assign Default code to product
-        # self.product_01.default_code = 'DEFCODE'
-        #
-        # # This Method assign value to barcode from default code field
-        # self.product_01._compute_barcode()
-        #
-        # # compare the barcode value which is updated by compute_barcode method.
-        # self.assertEqual(
-        #     self.product_01.barcode,
-        #     'DEFCODE',
-        #     'Barcode not used in product name')
