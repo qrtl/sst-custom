@@ -8,59 +8,101 @@ from odoo.tools.safe_eval import safe_eval
 
 
 class TestSaleOrderImport(common.TransactionCase):
+    """
+    This tests allows to import the test
+    sale order csv file and import sale order.
+    """
 
     def setUp(self):
         super(TestSaleOrderImport, self).setUp()
         self.import_sale_obj = self.env['import.sale']
+
+        # Create Test Partner
+        self.partner = self.env['res.partner'].create({
+            'name': 'Test Partner',
+            'phone': '+1234567890'
+        })
+
         # Create Test Product
         self.product_01 = self.env['product.product'].create({
             'name': "Product A",
             'type': 'product',
             'default_code': 'ABC'
         })
-        # self.partner_delta_id = self.env.ref('base.res_partner_4')
+
         self.public_pricelist = self.env.ref('product.list0')
         self.warehouse = self.env.ref('stock.warehouse0')
         self.team = self.env.ref("sales_team.team_sales_department")
         self.free_delivery = self.env['ir.model.data'].xmlid_to_res_id(
             'delivery.free_delivery_carrier')
-        self.partner_delta_id = self.env['res.partner'].create({
-            'name': 'Test Partner',
-            'phone': '+1234567890'
-        })
         self.customer_phone = '123456789'
         self.cash_journal_cash = self.env['account.journal'].create(
             {'name': 'Cash', 'type': 'cash', 'code': 'CASH'})
         self.note = 'Test Note'
 
+        # Check the file path and load the test_sale_order.csv
+        self.file_path = os.path.join(
+            'sale_order_import', 'tests', 'test_sale_order.csv')
+        self.generated_file = file_open(self.file_path, 'rb')
+        self.generated_file = salf.generated_file.read()
+
+
     def test_get_order_dict_flow(self):
-        file_path = os.path.join(
-            'sale_order_import', 'tests', 'sale_order.csv')
-        generated_file = file_open(file_path, 'rb')
-        generated_file = generated_file.read()
+        """
+            This test evaluates the import test sales order CSV
+             file and compares the values with test records.
+        """
+
+        # Note: Here I have called `import_sale_data` method which is the main
+        # method of sale order CSV file. This method covers the
+        # '  get_order_dict' method flow and their values.
+        # And here I am not going to call the method get_order_dict because
+        # this method many arguments and contains the dynamic value
+        # which is not possible to make in a short time. so, for now,
+        # I have called `import_sale_data` method which covers this method and
+        # dynamic values, Here also compares the
+        # values which return by `get_order_dict`.
+        # https://github.com/qrtl/sst-custom/blob/11.0/sale_order_import/wizard/import_sale.py#L240
+
+        # Create wizard where the add test_sale_order.csv
+        # and allow to import sale order data.
         wizard_sale = self.env['import.sale'].create({
             'picking_policy': 'direct',
             'customer_invoice_journal_id': self.cash_journal_cash.id,
             'customer_payment_journal_id': self.cash_journal_cash.id,
             'asynchronous': False,
-            'input_file': base64.encodestring(generated_file),
-            'datas_fname': file_path
+            'input_file': base64.encodestring(self.generated_file),
+            'datas_fname': self.file_path
         })
+
+        # The Main Method called import_sale_data.
         res = wizard_sale.import_sale_data()
+
+        # `import_sale_data method returns the actions
+        # So here I am taking the domain which
+        # contains the `ids` of error.log object.
         res_domain = safe_eval(res.get('domain', {}))[0][2]
 
+        # Browse the error.log object ids which return in res_domain
         error_log = self.env['error.log'].browse(res_domain)
         sale_order = error_log.sale_order_ids
 
+        """
+            Sample data from test_sale_order.csv file
+            Line Product,Line Description,Line Unit Price,Line Qty,Customer,Pricelist,Warehouse,Notes,Carrier,Team,Customer Phone/Mobile
+            ABC,Product A,200,2,,Test Partner,Public Pricelist,My Company,Test Note,Free delivery charges,Sales,+1234567890
+        """
+
+        # Compares the values with test_sale_order.csv file.
         self.assertEqual(
             sale_order.partner_id,
-            self.partner_delta_id,
+            self.partner,
             'From test Sale Order file the "customer"'
             ' does not match with test records'
         )
         self.assertEqual(
             sale_order.partner_invoice_id,
-            self.partner_delta_id,
+            self.partner,
             'Partner Invoice field does not match with Test Partner'
         )
         self.assertEqual(
@@ -70,12 +112,12 @@ class TestSaleOrderImport(common.TransactionCase):
             ' field data does not match with records')
         self.assertEqual(
             sale_order.partner_shipping_id,
-            self.partner_delta_id,
+            self.partner,
             'Partner shipping field does not match with Test Partner'
         )
         self.assertEqual(
             sale_order.payment_term_id,
-            self.partner_delta_id.property_payment_term_id,
+            self.partner.property_payment_term_id,
             'Sale Order Payment term field data does not match'
             ' with Test Partner Payment term condtion'
         )
@@ -108,20 +150,25 @@ class TestSaleOrderImport(common.TransactionCase):
             'From test Sale Order file the customer does not match with records'
         )
 
-    def test_update_error_log(self):
-        file_path = os.path.join(
-            'sale_order_import', 'tests', 'sale_order.csv')
-        generated_file = file_open(file_path, 'rb')
-        generated_file = generated_file.read()
-        ir_attachment_obj = self.env["ir.attachment"]
-        ir_attachment = ir_attachment_obj.create(
+    def test_update_error_log_02(self):
+        """
+            This test evaluates the import test sales order CSV
+             file and it update the error log records if any issue occurred while import
+         """
+
+        # Create Attachment to add as argument in `update_error_log`
+        ir_attachment = self.env["ir.attachment"].create(
             {
-                "name": 'sale_order.csv',
-                "datas": base64.encodestring(generated_file),
-                "datas_fname": 'sale_order.csv',
+                "name": 'test_sale_order.csv',
+                "datas": base64.encodestring(self.generated_file),
+                "datas_fname": 'test_sale_order.csv',
             }
         )
+
+        # Search Model id to pass as an argument in `update error_log`
         ir_model = self.env['ir.model'].search([('name', '=', 'sale.order')])
+
+        # Test the method `update_error_log` for if condition.
         import_log_id = self.import_sale_obj._update_error_log(
             error_log_id=False,
             error_vals={
@@ -133,11 +180,14 @@ class TestSaleOrderImport(common.TransactionCase):
             row_no=2,
             order_group_value=1
         )
+
+        # Search the error log which is created by `update_error_log`
         error_log_id = self.env['error.log'].search([
             ('model_id', '=', ir_model.id),
             ('state', '=', 'failed')
         ])
 
+        # Compare the values which generated by `update_error_log` method
         self.assertEqual(
             error_log_id.input_file,
             ir_attachment,
@@ -149,6 +199,7 @@ class TestSaleOrderImport(common.TransactionCase):
             'Check the environment user seems not different'
         )
 
+        # Test the method `update_error_log` for `else` condition.
         self.import_sale_obj._update_error_log(
             error_log_id=import_log_id,
             error_vals={
@@ -165,6 +216,7 @@ class TestSaleOrderImport(common.TransactionCase):
             ('log_id', '=', error_log_id.id)
         ])
 
+        # Compare the length of error log lines records.
         self.assertEqual(
             len(log_line),
             2,

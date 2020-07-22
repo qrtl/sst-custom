@@ -1,1 +1,1 @@
-from . import test_sale_import
+from . import test_sale_order_import
