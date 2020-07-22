@@ -5,26 +5,33 @@ from odoo.tests import common
 
 
 class TestProduct(common.TransactionCase):
-
+    """
+        This tests allows to check website sale available quantity for product.
+    """
     def setUp(self):
         super(TestProduct, self).setUp()
-        self.stock_location = self.env.ref('stock.stock_location_stock')
 
-        # Create Test Product
+        self.sale_order_line = self.env['sale.order.line']
+        self.stock_location = self.env.ref('stock.stock_location_stock')
+        self.product_uom = self.env.ref('product.product_uom_unit').id
+
+        # Create Test Products
         self.product_01 = self.env['product.product'].create({
             'name': "Test Product 01",
             'type': 'product',
         })
-
         self.product_02 = self.env['product.product'].create({
             'name': "Test Product 02",
             'type': 'product',
         })
-        self.env['stock.quant']._update_available_quantity(self.product_01, self.stock_location, 100)
-        self.env['stock.quant']._update_available_quantity(self.product_02, self.stock_location, 100)
 
-        self.product_uom = self.env.ref('product.product_uom_unit').id
-        self.sale_order_line = self.env['sale.order.line']
+        # update the quantity on hand for products
+        self.env['stock.quant']._update_available_quantity(
+            self.product_01, self.stock_location, 100)
+        self.env['stock.quant']._update_available_quantity(
+            self.product_02, self.stock_location, 100)
+
+        # Create Test Partners
         self.partner_01 = self.env['res.partner'].create({
             'name': 'Test Partner 1',
         })
@@ -32,8 +39,15 @@ class TestProduct(common.TransactionCase):
             'name': 'Test Partner 2',
         })
 
-    def test_compute_website_sale_available_qty(self):
-        """This test evaluate the method whether barcode is updating or not"""
+    def test_compute_website_sale_available_qty_01(self):
+        """
+            This test compute the website
+            sale available quantity for product
+        """
+
+        # This test perform to create two sales orders which has few
+        # sale order lines and this sale order lines in `draft` and
+        # `sent` state and compute their quantity.
 
         # I create a sales order
         self.sale_order = self.env['sale.order'].create({
@@ -49,7 +63,6 @@ class TestProduct(common.TransactionCase):
             'order_id': self.sale_order.id,
             'state': 'sent'
         })
-
         self.sale_order_line.create({
             'product_id': self.product_02.id,
             'price_unit': 100.00,
@@ -82,32 +95,40 @@ class TestProduct(common.TransactionCase):
             'state': 'sent'
         })
 
+        # Call the `_compute_website_sale_available_qty` method for product 01(product.product)
         self.product_01._compute_website_sale_available_qty()
 
+        # Compare the `website_sale_available_qty` qty for product 01(product.product)
         self.assertEqual(
             self.product_01.website_sale_available_qty,
             70,
             'Check website sale available qty'
         )
 
+        # Call the `_compute_website_sale_available_qty` method for product 02(product.product)
         self.product_02._compute_website_sale_available_qty()
 
+        # Compare the `website_sale_available_qty` qty for product 02(product.product)
         self.assertEqual(
             self.product_02.website_sale_available_qty,
             45,
             'Check website sale available qty'
         )
 
+        # Call the `_compute_website_sale_available_qty` method for product 01(product.template)
         self.product_01.product_tmpl_id._compute_website_sale_available_qty()
 
+        # Compare the `website_sale_available_qty` qty for product 01(product.template)
         self.assertEqual(
             self.product_01.product_tmpl_id.website_sale_available_qty,
             140,
             'Check website sale available qty'
         )
 
+        # Call the `_compute_website_sale_available_qty` method for product 02(product.template)
         self.product_02.product_tmpl_id._compute_website_sale_available_qty()
 
+        # Compare the `website_sale_available_qty` qty for product 02(product.template)
         self.assertEqual(
             self.product_02.product_tmpl_id.website_sale_available_qty,
             90,
