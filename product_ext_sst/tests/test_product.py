@@ -12,11 +12,11 @@ class TestProduct(common.TransactionCase):
         # Create Test Product
         self.product_01 = self.env['product.product'].create({
             'name': "Test Product",
-            'type': 'service',
         })
 
-    def test_compute_barcode(self):
-        """This test evaluate the method whether barcode is updating or not"""
+    def test_compute_barcode_01(self):
+        """This test evaluates the method of
+         whether the barcode is updating or not"""
 
         # Assign Default code to product
         self.product_01.default_code = 'DEFCODE'
