@@ -7,7 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Product",
     "license": "AGPL-3",
-    "description": "",
     "depends": ["website_sale", "purchase_ext_sst", "product_yahoo_auction_sst"],
     "data": [
         "security/ir.model.access.csv",

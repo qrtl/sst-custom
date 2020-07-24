@@ -30,6 +30,7 @@ exclude: |
   access_settings_menu/|
   connector/|
   l10n_jp_country_state/|
+  l10n_jp_address_layout/|
   web_debranding/|
   website_sale_search_clear/|
   base_country_state_translatable/|

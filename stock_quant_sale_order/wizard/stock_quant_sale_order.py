@@ -86,7 +86,6 @@ class QuantSaleOrderWizard(models.TransientModel):
         # A list to store the values of sale.order.line's required fieds
         # order_lines_value_list = []
         # A dict to store the tax_id of each product
-        # product_tax_id = {}
         for quant in quant_ids:
             line_vals = {
                 "product_id": quant.product_id.id,

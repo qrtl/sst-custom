@@ -7,7 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Purchase",
     "license": "AGPL-3",
-    "description": "",
     "depends": ["purchase_ext_sst", "l10n_jp_country_state"],
     "external_dependencies": {"python": ["jaconv"]},
     "data": ["views/purchase_order_views.xml"],

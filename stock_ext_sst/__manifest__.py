@@ -7,7 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Stock",
     "license": "AGPL-3",
-    "description": "",
     "depends": [
         "stock",
         "delivery",

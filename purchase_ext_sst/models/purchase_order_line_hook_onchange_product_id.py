@@ -11,8 +11,7 @@ from odoo.addons.purchase.models.purchase import PurchaseOrderLine
 
 # Monkey Patching
 # Overwrite the original onchange_product_id
-# i.e. https://github.com/odoo/odoo/blob/11.0
-# /addons/purchase/models/purchase.py#L781-L811
+# i.e. https://github.com/odoo/odoo/blob/11.0/addons/purchase/models/purchase.py#L781-L811 # noqa
 @api.onchange("product_id")
 def onchange_product_id(self):
     result = {}
