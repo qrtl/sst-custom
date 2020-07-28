@@ -7,10 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    A cron task that will "Archive" all the wishlist items that the product is
-    inactive
-        """,
     "depends": ["website_sale_wishlist"],
     "data": ["data/cron_data.xml"],
     "installable": True,

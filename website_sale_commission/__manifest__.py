@@ -7,9 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    Internal user can assign a commission product to online cart.
-        """,
     "depends": ["website_sale_cart_line_readonly"],
     "data": ["views/res_config_settings_views.xml"],
     "installable": True,

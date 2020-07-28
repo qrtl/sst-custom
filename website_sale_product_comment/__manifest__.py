@@ -7,10 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    This module will send notification to all the customers
-    who have already added comment for product on other comment by customer.
-        """,
     "summary": "Customer notification on product comment",
     "depends": ["theme_stoneware", "website_forum_adj"],
     "data": [

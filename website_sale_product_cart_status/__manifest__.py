@@ -7,10 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    This module adds cart_in field to product and update the field when the
-    product is being added to cart.
-        """,
     "depends": ["website_sale", "stock_quant_list_view"],
     "data": ["views/stock_quant_views.xml"],
     "installable": True,

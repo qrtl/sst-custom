@@ -8,10 +8,6 @@
     "category": "Warehouse",
     "license": "AGPL-3",
     "summary": """""",
-    "description": """
-    Deduct quantities of unconfirmed sales orders from forcasted quantity
-    calculation.
-        """,
     "depends": ["stock", "website_sale", "product_ext_sst"],
     "data": ["views/product_views.xml"],
     "installable": True,

@@ -8,10 +8,6 @@
     "category": "Website",
     "license": "AGPL-3",
     "summary": "",
-    "description": """
-    - Replace virtual availability with 'Available Quantity in eCommerce' in
-    products page. Hence it will show the quantity stock quantity.
-        """,
     "depends": ["website_sale_stock", "stock_virtual_available_adj"],
     "data": ["views/website_sale_stock_templates.xml"],
     "installable": True,

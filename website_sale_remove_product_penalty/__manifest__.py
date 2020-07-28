@@ -7,10 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    Internal user can assign a transaction fee product to online cart when
-    portal user tires to remove a product from the cart.
-        """,
     "depends": [
         "sales_team",
         "website_sale_cart_line_readonly",

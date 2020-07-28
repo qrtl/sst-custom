@@ -7,9 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    This module restricts the access of account invoice in the portal page.
-        """,
     "summary": "",
     "depends": ["account"],
     "data": [],

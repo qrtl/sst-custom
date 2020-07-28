@@ -7,10 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    Add 'website_readonly' field to sale.order.line, when it is set to True,
-    the line becomes uneditable in website.
-        """,
     "depends": ["website_sale"],
     "data": ["views/templates.xml"],
     "installable": True,

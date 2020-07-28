@@ -6,13 +6,6 @@
     "category": "Website",
     "license": "LGPL-3",
     "summary": "Send notification to subscribers",
-    "description": """
-    This module allows to send notification to the subscribers of the category if
-    any following fields of the product is updated,
-    - website_published
-    - vid_path
-    - list_price
-        """,
     "author": "Quartile Limited",
     "website": "https://www.quartile.co",
     "depends": ["mail_adj_sst", "mail_bcc", "website_sale"],

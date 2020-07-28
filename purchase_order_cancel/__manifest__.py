@@ -7,9 +7,6 @@
     "website": "https://www.odoo-asia.com",
     "category": "Purchases",
     "license": "AGPL-3",
-    "description": """
-    Allow to cancel multiple purchase orders at single click!
-        """,
     "summary": "Cancel Multiple Purchase Orders",
     "depends": ["purchase"],
     "data": ["wizard/purchase_order_cancel_view.xml"],

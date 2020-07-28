@@ -7,7 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Product",
     "license": "AGPL-3",
-    "description": "Added fields to hold " "information from Yahoo Auctions to product",
     "depends": ["product", "delivery"],
     "data": [
         "security/ir.model.access.csv",

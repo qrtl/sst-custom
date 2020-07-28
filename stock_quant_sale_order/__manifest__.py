@@ -8,9 +8,6 @@
     "category": "Sales",
     "license": "AGPL-3",
     "summary": """Make sale order from quant""",
-    "description": """
-    Create sale order for selected stock quant(s).
-        """,
     "depends": ["sale_stock"],
     "data": ["wizard/stock_quant_sale_order_wizard.xml"],
     "installable": True,

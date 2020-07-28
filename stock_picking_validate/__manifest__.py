@@ -9,9 +9,6 @@
     "category": "Stock",
     "license": "AGPL-3",
     "summary": """This module allow validate bunch of stock picking""",
-    "description": """
-    This module allow validate bunch of stock picking
-    """,
     "depends": ["stock"],
     "data": ["wizard/stock_picking_validate_wizard.xml"],
     "installable": True,

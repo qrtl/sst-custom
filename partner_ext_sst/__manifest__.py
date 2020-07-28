@@ -7,7 +7,6 @@
     "website": "https://www.odoo-asia.com",
     "category": "Purchase",
     "license": "AGPL-3",
-    "description": "",
     "depends": ["purchase"],
     "data": [
         "security/ir.model.access.csv",

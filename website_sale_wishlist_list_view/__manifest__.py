@@ -7,10 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    This module adds a list view for internal user to check all the wishlist
-    products.
-        """,
     "depends": ["website_sale_wishlist"],
     "data": ["views/product_wishlist_views.xml"],
     "installable": True,

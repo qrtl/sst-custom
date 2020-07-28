@@ -7,11 +7,6 @@
     "license": "AGPL-3",
     "summary": """This module allow to recieve product
      details and create/update product.""",
-    "description": """
-    - This module allow to recieve product details and
-     create/update product from source database
-
-    """,
     "author": "Quartile Limited",
     "website": "https://www.quartile.co",
     "depends": ["product"],

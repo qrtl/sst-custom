@@ -7,10 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    This module removes the social message part after user posts a question/answer
-    on website forum.
-        """,
     "depends": ["website_forum"],
     "data": [
         "data/mail_data.xml",

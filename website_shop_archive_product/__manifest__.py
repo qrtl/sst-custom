@@ -7,9 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "description": """
-    This module show to archive product in website.
-        """,
     "summary": "",
     "depends": ["website_sale"],
     "data": ["views/templates.xml"],
