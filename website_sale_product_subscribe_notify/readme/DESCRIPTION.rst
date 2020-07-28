@@ -4,4 +4,3 @@ This module does the following:
     - website_published
     - vid_path
     - list_price
-
