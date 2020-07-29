@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013-2017 Camptocamp SA
 # © 2016 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -6,95 +5,110 @@
 import logging
 # import xmlrpclib
 import xmlrpc.client
-
 from collections import defaultdict
 
-from odoo import models, fields, api
-from odoo.addons.connector.exception import IDMissingInBackend
+from odoo import api, fields, models
+
 from odoo.addons.component.core import Component
 from odoo.addons.component_event import skip_if
+from odoo.addons.connector.exception import IDMissingInBackend
 from odoo.addons.queue_job.job import job, related_action
+
 from ...components.backend_adapter import MAGENTO_DATETIME_FORMAT
 
 _logger = logging.getLogger(__name__)
 
+try:
+    xrange
+except NameError:
+    xrange = range
+
 
 def chunks(items, length):
     for index in xrange(0, len(items), length):
-        yield items[index:index + length]
+        yield items[index : index + length]
 
 
 class OdooProductProduct(models.Model):
-    _name = 'odoo.product.product'
-    _inherit = 'odoo.binding'
-    _inherits = {'product.product': 'odoo_id'}
-    _description = 'Odoo Product'
+    _name = "odoo.product.product"
+    _inherit = "odoo.binding"
+    _inherits = {"product.product": "odoo_id"}
+    _description = "Odoo Product"
 
     @api.model
     def product_type_get(self):
         return [
-            ('simple', 'Simple Product'),
-            ('configurable', 'Configurable Product'),
-            ('virtual', 'Virtual Product'),
-            ('downloadable', 'Downloadable Product'),
-            ('giftcard', 'Giftcard')
+            ("simple", "Simple Product"),
+            ("configurable", "Configurable Product"),
+            ("virtual", "Virtual Product"),
+            ("downloadable", "Downloadable Product"),
+            ("giftcard", "Giftcard")
             # XXX activate when supported
             # ('grouped', 'Grouped Product'),
             # ('bundle', 'Bundle Product'),
         ]
 
-    odoo_id = fields.Many2one(comodel_name='product.product',
-                              string='Product',
-                              required=True,
-                              ondelete='restrict')
+    odoo_id = fields.Many2one(
+        comodel_name="product.product",
+        string="Product",
+        required=True,
+        ondelete="restrict",
+    )
     # XXX website_ids can be computed from categories
     # website_ids = fields.Many2many(comodel_name='magento.website',
     #                                string='Websites',
     #                                readonly=True)
-    created_at = fields.Date('Created At (on Magento)')
-    updated_at = fields.Date('Updated At (on Magento)')
-    product_type = fields.Selection(selection='product_type_get',
-                                    string='Magento Product Type',
-                                    default='simple',
-                                    required=True)
+    created_at = fields.Date("Created At (on Magento)")
+    updated_at = fields.Date("Updated At (on Magento)")
+    product_type = fields.Selection(
+        selection="product_type_get",
+        string="Magento Product Type",
+        default="simple",
+        required=True,
+    )
     manage_stock = fields.Selection(
-        selection=[('use_default', 'Use Default Config'),
-                   ('no', 'Do Not Manage Stock'),
-                   ('yes', 'Manage Stock')],
-        string='Manage Stock Level',
-        default='use_default',
+        selection=[
+            ("use_default", "Use Default Config"),
+            ("no", "Do Not Manage Stock"),
+            ("yes", "Manage Stock"),
+        ],
+        string="Manage Stock Level",
+        default="use_default",
         required=True,
     )
     backorders = fields.Selection(
-        selection=[('use_default', 'Use Default Config'),
-                   ('no', 'No Sell'),
-                   ('yes', 'Sell Quantity < 0'),
-                   ('yes-and-notification', 'Sell Quantity < 0 and '
-                                            'Use Customer Notification')],
-        string='Manage Inventory Backorders',
-        default='use_default',
+        selection=[
+            ("use_default", "Use Default Config"),
+            ("no", "No Sell"),
+            ("yes", "Sell Quantity < 0"),
+            (
+                "yes-and-notification",
+                "Sell Quantity < 0 and " "Use Customer Notification",
+            ),
+        ],
+        string="Manage Inventory Backorders",
+        default="use_default",
         required=True,
     )
-    magento_qty = fields.Float(string='Computed Quantity',
-                               help="Last computed quantity to send "
-                                    "on Magento.")
+    magento_qty = fields.Float(
+        string="Computed Quantity", help="Last computed quantity to send " "on Magento."
+    )
     no_stock_sync = fields.Boolean(
-        string='No Stock Synchronization',
+        string="No Stock Synchronization",
         required=False,
-        help="Check this to exclude the product "
-             "from stock synchronizations.",
+        help="Check this to exclude the product " "from stock synchronizations.",
     )
 
     RECOMPUTE_QTY_STEP = 1000  # products at a time
 
-    @job(default_channel='root.magento')
-    @related_action(action='related_action_unwrap_binding')
+    @job(default_channel="root.magento")
+    @related_action(action="related_action_unwrap_binding")
     @api.multi
     def export_inventory(self, fields=None):
         """ Export the inventory configuration and quantity of a product. """
         self.ensure_one()
         with self.backend_id.work_on(self._name) as work:
-            exporter = work.component(usage='product.inventory.exporter')
+            exporter = work.component(usage="product.inventory.exporter")
             return exporter.run(self, fields)
 
     @api.multi
@@ -114,14 +128,12 @@ class OdooProductProduct(models.Model):
         for product in self:
             backends[product.backend_id].add(product.id)
 
-        for backend, product_ids in backends.iteritems():
-            self._recompute_magento_qty_backend(backend,
-                                                self.browse(product_ids))
+        for backend, product_ids in backends.items():
+            self._recompute_magento_qty_backend(backend, self.browse(product_ids))
         return True
 
     @api.multi
-    def _recompute_magento_qty_backend(self, backend, products,
-                                       read_fields=None):
+    def _recompute_magento_qty_backend(self, backend, products, read_fields=None):
         """ Recompute the products quantity for one backend.
 
         If field names are passed in ``read_fields`` (as a list), they
@@ -132,15 +144,15 @@ class OdooProductProduct(models.Model):
         if backend.product_stock_field_id:
             stock_field = backend.product_stock_field_id.name
         else:
-            stock_field = 'virtual_available'
+            stock_field = "virtual_available"
 
-        location = self.env['stock.location']
-        if self.env.context.get('location'):
-            location = location.browse(self.env.context['location'])
+        location = self.env["stock.location"]
+        if self.env.context.get("location"):
+            location = location.browse(self.env.context["location"])
         else:
             location = backend.warehouse_id.lot_stock_id
 
-        product_fields = ['magento_qty', stock_field]
+        product_fields = ["magento_qty", stock_field]
         if read_fields:
             product_fields += read_fields
 
@@ -148,12 +160,9 @@ class OdooProductProduct(models.Model):
         for chunk_ids in chunks(products.ids, self.RECOMPUTE_QTY_STEP):
             records = self_with_location.browse(chunk_ids)
             for product in records.read(fields=product_fields):
-                new_qty = self._magento_qty(product,
-                                            backend,
-                                            location,
-                                            stock_field)
-                if new_qty != product['magento_qty']:
-                    self.browse(product['id']).magento_qty = new_qty
+                new_qty = self._magento_qty(product, backend, location, stock_field)
+                if new_qty != product["magento_qty"]:
+                    self.browse(product["id"]).magento_qty = new_qty
 
     @api.multi
     def _magento_qty(self, product, backend, location, stock_field):
@@ -170,22 +179,22 @@ class OdooProductProduct(models.Model):
 
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
     odoo_bind_ids = fields.One2many(
-        comodel_name='odoo.product.product',
-        inverse_name='odoo_id',
-        string='Odoo Bindings',
+        comodel_name="odoo.product.product",
+        inverse_name="odoo_id",
+        string="Odoo Bindings",
     )
 
 
 class ProductProductAdapter(Component):
-    _name = 'odoo.product.product.adapter'
-    _inherit = 'odoo.adapter'
-    _apply_on = 'odoo.product.product'
+    _name = "odoo.product.product.adapter"
+    _inherit = "odoo.adapter"
+    _apply_on = "odoo.product.product"
 
-    _odoo_model = 'product.product'
-    _admin_path = '/{model}/edit/id/{id}'
+    _odoo_model = "product.product"
+    _admin_path = "/{model}/edit/id/{id}"
 
     def _call(self, model, method, arguments):
         try:
@@ -208,23 +217,25 @@ class ProductProductAdapter(Component):
             filters = {}
         dt_fmt = MAGENTO_DATETIME_FORMAT
         if from_date is not None:
-            filters.setdefault('write_date', {})
-            filters['write_date']['from'] = from_date.strftime(dt_fmt)
+            filters.setdefault("write_date", {})
+            filters["write_date"]["from"] = from_date.strftime(dt_fmt)
         if to_date is not None:
-            filters.setdefault('write_date', {})
-            filters['write_date']['to'] = to_date.strftime(dt_fmt)
+            filters.setdefault("write_date", {})
+            filters["write_date"]["to"] = to_date.strftime(dt_fmt)
         # return [int(row['product_id']) for row
         #         in self._call('%s' % self._odoo_model,
         #                       [filters] if filters else [{}])]
-        return self._call('%s' % self._odoo_model, 'search',
-                          [filters] if filters else [{}])
+        return self._call(
+            "%s" % self._odoo_model, "search", [filters] if filters else [{}]
+        )
 
     def read(self, id, storeview_id=None, attributes=None):
         """ Returns the information of a record
 
         :rtype: dict
         """
-        return self._call('%s' % self._odoo_model, 'read', id)
+        return self._call("%s" % self._odoo_model, "read", id)
+
     # def read(self, id, storeview_id=None, attributes=None):
     #     """ Returns the information of a record
     #
@@ -237,42 +248,40 @@ class ProductProductAdapter(Component):
         """ Update records on the external system """
         # XXX actually only ol_catalog_product.update works
         # the PHP connector maybe breaks the catalog_product.update
-        return self._call('ol_catalog_product.update',
-                          [int(id), data, storeview_id, 'id'])
+        return self._call(
+            "ol_catalog_product.update", [int(id), data, storeview_id, "id"]
+        )
 
     def get_images(self, id, storeview_id=None):
-        return self._call('product_media.list', [int(id), storeview_id, 'id'])
+        return self._call("product_media.list", [int(id), storeview_id, "id"])
 
     def read_image(self, id, image_name, storeview_id=None):
-        return self._call('product_media.info',
-                          [int(id), image_name, storeview_id, 'id'])
+        return self._call(
+            "product_media.info", [int(id), image_name, storeview_id, "id"]
+        )
 
     def update_inventory(self, id, data):
         # product_stock.update is too slow
-        return self._call('oerp_cataloginventory_stock_item.update',
-                          [int(id), data])
+        return self._call("oerp_cataloginventory_stock_item.update", [int(id), data])
 
 
 class OdooBindingProductListener(Component):
-    _name = 'odoo.binding.product.product.listener'
-    _inherit = 'base.connector.listener'
-    _apply_on = ['odoo.product.product']
+    _name = "odoo.binding.product.product.listener"
+    _inherit = "base.connector.listener"
+    _apply_on = ["odoo.product.product"]
 
     # fields which should not trigger an export of the products
     # but an export of their inventory
-    INVENTORY_FIELDS = ('manage_stock',
-                        'backorders',
-                        'magento_qty',
-                        )
+    INVENTORY_FIELDS = (
+        "manage_stock",
+        "backorders",
+        "magento_qty",
+    )
 
     @skip_if(lambda self, record, **kwargs: self.no_connector_export(record))
     def on_record_write(self, record, fields=None):
         if record.no_stock_sync:
             return
-        inventory_fields = list(
-            set(fields).intersection(self.INVENTORY_FIELDS)
-        )
+        inventory_fields = list(set(fields).intersection(self.INVENTORY_FIELDS))
         if inventory_fields:
-            record.with_delay(priority=20).export_inventory(
-                fields=inventory_fields
-            )
+            record.with_delay(priority=20).export_inventory(fields=inventory_fields)

@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="product_comment_rating"
-              inherit_id="theme_stoneware.product_comment"
-              name="Discussion and Rating">
+    <template
+    id="product_comment_rating"
+    inherit_id="theme_stoneware.product_comment"
+    name="Discussion and Rating"
+  >
         <xpath expr="//t[@t-set='display_rating']" position="attributes">
             <attribute name="t-set">False</attribute>
         </xpath>

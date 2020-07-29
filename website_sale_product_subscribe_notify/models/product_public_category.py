@@ -1,26 +1,22 @@
 # Copyright 2018 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class ProductPublicCategory(models.Model):
     _name = "product.public.category"
     _inherit = [
-        'product.public.category',
-        'mail.thread',
-        'mail.activity.mixin',
-        'portal.mixin'
+        "product.public.category",
+        "mail.thread",
+        "mail.activity.mixin",
+        "portal.mixin",
     ]
 
     subscribe_point = fields.Integer(
-        string='Subscription Points',
-        required=True,
-        default=1,
+        string="Subscription Points", required=True, default=1,
     )
-    total_subscribe_points = fields.Integer(
-        compute='_compute_total_subscribe_points',
-    )
+    total_subscribe_points = fields.Integer(compute="_compute_total_subscribe_points",)
 
     @api.model
     def _get_child_category(self):
@@ -46,7 +42,7 @@ class ProductPublicCategory(models.Model):
         """
         self._cr.execute(query % self.id)
         result = self._cr.dictfetchall()
-        category_ids = [i['id'] for i in result]
+        category_ids = [i["id"] for i in result]
         category_ids.append(self.id)
         category_ids = self.browse(category_ids)
         return category_ids
@@ -59,5 +55,6 @@ class ProductPublicCategory(models.Model):
                 child_category_list = category._get_child_category()
                 for child_category in child_category_list:
                     if not child_category.child_id:
-                        category.total_subscribe_points += \
+                        category.total_subscribe_points += (
                             child_category.subscribe_point
+                        )

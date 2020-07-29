@@ -14,19 +14,20 @@ class OdooModelBinder(Component):
     the Magento ID, the ID of the Magento Backend and the additional
     fields belonging to the Magento instance.
     """
-    _name = 'odoo.binder'
-    _inherit = ['base.binder', 'base.odoo.connector']
+
+    _name = "odoo.binder"
+    _inherit = ["base.binder", "base.odoo.connector"]
     _apply_on = [
-        'magento.website',
-        'magento.store',
-        'magento.storeview',
-        'magento.res.partner',
-        'magento.address',
-        'magento.res.partner.category',
-        'odoo.product.category',
-        'odoo.product.product',
-        'magento.stock.picking',
-        'magento.sale.order',
-        'magento.sale.order.line',
-        'magento.account.invoice',
+        "magento.website",
+        "magento.store",
+        "magento.storeview",
+        "magento.res.partner",
+        "magento.address",
+        "magento.res.partner.category",
+        "odoo.product.category",
+        "odoo.product.product",
+        "magento.stock.picking",
+        "magento.sale.order",
+        "magento.sale.order.line",
+        "magento.account.invoice",
     ]
