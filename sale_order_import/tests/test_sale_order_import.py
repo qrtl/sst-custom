@@ -30,7 +30,7 @@ class TestSaleOrderImport(common.TransactionCase):
 
         self.public_pricelist = self.env.ref("product.list0")
         self.warehouse = self.env.ref("stock.warehouse0")
-        self.team = self.env.ref("sales_team.team_sales_department")
+        self.team = self.env.ref("sales_team.crm_team_1")
         self.free_delivery = self.env["ir.model.data"].xmlid_to_res_id(
             "delivery.free_delivery_carrier"
         )
@@ -47,7 +47,7 @@ class TestSaleOrderImport(common.TransactionCase):
         self.generated_file = file_open(self.file_path, "rb")
         self.generated_file = self.generated_file.read()
 
-    def test_get_order_dict_flow(self):
+    def test_get_order_dict_flow_01(self):
         """
             This test evaluates the import test sales order CSV
              file and compares the values with test records.
