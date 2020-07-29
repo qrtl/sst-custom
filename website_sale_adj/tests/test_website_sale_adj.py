@@ -80,37 +80,34 @@ class WebsiteSaleAdj(common.TransactionCase):
             This tests check the earliest
             website_order_line's creation date
             """
-        self.product_uom = self.env.ref('product.product_uom_unit').id
+        self.product_uom = self.env.ref("product.product_uom_unit").id
 
         # Create Test Product
-        self.product_01 = self.env['product.product'].create({
-            'name': "Test Product",
-            'type': 'product',
-        })
+        self.product_01 = self.env["product.product"].create(
+            {"name": "Test Product", "type": "product"}
+        )
 
         # Create Test Partner
-        self.partner_01 = self.env['res.partner'].create({
-            'name': 'Test Partner 1',
-        })
+        self.partner_01 = self.env["res.partner"].create({"name": "Test Partner 1"})
 
         # Create sale order
-        self.sale_order = self.env['sale.order'].create({
-            'partner_id': self.partner_01.id,
-        })
+        self.sale_order = self.env["sale.order"].create(
+            {"partner_id": self.partner_01.id}
+        )
 
         # Create Sale Order line
-        line_01 = self.env['sale.order.line'].create({
-            'product_id': self.product_01.id,
-            'price_unit': 100.00,
-            'product_uom': self.product_uom,
-            'product_uom_qty': 10.0,
-            'order_id': self.sale_order.id,
-        })
+        line_01 = self.env["sale.order.line"].create(
+            {
+                "product_id": self.product_01.id,
+                "price_unit": 100.00,
+                "product_uom": self.product_uom,
+                "product_uom_qty": 10.0,
+                "order_id": self.sale_order.id,
+            }
+        )
 
         # Assign website order line from sale order line
-        self.sale_order.write({
-            'website_order_line': [(6, 0, [line_01.id])]
-        })
+        self.sale_order.write({"website_order_line": [(6, 0, [line_01.id])]})
 
         # Compute the `_compute_order_line_date`
         self.sale_order._compute_order_line_date()
@@ -119,6 +116,6 @@ class WebsiteSaleAdj(common.TransactionCase):
         self.assertEqual(
             self.sale_order.order_line_date,
             line_01.create_date,
-            'Check the Sale Order --> Order line date'
-            ' does not match with line create date'
+            "Check the Sale Order --> Order line date"
+            " does not match with line create date",
         )
