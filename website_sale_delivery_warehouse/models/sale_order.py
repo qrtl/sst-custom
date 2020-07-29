@@ -1,11 +1,11 @@
 # Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     def _check_carrier_quotation(self, force_carrier_id=None):
         res = super(SaleOrder, self)._check_carrier_quotation(

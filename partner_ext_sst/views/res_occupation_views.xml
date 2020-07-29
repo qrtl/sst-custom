@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id='form_view_occupation' model='ir.ui.view'>
@@ -10,7 +10,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="name" />
                         </group>
                     </group>
                 </sheet>
@@ -24,7 +24,7 @@
         <field name='type'>tree</field>
         <field name='arch' type='xml'>
             <tree string='Occupations'>
-                <field name="name"/>
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -36,6 +36,12 @@
         <field name='view_mode'>tree,form</field>
     </record>
 
-    <menuitem id="menu_occupation" name="Occupations" parent="menu_vendor_in_config_purchase" action='action_occupation' sequence="15"/>
+    <menuitem
+    id="menu_occupation"
+    name="Occupations"
+    parent="menu_vendor_in_config_purchase"
+    action='action_occupation'
+    sequence="15"
+  />
 
 </odoo>

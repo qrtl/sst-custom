@@ -5,9 +5,6 @@ from odoo import fields, models
 
 
 class DeliveryCarrier(models.Model):
-    _inherit = 'delivery.carrier'
+    _inherit = "delivery.carrier"
 
-    delivery_warehouse_id = fields.Many2one(
-        'stock.warehouse',
-        'Delivery Warehouse'
-    )
+    delivery_warehouse_id = fields.Many2one("stock.warehouse", "Delivery Warehouse")

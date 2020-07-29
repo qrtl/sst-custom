@@ -1,49 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
 
     <record id="delivery_carrier_size_small" model="delivery.carrier.size">
         <field name="name">小</field>
-        <field name="carrier_id"
-               ref="product_yahoo_auction_sst.delivery_carrier_yu_pack"/>
+        <field
+      name="carrier_id"
+      ref="product_yahoo_auction_sst.delivery_carrier_yu_pack"
+    />
     </record>
     <record id="delivery_carrier_size_medium" model="delivery.carrier.size">
         <field name="name">中</field>
-        <field name="carrier_id"
-               ref="product_yahoo_auction_sst.delivery_carrier_yu_pack"/>
+        <field
+      name="carrier_id"
+      ref="product_yahoo_auction_sst.delivery_carrier_yu_pack"
+    />
     </record>
     <record id="delivery_carrier_size_large" model="delivery.carrier.size">
         <field name="name">大</field>
-        <field name="carrier_id"
-               ref="product_yahoo_auction_sst.delivery_carrier_yu_pack"/>
+        <field
+      name="carrier_id"
+      ref="product_yahoo_auction_sst.delivery_carrier_yu_pack"
+    />
     </record>
     <record id="delivery_carrier_size_s" model="delivery.carrier.size">
         <field name="name">S</field>
-        <field name="carrier_id"
-               ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"/>
+        <field
+      name="carrier_id"
+      ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"
+    />
     </record>
     <record id="delivery_carrier_size_a" model="delivery.carrier.size">
         <field name="name">A</field>
-        <field name="carrier_id"
-               ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"/>
+        <field
+      name="carrier_id"
+      ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"
+    />
     </record>
     <record id="delivery_carrier_size_b" model="delivery.carrier.size">
         <field name="name">B</field>
-        <field name="carrier_id"
-               ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"/>
+        <field
+      name="carrier_id"
+      ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"
+    />
     </record>
     <record id="delivery_carrier_size_C" model="delivery.carrier.size">
         <field name="name">C</field>
-        <field name="carrier_id"
-               ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"/>
+        <field
+      name="carrier_id"
+      ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"
+    />
     </record>
     <record id="delivery_carrier_size_d" model="delivery.carrier.size">
         <field name="name">D</field>
-        <field name="carrier_id"
-               ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"/>
+        <field
+      name="carrier_id"
+      ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"
+    />
     </record>
     <record id="delivery_carrier_size_e" model="delivery.carrier.size">
         <field name="name">E</field>
-        <field name="carrier_id"
-               ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"/>
+        <field
+      name="carrier_id"
+      ref="product_yahoo_auction_sst.delivery_carrier_kazai_bin"
+    />
     </record>
 </odoo>

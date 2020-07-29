@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
 
     <record id="request_channel_phone" model="request.channel">
         <field name="name">TEL</field>
-        <field eval="False" name="company_id"/>
+        <field eval="False" name="company_id" />
     </record>
     <record id="request_channel_email" model="request.channel">
         <field name="name">Eメール</field>
-        <field eval="False" name="company_id"/>
+        <field eval="False" name="company_id" />
     </record>
     <record id="request_channel_walkin" model="request.channel">
         <field name="name">来店</field>
-        <field eval="False" name="company_id"/>
+        <field eval="False" name="company_id" />
     </record>
     <record id="request_channel_other" model="request.channel">
         <field name="name">その他</field>
-        <field eval="False" name="company_id"/>
+        <field eval="False" name="company_id" />
     </record>
 
 </odoo>

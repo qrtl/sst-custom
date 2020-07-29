@@ -1,50 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">product.template.common.form</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
-                <button string="Propose Sales Price"
-                        name="action_propose_list_price"
-                        type="object" class="oe_read_only"/>
+                <button
+          string="Propose Sales Price"
+          name="action_propose_list_price"
+          type="object"
+          class="oe_read_only"
+        />
             </xpath>
             <xpath expr="//h1" position="replace">
-                <h2><field name="name" placeholder="Product Name"/></h2>
+                <h2>
+                    <field name="name" placeholder="Product Name" />
+                </h2>
             </xpath>
-            <xpath expr="//field[@name='image_medium']" position="replace"/>
+            <xpath expr="//field[@name='image_medium']" position="replace" />
             <xpath expr="//div[@name='options']" position="inside">
-                <field name="image_medium" widget="image" class="oe_avatar"/>
+                <field name="image_medium" widget="image" class="oe_avatar" />
             </xpath>
             <xpath expr="//page[@name='general_information']/group" position="after">
                 <group>
                     <group>
-                        <field name="team_ids" widget="many2many_tags"/>
-                        <field name="manufacturer"/>
-                        <field name="manufactured_year"/>
-                        <field name="model"/>
-                        <field name="evaluated_by_id"/>
-                        <field name="purchased_by_id"/>
-                        <field name="shop_id"/>
-                        <field name="purchase_category_id"/>
+                        <field name="team_ids" widget="many2many_tags" />
+                        <field name="manufacturer" />
+                        <field name="manufactured_year" />
+                        <field name="model" />
+                        <field name="evaluated_by_id" />
+                        <field name="purchased_by_id" />
+                        <field name="shop_id" />
+                        <field name="purchase_category_id" />
                     </group>
                 </group>
                 <group>
-                    <field name="product_state_id" widget="selection"/>
+                    <field name="product_state_id" widget="selection" />
                 </group>
             </xpath>
-            <xpath expr="//page[@name='general_information']"
-                   position="before">
+            <xpath expr="//page[@name='general_information']" position="before">
                 <page string="Purchase Input" name="purchase_input">
                     <group>
-                        <field name="team_ids" widget="many2many_tags"/>
-                        <field name="product_state_id" widget="selection"/>
-                        <field name="description_sale"/>
-                        <field name="list_price" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
-                        <field name="evaluated_by_id"/>
-                        <field name="yahoo_product_state_id"/>
+                        <field name="team_ids" widget="many2many_tags" />
+                        <field name="product_state_id" widget="selection" />
+                        <field name="description_sale" />
+                        <field
+              name="list_price"
+              widget='monetary'
+              options="{'currency_field': 'currency_id', 'field_digits': True}"
+            />
+                        <field name="evaluated_by_id" />
+                        <field name="yahoo_product_state_id" />
                     </group>
                 </page>
             </xpath>
@@ -54,30 +62,29 @@
     <record id="product_template_tree_view" model="ir.ui.view">
         <field name="name">product.template.product.tree</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">top</attribute>
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
-                <field name="team_ids" widget="many2many_tags"/>
-                <field name="evaluated_by_id"/>
-                <field name="purchased_by_id"/>
-                <field name="shop_id"/>
-                <field name="image_medium" widget="image"/>
-                <field name="website_published" string="Visible in Website"/>
-                <field name="public_categ_ids" widget="many2many_tags"/>
-                <field name="product_state_id"/>
+                <field name="team_ids" widget="many2many_tags" />
+                <field name="evaluated_by_id" />
+                <field name="purchased_by_id" />
+                <field name="shop_id" />
+                <field name="image_medium" widget="image" />
+                <field name="website_published" string="Visible in Website" />
+                <field name="public_categ_ids" widget="many2many_tags" />
+                <field name="product_state_id" />
             </xpath>
             <xpath expr="//field[@name='list_price']" position="before">
-                <button name="action_propose_list_price"
-                        type="object" icon="fa-jpy"/>
+                <button name="action_propose_list_price" type="object" icon="fa-jpy" />
             </xpath>
             <xpath expr="//field[@name='type']" position="attributes">
                 <attribute name="invisible">True</attribute>
             </xpath>
             <xpath expr="//field[@name='active']" position="after">
-                <button name="open_record" type="object" icon="fa-sign-in"/>
+                <button name="open_record" type="object" icon="fa-sign-in" />
             </xpath>
         </field>
     </record>
@@ -85,14 +92,14 @@
     <record id="product_template_search_view" model="ir.ui.view">
         <field name="name">product.template.search</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="inherit_id" ref="product.product_template_search_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='categ_id']" position="after">
-                <field name="team_ids"/>
-                <field name="evaluated_by_id"/>
-                <field name="purchased_by_id"/>
-                <field name="shop_id"/>
-                <field name="public_categ_ids"/>
+                <field name="team_ids" />
+                <field name="evaluated_by_id" />
+                <field name="purchased_by_id" />
+                <field name="shop_id" />
+                <field name="public_categ_ids" />
             </xpath>
         </field>
     </record>
@@ -100,37 +107,40 @@
     <record id="sale_product_template_tree_view" model="ir.ui.view">
         <field name="name">sale.product.template.product.tree</field>
         <field name="model">product.template</field>
-        <field eval="20" name="priority"/>
+        <field eval="20" name="priority" />
         <field name="arch" type="xml">
             <tree string="Product" editable="top">
-                <field name="sequence" widget="handle"/>
-                <field name="default_code"/>
-                <field name="shop_id"/>
-                <field name="title" readonly="0"/>
-                <field name="product_category"/>
-                <field name="product_condition_comment"/>
-                <field name="accessories"/>
-                <field name="remark"/>
-                <field name="standard_price"/>
-                <field name="auction_start_price"/>
-                <field name="auction_buyout_price"/>
-                <field name="list_price"/>
-                <field name="carrier_id"/>
-                <field name="carrier_size_id"/>
-                <field name="delivery_cites"/>
-                <field name="yahoo_product_state_id"/>
-                <field name="staff_in_charge"/>
-                <field name="type" invisible="1"/>
-                <field name="uom_id" options="{'no_open': True, 'no_create': True}"
-                       groups="product.group_uom"/>
-                <field name="active" invisible="1"/>
-                <button name="open_record" type="object" icon="fa-sign-in"/>
+                <field name="sequence" widget="handle" />
+                <field name="default_code" />
+                <field name="shop_id" />
+                <field name="title" readonly="0" />
+                <field name="product_category" />
+                <field name="product_condition_comment" />
+                <field name="accessories" />
+                <field name="remark" />
+                <field name="standard_price" />
+                <field name="auction_start_price" />
+                <field name="auction_buyout_price" />
+                <field name="list_price" />
+                <field name="carrier_id" />
+                <field name="carrier_size_id" />
+                <field name="delivery_cites" />
+                <field name="yahoo_product_state_id" />
+                <field name="staff_in_charge" />
+                <field name="type" invisible="1" />
+                <field
+          name="uom_id"
+          options="{'no_open': True, 'no_create': True}"
+          groups="product.group_uom"
+        />
+                <field name="active" invisible="1" />
+                <button name="open_record" type="object" icon="fa-sign-in" />
             </tree>
         </field>
     </record>
 
     <record id="product.product_template_action" model="ir.actions.act_window">
-        <field name="view_id" ref="sale_product_template_tree_view"/>
+        <field name="view_id" ref="sale_product_template_tree_view" />
     </record>
 
 </odoo>

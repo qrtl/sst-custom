@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="quant_transfer_wizard_form" model="ir.ui.view">
@@ -6,30 +6,41 @@
         <field name="model">quant.transfer.wizard</field>
         <field name="arch" type="xml">
             <form string="Quant Transfer">
-                <p class="oe_gray">Create internal transfer for selected quants.</p>
+                <p class="oe_gray">Create internal transfer for selected
+                    quants.
+                </p>
                 <group>
                     <group>
-                        <field name="destination_location_id"
-                               domain="[('usage', '=', 'internal')]"/>
+                        <field
+              name="destination_location_id"
+              domain="[('usage', '=', 'internal')]"
+            />
                     </group>
                 </group>
-            <footer>
-                <button name ="action_stock_quant_transfer" string="Create a Transfer" type="object" class="oe_highlight"/>
-                or
-                <button string="Cancel" class="oe_link" special="cancel" />
-            </footer>
+                <footer>
+                    <button
+            name="action_stock_quant_transfer"
+            string="Create a Transfer"
+            type="object"
+            class="oe_highlight"
+          />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
             </form>
         </field>
     </record>
 
     <act_window
-        id="action_quant_transfer"
-        multi="True"
-        key2="client_action_multi"
-        name="Create a Transfer"
-        res_model="quant.transfer.wizard"
-        src_model="stock.quant"
-        view_mode="form" target="new"
-        view_type="form"/>
+    id="action_quant_transfer"
+    multi="True"
+    key2="client_action_multi"
+    name="Create a Transfer"
+    res_model="quant.transfer.wizard"
+    src_model="stock.quant"
+    view_mode="form"
+    target="new"
+    view_type="form"
+  />
 
- </odoo>
+</odoo>
