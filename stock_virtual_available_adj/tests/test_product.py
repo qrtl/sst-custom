@@ -23,6 +23,9 @@ class TestProduct(common.TransactionCase):
         self.product_02 = self.env["product.product"].create(
             {"name": "Test Product 02", "type": "product"}
         )
+        self.product_03 = self.env["product.product"].create(
+            {"name": "Test Product 03", "type": "product"}
+        )
 
         # update the quantity on hand for products
         self.env["stock.quant"]._update_available_quantity(
@@ -71,6 +74,27 @@ class TestProduct(common.TransactionCase):
                 "order_id": self.sale_order.id,
                 "state": "sent",
             }
+        )
+        self.sale_order_line.create(
+            {
+                "product_id": self.product_03.id,
+                "price_unit": 100.00,
+                "product_uom": self.product_uom,
+                "product_uom_qty": 10.0,
+                "order_id": self.sale_order.id,
+                "state": "draft",
+            }
+        )
+
+        # Call the `_compute_sale_quantities`
+        # method for product 03(product.product)
+        self.product_01._compute_sale_quantities()
+
+        # Compare the `draft_sale_qty` qty for product 03(product.product)
+        self.assertEqual(
+            self.product_03.draft_sale_qty,
+            10,
+            "Check website draft sale qty",
         )
 
         self.sale_order = self.env["sale.order"].create(
@@ -123,25 +147,21 @@ class TestProduct(common.TransactionCase):
             "Check website sale available qty",
         )
 
-        # Call the `_compute_website_sale_available_qty`
-        # method for product 01(product.template)
-        self.product_01.product_tmpl_id._compute_website_sale_available_qty()
-
         # Compare the `website_sale_available_qty`
         # qty for product 01(product.template)
+        # (website_sale_available_qty(70) =
+        # virtual_available(100.0)-sent_sale_qty(0.0)-draft_sale_qty(30.0))
         self.assertEqual(
             self.product_01.product_tmpl_id.website_sale_available_qty,
-            140,
+            70,
             "Check website sale available qty",
         )
 
-        # Call the `_compute_website_sale_available_qty`
-        # method for product 02(product.template)
-        self.product_02.product_tmpl_id._compute_website_sale_available_qty()
-
         # Compare the `website_sale_available_qty` qty for product 02(product.template)
+        # (website_sale_available_qty(45.0) =
+        # virtual_available(100.0) - sent_sale_qty(0.0) - draft_sale_qty(55.0))
         self.assertEqual(
             self.product_02.product_tmpl_id.website_sale_available_qty,
-            90,
+            45,
             "Check website sale available qty",
         )
