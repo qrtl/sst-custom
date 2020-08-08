@@ -19,13 +19,22 @@ class TestSaleOrderImport(common.TransactionCase):
         self.import_sale_obj = self.env["import.sale"]
 
         # Create Test Partner
-        self.partner = self.env["res.partner"].create(
-            {"name": "Test Partner", "phone": "+1234567890"}
+        self.partner_01 = self.env["res.partner"].create(
+            {"name": "Test Partner 01", "phone": "1234567890", "mobile": "1234567890"}
+        )
+        self.partner_02 = self.env["res.partner"].create(
+            {"name": "Test Partner 02", "phone": "9876543210", "mobile": "9876543210"}
         )
 
         # Create Test Product
         self.product_01 = self.env["product.product"].create(
             {"name": "Product A", "type": "product", "default_code": "ABC"}
+        )
+        self.product_02 = self.env["product.product"].create(
+            {"name": "Product B", "type": "product", "default_code": "XYZ"}
+        )
+        self.product_03 = self.env["product.product"].create(
+            {"name": "Product C", "type": "product", "default_code": "ZYX"}
         )
 
         self.public_pricelist = self.env.ref("product.list0")
@@ -88,7 +97,6 @@ class TestSaleOrderImport(common.TransactionCase):
         # Browse the error.log object ids which return in res_domain
         error_log = self.env["error.log"].browse(res_domain)
         sale_order = error_log.sale_order_ids
-
         # Sample data from test_sale_order.csv file
         # Line Product,Line Description,Line Unit Price,Line Qty,Customer,\
         # Pricelist,Warehouse,Notes,Carrier,Team,Customer Phone/Mobile
@@ -97,57 +105,73 @@ class TestSaleOrderImport(common.TransactionCase):
 
         # Compares the values with test_sale_order.csv file.
         self.assertEqual(
-            sale_order.partner_id,
-            self.partner,
+            sale_order[0].partner_id,
+            self.partner_02,
             'From test Sale Order file the "customer"'
             " does not match with test records",
         )
         self.assertEqual(
-            sale_order.partner_invoice_id,
-            self.partner,
+            sale_order[1].partner_id,
+            self.partner_01,
+            'From test Sale Order file the "customer"'
+            " does not match with test records",
+        )
+        self.assertEqual(
+            sale_order[0].partner_invoice_id,
+            self.partner_02,
             "Partner Invoice field does not match with Test Partner",
         )
         self.assertEqual(
-            sale_order.pricelist_id,
+            sale_order[1].partner_invoice_id,
+            self.partner_01,
+            "Partner Invoice field does not match with Test Partner",
+        )
+        self.assertEqual(
+            sale_order[0].pricelist_id,
             self.public_pricelist,
             "From test Sale Order file the pricelist"
             " field data does not match with records",
         )
         self.assertEqual(
-            sale_order.partner_shipping_id,
-            self.partner,
+            sale_order[0].partner_shipping_id,
+            self.partner_02,
             "Partner shipping field does not match with Test Partner",
         )
         self.assertEqual(
-            sale_order.payment_term_id,
-            self.partner.property_payment_term_id,
+            sale_order[1].partner_shipping_id,
+            self.partner_01,
+            "Partner shipping field does not match with Test Partner",
+        )
+        self.assertEqual(
+            sale_order[0].payment_term_id,
+            self.partner_02.property_payment_term_id,
             "Sale Order Payment term field data does not match"
             " with Test Partner Payment term condtion",
         )
         self.assertEqual(
-            sale_order.picking_policy,
+            sale_order[0].picking_policy,
             "direct",
             'Sale order picking policy value does not match with "direct"',
         )
         self.assertEqual(
-            sale_order.team_id,
+            sale_order[0].team_id,
             self.team,
             'From test Sale Order file the "Team"' " does not match with test records",
         )
         self.assertEqual(
-            sale_order.carrier_id.id,
+            sale_order[0].carrier_id.id,
             self.free_delivery,
             'From test Sale Order file the "Carrier"'
             " does not match with test records",
         )
         self.assertEqual(
-            sale_order.warehouse_id,
+            sale_order[0].warehouse_id,
             self.warehouse,
             'From test Sale Order file the "warehouse" '
             "does not match with test records",
         )
         self.assertEqual(
-            sale_order.note,
+            sale_order[0].note,
             self.note,
             "From test Sale Order file the customer does not match with records",
         )
