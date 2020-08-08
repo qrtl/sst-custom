@@ -84,7 +84,10 @@ class WebsiteSaleAdj(common.TransactionCase):
 
         # Create Test Product
         self.product_01 = self.env["product.product"].create(
-            {"name": "Test Product", "type": "product"}
+            {"name": "Test Product 1", "type": "product"}
+        )
+        self.product_02 = self.env["product.product"].create(
+            {"name": "Test Product 2", "type": "product"}
         )
 
         # Create Test Partner
@@ -105,9 +108,20 @@ class WebsiteSaleAdj(common.TransactionCase):
                 "order_id": self.sale_order.id,
             }
         )
+        line_02 = self.env["sale.order.line"].create(
+            {
+                "product_id": self.product_02.id,
+                "price_unit": 200.00,
+                "product_uom": self.product_uom,
+                "product_uom_qty": 20.0,
+                "order_id": self.sale_order.id,
+            }
+        )
 
         # Assign website order line from sale order line
-        self.sale_order.write({"website_order_line": [(6, 0, [line_01.id])]})
+        self.sale_order.write(
+            {"website_order_line": [(6, 0, [line_01.id, line_02.id])]}
+        )
 
         # Compute the `_compute_order_line_date`
         self.sale_order._compute_order_line_date()
