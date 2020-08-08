@@ -92,9 +92,7 @@ class TestProduct(common.TransactionCase):
 
         # Compare the `draft_sale_qty` qty for product 03(product.product)
         self.assertEqual(
-            self.product_03.draft_sale_qty,
-            10,
-            "Check website draft sale qty",
+            self.product_03.draft_sale_qty, 10, "Check website draft sale qty",
         )
 
         self.sale_order = self.env["sale.order"].create(
