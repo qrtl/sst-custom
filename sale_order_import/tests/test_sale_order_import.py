@@ -10,8 +10,11 @@ from odoo.tools.safe_eval import safe_eval
 
 class TestSaleOrderImport(common.TransactionCase):
     """
-    This tests allows to import the test
-    sale order csv file and import sale order.
+    This tests class perform the tests for the following points:
+        - Checking the to import file
+        test_regular_sale_order.csv(/sale_order_import/
+        tests/test_regular_sale_order.csv) and add the sale order from file.
+        - Checking the error while import file test_regular_sale_order.csv
     """
 
     def setUp(self):
@@ -49,14 +52,14 @@ class TestSaleOrderImport(common.TransactionCase):
         )
         self.note = "Test Note"
 
-        # Check the file path and load the test_sale_order.csv
+        # Check the file path and load the test_regular_sale_order.csv
         self.file_path = os.path.join(
-            "sale_order_import", "tests", "test_sale_order.csv"
+            "sale_order_import", "tests", "test_regular_sale_order.csv"
         )
         self.generated_file = file_open(self.file_path, "rb")
         self.generated_file = self.generated_file.read()
 
-    def test_get_order_dict_flow_01(self):
+    def test_01_get_order_dict_flow(self):
         """
             This test evaluates the import test sales order CSV
              file and compares the values with test records.
@@ -73,7 +76,7 @@ class TestSaleOrderImport(common.TransactionCase):
         # values which return by `get_order_dict`.
         # https://github.com/qrtl/sst-custom/blob/11.0/sale_order_import/wizard/import_sale.py#L240 # noqa
 
-        # Create wizard where the add test_sale_order.csv
+        # Create wizard where the add test_regular_sale_order.csv
         # and allow to import sale order data.
         wizard_sale = self.env["import.sale"].create(
             {
@@ -97,34 +100,28 @@ class TestSaleOrderImport(common.TransactionCase):
         # Browse the error.log object ids which return in res_domain
         error_log = self.env["error.log"].browse(res_domain)
         sale_order = error_log.sale_order_ids
-        # Sample data from test_sale_order.csv file
+        # Sample data from test_regular_sale_order.csv file
         # Line Product,Line Description,Line Unit Price,Line Qty,Customer,\
         # Pricelist,Warehouse,Notes,Carrier,Team,Customer Phone/Mobile
         # ABC,Product A,200,2,,Test Partner,Public Pricelist,\
         # My Company,Test Note,Free delivery charges,Sales,+1234567890
 
-        # Compares the values with test_sale_order.csv file.
+        # Compares the values with test_regular_sale_order.csv file.
         self.assertEqual(
-            sale_order[0].partner_id,
-            self.partner_02,
-            'From test Sale Order file the "customer"'
-            " does not match with test records",
+            sale_order[0].partner_id, self.partner_02, "Partner id is incorrect ",
         )
         self.assertEqual(
-            sale_order[1].partner_id,
-            self.partner_01,
-            'From test Sale Order file the "customer"'
-            " does not match with test records",
+            sale_order[1].partner_id, self.partner_01, "Partner id is incorrect",
         )
         self.assertEqual(
             sale_order[0].partner_invoice_id,
             self.partner_02,
-            "Partner Invoice field does not match with Test Partner",
+            "Partner Invoice field id is incorrect for sale_order[0]",
         )
         self.assertEqual(
             sale_order[1].partner_invoice_id,
             self.partner_01,
-            "Partner Invoice field does not match with Test Partner",
+            "Partner Invoice field id is incorrect for sale_order[1]",
         )
         self.assertEqual(
             sale_order[0].pricelist_id,
@@ -146,7 +143,7 @@ class TestSaleOrderImport(common.TransactionCase):
             sale_order[0].payment_term_id,
             self.partner_02.property_payment_term_id,
             "Sale Order Payment term field data does not match"
-            " with Test Partner Payment term condtion",
+            " with Test Partner Payment term condition",
         )
         self.assertEqual(
             sale_order[0].picking_policy,
@@ -156,7 +153,7 @@ class TestSaleOrderImport(common.TransactionCase):
         self.assertEqual(
             sale_order[0].team_id,
             self.team,
-            'From test Sale Order file the "Team"' " does not match with test records",
+            "From test Sale Order file the 'Team' does not match with test records",
         )
         self.assertEqual(
             sale_order[0].carrier_id.id,
@@ -176,66 +173,59 @@ class TestSaleOrderImport(common.TransactionCase):
             "From test Sale Order file the customer does not match with records",
         )
 
-    def test_update_error_log_02(self):
+    def test_02_update_error_log_02(self):
         """
-            This test evaluates the import test sales order CSV
-             file and it update the error log records if any issue occurred while import
-         """
+            Importing test_error_sale_order.csv file which has
+             some errors and compares their errors..
+        """
 
-        # Create Attachment to add as argument in `update_error_log`
-        ir_attachment = self.env["ir.attachment"].create(
+        # Check the file path and load the test_regular_sale_order.csv
+        self.file_path = os.path.join(
+            "sale_order_import", "tests", "test_error_sale_order.csv"
+        )
+        self.generated_file = file_open(self.file_path, "rb")
+        self.generated_file = self.generated_file.read()
+
+        wizard_sale = self.env["import.sale"].create(
             {
-                "name": "test_sale_order.csv",
-                "datas": base64.encodestring(self.generated_file),
-                "datas_fname": "test_sale_order.csv",
+                "picking_policy": "direct",
+                "customer_invoice_journal_id": self.cash_journal_cash.id,
+                "customer_payment_journal_id": self.cash_journal_cash.id,
+                "asynchronous": False,
+                "input_file": base64.encodestring(self.generated_file),
+                "datas_fname": self.file_path,
             }
         )
 
-        # Search Model id to pass as an argument in `update error_log`
-        ir_model = self.env["ir.model"].search([("name", "=", "sale.order")])
-
-        # Test the method `update_error_log` for if condition.
-        import_log_id = self.import_sale_obj._update_error_log(
-            error_log_id=False,
-            error_vals={
-                "error": "Data not found",
-                "error_name": "Test Product Does not found",
-            },
-            ir_attachment=ir_attachment,
-            model=ir_model,
-            row_no=2,
-            order_group_value=1,
-        )
+        # The Main Method called import_sale_data.
+        wizard_sale.import_sale_data()
 
         # Search the error log which is created by `update_error_log`
-        error_log_id = self.env["error.log"].search(
-            [("model_id", "=", ir_model.id), ("state", "=", "failed")]
-        )
+        error_log_id = self.env["error.log"].search([("state", "=", "failed")])
 
-        # Compare the values which generated by `update_error_log` method
+        # Compare the errors name while importing the test_error_sale_order.csv.
         self.assertEqual(
-            error_log_id.input_file, ir_attachment, "Check the uploaded attachment"
+            error_log_id.log_line_ids[0].error_name, "Product: NPD Not Found!\n"
         )
+
+        # Compare the row no from the error sale order csv file..
+        self.assertEqual(error_log_id.log_line_ids[0].row_no, 2)
+
+        # Compare the group number from the error sale order csv file..
+        self.assertEqual(error_log_id.log_line_ids[0].order_group, "1")
+
+        # Compare the errors name while importing the test_error_sale_order.csv.
         self.assertEqual(
-            error_log_id.import_user_id,
-            self.env.user,
-            "Check the environment user seems not different",
+            error_log_id.log_line_ids[1].error_name, "Product: JKL Not Found!\n"
         )
 
-        # Test the method `update_error_log` for `else` condition.
-        self.import_sale_obj._update_error_log(
-            error_log_id=import_log_id,
-            error_vals={
-                "error": "Data not found",
-                "error_name": "Test Product B Does not found",
-            },
-            ir_attachment=None,
-            model=None,
-            row_no=2,
-            order_group_value=None,
-        )
+        # Compare the row no from the error sale order csv file..
+        self.assertEqual(error_log_id.log_line_ids[1].row_no, 3)
 
-        log_line = self.env["error.log.line"].search([("log_id", "=", error_log_id.id)])
+        # Compare the group number from the error sale order csv file..
+        self.assertEqual(error_log_id.log_line_ids[1].order_group, "2")
 
         # Compare the length of error log lines records.
-        self.assertEqual(len(log_line), 2, "Check number of records for log line")
+        self.assertEqual(
+            len(error_log_id.log_line_ids), 2, "Check number of records for log line"
+        )
