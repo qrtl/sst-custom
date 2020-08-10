@@ -108,7 +108,7 @@ class WebsiteSaleAdj(common.TransactionCase):
                 "order_id": self.sale_order.id,
             }
         )
-        line_02 = self.env["sale.order.line"].create(
+        self.env["sale.order.line"].create(
             {
                 "product_id": self.product_02.id,
                 "price_unit": 200.00,
@@ -119,12 +119,7 @@ class WebsiteSaleAdj(common.TransactionCase):
         )
 
         # Assign website order line from sale order line
-        self.sale_order.write(
-            {"website_order_line": [(6, 0, [line_01.id, line_02.id])]}
-        )
-
-        # Compute the `_compute_order_line_date`
-        self.sale_order._compute_order_line_date()
+        self.sale_order._compute_website_order_line()
 
         # Compare the `order_line_date` with sale order line create_date.
         self.assertEqual(
