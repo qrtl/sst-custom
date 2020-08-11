@@ -19,8 +19,6 @@ class TestSaleOrderImport(common.TransactionCase):
 
     def setUp(self):
         super(TestSaleOrderImport, self).setUp()
-        self.import_sale_obj = self.env["import.sale"]
-
         # Create Test Partner
         self.partner_01 = self.env["res.partner"].create(
             {"name": "Test Partner 01", "phone": "1234567890", "mobile": "1234567890"}
@@ -43,27 +41,26 @@ class TestSaleOrderImport(common.TransactionCase):
         self.public_pricelist = self.env.ref("product.list0")
         self.warehouse = self.env.ref("stock.warehouse0")
         self.team = self.env.ref("sales_team.crm_team_1")
-        self.free_delivery = self.env["ir.model.data"].xmlid_to_res_id(
+        self.free_delivery_id = self.env["ir.model.data"].xmlid_to_res_id(
             "delivery.free_delivery_carrier"
         )
-        self.customer_phone = "123456789"
         self.cash_journal_cash = self.env["account.journal"].create(
             {"name": "Cash", "type": "cash", "code": "CASH"}
         )
         self.note = "Test Note"
-
-        # Check the file path and load the test_regular_sale_order.csv
-        self.file_path = os.path.join(
-            "sale_order_import", "tests", "test_regular_sale_order.csv"
-        )
-        self.generated_file = file_open(self.file_path, "rb")
-        self.generated_file = self.generated_file.read()
 
     def test_01_get_order_dict_flow(self):
         """
             This test evaluates the import test sales order CSV
              file and compares the values with test records.
         """
+
+        # Check the file path and load the test_regular_sale_order.csv
+        file_path = os.path.join(
+            "sale_order_import", "tests", "test_regular_sale_order.csv"
+        )
+        generated_file = file_open(file_path, "rb")
+        generated_file = generated_file.read()
 
         # Note: Here I have called `import_sale_data` method which is the main
         # method of sale order CSV file. This method covers the
@@ -84,8 +81,8 @@ class TestSaleOrderImport(common.TransactionCase):
                 "customer_invoice_journal_id": self.cash_journal_cash.id,
                 "customer_payment_journal_id": self.cash_journal_cash.id,
                 "asynchronous": False,
-                "input_file": base64.encodestring(self.generated_file),
-                "datas_fname": self.file_path,
+                "input_file": base64.encodestring(generated_file),
+                "datas_fname": file_path,
             }
         )
 
@@ -107,12 +104,8 @@ class TestSaleOrderImport(common.TransactionCase):
         # My Company,Test Note,Free delivery charges,Sales,+1234567890
 
         # Compares the values with test_regular_sale_order.csv file.
-        self.assertEqual(
-            sale_order[0].partner_id, self.partner_02, "Partner id is incorrect ",
-        )
-        self.assertEqual(
-            sale_order[1].partner_id, self.partner_01, "Partner id is incorrect",
-        )
+        self.assertEqual(sale_order[0].partner_id, self.partner_02)
+        self.assertEqual(sale_order[1].partner_id, self.partner_01)
         self.assertEqual(
             sale_order[0].partner_invoice_id,
             self.partner_02,
@@ -157,7 +150,7 @@ class TestSaleOrderImport(common.TransactionCase):
         )
         self.assertEqual(
             sale_order[0].carrier_id.id,
-            self.free_delivery,
+            self.free_delivery_id,
             'From test Sale Order file the "Carrier"'
             " does not match with test records",
         )
@@ -180,11 +173,11 @@ class TestSaleOrderImport(common.TransactionCase):
         """
 
         # Check the file path and load the test_regular_sale_order.csv
-        self.file_path = os.path.join(
+        file_path = os.path.join(
             "sale_order_import", "tests", "test_error_sale_order.csv"
         )
-        self.generated_file = file_open(self.file_path, "rb")
-        self.generated_file = self.generated_file.read()
+        generated_file = file_open(file_path, "rb")
+        generated_file = generated_file.read()
 
         wizard_sale = self.env["import.sale"].create(
             {
@@ -192,8 +185,8 @@ class TestSaleOrderImport(common.TransactionCase):
                 "customer_invoice_journal_id": self.cash_journal_cash.id,
                 "customer_payment_journal_id": self.cash_journal_cash.id,
                 "asynchronous": False,
-                "input_file": base64.encodestring(self.generated_file),
-                "datas_fname": self.file_path,
+                "input_file": base64.encodestring(generated_file),
+                "datas_fname": file_path,
             }
         )
 
