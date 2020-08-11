@@ -30,7 +30,6 @@ class ProductProduct(models.Model):
             sale_lines = self.env["sale.order.line"].search(
                 [("product_id", "=", product.id), ("state", "in", ("sent", "draft"))]
             )
-
             product.draft_sale_qty = sum(
                 sale_lines.filtered(lambda p: p.state == "draft").mapped(
                     "product_uom_qty"
