@@ -49,9 +49,7 @@ class WebsiteForum(WebsiteForum):
 
     @http.route(
         [
-            """/forum/<model("forum.forum"):forum>/question/<model
-            ("forum.post", "[('forum_id','=',forum[0]),
-            ('parent_id','=',False),('can_view', '=', True)]"):question>"""
+            """/forum/<model("forum.forum"):forum>/question/<model("forum.post", "[('forum_id','=',forum[0]),('parent_id','=',False),('can_view', '=', True)]"):question>"""  # noqa
         ],
         type="http",
         auth="user",
