@@ -6,162 +6,69 @@ from odoo.tests import common
 
 class TestProduct(common.TransactionCase):
     def setUp(self):
-        super(TestProduct, self).setUp()
+        super().setUp()
 
         stock_location = self.env.ref("stock.stock_location_stock")
-        self.product_uom_id = self.env.ref("product.product_uom_unit").id
+        product_product = self.env["product.product"]
+        stock_quant = self.env["stock.quant"]
 
-        # Create Test Products
-        self.product_01 = self.env["product.product"].create(
+        self.product_01 = product_product.create(
             {"name": "Test Product 01", "type": "product"}
         )
-        self.product_02 = self.env["product.product"].create(
+        self.product_02 = product_product.create(
             {"name": "Test Product 02", "type": "product"}
         )
-        self.product_03 = self.env["product.product"].create(
+        self.product_03 = product_product.create(
             {"name": "Test Product 03", "type": "product"}
         )
 
-        # update the quantity on hand for products
-        self.env["stock.quant"]._update_available_quantity(
-            self.product_01, stock_location, 100
-        )
-        self.env["stock.quant"]._update_available_quantity(
-            self.product_02, stock_location, 100
-        )
+        # Create stock for products
+        stock_quant._update_available_quantity(self.product_01, stock_location, 100.0)
+        stock_quant._update_available_quantity(self.product_02, stock_location, 100.0)
 
-        # Create Test Partners
-        self.partner_01 = self.env["res.partner"].create({"name": "Test Partner 1"})
-        self.partner_02 = self.env["res.partner"].create({"name": "Test Partner 2"})
+        self.partner = self.env["res.partner"].create({"name": "Test Partner"})
 
-    def test_compute_website_sale_available_qty_01(self):
-        """
-            This test compute the website
-            sale available quantity for product
-        """
+    def test_01_compute_website_sale_available_qty(self):
+        sale_order = self.env["sale.order"]
 
-        # This test perform to create two sales orders
-        # which has few sale order lines and
-        # this sale order lines in `draft` and `sent` state.
+        def _create_line(product, qty, order):
+            return self.env["sale.order.line"].create(
+                {
+                    "product_id": product.id,
+                    "price_unit": 10.00,
+                    "product_uom": product.uom_id.id,
+                    "product_uom_qty": qty,
+                    "order_id": order.id,
+                }
+            )
 
-        # I create a sales order
-        self.sale_order_01 = self.env["sale.order"].create(
-            {"partner_id": self.partner_01.id}
-        )
+        # Create an order with 'draft' state
+        sale_order_01 = sale_order.create({"partner_id": self.partner.id})
+        _create_line(self.product_01, 20.0, sale_order_01)
+        _create_line(self.product_02, 30.0, sale_order_01)
 
-        # In the sales order I add some sales order lines.
-        self.env["sale.order.line"].create(
-            {
-                "product_id": self.product_01.id,
-                "price_unit": 100.00,
-                "product_uom": self.product_uom_id,
-                "product_uom_qty": 20.0,
-                "order_id": self.sale_order_01.id,
-            }
-        )
+        # Create an order with 'draft' state
+        sale_order_02 = sale_order.create({"partner_id": self.partner.id})
+        _create_line(self.product_01, 15.0, sale_order_02)
 
-        self.env["sale.order.line"].create(
-            {
-                "product_id": self.product_02.id,
-                "price_unit": 100.00,
-                "product_uom": self.product_uom_id,
-                "product_uom_qty": 30.0,
-                "order_id": self.sale_order_01.id,
-            }
-        )
+        # Create an order with 'sent' state
+        sale_order_03 = sale_order.create({"partner_id": self.partner.id})
+        _create_line(self.product_02, 10.0, sale_order_03)
+        sale_order_03.print_quotation()
 
-        # Convert sale-order to sent state
-        self.sale_order_01.print_quotation()
+        self.assertEqual(self.product_01.draft_sale_qty, 35.0)
+        self.assertEqual(self.product_01.sent_sale_qty, 0.0)
+        self.assertEqual(self.product_02.draft_sale_qty, 30.0)
+        self.assertEqual(self.product_02.sent_sale_qty, 10.0)
 
-        self.sale_order_02 = self.env["sale.order"].create(
-            {"partner_id": self.partner_02.id}
-        )
+        # Check the result at product variant level
+        self.assertEqual(self.product_01.website_sale_available_qty, 65.0)
+        self.assertEqual(self.product_02.website_sale_available_qty, 60.0)
 
-        # Draft Order lines
-        self.env["sale.order.line"].create(
-            {
-                "product_id": self.product_02.id,
-                "price_unit": 100.00,
-                "product_uom": self.product_uom_id,
-                "product_uom_qty": 15.0,
-                "order_id": self.sale_order_02.id,
-                "state": "draft",
-            }
-        )
-        self.env["sale.order.line"].create(
-            {
-                "product_id": self.product_03.id,
-                "price_unit": 100.00,
-                "product_uom": self.product_uom_id,
-                "product_uom_qty": 10.0,
-                "order_id": self.sale_order_02.id,
-                "state": "draft",
-            }
-        )
-
-        # Compare the `draft_sale_qty` qty for product 03(product.product)
+        # Check the result at product template level
         self.assertEqual(
-            self.product_03.draft_sale_qty, 10, "Check website draft sale qty",
+            self.product_01.product_tmpl_id.website_sale_available_qty, 65.0,
         )
-
-        self.sale_order_03 = self.env["sale.order"].create(
-            {"partner_id": self.partner_02.id}
-        )
-
-        # In the sales order I add some sales order lines.
-        self.env["sale.order.line"].create(
-            {
-                "product_id": self.product_01.id,
-                "price_unit": 100.00,
-                "product_uom": self.product_uom_id,
-                "product_uom_qty": 10.0,
-                "order_id": self.sale_order_03.id,
-            }
-        )
-
-        self.env["sale.order.line"].create(
-            {
-                "product_id": self.product_02.id,
-                "price_unit": 100.00,
-                "product_uom": self.product_uom_id,
-                "product_uom_qty": 25.0,
-                "order_id": self.sale_order_03.id,
-            }
-        )
-
-        # Convert sale-order to sent state
-        self.sale_order_03.print_quotation()
-
-        # Compare the `website_sale_available_qty` qty for product 01(product.product)
         self.assertEqual(
-            self.product_01.website_sale_available_qty,
-            70,
-            "Check website sale available qty",
-        )
-
-        # Compare the `website_sale_available_qty`
-        # qty for product 02(product.product)
-        self.assertEqual(
-            self.product_02.website_sale_available_qty,
-            30,
-            "Check website sale available qty",
-        )
-
-        # Compare the `website_sale_available_qty`
-        # qty for product 01(product.template)
-        # (website_sale_available_qty(70) =
-        # virtual_available(100.0)-sent_sale_qty(0.0)-draft_sale_qty(30.0))
-        self.assertEqual(
-            self.product_01.product_tmpl_id.website_sale_available_qty,
-            70,
-            "Check website sale available qty",
-        )
-
-        # Compare the `website_sale_available_qty` qty for product 02(product.template)
-        # (website_sale_available_qty(30.0) =
-        # virtual_available(100.0) - sent_sale_qty(55.0) - draft_sale_qty(15.0))
-        self.assertEqual(
-            self.product_02.product_tmpl_id.website_sale_available_qty,
-            30,
-            "Check website sale available qty",
+            self.product_02.product_tmpl_id.website_sale_available_qty, 60.0,
         )
