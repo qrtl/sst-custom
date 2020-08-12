@@ -2,11 +2,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
+import logging
 import urllib
 
-import jaconv
-
 from odoo import _, api, fields, models
+
+try:
+    import jaconv
+except (ImportError, IOError) as err:
+    logging.getLogger(__name__).warning(err)
 
 
 class PurchaseOrder(models.Model):
