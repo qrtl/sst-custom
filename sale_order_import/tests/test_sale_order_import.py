@@ -166,7 +166,7 @@ class TestSaleOrderImport(common.TransactionCase):
             "From test Sale Order file the customer does not match with records",
         )
 
-    def test_02_update_error_log_02(self):
+    def test_02_update_error_log(self):
         """
             Importing test_error_sale_order.csv file which has
              some errors and compares their errors..
