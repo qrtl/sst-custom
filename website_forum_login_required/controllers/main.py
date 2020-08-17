@@ -15,10 +15,8 @@ class WebsiteForum(WebsiteForum):
         [
             '/forum/<model("forum.forum"):forum>',
             '/forum/<model("forum.forum"):forum>/page/<int:page>',
-            """/forum/<model("forum.forum"):forum>
-            /tag/<model("forum.tag"):tag>/questions""",
-            """/forum/<model("forum.forum"):forum>
-            /tag/<model("forum.tag"):tag>/questions/page/<int:page>""",
+            """/forum/<model("forum.forum"):forum>/tag/<model("forum.tag"):tag>/questions""",  # noqa
+            """/forum/<model("forum.forum"):forum>/tag/<model("forum.tag"):tag>/questions/page/<int:page>""",  # noqa
         ],
         type="http",
         auth="user",
