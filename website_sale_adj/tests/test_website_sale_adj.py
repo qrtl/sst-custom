@@ -86,9 +86,6 @@ class WebsiteSaleAdj(common.TransactionCase):
         self.product_01 = self.env["product.product"].create(
             {"name": "Test Product 1", "type": "product"}
         )
-        self.product_02 = self.env["product.product"].create(
-            {"name": "Test Product 2", "type": "product"}
-        )
 
         # Create Test Partner
         self.partner_01 = self.env["res.partner"].create({"name": "Test Partner 1"})
@@ -108,18 +105,6 @@ class WebsiteSaleAdj(common.TransactionCase):
                 "order_id": self.sale_order.id,
             }
         )
-        self.env["sale.order.line"].create(
-            {
-                "product_id": self.product_02.id,
-                "price_unit": 200.00,
-                "product_uom": self.product_uom,
-                "product_uom_qty": 20.0,
-                "order_id": self.sale_order.id,
-            }
-        )
-
-        # Assign website order line from sale order line
-        self.sale_order._compute_website_order_line()
 
         # Compare the `order_line_date` with sale order line create_date.
         self.assertEqual(
