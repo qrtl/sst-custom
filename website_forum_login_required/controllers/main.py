@@ -15,10 +15,8 @@ class WebsiteForum(WebsiteForum):
         [
             '/forum/<model("forum.forum"):forum>',
             '/forum/<model("forum.forum"):forum>/page/<int:page>',
-            """/forum/<model("forum.forum"):forum>
-            /tag/<model("forum.tag"):tag>/questions""",
-            """/forum/<model("forum.forum"):forum>
-            /tag/<model("forum.tag"):tag>/questions/page/<int:page>""",
+            """/forum/<model("forum.forum"):forum>/tag/<model("forum.tag"):tag>/questions""",  # noqa
+            """/forum/<model("forum.forum"):forum>/tag/<model("forum.tag"):tag>/questions/page/<int:page>""",  # noqa
         ],
         type="http",
         auth="user",
@@ -49,9 +47,7 @@ class WebsiteForum(WebsiteForum):
 
     @http.route(
         [
-            """/forum/<model("forum.forum"):forum>/question/<model
-            ("forum.post", "[('forum_id','=',forum[0]),
-            ('parent_id','=',False),('can_view', '=', True)]"):question>"""
+            """/forum/<model("forum.forum"):forum>/question/<model("forum.post", "[('forum_id','=',forum[0]),('parent_id','=',False),('can_view', '=', True)]"):question>"""  # noqa
         ],
         type="http",
         auth="user",
