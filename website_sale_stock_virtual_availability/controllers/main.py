@@ -19,6 +19,6 @@ class WebsiteSale(WebsiteSale):
             res, request.env["product.product"].sudo().browse(variant_ids)
         ):
             # Directly refer [4] since 'res' is a list instead of a dict object
-            qty = variant.sudo().website_sale_available_q
+            qty = variant.sudo().website_sale_available_qty
             r[4].update({"website_sale_available_qty": qty})
         return res
