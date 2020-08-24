@@ -29,6 +29,4 @@ class ResConfigSettings(models.TransientModel):
     @api.constrains("email_recipient_limit")
     def _check_email_recipient_limit(self):
         if self.email_recipient_limit <= 0:
-            raise ValidationError(
-                _("Limit Email Recipient should be greater " "than 0.")
-            )
+            raise ValidationError(_("Limit Email Recipient should be greater than 0."))
