@@ -1,59 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-        <record id="import_sale_view_form" model="ir.ui.view">
-            <field name="name">import.sale.form</field>
-            <field name="model">import.sale</field>
-            <field name="arch" type="xml">
-                <form string="Import">
-                    <separator string="Import Sale Orders"/>
-                    <label string="This wizard will create sales orders using imported .csv file. It will also validate sales order, validate invoice and pay the invoice."/>
+    <record id="import_sale_view_form" model="ir.ui.view">
+        <field name="name">import.sale.form</field>
+        <field name="model">import.sale</field>
+        <field name="arch" type="xml">
+            <form string="Import">
+                <separator string="Import Sale Orders" />
+                <label
+          string="This wizard will create sales orders using imported .csv file. It will also validate sales order, validate invoice and pay the invoice."
+        />
+                <group>
                     <group>
-                        <group>
-                            <field name="input_file" filename="datas_fname"/>
-                            <field name="datas_fname" invisible="1"/>
-                        </group>
-                        <group>
-                            <field name="asynchronous"/>
-                        </group>
+                        <field name="input_file" filename="datas_fname" />
+                        <field name="datas_fname" invisible="1" />
                     </group>
                     <group>
-                        <group>
-                            <field name="picking_policy"/>
-                        </group>
+                        <field name="asynchronous" />
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="picking_policy" />
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field
+              name="customer_invoice_journal_id"
+              domain="[('type', '=', 'sale')]"
+            />
                     </group>
                     <group>
-                        <group>
-                            <field name="customer_invoice_journal_id"
-                                   domain="[('type', '=', 'sale')]"/>
-                        </group>
-                        <group>
-                            <field name="customer_payment_journal_id"
-                                   domain="[('type', 'in', ('cash', 'bank'))]"/>
-                        </group>
+                        <field
+              name="customer_payment_journal_id"
+              domain="[('type', 'in', ('cash', 'bank'))]"
+            />
                     </group>
-                    <footer>
-                        <button name="import_sale_data" string="Import"
-                                type="object" class="oe_highlight"/> or
-                        <button special="cancel" string="Cancel" class="oe_link"/>
-                    </footer>
-                </form>
-            </field>
-        </record>
+                </group>
+                <footer>
+                    <button
+            name="import_sale_data"
+            string="Import"
+            type="object"
+            class="oe_highlight"
+          />
+                    or
+                    <button special="cancel" string="Cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
 
-        <record id="import_sale_action" model="ir.actions.act_window">
-            <field name="name">Import Sale Order</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">import.sale</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="import_sale_view_form"/>
-            <field name="context">{}</field>
-            <field name="target">new</field>
-        </record>
+    <record id="import_sale_action" model="ir.actions.act_window">
+        <field name="name">Import Sale Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.sale</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="import_sale_view_form" />
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
 
-        <menuitem id="sale_import_wiz_menu" name="Import Sale Order"
-                  action="import_sale_action"
-                  parent= "base_import_log.import_data_menu"/>
+    <menuitem
+    id="sale_import_wiz_menu"
+    name="Import Sale Order"
+    action="import_sale_action"
+    parent="base_import_log.import_data_menu"
+  />
 
 </odoo>
