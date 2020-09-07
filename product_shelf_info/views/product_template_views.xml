@@ -16,15 +16,15 @@
         <field name="inherit_id" ref="product_ext_sst.product_template_form_view" />
         <field name="arch" type="xml">
             <xpath
-                expr="//page[@name='purchase_input']//field[@name='evaluated_by_id']"
-                position="after"
-            >
+        expr="//page[@name='purchase_input']//field[@name='evaluated_by_id']"
+        position="after"
+      >
                 <field name="shelf_id" />
             </xpath>
             <xpath
-                expr="//page[@name='general_information']//field[@name='evaluated_by_id']"
-                position="after"
-            >
+        expr="//page[@name='general_information']//field[@name='evaluated_by_id']"
+        position="after"
+      >
                 <field name="shelf_id" />
             </xpath>
         </field>

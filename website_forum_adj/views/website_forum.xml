@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <delete id="website_forum.assets_frontend" model="ir.ui.view"/>
-    <template id="website_forum.assets_frontend" inherit_id="website.assets_frontend" name="Forum Assets">
+    <delete id="website_forum.assets_frontend" model="ir.ui.view" />
+    <template
+    id="website_forum.assets_frontend"
+    inherit_id="website.assets_frontend"
+    name="Forum Assets"
+  >
         <xpath expr="." position="inside">
-            <link rel='stylesheet' href='/website_forum/static/src/css/website_forum.css'/>
-            <script type="text/javascript" src="/website_forum/static/src/js/website_forum.js"/>
-            <script type="text/javascript" src="/website_forum_adj/static/src/js/website_forum.share.js"/>
-            <script type="text/javascript" src="/website_forum/static/src/js/website_tour_forum_question.js"/>
+            <link
+        rel='stylesheet'
+        href='/website_forum/static/src/css/website_forum.css'
+      />
+            <script
+        type="text/javascript"
+        src="/website_forum/static/src/js/website_forum.js"
+      />
+            <script
+        type="text/javascript"
+        src="/website_forum_adj/static/src/js/website_forum.share.js"
+      />
+            <script
+        type="text/javascript"
+        src="/website_forum/static/src/js/website_tour_forum_question.js"
+      />
         </xpath>
     </template>
 

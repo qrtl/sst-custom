@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
 # Copyright 2020 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
     website_sequence_date = fields.Datetime(
-        string='Website Sequence Date',
-        default=fields.Datetime.now,
+        string="Website Sequence Date", default=fields.Datetime.now,
     )
 
     @api.multi
@@ -24,6 +22,4 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def _update_website_sequence_date(self):
-        return self.update({
-            'website_sequence_date': fields.Datetime.now()
-        })
+        return self.update({"website_sequence_date": fields.Datetime.now()})

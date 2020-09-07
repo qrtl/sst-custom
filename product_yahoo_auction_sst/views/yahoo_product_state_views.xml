@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id='yahoo_product_state_tree_view' model='ir.ui.view'>
@@ -7,7 +7,7 @@
         <field name='type'>tree</field>
         <field name='arch' type='xml'>
             <tree string='Yahoo Product State' editable="top">
-                <field name="name"/>
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -19,7 +19,12 @@
         <field name='view_mode'>tree</field>
     </record>
 
-    <menuitem id="menu_yahoo_product_state" name="Yahoo Product State"
-              parent="sale.menu_sale_config" action='action_yahoo_product_state' sequence="10"/>
+    <menuitem
+    id="menu_yahoo_product_state"
+    name="Yahoo Product State"
+    parent="sale.menu_sale_config"
+    action='action_yahoo_product_state'
+    sequence="10"
+  />
 
 </odoo>

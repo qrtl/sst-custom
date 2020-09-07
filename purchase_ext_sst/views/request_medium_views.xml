@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id='form_view_request_medium' model='ir.ui.view'>
@@ -10,12 +10,12 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="name" />
                         </group>
                         <group>
-                            <field name="active"/>
-                            <field name="sequence"/>
-                            <field name="company_id"/>
+                            <field name="active" />
+                            <field name="sequence" />
+                            <field name="company_id" />
                         </group>
                     </group>
                 </sheet>
@@ -29,10 +29,10 @@
         <field name='type'>tree</field>
         <field name='arch' type='xml'>
             <tree string='Request Media'>
-                <field name="sequence" widget="handle"/>
-                <field name="name"/>
-                <field name="active"/>
-                <field name="company_id"/>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="active" />
+                <field name="company_id" />
             </tree>
         </field>
     </record>
@@ -44,6 +44,12 @@
         <field name='view_mode'>tree,form</field>
     </record>
 
-    <menuitem id="menu_request_medium" name="Request Media" parent="menu_purchase_in_config_purchase" action='action_request_medium' sequence="20"/>
+    <menuitem
+    id="menu_request_medium"
+    name="Request Media"
+    parent="menu_purchase_in_config_purchase"
+    action='action_request_medium'
+    sequence="20"
+  />
 
 </odoo>

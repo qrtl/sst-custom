@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record id="update_product_template_website_sequence_date_action" model="ir.actions.server">
+    <record
+    id="update_product_template_website_sequence_date_action"
+    model="ir.actions.server"
+  >
         <field name="name">Update Website Sequence</field>
-        <field name="model_id" ref="product.model_product_template"/>
-        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="model_id" ref="product.model_product_template" />
+        <field name="binding_model_id" ref="product.model_product_template" />
         <field name="state">code</field>
         <field name="code">records._update_website_sequence_date()</field>
     </record>

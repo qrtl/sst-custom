@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
- 
+
     <record model="ir.ui.view" id="sale_order_inherit_for_import">
         <field name="name">sale.order.inherit.for.import</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"></field>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="imported_order"/>
-                <field name="order_ref"/>
+                <field name="imported_order" />
+                <field name="order_ref" />
             </xpath>
         </field>
-     </record>
+    </record>
 
 </odoo>
