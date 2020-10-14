@@ -1,14 +1,14 @@
 # Copyright 2020 Quartile Limited
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     blog_mail_server_id = fields.Many2one(
-        'ir.mail_server',
-        related='website_id.blog_mail_server_id',
-        string='Mail Server for Blog\'s Updates',
+        "ir.mail_server",
+        related="website_id.blog_mail_server_id",
+        string="Mail Server for Blog's Updates",
     )
