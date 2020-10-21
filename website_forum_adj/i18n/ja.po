@@ -29,7 +29,7 @@ msgstr "差出人"
 #: model:ir.model.fields,field_description:website_forum_adj.field_res_config_settings_forum_mail_server_id
 #: model:ir.model.fields,field_description:website_forum_adj.field_webkul_website_addons_forum_mail_server_id
 #: model:ir.model.fields,field_description:website_forum_adj.field_website_forum_mail_server_id
-msgid "Mail Server for Forum's Updates"
+msgid "Mail Server for Forum Updates"
 msgstr "フォーラム更新用メールサーバ"
 
 #. module: website_forum_adj

@@ -1,5 +1,5 @@
 # Copyright 2019 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models
 
@@ -10,5 +10,5 @@ class ResConfigSettings(models.TransientModel):
     forum_mail_server_id = fields.Many2one(
         "ir.mail_server",
         related="website_id.forum_mail_server_id",
-        string="Mail Server for Forum's Updates",
+        string="Mail Server for Forum Updates",
     )

@@ -1,3 +1,4 @@
 This module does the following:
 
-* This module removes the social message part after user posts a question/answer on website forum.
+* Removes the social message part after user posts a question/answer on website forum.
+* Sends forum update notification emails from a specific email server.
