@@ -1,3 +1,3 @@
 This module does the following:
 
-* Send Blog Email updates from specific Mail Server.
+* Sends blog update notification emails from a specific email server.

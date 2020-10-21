@@ -17,7 +17,7 @@
                                 <div class="row mt16">
                                     <label
                     class="col-md-3 o_light_label"
-                    string="Mail Server for Blog's Updates"
+                    string="Mail Server for Blog Updates"
                   />
                                     <field
                     name="blog_mail_server_id"

@@ -26,7 +26,7 @@ msgstr "連絡先"
 #: model:ir.model.fields,field_description:website_blog_mail_server.field_website_order_notes_settings_blog_mail_server_id
 #: model:ir.model.fields,field_description:website_blog_mail_server.field_website_blog_mail_server_id
 #: model:ir.ui.view,arch_db:website_blog_mail_server.res_config_settings_view_form
-msgid "Mail Server for Blog's Updates"
+msgid "Mail Server for Blog Updates"
 msgstr "ブログ更新用メールサーバ"
 
 #. module: website_blog_mail_server
