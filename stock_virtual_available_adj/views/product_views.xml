@@ -54,7 +54,7 @@
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="decoration-danger">
-                    website_sale_available_qty &lt; =0
+                    website_sale_available_qty &lt;= 0
                 </attribute>
             </xpath>
             <xpath expr="//field[@name='categ_id']" position="after">
