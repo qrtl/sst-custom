@@ -19,7 +19,7 @@ class WebsiteSale(WebsiteSale):
     def cart_update_json(
         self, product_id, line_id=None, add_qty=None, set_qty=None, display=True
     ):
-        if line_id and set_qty and not add_qty:
+        if line_id and set_qty is not None and not add_qty:
             sale_order_line = request.env["sale.order.line"].sudo().browse(line_id)
             penalty_product_id = (
                 request.env["ir.config_parameter"]
