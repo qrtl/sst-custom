@@ -37,7 +37,8 @@ exclude: |
   dbfilter_from_header/|
   l10n_jp_partner_title_qweb/|
   web_environment_ribbon/|
-  mail_outbound_static/
+  mail_outbound_static/|
+  purchase_order_type/
 default_language_version:
   python: python3
   node: "14.13.0"
