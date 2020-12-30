@@ -61,6 +61,7 @@
                     </group>
                 </group>
                 <group>
+                    <field name="sale_prediction_amount" />
                     <field name="remark" />
                 </group>
             </xpath>
@@ -133,6 +134,7 @@
                 <field name="phone_search" />
                 <field name="address" />
                 <field name="remark" />
+                <field name="sale_prediction_amount" />
             </xpath>
             <xpath expr="//field[@name='date_planned']" position="after">
                 <field name="employee_id" />
