@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class PurchaseOrderTag(models.Model):
-    _name = 'purchase.order.tag'
+    _name = "purchase.order.tag"
 
     name = fields.Char(required=True, translate=True)

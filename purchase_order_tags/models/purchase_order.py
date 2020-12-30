@@ -5,10 +5,8 @@ from odoo import fields, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
     order_tags = fields.Many2many(
-        comodel_name='purchase.order.tag',
-        string='Tag(s)',
-        ondelete='restrict'
+        comodel_name="purchase.order.tag", string="Tag(s)", ondelete="restrict"
     )

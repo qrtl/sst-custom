@@ -65,7 +65,7 @@ class PurchaseOrder(models.Model):
         string="Worked Hours",
     )
     date_planned = fields.Datetime(compute=False,)
-    sale_prediction_amount = fields.Monetary('Sales Prediction')
+    sale_prediction_amount = fields.Monetary("Sales Prediction")
 
     @api.onchange("purchased_by_id")
     def onchange_purchased_by_id(self):
