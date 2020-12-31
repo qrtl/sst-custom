@@ -2,15 +2,19 @@
 <odoo>
 
     <record id="view_purchase_order_tag_tree" model="ir.ui.view">
+        <field name="name">purchase.order.tag.tree</field>
         <field name="model">purchase.order.tag</field>
         <field name="arch" type="xml">
             <tree string="Purchase Order Tags" editable="top">
                 <field name="name" />
+                <field name="color" />
+                <field name="active" />
             </tree>
         </field>
     </record>
 
     <record id="view_purchase_order_tag_search" model="ir.ui.view">
+        <field name="name">purchase.order.tag.search</field>
         <field name="model">purchase.order.tag</field>
         <field name="arch" type="xml">
             <search string="Purchase Order Tags">
@@ -27,7 +31,6 @@
         <field name="view_id" ref="view_purchase_order_tag_tree" />
         <field name="search_view_id" ref="view_purchase_order_tag_search" />
     </record>
-
 
     <menuitem
     id="menu_purchase_order_tag"

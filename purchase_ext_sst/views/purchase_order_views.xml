@@ -61,8 +61,8 @@
                     </group>
                 </group>
                 <group>
-                    <field name="sale_prediction_amount" />
                     <field name="remark" />
+                    <field name="sale_prediction_amount" />
                 </group>
             </xpath>
             <xpath expr="//field[@name='incoterm_id']" position="after">
