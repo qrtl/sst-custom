@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Extension for purchase functions",
-    "version": "11.0.1.12.1",
+    "version": "11.0.1.13.0",
     "author": "Quartile Limited",
     "website": "https://www.quartile.co",
     "category": "Purchase",
