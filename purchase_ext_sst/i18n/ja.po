@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-29 08:39+0000\n"
-"PO-Revision-Date: 2018-03-29 08:39+0000\n"
+"POT-Creation-Date: 2020-12-30 09:55+0000\n"
+"PO-Revision-Date: 2020-12-30 09:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:196
-#: code:addons/purchase_ext_sst/models/purchase_order.py:235
+#: code:addons/purchase_ext_sst/models/purchase_order.py:230
+#: code:addons/purchase_ext_sst/models/purchase_order.py:265
 #, python-format
 msgid "\n"
 "%s\n"
@@ -272,7 +272,12 @@ msgid "Purchase Order"
 msgstr "購買オーダ"
 
 #. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:188
+#: model:ir.model,name:purchase_ext_sst.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "購買オーダ明細"
+
+#. module: purchase_ext_sst
+#: code:addons/purchase_ext_sst/models/purchase_order.py:218
 #, python-format
 msgid "Purchase order cannot be confirmed with default guest user."
 msgstr "ゲストユーザで購買オーダを確認することはできません。"
@@ -319,6 +324,11 @@ msgid "Request Medium"
 msgstr "媒体"
 
 #. module: purchase_ext_sst
+#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_sale_prediction_amount
+msgid "Sales Prediction"
+msgstr "販売予想額"
+
+#. module: purchase_ext_sst
 #: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
 msgid "Scheduled Today"
 msgstr "本日予定日"
@@ -357,8 +367,8 @@ msgid "Tentative Name"
 msgstr "仮称"
 
 #. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:203
-#: code:addons/purchase_ext_sst/models/purchase_order.py:241
+#: code:addons/purchase_ext_sst/models/purchase_order.py:237
+#: code:addons/purchase_ext_sst/models/purchase_order.py:271
 #, python-format
 msgid "The entered phone (%s) conflicts with the following user(s):\n"
 "%s"
@@ -390,5 +400,4 @@ msgstr "request.channel"
 #: model:ir.model,name:purchase_ext_sst.model_request_medium
 msgid "request.medium"
 msgstr "request.medium"
-
 
