@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+        <field name="context">{'search_default_draft':1, 'show_purchase': False}</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+        <field
+      name="context"
+    >{'search_default_approved':1, 'show_purchase': True}</field>
+        <field name="domain">[]</field>
+    </record>
+
     <record id="purchase_order_form" model="ir.ui.view">
         <field name="name">purchase.order.form</field>
         <field name="model">purchase.order</field>
