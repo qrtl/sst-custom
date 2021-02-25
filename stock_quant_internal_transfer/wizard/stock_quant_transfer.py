@@ -44,7 +44,7 @@ class QuantTransferWizard(models.TransientModel):
 
         #  prepare values for picking
         picking_vals = self._get_picking_vals(quant_ids)
-        
+
         #  prepare moves
         picking_lines = []
         for quant in quant_ids:
