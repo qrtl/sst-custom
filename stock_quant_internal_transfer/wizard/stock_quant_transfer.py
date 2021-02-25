@@ -1,5 +1,5 @@
-# Copyright 2017 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017-2021 Quartile Limited
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -11,6 +11,17 @@ class QuantTransferWizard(models.TransientModel):
     destination_location_id = fields.Many2one(
         "stock.location", string="Destination Location", required=True,
     )
+
+    def _get_picking_vals(self, quant_ids):
+        source_location = quant_ids[0].location_id
+        # Get the picking type
+        picking_type = self.get_picking_type(source_location)
+        return {
+            "location_id": source_location.id,
+            "picking_type_id": picking_type.id,
+            "location_dest_id": self.destination_location_id.id,
+            "origin": ",".join([q.display_name for q in quant_ids]),
+        }
 
     @api.multi
     def action_stock_quant_transfer(self):
@@ -31,26 +42,16 @@ class QuantTransferWizard(models.TransientModel):
         # Check if any quants are already in any internal stock move,
         self.check_exist_stock_moves(quant_ids, source_location)
 
-        # Get the picking type
-        picking_type = self.get_picking_type(source_location)
-
-        origin_name = ",".join([q.display_name for q in quant_ids])
-
         #  prepare values for picking
-        picking_vals = {
-            "location_id": source_location.id,
-            "picking_type_id": picking_type.id,
-            "location_dest_id": self.destination_location_id.id,
-            "origin": origin_name,
-        }
-
+        picking_vals = self._get_picking_vals(quant_ids)
+        
         #  prepare moves
         picking_lines = []
         for quant in quant_ids:
             line_vals = {
                 "product_id": quant.product_id.id,
                 "product_uom_qty": quant.quantity,
-                "picking_type_id": picking_type.id,
+                "picking_type_id": picking_vals["picking_type_id"],
             }
             new_move = stock_move_obj.new(line_vals)
             new_move.onchange_product_id()
@@ -60,7 +61,7 @@ class QuantTransferWizard(models.TransientModel):
             picking_lines.append((0, 0, move_dict))
 
         picking_vals.update({"move_lines": picking_lines})
-        picking_id = stock_picking_obj.create(picking_vals)
+        picking_id = stock_picking_obj.sudo().create(picking_vals)
 
         action = self.env.ref("stock.action_picking_tree_all")
         action_vals = action.read()[0]
