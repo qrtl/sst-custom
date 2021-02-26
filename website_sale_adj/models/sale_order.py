@@ -94,7 +94,9 @@ class SaleOrder(models.Model):
                 email_ctx["reply_to"] = order.message_get_reply_to(
                     [order.id], default=email_ctx["default_email_from"]
                 )[order.id]
-                order.with_delay().send_confirmation_email(email_ctx)
+                order.with_delay(
+                    description="%s: Send Order Confirmation Email" % order.name
+                ).send_confirmation_email(email_ctx)
                 if (
                     "mark_so_as_sent" in email_ctx
                     and email_ctx["mark_so_as_sent"]
