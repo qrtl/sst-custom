@@ -1,13 +1,13 @@
-# Copyright 2018 Quartile Limited
+# Copyright 2018-2021 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Website Sales Adjustment",
-    "version": "11.0.1.2.0",
+    "version": "11.0.1.3.0",
     "author": "Quartile Limited",
     "website": "https://www.quartile.co",
     "category": "Product",
     "license": "LGPL-3",
-    "depends": ["mail_bcc", "product_ext_sst", "website_sale"],
+    "depends": ["mail_bcc", "product_ext_sst", "queue_job", "website_sale"],
     "data": [
         "data/ir_actions.xml",
         "data/mail_template_data.xml",
