@@ -8,6 +8,8 @@ from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models
 from odoo.osv import expression
 
+from odoo.addons.queue_job.job import job
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -86,17 +88,15 @@ class SaleOrder(models.Model):
             if email_act and email_act.get("context"):
                 email_ctx = email_act["context"]
                 email_ctx.update(default_email_from=order.company_id.email)
-                # order.with_context(email_ctx).message_post_with_template(
-                #     email_ctx.get('default_template_id'))
                 email_ctx["email_bcc"] = ",".join(
                     [str(partner.email) for partner in order.message_partner_ids]
                 )
                 email_ctx["reply_to"] = order.message_get_reply_to(
                     [order.id], default=email_ctx["default_email_from"]
                 )[order.id]
-                self.env["mail.template"].browse(
-                    email_ctx.get("default_template_id")
-                ).with_context(email_ctx).send_mail(order.id)
+                order.with_delay(
+                    description="%s: Send Order Confirmation Email" % order.name
+                ).send_confirmation_email(email_ctx)
                 if (
                     "mark_so_as_sent" in email_ctx
                     and email_ctx["mark_so_as_sent"]
@@ -104,3 +104,9 @@ class SaleOrder(models.Model):
                 ):
                     order.with_context(tracking_disable=True).state = "sent"
         return True
+
+    @job()
+    def send_confirmation_email(self, email_ctx):
+        self.with_context(email_ctx).message_post_with_template(
+            email_ctx.get("default_template_id")
+        )
