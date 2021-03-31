@@ -12,7 +12,12 @@ class MailMessage(models.Model):
     def _get_reply_to(self, values):
         res = super(MailMessage, self)._get_reply_to(values)
         if "model" in values:
-            message_model = self.env['ir.model'].sudo().search([('model', '=', values["model"])])
-            if message_model.use_custom_mail_server and message_model.custom_mail_server_id:
+            message_model = (
+                self.env["ir.model"].sudo().search([("model", "=", values["model"])])
+            )
+            if (
+                message_model.use_custom_mail_server
+                and message_model.custom_mail_server_id
+            ):
                 return "<%s>" % message_model.custom_mail_server_id.smtp_from
         return res

@@ -7,5 +7,5 @@ from odoo import fields, models
 class IrModel(models.Model):
     _inherit = "ir.model"
 
-    use_custom_mail_server = fields.Boolean('Custom SMTP Server')
-    custom_mail_server_id = fields.Many2one('ir.mail_server', 'Outgoing mail server')
+    use_custom_mail_server = fields.Boolean("Custom SMTP Server")
+    custom_mail_server_id = fields.Many2one("ir.mail_server", "Outgoing mail server")

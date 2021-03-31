@@ -8,10 +8,7 @@
     "category": "Website",
     "license": "AGPL-3",
     "depends": ["website_forum"],
-    "data": [
-        "data/mail_data.xml",
-        "views/website_forum.xml",
-    ],
+    "data": ["data/mail_data.xml", "views/website_forum.xml"],
     "qweb": ["static/src/xml/website_forum_share_templates.xml"],
     "installable": True,
 }

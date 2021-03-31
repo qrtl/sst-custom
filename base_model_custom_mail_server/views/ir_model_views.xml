@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_model_form" model="ir.ui.view">
         <field name="name">ir.model form</field>
@@ -10,7 +10,10 @@
                 <div>
                     <div>
                         <field name="use_custom_mail_server" />
-                        <field name="custom_mail_server_id" attrs="{'required': [('use_custom_mail_server','=',True)], 'invisible':[('use_custom_mail_server', '=', False)]}" />
+                        <field
+              name="custom_mail_server_id"
+              attrs="{'required': [('use_custom_mail_server','=',True)], 'invisible':[('use_custom_mail_server', '=', False)]}"
+            />
                     </div>
                 </div>
             </field>
