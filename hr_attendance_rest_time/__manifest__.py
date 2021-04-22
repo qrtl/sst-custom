@@ -5,7 +5,7 @@
     "version": "11.0.1.0.0",
     "author": "Quartile Limited",
     "website": "https://www.quartile.co",
-    "category": "Employees",
+    "category": "Human Resources",
     "license": "LGPL-3",
     "depends": ["hr_attendance"],
     "data": ["views/hr_attendance_views.xml"],
