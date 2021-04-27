@@ -7,8 +7,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='check_out']" position="after">
                 <field name="rest_time" />
+                <field name="work_location" />
                 <field name="classification" />
-                <field name="update_manually" />
+                <field name="update_manually" readonly="True" force_save="True" />
                 <field
           name="update_manually_reason"
           attrs="{'required': [('update_manually', '!=', False)]}"
@@ -25,6 +26,7 @@
         <field name="inherit_id" ref="hr_attendance.view_attendance_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='check_out']" position="after">
+                <field name="work_location" />
                 <field name="rest_time" />
                 <field name="working_hours" widget="float_time" />
             </xpath>

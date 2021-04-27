@@ -14,18 +14,40 @@ class HrAttendance(models.Model):
 
     rest_time = fields.Selection(REST_TIME, "Rest Time (minutes)", default="0")
     classification = fields.Selection(
-        [("work", "Work"), ("paid_leave", "Paid leave")], "Classification"
+        [("work", "Work"), ("paid_leave", "Paid leave")],
+        "Classification",
+        default="work",
     )
-    update_manually = fields.Boolean(string="Manual Update", default=False,)
+    update_manually = fields.Boolean(string="Manual Update", default=False)
     update_manually_reason = fields.Text(string="Reason for Update",)
     working_hours = fields.Float("Working hours")
+    work_location = fields.Char("Work Location")
+
+    @api.onchange(
+        "employee_id",
+        "rest_time",
+        "check_in",
+        "check_out",
+        "classification",
+        "work_location",
+    )
+    def onchange_to_require_update_manually_reason(self):
+        update_manually = False
+        if type(self._origin.id) == type(1):
+            update_manually = True
+        self.update_manually = update_manually
 
     @api.onchange("employee_id")
     def onchange_employee(self):
         rest_time = "0"
+        work_location = ""
         if self.employee_id and self.employee_id.rest_time_standard:
             rest_time = self.employee_id.rest_time_standard
+        if self.employee_id and self.employee_id.work_location:
+            work_location = self.employee_id.work_location
+
         self.rest_time = rest_time
+        self.work_location = work_location
 
     @api.onchange("rest_time", "check_in", "check_out")
     def _compute_working_hours(self):

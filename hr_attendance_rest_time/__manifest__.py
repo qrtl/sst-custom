@@ -8,6 +8,6 @@
     "category": "Human Resources",
     "license": "LGPL-3",
     "depends": ["hr_attendance"],
-    "data": ["views/hr_attendance_views.xml"],
+    "data": ["views/hr_attendance_views.xml", "views/hr_employee_views.xml"],
     "installable": True,
 }
