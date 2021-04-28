@@ -53,9 +53,13 @@ class HrAttendance(models.Model):
     def _compute_working_hours(self):
         worked_hours = 0
         if self.check_out and self.check_in:
-            delta = datetime.strptime(
+            dt_checkout = datetime.strptime(
                 self.check_out, DEFAULT_SERVER_DATETIME_FORMAT
-            ) - datetime.strptime(self.check_in, DEFAULT_SERVER_DATETIME_FORMAT)
+            )
+            dt_checkin = datetime.strptime(
+                self.check_in, DEFAULT_SERVER_DATETIME_FORMAT
+            )
+            delta = dt_checkout - dt_checkin
             worked_hours = delta.total_seconds() / 3600.0
             if self.rest_time:
                 worked_hours -= float(self.rest_time) / 60.0

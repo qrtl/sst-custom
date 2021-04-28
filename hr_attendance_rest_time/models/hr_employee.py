@@ -23,12 +23,8 @@ class HrEmployee(models.Model):
 
     def attendance_action_change(self):
         if len(self) > 1:
-            raise exceptions.UserError(
-                _(
-                    """Cannot perform check in or check out on multiple employees
-                ."""
-                )
-            )
+            return super(HrEmployee, self).attendance_action_change()
+
         auto_rest_time_standard = False
         if self.attendance_state == "checked_in":
             auto_rest_time_standard = True
