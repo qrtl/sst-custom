@@ -5,30 +5,47 @@
         <field name="model">hr.attendance</field>
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form" />
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='employee_id']" position="after">
+                <field name="work_location" />
+            </xpath>
             <xpath expr="//field[@name='check_out']" position="after">
                 <field name="rest_time" />
-                <field name="work_location" />
-                <field name="classification" />
-                <field name="update_manually" readonly="True" force_save="True" />
+                <field name="worked_hours" widget="float_time" />
+                <field name="attendance_categ" />
                 <field
-          name="update_manually_reason"
-          attrs="{'required': [('update_manually', '!=', False)]}"
+          name="manual_update"
+          readonly="True"
+          force_save="True"
+          attrs="{'invisible':[('manual_update','!=',True)]}"
         />
-                <field name="working_hours" invisible="1" widget="float_time" />
+                <label
+          for="manual_update_reason"
+          attrs="{'invisible':[('manual_update','!=',True)]}"
+        />
+                <div
+          class="o_row mr16"
+          attrs="{'invisible':[('manual_update','!=',True)]}"
+        >
+                    <field name="manual_update_reason" />
+                    <field
+            name="manual_update_reason_desc"
+            attrs="{'required':[('manual_update_reason','=','other')],'invisible':[('manual_update_reason','!=','other')]}"
+          />
+                </div>
             </xpath>
         </field>
     </record>
-
-
     <record id="view_hr_attendance_tree" model="ir.ui.view">
         <field name="name">hr.attendance.tree.inherit</field>
         <field name="model">hr.attendance</field>
         <field name="inherit_id" ref="hr_attendance.view_attendance_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='check_out']" position="after">
+            <xpath expr="//field[@name='employee_id']" position="after">
                 <field name="work_location" />
+            </xpath>
+            <xpath expr="//field[@name='check_out']" position="after">
                 <field name="rest_time" />
-                <field name="working_hours" widget="float_time" />
+                <field name="worked_hours" widget="float_time" />
             </xpath>
         </field>
     </record>

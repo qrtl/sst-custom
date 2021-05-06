@@ -1,7 +1,7 @@
 # Copyright 2021 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import exceptions, fields, models
+from odoo import fields, models
 
 REST_TIME = [
     ("0", "0"),
@@ -17,23 +17,19 @@ REST_TIME = [
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
-    rest_time_standard = fields.Selection(
-        REST_TIME, "Standard Rest Time (minutes)", default="0"
-    )
+    rest_time_standard = fields.Selection(REST_TIME, "Standard Rest Time (minutes)")
 
     def attendance_action_change(self):
-        if len(self) > 1:
-            return super(HrEmployee, self).attendance_action_change()
-
-        auto_rest_time_standard = False
-        if self.attendance_state == "checked_in":
-            auto_rest_time_standard = True
-        attendance = super(HrEmployee, self).attendance_action_change()
-        update_vals = {}
-        if auto_rest_time_standard:
-            if self.rest_time_standard and not attendance.rest_time:
-                update_vals.update({"rest_time": self.rest_time_standard})
-            if self.work_location and not attendance.work_location:
-                update_vals.update({"work_location": self.work_location})
-        attendance.write(update_vals)
+        attendance = super().attendance_action_change()
+        vals = {}
+        if self.work_location and not attendance.work_location:
+            vals["work_location"] = self.work_location
+        if (
+            self.rest_time_standard
+            and attendance.check_out
+            and not attendance.rest_time
+        ):
+            vals["rest_time"] = self.rest_time_standard
+        if vals:
+            attendance.write(vals)
         return attendance
