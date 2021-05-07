@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-28 06:39+0000\n"
-"PO-Revision-Date: 2021-04-28 06:39+0000\n"
+"POT-Creation-Date: 2021-05-07 02:38+0000\n"
+"PO-Revision-Date: 2021-05-07 02:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,9 +57,9 @@ msgid "Attendance"
 msgstr "勤怠"
 
 #. module: hr_attendance_rest_time
-#: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_classification
-msgid "Classification"
-msgstr "分類"
+#: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_attendance_categ
+msgid "Category"
+msgstr "カテゴリ"
 
 #. module: hr_attendance_rest_time
 #: model:ir.model,name:hr_attendance_rest_time.model_hr_employee
@@ -67,19 +67,35 @@ msgid "Employee"
 msgstr "従業員"
 
 #. module: hr_attendance_rest_time
-#: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_update_manually
+#: selection:hr.attendance,manual_update_reason:0
+msgid "Forgot to check-in/check-out"
+msgstr "チェックイン・チェックアウト忘れ"
+
+#. module: hr_attendance_rest_time
+#: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_manual_update
 msgid "Manual Update"
 msgstr "手動更新"
 
 #. module: hr_attendance_rest_time
-#: selection:hr.attendance,classification:0
-msgid "Paid leave"
-msgstr "有給休暇"
+#: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_manual_update_reason
+msgid "Manual Update Reason"
+msgstr "更新理由"
 
 #. module: hr_attendance_rest_time
-#: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_update_manually_reason
-msgid "Reason for Update"
-msgstr "更新理由"
+#: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_manual_update_reason_desc
+msgid "Manual Update Reason Description"
+msgstr "更新理由詳細"
+
+#. module: hr_attendance_rest_time
+#: selection:hr.attendance,manual_update_reason:0
+msgid "Other"
+msgstr "その他"
+
+#. module: hr_attendance_rest_time
+#: selection:hr.attendance,attendance_categ:0
+#: model:ir.ui.view,arch_db:hr_attendance_rest_time.hr_attendance_view_filter
+msgid "Paid Leave"
+msgstr "有給休暇"
 
 #. module: hr_attendance_rest_time
 #: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_rest_time
@@ -92,7 +108,8 @@ msgid "Standard Rest Time (minutes)"
 msgstr "標準休憩時間 (分)"
 
 #. module: hr_attendance_rest_time
-#: selection:hr.attendance,classification:0
+#: selection:hr.attendance,attendance_categ:0
+#: model:ir.ui.view,arch_db:hr_attendance_rest_time.hr_attendance_view_filter
 msgid "Work"
 msgstr "勤務"
 
@@ -100,8 +117,3 @@ msgstr "勤務"
 #: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_work_location
 msgid "Work Location"
 msgstr "勤務場所"
-
-#. module: hr_attendance_rest_time
-#: model:ir.model.fields,field_description:hr_attendance_rest_time.field_hr_attendance_working_hours
-msgid "Working hours"
-msgstr "勤務時間"
