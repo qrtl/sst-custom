@@ -56,8 +56,16 @@
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='today']" position="before">
-                <filter name="work" string="Work" domain="[('attendance_categ','=','work')]" />
-                <filter name="paid_leave" string="Paid Leave" domain="[('attendance_categ','=','paid_leave')]" />
+                <filter
+          name="work"
+          string="Work"
+          domain="[('attendance_categ','=','work')]"
+        />
+                <filter
+          name="paid_leave"
+          string="Paid Leave"
+          domain="[('attendance_categ','=','paid_leave')]"
+        />
                 <separator />
             </xpath>
         </field>
