@@ -7,11 +7,11 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='employee_id']" position="after">
                 <field name="work_location" />
+                <field name="attendance_categ" />
             </xpath>
             <xpath expr="//field[@name='check_out']" position="after">
                 <field name="rest_time" />
                 <field name="worked_hours" widget="float_time" />
-                <field name="attendance_categ" />
                 <field
           name="manual_update"
           readonly="True"
@@ -42,10 +42,23 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='employee_id']" position="after">
                 <field name="work_location" />
+                <field name="attendance_categ" />
             </xpath>
             <xpath expr="//field[@name='check_out']" position="after">
                 <field name="rest_time" />
                 <field name="worked_hours" widget="float_time" />
+            </xpath>
+        </field>
+    </record>
+    <record id="hr_attendance_view_filter" model="ir.ui.view">
+        <field name="name">hr_attendance_view_filter</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='today']" position="before">
+                <filter name="work" string="Work" domain="[('attendance_categ','=','work')]" />
+                <filter name="paid_leave" string="Paid Leave" domain="[('attendance_categ','=','paid_leave')]" />
+                <separator />
             </xpath>
         </field>
     </record>
