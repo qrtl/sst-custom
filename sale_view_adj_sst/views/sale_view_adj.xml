@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <!-- <record id="sale_view_order_line_filter" model="ir.ui.view">
-        <field name="name">sale.order.line.search</field>
-        <field name="model">sale.order.line</field>
-        <field name="arch" type="xml">
-            <search string="Search Order Line" filter_domain="['|',('order_line','ilike',self)]">
-                <field name="order_line"/>
-            </search>
-        </field>
-    </record> -->
-
     <!-- Quote from CookBook PP.307-315 -->
 
     <record id="sale_view_order_line_filter" model="ir.ui.view">
@@ -18,7 +7,7 @@
         <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
             <xpath expr="." position="inside">
-            <field name='order_line' />
+                <field name='order_line' />
             </xpath>
         </field>
     </record>
