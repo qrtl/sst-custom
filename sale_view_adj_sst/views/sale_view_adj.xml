@@ -15,11 +15,10 @@
 
     <record id="sale_view_order_line_filter" model="ir.ui.view">
         <field name="model">sale.order.line</field>
-        <field name="inherit_id"
-        ref="sale.view_sales_order_filter" />
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
             <xpath expr="." position="inside">
-            <field name='order_line'/>
+            <field name='order_line' />
             </xpath>
         </field>
     </record>
