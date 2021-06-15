@@ -1,5 +1,5 @@
 ====================
-Sale View Adj SST
+Sale View Adjuster SST
 ====================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -14,19 +14,17 @@ Sale View Adj SST
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fqrtl--private-lightgray.png?logo=github
-    :target: https://github.com/OCA/qrtl-private/tree/12.0/analytic_view_adj_qtl
+    :target: https://github.com/OCA/qrtl-private/tree/11.0/sale_view_adj_sst
     :alt: OCA/qrtl-private
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/qrtl-private-12-0/qrtl-private-12-0-analytic_view_adj_qtl
+    :target: https://translation.odoo-community.org/projects/qrtl-private-11-0/qrtl-private-11-0-ale_view_adj_sst
     :alt: Translate me on Weblate
 
 |badge1| |badge2| |badge3| |badge4| 
 
 This module does the following:
-Added Filter on Account Item Searchview
-- "Timesheet" - records that are created through timesheet interface.
-- "Non-timesheet" - records that came from elsewhere - customer invoices, vendor bills, and expenses.
-- "Date" - to provide a quick access to date filter options.
+Added Filter on Sales Management Searchview
+- "SaleViewOrderLineFilter" - add search field that order line contains search word.
 
 **Table of contents**
 
@@ -64,6 +62,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/qrtl-private <https://github.com/OCA/qrtl-private/tree/12.0/analytic_view_adj_qtl>`_ project on GitHub.
+This module is part of the `OCA/qrtl-private <https://github.com/OCA/qrtl-private/tree/11.0/sale_view_adj_sst>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
