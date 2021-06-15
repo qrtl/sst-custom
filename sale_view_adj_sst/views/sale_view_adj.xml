@@ -3,10 +3,10 @@
     <!-- Quote from CookBook PP.307-315 -->
 
     <record id="sale_view_order_line_filter" model="ir.ui.view">
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="." position="inside">
+            <xpath expr="//field[@name='partner_id']" position="inside">
                 <field name='order_line' />
             </xpath>
         </field>
