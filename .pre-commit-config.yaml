@@ -37,7 +37,9 @@ exclude: |
   dbfilter_from_header/|
   l10n_jp_partner_title_qweb/|
   web_environment_ribbon/|
-  mail_outbound_static/
+  mail_outbound_static/|
+  # also exclude third-party apps
+  tko_web_sessions_management/
 default_language_version:
   python: python3
   node: "14.13.0"
