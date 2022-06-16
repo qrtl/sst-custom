@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-24 02:21+0000\n"
-"PO-Revision-Date: 2018-05-24 02:21+0000\n"
+"POT-Creation-Date: 2022-06-14 14:50+0000\n"
+"PO-Revision-Date: 2022-06-14 14:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:306
-#: code:addons/sale_order_import/wizard/import_sale.py:322
-#: code:addons/sale_order_import/wizard/import_sale.py:337
-#: code:addons/sale_order_import/wizard/import_sale.py:356
-#: code:addons/sale_order_import/wizard/import_sale.py:370
-#: code:addons/sale_order_import/wizard/import_sale.py:385
+#: code:addons/sale_order_import/wizard/import_sale.py:389
+#: code:addons/sale_order_import/wizard/import_sale.py:407
+#: code:addons/sale_order_import/wizard/import_sale.py:426
+#: code:addons/sale_order_import/wizard/import_sale.py:448
+#: code:addons/sale_order_import/wizard/import_sale.py:466
+#: code:addons/sale_order_import/wizard/import_sale.py:485
 #, python-format
 msgid " Not Found!"
 msgstr " 見つかりません!"
@@ -32,73 +32,73 @@ msgid "Cancel"
 msgstr "取消"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:356
+#: code:addons/sale_order_import/wizard/import_sale.py:446
 #, python-format
 msgid "Carrier: "
 msgstr "配送方法: "
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:101
+#: code:addons/sale_order_import/wizard/import_sale.py:112
 #, python-format
 msgid "Column \"Customer Phone/Mobile\" cannot be empty."
 msgstr "「Customer Phone/Mobile」列の値は空にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:115
+#: code:addons/sale_order_import/wizard/import_sale.py:129
 #, python-format
 msgid "Column \"Line Product\" cannot be empty."
 msgstr "「Line Product」列の値は空にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:164
+#: code:addons/sale_order_import/wizard/import_sale.py:195
 #, python-format
 msgid "Column \"Line Qty\" cannot be empty."
 msgstr "「Line Qty」列の値は空にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:175
+#: code:addons/sale_order_import/wizard/import_sale.py:212
 #, python-format
 msgid "Column \"Line Qty\" must be a number."
 msgstr "「Line Qty」列は数字以外の値にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:171
+#: code:addons/sale_order_import/wizard/import_sale.py:205
 #, python-format
 msgid "Column \"Line Qty\" must be greater than 0."
 msgstr "「Line Qty」列は0または負数にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:181
+#: code:addons/sale_order_import/wizard/import_sale.py:221
 #, python-format
 msgid "Column \"Line Unit Price\" cannot be empty."
 msgstr "「Line Unit Price」列の値は空にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:193
+#: code:addons/sale_order_import/wizard/import_sale.py:238
 #, python-format
 msgid "Column \"Line Unit Price\" must be a number."
 msgstr "「Line Unit Price」列は数字以外の値にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:188
+#: code:addons/sale_order_import/wizard/import_sale.py:231
 #, python-format
 msgid "Column \"Line Unit Price\" must be greater than 0."
 msgstr "「Line Unit Price」列は0または負数にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:123
+#: code:addons/sale_order_import/wizard/import_sale.py:140
 #, python-format
 msgid "Column \"Pricelist\" cannot be empty."
 msgstr "「Pricelist」列の値は空にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:141
+#: code:addons/sale_order_import/wizard/import_sale.py:163
 #, python-format
 msgid "Column \"Team\" cannot be empty."
 msgstr "「Team」列の値は空にできません。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:132
+#: code:addons/sale_order_import/wizard/import_sale.py:151
 #, python-format
 msgid "Column \"Warehouse\" cannot be empty."
 msgstr "「Warehouse」列の値は空にできません。"
@@ -166,7 +166,7 @@ msgid "File Path"
 msgstr "ファイルパス"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:454
+#: code:addons/sale_order_import/wizard/import_sale.py:566
 #, python-format
 msgid "Following columns are missing: \n"
 " %s"
@@ -234,16 +234,21 @@ msgid "Order Reference"
 msgstr "オーダ参照"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:447
+#: code:addons/sale_order_import/wizard/import_sale.py:560
 #, python-format
 msgid "Please import a CSV file with UTF-8 encoding."
 msgstr "CSV ファイルの文字コードが「UTF-8」であることを確認ください。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:322
+#: code:addons/sale_order_import/wizard/import_sale.py:405
 #, python-format
 msgid "Pricelist: "
 msgstr "価格表: "
+
+#. module: sale_order_import
+#: model:ir.model.fields,field_description:sale_order_import.field_import_sale_process_payment
+msgid "Process Payments"
+msgstr "支払登録する"
 
 #. module: sale_order_import
 #: model:ir.model.fields,field_description:sale_order_import.field_import_sale_asynchronous
@@ -251,7 +256,7 @@ msgid "Process import asynchronously"
 msgstr "インポートを非同期で処理"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:306
+#: code:addons/sale_order_import/wizard/import_sale.py:387
 #, python-format
 msgid "Product: "
 msgstr "プロダクト: "
@@ -289,13 +294,13 @@ msgid "Shipping Policy"
 msgstr "出荷方針"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:385
+#: code:addons/sale_order_import/wizard/import_sale.py:483
 #, python-format
 msgid "Tax: "
 msgstr "税: "
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:370
+#: code:addons/sale_order_import/wizard/import_sale.py:464
 #, python-format
 msgid "Team: "
 msgstr "販売チャネル: "
@@ -306,7 +311,7 @@ msgid "This wizard will create sales orders using imported .csv file. It will al
 msgstr "このウィザードは、インポートされた.csvファイルを使って受注を作成します。また、受注確認、請求書の検証、請求書の支払を行います。"
 
 #. module: sale_order_import
-#: code:addons/sale_order_import/wizard/import_sale.py:337
+#: code:addons/sale_order_import/wizard/import_sale.py:424
 #, python-format
 msgid "Warehouse: "
 msgstr "倉庫: "
@@ -330,3 +335,4 @@ msgstr "または"
 #: model:ir.model,name:sale_order_import.model_sale_import_default
 msgid "sale.import.default"
 msgstr "sale.import.default"
+
