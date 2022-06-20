@@ -1,4 +1,4 @@
-# Copyright 2017-2018 Quartile Limited
+# Copyright 2017-2022 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
@@ -78,10 +78,11 @@ class ImportSale(models.TransientModel):
     customer_payment_journal_id = fields.Many2one(
         "account.journal",
         string="Customer Payment Journal",
-        required=True,
+        # required=True,
         default=_default_customer_payment_journal,
     )
-    asynchronous = fields.Boolean(string="Process import asynchronously", default=True,)
+    asynchronous = fields.Boolean(string="Process import asynchronously", default=True)
+    process_payment = fields.Boolean("Process Payments")
 
     @api.model
     def _get_order_value_dict(
@@ -679,26 +680,21 @@ class ImportSale(models.TransientModel):
                 )
                 .id
             )
-            if not self.asynchronous:
-                for item in order_item_dict:
-                    self._process_order(
-                        order_dict[item],
-                        order_item_dict[item],
-                        item,
-                        error_log_id,
-                        self.customer_invoice_journal_id,
-                        self.customer_payment_journal_id,
-                    )
-            else:
-                for item in order_item_dict:
-                    self.env[self._name].with_delay()._process_order(
-                        order_dict[item],
-                        order_item_dict[item],
-                        item,
-                        error_log_id,
-                        self.customer_invoice_journal_id,
-                        self.customer_payment_journal_id,
-                    )
+            payment_journal = False
+            if self.process_payment:
+                payment_journal = self.customer_payment_journal_id
+            self_delay = self
+            if self.asynchronous:
+                self_delay = self.with_delay()
+            for item in order_item_dict:
+                self_delay._process_order(
+                    order_dict[item],
+                    order_item_dict[item],
+                    item,
+                    error_log_id,
+                    self.customer_invoice_journal_id,
+                    payment_journal,
+                )
 
         res = self.env.ref("base_import_log.error_log_action")
         res = res.read()[0]
@@ -731,6 +727,7 @@ class ImportSale(models.TransientModel):
                 invoice.journal_id = invoice_journal.id
                 if invoice.state == "draft":
                     invoice.action_invoice_open()
+                if payment_journal:
                     invoice.pay_and_reconcile(payment_journal)
 
     @api.model

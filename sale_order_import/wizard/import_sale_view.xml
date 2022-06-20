@@ -17,6 +17,7 @@
                     </group>
                     <group>
                         <field name="asynchronous" />
+                        <field name="process_payment" />
                     </group>
                 </group>
                 <group>
@@ -31,10 +32,11 @@
               domain="[('type', '=', 'sale')]"
             />
                     </group>
-                    <group>
+                    <group attrs="{'invisible':[('process_payment','=',False)]}">
                         <field
               name="customer_payment_journal_id"
               domain="[('type', 'in', ('cash', 'bank'))]"
+              required="1"
             />
                     </group>
                 </group>
