@@ -6,16 +6,16 @@ dependency_installation_mode: PIP
 generate_requirements_txt: true
 github_check_license: true
 github_enable_codecov: true
-github_enable_makepot: true
+github_enable_makepot: false
 github_enable_stale_action: true
-github_enforce_dev_status_compatibility: true
-include_wkhtmltopdf: true
+github_enforce_dev_status_compatibility: false
+include_wkhtmltopdf: false
 odoo_version: 11.0
 org_name: Quartile Limited
 org_slug: qrtl
 rebel_module_groups: []
 repo_description: null
-repo_name: null
+repo_name: SST Custom
 repo_slug: sst-custom
 repo_website: https://www.quartile.co
 travis_apt_packages: []
