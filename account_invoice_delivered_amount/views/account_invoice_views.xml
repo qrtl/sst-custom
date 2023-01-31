@@ -6,9 +6,9 @@
         <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='late']" position="after">
-                <filter name="not_delivered" string="Not Delivered" domain="[('delivered_state','=','no')]"/>
-                <filter name="partial_delivered" string="Partial Delivered" domain="[('delivered_state', '=', 'partial')]"/>
-                <filter name="fully_delivered" string="Fully Delivered" domain="[('delivered_state', '=', 'fully')]"/>
+                <separator />
+                <filter name="not_delivered" string="To Be Delivered" domain="[('delivery_done','=',False)]"/>
+                <filter name="delivered" string="Delivered" domain="[('delivery_done','=',True)]"/>
             </xpath>
         </field>
     </record>

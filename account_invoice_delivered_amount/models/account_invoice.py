@@ -13,16 +13,11 @@ class AccountInvoice(models.Model):
         compute="_compute_amount_delivered",
     )
     amount_total_delivered_signed = fields.Monetary(
-        string="Total Delivered Amount in Company Currency",
+        string="Total Delivered Amount (+/-)",
         store=True,
         compute="_compute_amount_delivered",
     )
-    delivered_state = fields.Selection([
-        ('no', 'Not Delivered'),
-        ('partial', 'Partial Delivered'),
-        ('fully', 'Fully Delivered')],
-        string="Delivered", compute="_compute_amount_delivered", store=True, default="no",
-    )
+    delivery_done = fields.Boolean(compute="_compute_amount_delivered", store=True)
 
     @api.depends(
         "invoice_line_ids.is_delivered", "invoice_line_ids.delivered_amount", "type"
@@ -38,14 +33,5 @@ class AccountInvoice(models.Model):
             invoice.amount_total_delivered_signed = (
                 invoice.amount_total_delivered * sign
             )
-            if all(
-                invoice.invoice_line_ids.mapped("is_delivered")
-            ):
-                invoice.delivered_state = "fully"
-                continue
-            if any(
-                invoice.invoice_line_ids.mapped("is_delivered")
-            ):
-                invoice.delivered_state = "partial"
-                continue
-            invoice.delivered_state = "no"
+            if invoice.amount_total_delivered == invoice.amount_total:
+                invoice.delivery_done = True

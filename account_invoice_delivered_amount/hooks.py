@@ -13,8 +13,9 @@ def pre_init_hook(cr):
         cr.execute(
             """
             ALTER TABLE "account_invoice"
-            ADD COLUMN "total_delivered_amount" numeric,
-            ADD COLUMN "total_delivered_amount_signed" numeric
+            ADD COLUMN "amount_total_delivered" numeric,
+            ADD COLUMN "amount_total_delivered_signed" numeric,
+            ADD COLUMN "delivery_done" bool
         """
         )
     if not column_exists(cr, "account_invoice_line", "is_delivered"):
@@ -22,6 +23,6 @@ def pre_init_hook(cr):
             """
             ALTER TABLE "account_invoice_line"
             ADD COLUMN "is_delivered" bool,
-            ADD COLUMN "deliverd_amount" numeric
+            ADD COLUMN "delivered_amount" numeric
         """
         )
