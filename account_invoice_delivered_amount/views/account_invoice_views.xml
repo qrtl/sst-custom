@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <record id="view_account_invoice_filter" model="ir.ui.view">
+        <field name="name">account.invoice.filter</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='late']" position="after">
+                <filter name="not_delivered" string="Not Delivered" domain="[('delivered_state','=','no')]"/>
+                <filter name="partial_delivered" string="Partial Delivered" domain="[('delivered_state', '=', 'partial')]"/>
+                <filter name="fully_delivered" string="Fully Delivered" domain="[('delivered_state', '=', 'fully')]"/>
+            </xpath>
+        </field>
+    </record>
     <record id="view_account_invoice_form" model="ir.ui.view">
         <field name="name">account.invoice.form</field>
         <field name="model">account.invoice</field>
@@ -16,8 +28,7 @@
         <field name="inherit_id" ref="account.invoice_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='amount_total_signed']" position="before">
-                <field name="type" invisible="1" />
-                <field name="total_delivered_amount_signed" attrs="{'invisible': [('type','!=','out_invoice')]}" string="Total Delivered" sum="Total" />
+                <field name="amount_total_delivered_signed" string="Total Delivered" sum="Total" />
             </xpath>
         </field>
     </record>
