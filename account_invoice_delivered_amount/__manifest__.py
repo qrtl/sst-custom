@@ -9,5 +9,6 @@
     "license": "AGPL-3",
     "depends": ["sale_stock"],
     "data": ["views/account_invoice_views.xml"],
+    "pre_init_hook": "pre_init_hook",
     "installable": True,
 }

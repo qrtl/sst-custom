@@ -1,16 +1,20 @@
 # Copyright 2023 Quartile Limited
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models, api
+from odoo import api, fields, models
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
-    is_delivered = fields.Boolean(string="Deliverd", compute="_compute_delivered_amount", store=True)
-    deliverd_amount = fields.Monetary(string='Delivered Amount',
-        store=True, compute='_compute_delivered_amount')
-    
-    @api.depends("sale_line_ids", "product_id", "quantity")
+    is_delivered = fields.Boolean(
+        string="Deliverd", compute="_compute_delivered_amount", store=True
+    )
+    deliverd_amount = fields.Monetary(
+        string="Delivered Amount", store=True, compute="_compute_delivered_amount"
+    )
+
+    @api.depends("sale_line_ids.qty_delivered")
     def _compute_delivered_amount(self):
         for line in self:
             if line.sale_line_ids:
