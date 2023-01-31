@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_invoice_form" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quantity']" position="after">
+                <field name="is_delivered" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_account_invoice_tree" model="ir.ui.view">
+        <field name="name">account.invoice.tree</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total_signed']" position="before">
+                <field name="type" invisible="1" />
+                <field name="total_delivered_amount_signed" attrs="{'invisible': [('type','!=','out_invoice')]}" string="Total Delivered" sum="Total" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
