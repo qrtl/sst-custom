@@ -19,9 +19,25 @@ class AccountInvoiceLine(models.Model):
         for line in self:
             if line.product_id.type == "service" or not line.sale_line_ids:
                 line.is_delivered = True
-                line.delivered_amount = line.quantity * line.price_unit
+                line.delivered_amount = line.price_total
                 continue
             qty_delivered = sum(line.sale_line_ids.mapped("qty_delivered"))
             if qty_delivered > 0:
                 line.is_delivered = True
-                line.delivered_amount = qty_delivered * line.price_unit
+                currency = line.invoice_id and line.invoice_id.currency_id or None
+                price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+                taxes = False
+                if line.invoice_line_tax_ids:
+                    taxes = line.invoice_line_tax_ids.compute_all(
+                        price,
+                        currency,
+                        qty_delivered,
+                        product=line.product_id,
+                        partner=line.invoice_id.partner_id,
+                    )
+                delivered_subtotal = (
+                    taxes["total_excluded"] if taxes else qty_delivered * price
+                )
+                line.delivered_amount = (
+                    taxes["total_included"] if taxes else delivered_subtotal
+                )
