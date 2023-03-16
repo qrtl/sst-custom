@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+        <field name="context">{'search_default_draft':1, 'show_purchase': False}</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+        <field
+      name="context"
+    >{'search_default_approved':1, 'show_purchase': True}</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="priority" eval="18" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="replace" />
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute
+          name="context"
+        >{"default_evaluated_by_id": parent.employee_id}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <button
+          name="open_product_record"
+          type="object"
+          icon="fa-sign-in"
+          class="oe_read_only"
+        />
+            </xpath>
+            <xpath expr="//sheet/group" position="after">
+                <group>
+                    <group>
+                        <field name="address" />
+                    </group>
+                    <group>
+                        <field name="user_id" />
+                        <field name="sale_order_id" />
+                        <field name="partner_ref" />
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="call_back" />
+                        <field name="worked_hours" />
+                    </group>
+                    <group>
+                        <field name="employee_id" />
+                    </group>
+                </group>
+                <group>
+                    <field name="remark" />
+                    <field name="sale_prediction_amount" />
+                </group>
+            </xpath>
+            <xpath
+        expr="//notebook/page[1]//tree/field[@name='date_planned']"
+        position="attributes"
+      >
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath
+        expr="//notebook/page[2]//field[@name='date_planned']"
+        position="attributes"
+      >
+                <attribute name="required">False</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_user_purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field
+      name="inherit_id"
+      ref="purchase_order_user.purchase_order_form_inherit"
+    />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="po_so_field_purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="po_so_field.purchase_order_form_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_order_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_tree" model="ir.ui.view">
+        <field name="name">purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="editable">top</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute
+          name="context"
+        >{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}</attribute>
+                <attribute name="domain">[('supplier', '=', True)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="picking_type_id" invisible="1" />
+                <field name="call_back" />
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="address" />
+                <field name="remark" />
+                <field name="sale_prediction_amount" />
+            </xpath>
+            <xpath expr="//field[@name='date_planned']" position="after">
+                <field name="employee_id" />
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <button name="open_record" type="object" icon="fa-sign-in" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="address" />
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="call_back" />
+                <field name="employee_id" />
+                <field name="remark" />
+            </xpath>
+            <xpath expr="//filter[@name='to_approve']" position="after">
+                <separator />
+                <filter
+          string="Late Scheduled Date"
+          name="schedule_overdue"
+          domain="[('date_planned', '&lt;', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"
+        />
+                <filter
+          string="Scheduled Today"
+          name="schedule_today"
+          domain="[('date_planned','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),('date_planned','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"
+        />
+                <filter
+          string="Upcoming Schedule"
+          name="schedule_upcoming"
+          domain="[('date_planned', '&gt;', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"
+        />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
