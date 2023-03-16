@@ -5,7 +5,7 @@
     "version": "11.0.1.1.0",
     "category": "Sales",
     "author": "Quartile Limited",
-    "website": "https://www.odoo-asia.com",
+    "website": "https://www.quartile.co",
     "depends": ["product"],
     "license": "AGPL-3",
     "summary": """

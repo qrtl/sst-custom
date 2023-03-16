@@ -7,7 +7,7 @@
     """,
 
     'author': "Andreas Wyrobek",
-    'website': "http://www.cytex.cc",
+    'website': "https://www.quartile.co",
 
     'category': 'Administration',
     'version': '0.1',

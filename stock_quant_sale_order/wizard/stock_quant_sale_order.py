@@ -14,9 +14,9 @@ class QuantSaleOrderWizard(models.TransientModel):
     @api.model
     def default_get(self, fields):
         """Raise to warning in
-            - selected quants not in same location.
-            - selected quants are already create sale order.
-            - selected quants company is not same to user company.
+        - selected quants not in same location.
+        - selected quants are already create sale order.
+        - selected quants company is not same to user company.
         """
         context = dict(self._context or {})
         active_ids = context.get("active_ids", [])
@@ -42,7 +42,8 @@ class QuantSaleOrderWizard(models.TransientModel):
             error_msg = ""
             for order_line in order_line_list:
                 error_msg += "\n{}: {}".format(
-                    order_line.order_id.name, order_line.product_id.display_name,
+                    order_line.order_id.name,
+                    order_line.product_id.display_name,
                 )
             raise UserError(
                 _(

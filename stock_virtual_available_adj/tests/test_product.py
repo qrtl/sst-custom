@@ -67,8 +67,10 @@ class TestProduct(common.TransactionCase):
 
         # Check the result at product template level
         self.assertEqual(
-            self.product_01.product_tmpl_id.website_sale_available_qty, 65.0,
+            self.product_01.product_tmpl_id.website_sale_available_qty,
+            65.0,
         )
         self.assertEqual(
-            self.product_02.product_tmpl_id.website_sale_available_qty, 60.0,
+            self.product_02.product_tmpl_id.website_sale_available_qty,
+            60.0,
         )

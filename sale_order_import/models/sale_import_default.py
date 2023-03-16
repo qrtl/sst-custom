@@ -7,7 +7,11 @@ from odoo import api, fields, models
 class SaleImportDefault(models.Model):
     _name = "sale.import.default"
 
-    company_id = fields.Many2one("res.company", required=True, string="Company",)
+    company_id = fields.Many2one(
+        "res.company",
+        required=True,
+        string="Company",
+    )
     picking_policy = fields.Selection(
         [
             ("direct", "Deliver each product when available"),
@@ -17,10 +21,14 @@ class SaleImportDefault(models.Model):
         string="Shipping Policy",
     )
     customer_invoice_journal_id = fields.Many2one(
-        "account.journal", required=True, string="Customer Invoice Journal",
+        "account.journal",
+        required=True,
+        string="Customer Invoice Journal",
     )
     customer_payment_journal_id = fields.Many2one(
-        "account.journal", required=True, string="Customer Payment Journal",
+        "account.journal",
+        required=True,
+        string="Customer Payment Journal",
     )
 
     _sql_constraints = [

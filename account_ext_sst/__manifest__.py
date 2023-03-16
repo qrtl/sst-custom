@@ -4,7 +4,7 @@
     "name": "Extension for accounting functions",
     "version": "11.0.1.0.0",
     "author": "Quartile Limited",
-    "website": "https://www.odoo-asia.com",
+    "website": "https://www.quartile.co",
     "category": "Accounting",
     "license": "AGPL-3",
     "depends": ["account", "purchase_ext_sst", "sale"],

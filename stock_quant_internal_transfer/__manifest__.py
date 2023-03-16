@@ -4,7 +4,7 @@
     "name": "Stock Quant Internal Transfer",
     "version": "11.0.1.1.0",
     "author": "Quartile Limited",
-    "website": "https://www.odoo-asia.com",
+    "website": "https://www.quartile.co",
     "category": "Warehouse",
     "license": "LGPL-3",
     "summary": """Make internal transfer from quant""",

@@ -23,7 +23,10 @@ class ProductTemplate(models.Model):
     )
     model = fields.Char()
     product_state_id = fields.Many2one("product.state", "Product State")
-    purchase_category_id = fields.Many2one("purchase.category", "Purchase Category",)
+    purchase_category_id = fields.Many2one(
+        "purchase.category",
+        "Purchase Category",
+    )
     evaluated_by_id = fields.Many2one("hr.employee", "Evaluated By")
     purchased_by_id = fields.Many2one("hr.employee", "Purchased By")
     shop_id = fields.Many2one("stock.warehouse", string="Shop Purchased")

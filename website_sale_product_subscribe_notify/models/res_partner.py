@@ -7,9 +7,13 @@ from odoo import api, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    member_group_id = fields.Many2one("member.group", string="Member Group",)
+    member_group_id = fields.Many2one(
+        "member.group",
+        string="Member Group",
+    )
     remaining_point_limit = fields.Integer(
-        string="Available Points", compute="_compute_remaining_point_limit",
+        string="Available Points",
+        compute="_compute_remaining_point_limit",
     )
 
     @api.multi

@@ -8,7 +8,7 @@
     'author': 'IT-Projects LLC, Ivan Yelizariev, Savoir-faire Linux, Nicolas JEUDY',
     'license': 'GPL-3',
     "support": "apps@it-projects.info",
-    'website': 'https://twitter.com/yelizariev',
+    'website': 'https://www.quartile.co',
     'price': 30.0,
     'currency': 'EUR',
     'images': ['images/search.png'],

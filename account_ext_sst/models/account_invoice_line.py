@@ -8,7 +8,9 @@ class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     shop_id = fields.Many2one(
-        related="invoice_id.shop_id", string="Shop", readonly=True,
+        related="invoice_id.shop_id",
+        string="Shop",
+        readonly=True,
     )
 
     @api.model

@@ -9,7 +9,9 @@ class QuantTransferWizard(models.TransientModel):
     _name = "quant.transfer.wizard"
 
     destination_location_id = fields.Many2one(
-        "stock.location", string="Destination Location", required=True,
+        "stock.location",
+        string="Destination Location",
+        required=True,
     )
 
     def _get_picking_vals(self, quant_ids):
@@ -87,7 +89,8 @@ class QuantTransferWizard(models.TransientModel):
             error_msg = ""
             for stock_move in stock_move_list:
                 error_msg += "\n{}: {}".format(
-                    stock_move.reference, stock_move.product_id.display_name,
+                    stock_move.reference,
+                    stock_move.product_id.display_name,
                 )
             raise UserError(
                 _(

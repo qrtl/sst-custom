@@ -14,9 +14,13 @@ class ProductPublicCategory(models.Model):
     ]
 
     subscribe_point = fields.Integer(
-        string="Subscription Points", required=True, default=1,
+        string="Subscription Points",
+        required=True,
+        default=1,
     )
-    total_subscribe_points = fields.Integer(compute="_compute_total_subscribe_points",)
+    total_subscribe_points = fields.Integer(
+        compute="_compute_total_subscribe_points",
+    )
 
     @api.model
     def _get_child_category(self):

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_ext_sst.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="call_back" position="before">
+                <field name="request_medium_id"/>
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_tree" model="ir.ui.view">
+        <field name="name">purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_ext_sst.purchase_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='call_back']" position="after">
+                <field name="request_medium_id" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_ext_sst.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='call_back']" position="before">
+                <field name="request_medium_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

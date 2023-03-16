@@ -8,7 +8,8 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     website_commission_product_id = fields.Many2one(
-        "product.product", string="Website Sale Commission",
+        "product.product",
+        string="Website Sale Commission",
     )
     website_commission_percentage = fields.Float(
         string="Commission Percentage",

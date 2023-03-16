@@ -3,7 +3,7 @@
     "version": "0.2.0",
     "category": "API",
     "author": "Babatope Ajepe",
-    "website": "https://ajepe.github.io/restful-api-for-odoo",
+    "website": "https://www.quartile.co",
     "summary": "RESTFUL API For Odoo",
     "support": "ajepebabatope@gmail.com",
     "description": """

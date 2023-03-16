@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="phone_search" />
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="supplier_phone" />
+                <field name="supplier_mobile" />
+            </xpath>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field
+                    name="tentative_name"
+                    string="Supplier Name Update (Tentative Name)"
+                />
+                <field name="phone_update" />
+                <field name="mobile_update" />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_tree" model="ir.ui.view">
+        <field name="name">purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="phone_search" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field
+                    name="supplier_phone"
+                    filter_domain="['|', ('supplier_phone', 'ilike', self), ('supplier_mobile', 'ilike', self)]"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

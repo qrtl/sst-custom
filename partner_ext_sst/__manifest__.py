@@ -4,7 +4,7 @@
     "name": "Extension for partner",
     "version": "11.0.1.1.0",
     "author": "Quartile Limited",
-    "website": "https://www.odoo-asia.com",
+    "website": "https://www.quartile.co",
     "category": "Purchase",
     "license": "AGPL-3",
     "depends": ["purchase"],

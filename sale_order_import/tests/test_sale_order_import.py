@@ -51,8 +51,8 @@ class TestSaleOrderImport(common.TransactionCase):
 
     def test_01_get_order_dict_flow(self):
         """
-            This test evaluates the import test sales order CSV
-             file and compares the values with test records.
+        This test evaluates the import test sales order CSV
+         file and compares the values with test records.
         """
 
         # Check the file path and load the test_regular_sale_order.csv
@@ -168,8 +168,8 @@ class TestSaleOrderImport(common.TransactionCase):
 
     def test_02_update_error_log(self):
         """
-            Importing test_error_sale_order.csv file which has
-             some errors and compares their errors..
+        Importing test_error_sale_order.csv file which has
+         some errors and compares their errors..
         """
 
         # Check the file path and load the test_regular_sale_order.csv

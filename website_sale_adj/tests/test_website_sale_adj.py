@@ -77,9 +77,9 @@ class WebsiteSaleAdj(common.TransactionCase):
 
     def test_04_compute_order_line_date(self):
         """
-            This tests check the earliest
-            website_order_line's creation date
-            """
+        This tests check the earliest
+        website_order_line's creation date
+        """
         self.product_uom = self.env.ref("product.product_uom_unit").id
 
         # Create Test Product

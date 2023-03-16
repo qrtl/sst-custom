@@ -23,7 +23,9 @@ class ResConfigSettings(models.TransientModel):
         email_recipient_limit = self.env["ir.default"].get(
             "res.config.settings", "email_recipient_limit"
         )
-        res.update(email_recipient_limit=email_recipient_limit,)
+        res.update(
+            email_recipient_limit=email_recipient_limit,
+        )
         return res
 
     @api.constrains("email_recipient_limit")

@@ -16,7 +16,9 @@ class SaleOrder(models.Model):
 
     # Store the earilest website_order_line's creation date
     order_line_date = fields.Datetime(
-        "Order Date", compute="_compute_order_line_date", store=True,
+        "Order Date",
+        compute="_compute_order_line_date",
+        store=True,
     )
 
     @api.multi

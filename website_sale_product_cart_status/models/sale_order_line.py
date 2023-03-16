@@ -12,7 +12,10 @@ class SaleOrderLine(models.Model):
         if "product_id" in vals:
             product = self.env["product.product"].browse(vals["product_id"])
             product.in_cart = True
-        return super(SaleOrderLine, self,).create(vals)
+        return super(
+            SaleOrderLine,
+            self,
+        ).create(vals)
 
     @api.multi
     def write(self, vals):

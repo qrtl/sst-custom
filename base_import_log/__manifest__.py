@@ -4,7 +4,7 @@
     "name": "Base Import Log",
     "version": "11.0.1.0.0",
     "author": "Quartile Limited",
-    "website": "https://www.odoo-asia.com",
+    "website": "https://www.quartile.co",
     "license": "AGPL-3",
     "summary": """
 Adds a screen to show log records for data imports.

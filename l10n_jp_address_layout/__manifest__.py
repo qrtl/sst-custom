@@ -5,7 +5,7 @@
     'name': 'Japan Address Layout',
     'version': '11.0.1.0.0',
     'author': 'Quartile Limited',
-    'website': 'https://www.odoo-asia.com',
+    'website': 'https://www.quartile.co',
     'category': 'Extra Tools',
     'license': "AGPL-3",
     'description': """

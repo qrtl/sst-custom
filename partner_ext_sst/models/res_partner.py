@@ -8,9 +8,12 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     identification_type_id = fields.Many2one(
-        comodel_name="res.identification.type", string="Identification Type",
+        comodel_name="res.identification.type",
+        string="Identification Type",
     )
-    identification_number = fields.Char(string="Identification Number",)
+    identification_number = fields.Char(
+        string="Identification Number",
+    )
     fax = fields.Char()
     occupation_id = fields.Many2one("res.occupation", "Occupation")
     gender = fields.Selection([("male", "Male"), ("female", "Female")], string="Gender")

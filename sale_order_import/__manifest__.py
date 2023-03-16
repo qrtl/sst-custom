@@ -4,7 +4,7 @@
     "name": "Sales Order Import",
     "version": "11.0.1.2.0",
     "author": "Quartile Limited",
-    "website": "https://www.odoo-asia.com",
+    "website": "https://www.quartile.co",
     "category": "Sales Management",
     "license": "AGPL-3",
     "depends": [

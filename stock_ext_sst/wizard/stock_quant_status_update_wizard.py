@@ -8,7 +8,8 @@ class StockQuantStatusUpdate(models.TransientModel):
     _name = "stock.quant.status.update.wizard"
 
     yahoo_product_state_id = fields.Many2one(
-        "yahoo.product.state", string="Yahoo Product State",
+        "yahoo.product.state",
+        string="Yahoo Product State",
     )
 
     def action_stock_quant_status_update(self):

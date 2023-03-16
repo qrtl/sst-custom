@@ -8,5 +8,6 @@ class Website(models.Model):
     _inherit = "website"
 
     forum_mail_server_id = fields.Many2one(
-        "ir.mail_server", string="Mail Server for Forum's Updates",
+        "ir.mail_server",
+        string="Mail Server for Forum's Updates",
     )
