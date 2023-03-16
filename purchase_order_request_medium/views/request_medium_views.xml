@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id='form_view_request_medium' model='ir.ui.view'>
         <field name='name'>form.view.request.medium</field>
         <field name='model'>request.medium</field>
@@ -22,7 +21,6 @@
             </form>
         </field>
     </record>
-
     <record id='tree_view_request_medium' model='ir.ui.view'>
         <field name='name'>tree.view.request.medium</field>
         <field name='model'>request.medium</field>
@@ -36,20 +34,17 @@
             </tree>
         </field>
     </record>
-
     <record id='action_request_medium' model='ir.actions.act_window'>
         <field name='name'>Request Media</field>
         <field name='res_model'>request.medium</field>
         <field name='view_type'>form</field>
         <field name='view_mode'>tree,form</field>
     </record>
-
     <menuitem
-    id="menu_request_medium"
-    name="Request Media"
-    parent="menu_purchase_in_config_purchase"
-    action='action_request_medium'
-    sequence="20"
-  />
-
+        id="menu_request_medium"
+        name="Request Media"
+        parent="purchase_ext_sst.menu_purchase_in_config_purchase"
+        action='action_request_medium'
+        sequence="20"
+    />
 </odoo>

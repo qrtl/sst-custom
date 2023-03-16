@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record id='form_view_request_channel' model='ir.ui.view'>
-        <field name='name'>form.view.request.channel</field>
-        <field name='model'>request.channel</field>
+    <record id='form_view_purchase_category' model='ir.ui.view'>
+        <field name='name'>form.view.purchase.category</field>
+        <field name='model'>purchase.category</field>
         <field name='type'>form</field>
         <field name='arch' type='xml'>
-            <form string='Request Channel'>
+            <form string='Purchase Category'>
                 <sheet>
                     <group>
                         <group>
@@ -22,13 +21,12 @@
             </form>
         </field>
     </record>
-
-    <record id='tree_view_request_channel' model='ir.ui.view'>
-        <field name='name'>tree.view.rquest.channel</field>
-        <field name='model'>request.channel</field>
+    <record id='tree_view_purchase_category' model='ir.ui.view'>
+        <field name='name'>tree.view.purchase.category</field>
+        <field name='model'>purchase.category</field>
         <field name='type'>tree</field>
         <field name='arch' type='xml'>
-            <tree string='Request Channels'>
+            <tree string='Purchase Categories'>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="active" />
@@ -36,27 +34,17 @@
             </tree>
         </field>
     </record>
-
-    <record id='action_request_channel' model='ir.actions.act_window'>
-        <field name='name'>Request Channels</field>
-        <field name='res_model'>request.channel</field>
+    <record id='action_purchase_category' model='ir.actions.act_window'>
+        <field name='name'>Purchase Categories</field>
+        <field name='res_model'>purchase.category</field>
         <field name='view_type'>form</field>
         <field name='view_mode'>tree,form</field>
     </record>
-
     <menuitem
-    id="menu_purchase_in_config_purchase"
-    name="Purchases"
-    parent="purchase.menu_purchase_config"
-    sequence="50"
-    groups="base.group_no_one"
+        id="menu_purchase_category"
+        name="Purchase Categories"
+        parent="purchase_ext_sst.menu_purchase_in_config_purchase"
+        action='action_purchase_category'
+        sequence="30"
   />
-    <menuitem
-    id="menu_request_channel"
-    name="Request Channels"
-    parent="menu_purchase_in_config_purchase"
-    action='action_request_channel'
-    sequence="10"
-  />
-
 </odoo>
