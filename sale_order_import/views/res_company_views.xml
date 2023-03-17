@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_company_form_inherit" model="ir.ui.view">
+        <field name="name">res.company</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_info']" position="after">
+                <page string="Sale Import Information" name="sale_import_info">
+                    <group>
+                        <field name="picking_policy" />
+                        <field
+                            name="customer_invoice_journal_id"
+                            domain="[('type','=','sale'), ('company_id','=', id)]"
+                        />
+                        <field
+                            name="customer_payment_journal_id"
+                            domain="['|',('type','=','cash'),('type','=','bank'), ('company_id','=', id)]"
+                        />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
