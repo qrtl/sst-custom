@@ -8,10 +8,10 @@
         <field name="arch" type="xml">
             <xpath expr="//form/sheet/notebook/page" position="after">
                 <page
-          name="sales_orders"
-          string="Sale Orders"
-          attrs="{'invisible': [('model_name', '!=', 'sale.order')]}"
-        >
+                    name="sales_orders"
+                    string="Sale Orders"
+                    attrs="{'invisible': [('model_name', '!=', 'sale.order')]}"
+                >
                     <group>
                         <div>
                             <field name="sale_order_ids" colspan="3" nolabel="1" />

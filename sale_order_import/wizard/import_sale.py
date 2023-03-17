@@ -58,7 +58,10 @@ class ImportSale(models.TransientModel):
         if default_rec:
             return default_rec.customer_payment_journal_id
 
-    input_file = fields.Binary(string="Sale Order File (.csv Format)", required=True,)
+    input_file = fields.Binary(
+        string="Sale Order File (.csv Format)",
+        required=True,
+    )
     datas_fname = fields.Char(string="File Path")
     picking_policy = fields.Selection(
         [
