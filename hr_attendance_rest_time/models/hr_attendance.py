@@ -15,13 +15,12 @@ class HrAttendance(models.Model):
         "Category",
         default="work",
     )
-    manual_update = fields.Boolean("Manual Update")
+    manual_update = fields.Boolean()
     manual_update_reason = fields.Selection(
         [("forgot", "Forgot to check-in/check-out"), ("other", "Other")],
-        string="Manual Update Reason",
     )
     manual_update_reason_desc = fields.Char("Manual Update Reason Description")
-    work_location = fields.Char("Work Location")
+    work_location_id = fields.Many2one("hr.work.location", "Work Location")
 
     @api.onchange("employee_id", "check_in", "check_out")
     def _onchange_manual_update(self):
@@ -31,8 +30,9 @@ class HrAttendance(models.Model):
     def onchange_employee(self):
         employee = self.employee_id
         self.rest_time = employee.rest_time_standard if employee else False
-        self.work_location = employee.work_location if employee else False
+        self.work_location_id = employee.work_location_id.id if employee else False
 
+    # pylint: disable=missing-return
     @api.depends("check_in", "check_out", "rest_time")
     def _compute_worked_hours(self):
         super()._compute_worked_hours()

@@ -19,11 +19,11 @@ class HrEmployee(models.Model):
 
     rest_time_standard = fields.Selection(REST_TIME, "Standard Rest Time (minutes)")
 
-    def attendance_action_change(self):
-        attendance = super().attendance_action_change()
+    def _attendance_action_change(self):
+        attendance = super()._attendance_action_change()
         vals = {}
-        if self.work_location and not attendance.work_location:
-            vals["work_location"] = self.work_location
+        if self.work_location_id and not attendance.work_location_id:
+            vals["work_location_id"] = self.work_location_id.id
         if (
             self.rest_time_standard
             and attendance.check_out

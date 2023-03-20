@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='employee_id']" position="after">
-                <field name="work_location" />
+                <field name="work_location_id" />
                 <field name="attendance_categ" />
             </xpath>
             <xpath expr="//field[@name='check_out']" position="after">
@@ -41,7 +41,7 @@
         <field name="inherit_id" ref="hr_attendance.view_attendance_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='employee_id']" position="after">
-                <field name="work_location" />
+                <field name="work_location_id" />
                 <field name="attendance_categ" />
             </xpath>
             <xpath expr="//field[@name='check_out']" position="after">
@@ -55,7 +55,7 @@
         <field name="model">hr.attendance</field>
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter" />
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='today']" position="before">
+            <xpath expr="//filter[@name='nocheckout']" position="before">
                 <filter
                     name="work"
                     string="Work"
