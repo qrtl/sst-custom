@@ -11,7 +11,9 @@ class HrAttendance(models.Model):
 
     rest_time = fields.Selection(REST_TIME, "Rest Time (minutes)")
     attendance_categ = fields.Selection(
-        [("work", "Work"), ("paid_leave", "Paid Leave")], "Category", default="work",
+        [("work", "Work"), ("paid_leave", "Paid Leave")],
+        "Category",
+        default="work",
     )
     manual_update = fields.Boolean("Manual Update")
     manual_update_reason = fields.Selection(
