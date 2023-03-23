@@ -436,7 +436,7 @@ class ImportSale(models.TransientModel):
     def import_sale_data(self):
         self.ensure_one()
         ctx = self._context.copy()
-        model = self.env["ir.model"].search([("model", "=", "sale.order")])
+        model = self.env["ir.model"].sudo().search([("model", "=", "sale.order")])
 
         product_dict = {}
         partner_dict = {}
@@ -613,7 +613,7 @@ class ImportSale(models.TransientModel):
                     payment_journal,
                 )
 
-        res = self.env.ref("base_data_import.data_import_log_action")
+        res = self.sudo().env.ref("base_data_import.data_import_log_action")
         res = res.read()[0]
         res["domain"] = str([("id", "in", [data_import_log_id])])
         return res
