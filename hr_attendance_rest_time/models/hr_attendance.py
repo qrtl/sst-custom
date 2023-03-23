@@ -30,7 +30,7 @@ class HrAttendance(models.Model):
     def onchange_employee(self):
         employee = self.employee_id
         self.rest_time = employee.rest_time_standard if employee else False
-        self.work_location_id = employee.work_location_id.id if employee else False
+        self.work_location_id = employee.work_location_id if employee else False
 
     # pylint: disable=missing-return
     @api.depends("check_in", "check_out", "rest_time")
