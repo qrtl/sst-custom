@@ -1,0 +1,251 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_data_import
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-13 14:03+0000\n"
+"PO-Revision-Date: 2022-08-13 14:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_data_import
+#: code:addons/base_data_import/wizards/data_import.py:0
+#, python-format
+msgid "%(label)s is missing."
+msgstr "%(label)sがありません。"
+
+#. module: base_data_import
+#: model_terms:ir.ui.view,arch_db:base_data_import.view_data_import
+msgid "Cancel"
+msgstr "取消"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__company_id
+msgid "Company"
+msgstr "会社"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import__create_uid
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__create_uid
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import__create_date
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__create_date
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: base_data_import
+#: model:ir.model,name:base_data_import.model_data_import
+#: model:ir.ui.menu,name:base_data_import.data_import_main_menu
+msgid "Data Import"
+msgstr "データインポート"
+
+#. module: base_data_import
+#: model:ir.model,name:base_data_import.model_data_import_error
+msgid "Data Import Error"
+msgstr "データインポートエラー"
+
+#. module: base_data_import
+#: model:ir.model,name:base_data_import.model_data_import_log
+#: model:ir.ui.menu,name:base_data_import.data_import_log_menu
+#: model:res.groups,name:base_data_import.group_data_import_log
+msgid "Data Import Log"
+msgstr "データインポートログ"
+
+#. module: base_data_import
+#: model:ir.actions.act_window,name:base_data_import.data_import_log_action
+msgid "Data Import Logs"
+msgstr "データインポートログ"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import__display_name
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__display_name
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: base_data_import
+#: model:ir.model.fields.selection,name:base_data_import.selection__data_import_log__state__done
+msgid "Done"
+msgstr "完了"
+
+#. module: base_data_import
+#: model_terms:ir.ui.view,arch_db:base_data_import.data_import_log_form
+msgid "Error Lines"
+msgstr "エラー行"
+
+#. module: base_data_import
+#: model:ir.model.fields.selection,name:base_data_import.selection__data_import_log__state__failed
+msgid "Failed"
+msgstr "失敗"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import__import_file
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__input_file
+msgid "File"
+msgstr "ファイル"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import__file_name
+msgid "File Name"
+msgstr "ファイル名"
+
+#. module: base_data_import
+#: code:addons/base_data_import/wizards/data_import.py:0
+#, python-format
+msgid ""
+"Following columns are missing: \n"
+" %s"
+msgstr ""
+"次のカラムが必要です: \n"
+" %s"
+
+#. module: base_data_import
+#: model_terms:ir.ui.view,arch_db:base_data_import.import_log_filter
+msgid "Group By..."
+msgstr "グループ化..."
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import__id
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__id
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_data_import
+#: model_terms:ir.ui.view,arch_db:base_data_import.import_log_filter
+msgid "Import Date"
+msgstr "インポート日"
+
+#. module: base_data_import
+#: model_terms:ir.ui.view,arch_db:base_data_import.data_import_log_form
+msgid "Import Log"
+msgstr "インポートログ"
+
+#. module: base_data_import
+#: code:addons/base_data_import/wizards/data_import.py:0
+#, python-format
+msgid "Import Result"
+msgstr "インポート結果"
+
+#. module: base_data_import
+#: model:ir.model.fields.selection,name:base_data_import.selection__data_import_log__state__imported
+msgid "Imported"
+msgstr "インポート済"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__import_user_id
+#: model_terms:ir.ui.view,arch_db:base_data_import.import_log_filter
+msgid "Imported By"
+msgstr "インポート担当者"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__file_path
+msgid "Imported File"
+msgstr "インポートファイル"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__import_date
+msgid "Imported On"
+msgstr "インポート日"
+
+#. module: base_data_import
+#: code:addons/base_data_import/wizards/data_import.py:0
+#, python-format
+msgid "Invalid file!"
+msgstr "ファイルが無効です。"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import____last_update
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error____last_update
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log____last_update
+msgid "Last Modified on"
+msgstr "最終修正日"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import__write_uid
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__write_uid
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import__write_date
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__write_date
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__log_id
+msgid "Log"
+msgstr "ログ"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__error_ids
+msgid "Log Lines"
+msgstr "ログ行"
+
+#. module: base_data_import
+#: model_terms:ir.ui.view,arch_db:base_data_import.data_import_log_form
+msgid "Logs"
+msgstr "ログ"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__error_message
+msgid "Message"
+msgstr "メッセージ"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__model_id
+#: model_terms:ir.ui.view,arch_db:base_data_import.import_log_filter
+msgid "Model"
+msgstr "モデル"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__model_name
+msgid "Model Name"
+msgstr "モデル名"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__file_name
+msgid "Name"
+msgstr "名称"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__reference
+msgid "Reference"
+msgstr "参照"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_error__row_no
+msgid "Row Number"
+msgstr "行番号"
+
+#. module: base_data_import
+#: model_terms:ir.ui.view,arch_db:base_data_import.import_log_filter
+msgid "Search Logs"
+msgstr "ログ検索"
+
+#. module: base_data_import
+#: model:ir.model.fields,field_description:base_data_import.field_data_import_log__state
+#: model_terms:ir.ui.view,arch_db:base_data_import.import_log_filter
+msgid "Status"
+msgstr "ステータス"
+
+#. module: base_data_import
+#: code:addons/base_data_import/wizards/data_import.py:0
+#, python-format
+msgid "Unexpected value for %(label)s (%(errored_type)s)"
+msgstr "%(label)s(%(errored_type)s)の値が不正です。"
