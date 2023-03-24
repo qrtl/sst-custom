@@ -1,0 +1,4 @@
+Group,Line Product,Line Description,Line Unit Price,Line Qty,Line Tax,Customer,Pricelist,Warehouse,Notes,Carrier,Team,Customer Phone/Mobile
+1,ABC,Product A,200,2,,Test Partner 01,Public Pricelist,San Francisco,Test Note,Free delivery charges,Sales,1234567890
+2,XYZ,Product B,300,3,,Test Partner 02,Public Pricelist,San Francisco,Test Note,Free delivery charges,Sales,9876543210
+2,ZYX,Product C,400,4,,Test Partner 02,Public Pricelist,San Francisco,Test Note,Free delivery charges,Sales,9876543210

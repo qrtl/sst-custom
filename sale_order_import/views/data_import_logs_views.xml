@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="data_import_log_form_inherit" model="ir.ui.view">
+        <field name="name">data.import.log.form</field>
+        <field name="model">data.import.log</field>
+        <field name="inherit_id" ref="base_data_import.data_import_log_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page" position="after">
+                <page
+                    name="sale_orders"
+                    string="Sale Orders"
+                    attrs="{'invisible': [('model_name', '!=', 'sale.order')]}"
+                >
+                    <group>
+                        <div>
+                            <field name="sale_order_ids" colspan="3" nolabel="1" />
+                        </div>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <menuitem
+        id="sale_import_log_menu"
+        name="Sales Order Import Log"
+        parent="sale.sale_order_menu"
+        action="base_data_import.data_import_log_action"
+        sequence="20"
+    />
+</odoo>
