@@ -15,30 +15,30 @@
             </xpath>
             <xpath expr="//field[@name='lang']" position="after">
                 <field
-          name="occupation_id"
-          attrs="{'invisible' : [('supplier', '=', False)]}"
-        />
+                    name="occupation_id"
+                    attrs="{'invisible' : [('supplier', '=', False)]}"
+                />
                 <field
-          name="identification_type_id"
-          attrs="{'invisible' : [('supplier', '=', False)]}"
-        />
+                    name="identification_type_id"
+                    attrs="{'invisible' : [('supplier', '=', False)]}"
+                />
                 <field
-          name="identification_number"
-          attrs="{'invisible' : [('supplier', '=', False)]}"
-        />
+                    name="identification_number"
+                    attrs="{'invisible' : [('supplier', '=', False)]}"
+                />
             </xpath>
             <xpath
-        expr="//field[@name='child_ids']/form//field[@name='mobile']"
-        position="after"
-      >
+                expr="//field[@name='child_ids']/form//field[@name='mobile']"
+                position="after"
+            >
                 <field
-          name="identification_type_id"
-          attrs="{'invisible' : [('supplier', '=', False)]}"
-        />
+                    name="identification_type_id"
+                    attrs="{'invisible' : [('supplier', '=', False)]}"
+                />
                 <field
-          name="identification_number"
-          attrs="{'invisible' : [('supplier', '=', False)]}"
-        />
+                    name="identification_number"
+                    attrs="{'invisible' : [('supplier', '=', False)]}"
+                />
             </xpath>
         </field>
     </record>
@@ -49,56 +49,56 @@
         <field name="inherit_id" ref="base.res_partner_kanban_view" />
         <field name="arch" type="xml">
             <xpath
-        expr="//li[@t-if='record.city.raw_value and !record.country_id.raw_value']"
-        position="replace"
-      />
+                expr="//li[@t-if='record.city.raw_value and !record.country_id.raw_value']"
+                position="replace"
+            />
             <xpath
-        expr="//li[@t-if='!record.city.raw_value and record.country_id.raw_value']"
-        position="replace"
-      />
+                expr="//li[@t-if='!record.city.raw_value and record.country_id.raw_value']"
+                position="replace"
+            />
             <xpath
-        expr="//li[@t-if='record.city.raw_value and record.country_id.raw_value']"
-        position="replace"
-      >
+                expr="//li[@t-if='record.city.raw_value and record.country_id.raw_value']"
+                position="replace"
+            >
                 <li t-if="record.zip.raw_value">〒
                     <field name="zip" />
                 </li>
                 <li
-          t-if="record.state_id.raw_value and !record.city.raw_value and record.street.raw_value"
-        >
+                    t-if="record.state_id.raw_value and !record.city.raw_value and record.street.raw_value"
+                >
                     <field name="state_id" />
                     <field name="street" />
                 </li>
                 <li
-          t-if="!record.state_id.raw_value and record.city.raw_value and record.street.raw_value"
-        >
+                    t-if="!record.state_id.raw_value and record.city.raw_value and record.street.raw_value"
+                >
                     <field name="city" />
                     <field name="street" />
                 </li>
                 <li
-          t-if="record.state_id.raw_value and record.city.raw_value and !record.street.raw_value"
-        >
+                    t-if="record.state_id.raw_value and record.city.raw_value and !record.street.raw_value"
+                >
                     <field name="state_id" />
                     <field name="city" />
                 </li>
                 <li
-          t-if="record.state_id.raw_value and !record.city.raw_value and !record.street.raw_value"
-        >
+                    t-if="record.state_id.raw_value and !record.city.raw_value and !record.street.raw_value"
+                >
                     <field name="state_id" />
                 </li>
                 <li
-          t-if="!record.state_id.raw_value and record.city.raw_value and !record.street.raw_value"
-        >
+                    t-if="!record.state_id.raw_value and record.city.raw_value and !record.street.raw_value"
+                >
                     <field name="city" />
                 </li>
                 <li
-          t-if="!record.state_id.raw_value and !record.city.raw_value and record.street.raw_value"
-        >
+                    t-if="!record.state_id.raw_value and !record.city.raw_value and record.street.raw_value"
+                >
                     <field name="street" />
                 </li>
                 <li
-          t-if="record.state_id.raw_value and record.city.raw_value and record.street.raw_value"
-        >
+                    t-if="record.state_id.raw_value and record.city.raw_value and record.street.raw_value"
+                >
                     <field name="state_id" />
                     <field name="city" />
                     <field name="street" />
@@ -136,9 +136,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="before">
                 <field
-          name="phone"
-          filter_domain="['|', ('phone', 'ilike', self), ('mobile', 'ilike', self)]"
-        />
+                    name="phone"
+                    filter_domain="['|', ('phone', 'ilike', self), ('mobile', 'ilike', self)]"
+                />
             </xpath>
         </field>
     </record>

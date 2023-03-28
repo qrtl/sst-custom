@@ -37,18 +37,18 @@
     </record>
 
     <menuitem
-    id="menu_vendor_in_config_purchase"
-    name="Vendors"
-    parent="purchase.menu_purchase_config"
-    sequence="40"
-    groups="base.group_no_one"
-  />
+        id="menu_vendor_in_config_purchase"
+        name="Vendors"
+        parent="purchase.menu_purchase_config"
+        sequence="40"
+        groups="base.group_no_one"
+    />
     <menuitem
-    id="menu_identification_type"
-    name="Identification Types"
-    parent="menu_vendor_in_config_purchase"
-    action='action_identification_type'
-    sequence="10"
-  />
+        id="menu_identification_type"
+        name="Identification Types"
+        parent="menu_vendor_in_config_purchase"
+        action='action_identification_type'
+        sequence="10"
+    />
 
 </odoo>

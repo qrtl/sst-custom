@@ -37,11 +37,11 @@
     </record>
 
     <menuitem
-    id="menu_occupation"
-    name="Occupations"
-    parent="menu_vendor_in_config_purchase"
-    action='action_occupation'
-    sequence="15"
-  />
+        id="menu_occupation"
+        name="Occupations"
+        parent="menu_vendor_in_config_purchase"
+        action='action_occupation'
+        sequence="15"
+    />
 
 </odoo>
