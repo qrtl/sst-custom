@@ -11,10 +11,8 @@ class ResPartner(models.Model):
         comodel_name="res.identification.type",
         string="Identification Type",
     )
-    identification_number = fields.Char(
-        string="Identification Number",
-    )
+    identification_number = fields.Char()
     fax = fields.Char()
     occupation_id = fields.Many2one("res.occupation", "Occupation")
-    gender = fields.Selection([("male", "Male"), ("female", "Female")], string="Gender")
-    date_of_birth = fields.Date("Date of Birth")
+    gender = fields.Selection([("male", "Male"), ("female", "Female")])
+    date_of_birth = fields.Date()

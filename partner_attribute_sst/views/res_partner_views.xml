@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_partner_form" model="ir.ui.view">
         <field name="name">res.partner.form</field>
         <field name="model">res.partner</field>
@@ -10,21 +9,18 @@
                 <field name="gender" widget="radio" />
                 <field name="date_of_birth" widget="date" />
             </xpath>
-            <xpath expr="//field[@name='email']" position="before">
+            <xpath expr="//field[@name='user_ids']" position="after">
                 <field name="fax" />
             </xpath>
-            <xpath expr="//field[@name='lang']" position="after">
-                <field
-                    name="occupation_id"
-                    attrs="{'invisible' : [('supplier', '=', False)]}"
-                />
+            <xpath expr="//field[@name='category_id']" position="before">
+                <field name="occupation_id" groups="purchase.group_purchase_user" />
                 <field
                     name="identification_type_id"
-                    attrs="{'invisible' : [('supplier', '=', False)]}"
+                    groups="purchase.group_purchase_user"
                 />
                 <field
                     name="identification_number"
-                    attrs="{'invisible' : [('supplier', '=', False)]}"
+                    groups="purchase.group_purchase_user"
                 />
             </xpath>
             <xpath
@@ -33,32 +29,29 @@
             >
                 <field
                     name="identification_type_id"
-                    attrs="{'invisible' : [('supplier', '=', False)]}"
+                    groups="purchase.group_purchase_user"
                 />
                 <field
                     name="identification_number"
-                    attrs="{'invisible' : [('supplier', '=', False)]}"
+                    groups="purchase.group_purchase_user"
                 />
             </xpath>
         </field>
     </record>
-
     <record model="ir.ui.view" id="res_partner_kanban_view">
         <field name="name">res.partner.kanban.view</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.res_partner_kanban_view" />
         <field name="arch" type="xml">
             <xpath
-                expr="//li[@t-if='record.city.raw_value and !record.country_id.raw_value']"
-                position="replace"
-            />
+                expr="//li[@t-if='record.city.raw_value or record.country_id.raw_value']"
+                position="attributes"
+            >
+                <attribute name="t-att-style">'display: none!important'</attribute>
+            </xpath>
             <xpath
-                expr="//li[@t-if='!record.city.raw_value and record.country_id.raw_value']"
-                position="replace"
-            />
-            <xpath
-                expr="//li[@t-if='record.city.raw_value and record.country_id.raw_value']"
-                position="replace"
+                expr="//li[@t-if='record.city.raw_value or record.country_id.raw_value']"
+                position="after"
             >
                 <li t-if="record.zip.raw_value">〒
                     <field name="zip" />
@@ -128,7 +121,6 @@
             </xpath>
         </field>
     </record>
-
     <record id="view_res_partner_filter" model="ir.ui.view">
         <field name="name">res.partner.select</field>
         <field name="model">res.partner</field>
@@ -142,5 +134,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

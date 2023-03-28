@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id='form_view_identification_type' model='ir.ui.view'>
         <field name='name'>form.view.identification.type</field>
         <field name='model'>res.identification.type</field>
@@ -17,31 +16,26 @@
             </form>
         </field>
     </record>
-
     <record id='tree_view_identification_type' model='ir.ui.view'>
         <field name='name'>tree.view.identification.type</field>
         <field name='model'>res.identification.type</field>
         <field name='type'>tree</field>
         <field name='arch' type='xml'>
-            <tree string='Identification Types'>
+            <tree>
                 <field name="name" />
             </tree>
         </field>
     </record>
-
     <record id='action_identification_type' model='ir.actions.act_window'>
         <field name='name'>Identification Types</field>
         <field name='res_model'>res.identification.type</field>
-        <field name='view_type'>form</field>
         <field name='view_mode'>tree,form</field>
     </record>
-
     <menuitem
         id="menu_vendor_in_config_purchase"
         name="Vendors"
         parent="purchase.menu_purchase_config"
         sequence="40"
-        groups="base.group_no_one"
     />
     <menuitem
         id="menu_identification_type"
@@ -50,5 +44,4 @@
         action='action_identification_type'
         sequence="10"
     />
-
 </odoo>
