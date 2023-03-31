@@ -1,3 +1,4 @@
 This module does the following:
 
-* This module adds a menuitem for internal user to check all the wishlist products.
+* Adds a menuitem for internal users to be able to check/manage the wishlist content
+  in the backend.

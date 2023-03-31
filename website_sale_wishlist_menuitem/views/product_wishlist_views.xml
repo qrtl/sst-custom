@@ -16,6 +16,9 @@
         <field name="model">product.wishlist</field>
         <field name="arch" type="xml">
             <search string="Product Wishlist">
+                <field name="product_id" />
+                <field name="partner_id" />
+                <field name="create_date" />
                 <group expand="0" string="Group By">
                     <filter
                         string="Product"
@@ -30,9 +33,6 @@
                         context="{'group_by':'partner_id'}"
                     />
                 </group>
-                <field name="product_id" />
-                <field name="partner_id" />
-                <field name="create_date" />
             </search>
         </field>
     </record>
@@ -45,7 +45,7 @@
     <menuitem
         id="menu_product_wishlist"
         name="Product Wishlist"
-        parent="website_sale.menu_catalog"
+        parent="website_sale.menu_orders"
         action="action_product_wishlist"
         sequence="10"
     />
