@@ -10,6 +10,7 @@ class ProductWishlist(models.Model):
     @api.model
     def _process_wishlist_archive(self):
         wishlist_records = self.search([("active", "=", True)])
-        for record in wishlist_records:
-            if not record.product_id.active:
-                record.active = False
+        wishlist_records_to_archive = wishlist_records.filtered(
+            lambda x: not x.product_id.active
+        )
+        wishlist_records_to_archive.write({"active": False})
