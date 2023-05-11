@@ -1,180 +1,143 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* partner_ext_sst
+# 	* partner_attribute_sst
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-20 08:49+0000\n"
-"PO-Revision-Date: 2018-11-20 08:49+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-05-11 05:45+0000\n"
+"PO-Revision-Date: 2023-05-11 05:45+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_shop_company_id
-msgid "Company"
-msgstr "会社"
-
-#. module: partner_ext_sst
-#: model:ir.model,name:partner_ext_sst.model_res_partner
+#. module: partner_attribute_sst
+#: model:ir.model,name:partner_attribute_sst.model_res_partner
 msgid "Contact"
 msgstr "連絡先"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_identification_type_create_uid
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_occupation_create_uid
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_shop_create_uid
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_identification_type__create_uid
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_occupation__create_uid
 msgid "Created by"
 msgstr "作成者"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_identification_type_create_date
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_occupation_create_date
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_shop_create_date
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_identification_type__create_date
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_occupation__create_date
 msgid "Created on"
 msgstr "作成日"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_partner_date_of_birth
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_users_date_of_birth
-msgid "Date of Birth"
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_partner__date_of_birth
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_users__date_of_birth
+msgid "Date Of Birth"
 msgstr "生年月日"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_identification_type_display_name
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_occupation_display_name
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_shop_display_name
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_identification_type__display_name
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_occupation__display_name
 msgid "Display Name"
 msgstr "表示名"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_partner_fax
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_users_fax
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_partner__fax
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_users__fax
 msgid "Fax"
 msgstr "FAX"
 
-#. module: partner_ext_sst
-#: selection:res.partner,gender:0
+#. module: partner_attribute_sst
+#: model:ir.model.fields.selection,name:partner_attribute_sst.selection__res_partner__gender__female
 msgid "Female"
 msgstr "女"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_partner_gender
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_users_gender
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_partner__gender
 msgid "Gender"
 msgstr "性別"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_identification_type_id
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_occupation_id
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_shop_id
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_identification_type__id
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_occupation__id
 msgid "ID"
 msgstr "ID"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_partner_identification_number
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_users_identification_number
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_partner__identification_number
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_users__identification_number
 msgid "Identification Number"
 msgstr "身分証明書番号"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_partner_identification_type_id
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_users_identification_type_id
-#: model:ir.ui.view,arch_db:partner_ext_sst.form_view_identification_type
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_partner__identification_type_id
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_users__identification_type_id
+#: model_terms:ir.ui.view,arch_db:partner_attribute_sst.form_view_identification_type
 msgid "Identification Type"
 msgstr "身分証明タイプ"
 
-#. module: partner_ext_sst
-#: model:ir.actions.act_window,name:partner_ext_sst.action_identification_type
-#: model:ir.ui.menu,name:partner_ext_sst.menu_identification_type
-#: model:ir.ui.view,arch_db:partner_ext_sst.tree_view_identification_type
+#. module: partner_attribute_sst
+#: model:ir.actions.act_window,name:partner_attribute_sst.action_identification_type
+#: model:ir.ui.menu,name:partner_attribute_sst.menu_identification_type
 msgid "Identification Types"
 msgstr "身分証明タイプ"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_identification_type___last_update
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_occupation___last_update
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_shop___last_update
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_identification_type____last_update
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_occupation____last_update
 msgid "Last Modified on"
 msgstr "最終更新日"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_identification_type_write_uid
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_occupation_write_uid
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_shop_write_uid
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_identification_type__write_uid
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_occupation__write_uid
 msgid "Last Updated by"
 msgstr "最終更新者"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_identification_type_write_date
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_occupation_write_date
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_shop_write_date
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_identification_type__write_date
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_occupation__write_date
 msgid "Last Updated on"
 msgstr "最終更新日"
 
-#. module: partner_ext_sst
-#: selection:res.partner,gender:0
+#. module: partner_attribute_sst
+#: model:ir.model.fields.selection,name:partner_attribute_sst.selection__res_partner__gender__male
 msgid "Male"
 msgstr "男"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_identification_type_name
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_occupation_name
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_shop_name
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_identification_type__name
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_occupation__name
 msgid "Name"
 msgstr "名称"
 
-#. module: partner_ext_sst
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_partner_occupation_id
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_users_occupation_id
-#: model:ir.ui.view,arch_db:partner_ext_sst.form_view_occupation
+#. module: partner_attribute_sst
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_partner__occupation_id
+#: model:ir.model.fields,field_description:partner_attribute_sst.field_res_users__occupation_id
+#: model_terms:ir.ui.view,arch_db:partner_attribute_sst.form_view_occupation
 msgid "Occupation"
 msgstr "職業"
 
-#. module: partner_ext_sst
-#: model:ir.actions.act_window,name:partner_ext_sst.action_occupation
-#: model:ir.ui.menu,name:partner_ext_sst.menu_occupation
-#: model:ir.ui.view,arch_db:partner_ext_sst.tree_view_occupation
+#. module: partner_attribute_sst
+#: model:ir.actions.act_window,name:partner_attribute_sst.action_occupation
+#: model:ir.ui.menu,name:partner_attribute_sst.menu_occupation
 msgid "Occupations"
 msgstr "職業"
 
-#. module: partner_ext_sst
-#: model:ir.actions.act_window,name:partner_ext_sst.action_shop
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_partner_shop_id
-#: model:ir.model.fields,field_description:partner_ext_sst.field_res_users_shop_id
-#: model:ir.ui.view,arch_db:partner_ext_sst.form_view_shop
-msgid "Shop"
-msgstr "担当店舗"
-
-#. module: partner_ext_sst
-#: model:ir.ui.menu,name:partner_ext_sst.menu_shop
-#: model:ir.ui.view,arch_db:partner_ext_sst.tree_view_shop
-msgid "Shops"
-msgstr "担当店舗"
-
-#. module: partner_ext_sst
-#: model:ir.ui.menu,name:partner_ext_sst.menu_vendor_in_config_purchase
+#. module: partner_attribute_sst
+#: model:ir.ui.menu,name:partner_attribute_sst.menu_vendor_in_config_purchase
 msgid "Vendors"
 msgstr "仕入先"
 
-#. module: partner_ext_sst
-#: model:ir.model,name:partner_ext_sst.model_res_identification_type
+#. module: partner_attribute_sst
+#: model:ir.model,name:partner_attribute_sst.model_res_identification_type
 msgid "res.identification.type"
 msgstr "res.identification.type"
 
-#. module: partner_ext_sst
-#: model:ir.model,name:partner_ext_sst.model_res_occupation
+#. module: partner_attribute_sst
+#: model:ir.model,name:partner_attribute_sst.model_res_occupation
 msgid "res.occupation"
 msgstr "res.occupation"
-
-#. module: partner_ext_sst
-#: model:ir.model,name:partner_ext_sst.model_res_shop
-msgid "res.shop"
-msgstr "res.shop"
-
-
