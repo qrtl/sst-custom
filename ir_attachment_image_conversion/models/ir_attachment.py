@@ -11,9 +11,9 @@ _logger = logging.getLogger(__name__)
 class Irattachemnt(models.Model):
     _inherit = "ir.attachment"
 
-    image_conversion_done = fields.Boolean()
+    image_conversion_queued = fields.Boolean()
 
-    def _image_job_queue(self):
+    def _image_job_queue(self, limit=1000):
         mapping = {
             "product.template": "image",
             "product.image": "image",
@@ -27,15 +27,16 @@ class Irattachemnt(models.Model):
                     ("res_model", "=", model),
                     ("res_field", "=", field),
                     ("res_id", "!=", False),
-                    ("image_conversion_done", "=", False),
-                ]
+                    ("image_conversion_queued", "=", False),
+                ],
+                limit=limit,
             )
             for attachment in attachments:
                 desc = model + ":" + str(attachment.res_id)
                 self.with_delay(description=desc)._convert_image_attachments(
                     model, attachment
                 )
-                attachment.image_conversion_done = True
+                attachment.image_conversion_queued = True
 
     def _convert_image_attachments(self, model, attachment):
         self.env[model].browse(attachment.res_id).image_1920 = attachment.datas
