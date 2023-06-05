@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<odoo noupdate="1">
+    <record model="ir.cron" id="ir_cron_action_attachment_queue_job">
+        <field name="name">Binary Conversion Job Queue</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="state">code</field>
+        <field name="active">False</field>
+        <field name="code">model._binary_conversion_job_queue()</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="model_ir_attachment" />
+    </record>
+</odoo>
