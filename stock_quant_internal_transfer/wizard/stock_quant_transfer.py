@@ -20,7 +20,6 @@ class QuantTransferWizard(models.TransientModel):
             "location_id": source_location.id,
             "picking_type_id": picking_type.id,
             "location_dest_id": self.destination_location_id.id,
-            "origin": ",".join([q.display_name for q in quant_ids]),
         }
 
     @api.multi
