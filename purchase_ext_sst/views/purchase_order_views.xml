@@ -95,7 +95,7 @@
         </field>
     </record>
 
-    <record id="purchase_convert_sale_purchase_order_form_inherit" model="ir.ui.view">
+    <record id="purchase_convert_sale_user_id_purchase_order_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
         <field
@@ -109,7 +109,7 @@
         </field>
     </record>
 
-    <record id="purchase_convert_sale_purchase_order_form_inherit" model="ir.ui.view">
+    <record id="purchase_convert_sale_sale_order_id_purchase_order_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase_convert_sale.purchase_order_form_inherit" />
