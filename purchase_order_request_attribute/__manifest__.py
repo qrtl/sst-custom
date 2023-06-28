@@ -14,7 +14,7 @@
         "data/menuitem_data.xml",
         "views/purchase_order_views.xml",
         "views/request_channel_views.xml",
-        "views/request_channel_views.xml",
+        "views/request_medium_views.xml",
     ],
     "installable": True,
 }

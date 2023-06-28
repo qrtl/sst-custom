@@ -3,15 +3,19 @@
     <record id="purchase_order_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_ext_sst.purchase_order_form"/>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_id']" position="attributes">
                 <attribute
                     name="context"
                 >{"default_purchase_category_id": parent.purchase_category_id}</attribute>
             </xpath>
-            <xpath expr="//field[@name='employee_id']" position="after">
-                <field name="purchase_category_id" />
+            <xpath expr="//sheet/group" position="after">
+                <group>
+                    <group>
+                        <field name="purchase_category_id" />
+                    </group>
+                </group>
             </xpath>
         </field>
     </record>
@@ -28,9 +32,9 @@
     <record id="view_purchase_order_filter" model="ir.ui.view">
         <field name="name">request.quotation.select</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_ext_sst.view_purchase_order_filter" />
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='employee_id']" position="before">
+            <xpath expr="//field[@name='product_id']" position="before">
                 <field name="purchase_category_id" />
             </xpath>
         </field>

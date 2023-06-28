@@ -7,7 +7,7 @@
     "website": "https://www.quartile.co",
     "category": "Purchase",
     "license": "AGPL-3",
-    "depends": ["purchase_ext_sst"],
+    "depends": ["purchase"],
     "data": [
         "security/ir.model.access.csv",
         "data/purchase_category_data.xml",
