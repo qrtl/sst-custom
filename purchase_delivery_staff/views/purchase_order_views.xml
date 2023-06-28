@@ -3,9 +3,9 @@
     <record id="purchase_order_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_ext_sst.purchase_order_form"/>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
-            <field name="employee_id" position="before">
+            <field name="user_id" position="after">
                 <field name="shop_id"/>
             </field>
             <xpath expr="//field[@name='incoterm_id']" position="after">
@@ -16,7 +16,7 @@
     <record id="purchase_order_tree" model="ir.ui.view">
         <field name="name">purchase.order.tree</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_ext_sst.purchase_order_tree" />
+        <field name="inherit_id" ref="purchase.purchase_order_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='picking_type_id']" position="after">
                 <field name="shop_id" />
@@ -26,9 +26,9 @@
     <record id="view_purchase_order_filter" model="ir.ui.view">
         <field name="name">request.quotation.select</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_ext_sst.view_purchase_order_filter" />
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='employee_id']" position="before">
+            <xpath expr="//field[@name='product_id']" position="before">
                 <field name="shop_id" />
             </xpath>
         </field>
