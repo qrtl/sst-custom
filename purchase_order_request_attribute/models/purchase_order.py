@@ -7,4 +7,5 @@ from odoo import fields, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
+    request_channel_id = fields.Many2one("request.channel", "Request Channel")
     request_medium_id = fields.Many2one("request.medium", "Request Medium")

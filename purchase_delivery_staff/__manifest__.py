@@ -6,7 +6,7 @@
     "author": "Quartile Limited",
     "website": "https://www.quartile.co",
     "category": "Purchase",
-    "license": "AGPL",
+    "license": "AGPL-3",
     "depends": ["hr", "stock", "purchase_ext_sst"],
     "data": [
         "views/purchase_order_views.xml",
