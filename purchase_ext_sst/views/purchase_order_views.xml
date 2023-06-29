@@ -46,7 +46,6 @@
                 </group>
                 <group>
                     <group>
-                        <field name="call_back" />
                         <field name="worked_hours" />
                     </group>
                     <group>
@@ -106,7 +105,6 @@
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
                 <field name="picking_type_id" invisible="1" />
-                <field name="call_back" />
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="address" />
@@ -137,7 +135,6 @@
                 <field name="address" />
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="call_back" />
                 <field name="employee_id" />
                 <field name="remark" />
             </xpath>

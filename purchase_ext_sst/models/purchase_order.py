@@ -9,7 +9,6 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     employee_id = fields.Many2one("hr.employee", "Received By")
-    call_back = fields.Boolean("Call Back")
     address = fields.Char()
     remark = fields.Text("Remark")
     worked_hours = fields.Selection(

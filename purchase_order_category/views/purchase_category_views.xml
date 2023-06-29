@@ -43,8 +43,8 @@
     <menuitem
         id="menu_purchase_category"
         name="Purchase Categories"
-        parent="purchase.menu_procurement_management"
+        parent="purchase.menu_purchase_config"
         action='action_purchase_category'
-        sequence="50"
+        sequence="120"
   />
 </odoo>
