@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.menu" id="stock.menu_warehouse_report">
+        <field name="groups_id" eval="[(6, 0, [ref('group_stock_operator')])]" />
+    </record>
+    <record model="ir.ui.menu" id="stock_account.menu_valuation">
+        <field name="groups_id" eval="[(6, 0, [ref('group_stock_operator')])]" />
+    </record>
+</odoo>
