@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="group_stock_operator" model="res.groups">
+        <field name="name">Operator</field>
+        <field name="category_id" ref="base.module_category_warehouse_management" />
+        <field name="implied_ids" eval="[(4, ref('stock.group_stock_user'))]" />
+    </record>
+    <record id="stock.group_stock_manager" model="res.groups">
+        <field name="implied_ids" eval="[(6, 0, [ref('group_stock_operator')])]" />
+    </record>
+</odoo>
