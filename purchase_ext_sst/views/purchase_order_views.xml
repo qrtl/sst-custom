@@ -95,12 +95,12 @@
         </field>
     </record>
 
-    <record id="purchase_order_user_purchase_order_form_inherit" model="ir.ui.view">
+    <record id="purchase_convert_sale_user_id_purchase_order_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
         <field
       name="inherit_id"
-      ref="purchase_order_user.purchase_order_form_inherit"
+      ref="purchase_convert_sale.purchase_order_form_inherit"
     />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_id']" position="attributes">
@@ -109,10 +109,10 @@
         </field>
     </record>
 
-    <record id="po_so_field_purchase_order_form_inherit" model="ir.ui.view">
+    <record id="purchase_convert_sale_sale_order_id_purchase_order_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="po_so_field.purchase_order_form_inherit" />
+        <field name="inherit_id" ref="purchase_convert_sale.purchase_order_form_inherit" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='sale_order_id']" position="attributes">
                 <attribute name="invisible">True</attribute>
