@@ -10,8 +10,5 @@
     "depends": [
         "base_automation",
     ],
-    "data": [
-        "security/ir.model.access.csv",
-    ],
     "installable": True,
 }
