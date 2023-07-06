@@ -13,15 +13,15 @@ Account Invoice Product
 .. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-qrtl%2Fsst--custom-lightgray.png?logo=github
-    :target: https://github.com/qrtl/sst-custom/tree/11.0/account_invoice_product
-    :alt: qrtl/sst-custom
+.. |badge3| image:: https://img.shields.io/badge/github-qrtl%2Fserver--auth-lightgray.png?logo=github
+    :target: https://github.com/qrtl/server-auth/tree/15.0/account_move_product
+    :alt: qrtl/server-auth
 
 |badge1| |badge2| |badge3| 
 
 This module does the following:
 
-* Adds product_id field to account.invoice to enable search by product for invoices.
+* Adds product_id field to account.move to enable search by product for invoices.
 
 **Table of contents**
 
@@ -31,10 +31,10 @@ This module does the following:
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/qrtl/sst-custom/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/qrtl/server-auth/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/qrtl/sst-custom/issues/new?body=module:%20account_invoice_product%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/qrtl/server-auth/issues/new?body=module:%20account_move_product%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -49,6 +49,6 @@ Authors
 Maintainers
 ~~~~~~~~~~~
 
-This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/11.0/account_invoice_product>`_ project on GitHub.
+This module is part of the `qrtl/server-auth <https://github.com/qrtl/server-auth/tree/15.0/account_move_product>`_ project on GitHub.
 
 You are welcome to contribute.
