@@ -4,11 +4,10 @@
 from odoo.tests import common
 
 
-class ProductSalesRecord(common.TransactionCase):
+class TestProductGrossProfitCalculation(common.TransactionCase):
     def setUp(self):
-        super(ProductSalesRecord, self).setUp()
+        super(TestProductGrossProfitCalculation, self).setUp()
         self.test_sale_order = self.env["sale.order"]
-        self.test_invoice = self.env["account.invoice"]
         self.test_user = self.env.ref("base.user_demo")
         self.product_1 = self.env.ref("product.product_product_8")
         self.tax_10pc_excl = self.env["account.tax"].create(
@@ -61,26 +60,26 @@ class ProductSalesRecord(common.TransactionCase):
         self.assertEqual(self.product_1.product_tmpl_id.sale_price_unit, 110)
 
         # Create invoice with tax included invoice line
-        self.test_invoice = self.env["account.invoice"].create(
+        test_invoice = self.env["account.move"].create(
             {
                 "partner_id": self.test_user.partner_id.id,
                 "account_id": self.invoice_account.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
             }
         )
-        self.env["account.invoice.line"].create(
+        self.env["account.move.line"].create(
             {
                 "product_id": self.product_1.id,
                 "name": "Test Product",
                 "price_unit": 200,
                 "quantity": 2.0,
-                "invoice_id": self.test_invoice.id,
-                "invoice_line_tax_ids": [(6, 0, [self.tax_10pc_excl.id])],
+                "move_id": test_invoice.id,
+                "tax_ids": [(6, 0, [self.tax_10pc_excl.id])],
                 "account_id": self.invoice_account.id,
             }
         )
         # Validate invoice and the sale_price_unit of the product should be updated
-        self.test_invoice.invoice_validate()
+        test_invoice.action_post()
         self.assertEqual(self.product_1.product_tmpl_id.sale_price_unit, 220)
 
         # Update sale_price_unit manually and reset it by _update_sale_price_unit()
@@ -111,26 +110,26 @@ class ProductSalesRecord(common.TransactionCase):
         self.assertEqual(self.product_1.product_tmpl_id.sale_price_unit, 100)
 
         # Create invoice with tax excluded invoice line
-        self.test_invoice = self.env["account.invoice"].create(
+        test_invoice = self.env["account.move"].create(
             {
                 "partner_id": self.test_user.partner_id.id,
                 "account_id": self.invoice_account.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
             }
         )
-        self.env["account.invoice.line"].create(
+        self.env["account.move.line"].create(
             {
                 "product_id": self.product_1.id,
                 "name": "Test Product",
                 "price_unit": 200,
                 "quantity": 2.0,
-                "invoice_id": self.test_invoice.id,
-                "invoice_line_tax_ids": [(6, 0, [self.tax_10pc_incl.id])],
+                "invoice_id": test_invoice.id,
+                "tax_ids": [(6, 0, [self.tax_10pc_incl.id])],
                 "account_id": self.invoice_account.id,
             }
         )
         # Validate invoice and the sale_price_unit of the product should be updated
-        self.test_invoice.invoice_validate()
+        test_invoice.action_post()
         self.assertEqual(self.product_1.product_tmpl_id.sale_price_unit, 200)
 
         # Update sale_price_unit manually and reset it by _update_sale_price_unit()
