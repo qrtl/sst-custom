@@ -7,13 +7,13 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    sale_price_unit = fields.Monetary(
+    sale_price_unit = fields.Float(
         string="Sale Price (Actual)",
         digits="Product Price",
         readonly=True,
         store=True,
     )
-    gross_profit = fields.Monetary(
+    gross_profit = fields.Float(
         digits="Product Price",
         compute="_compute_gross_profit",
         readonly=True,
