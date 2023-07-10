@@ -22,8 +22,15 @@ class ProductTemplate(models.Model):
         readonly=True,
         store=True,
     )
-    confirmation_date = fields.Datetime(string="Confirmation Date", readonly=True,)
-    team_id = fields.Many2one("crm.team", string="Sales Channel", readonly=True,)
+    confirmation_date = fields.Datetime(
+        string="Confirmation Date",
+        readonly=True,
+    )
+    team_id = fields.Many2one(
+        "crm.team",
+        string="Sales Channel",
+        readonly=True,
+    )
 
     @api.depends("sale_price_unit", "list_price", "standard_price")
     def _compute_gross_profit(self):
