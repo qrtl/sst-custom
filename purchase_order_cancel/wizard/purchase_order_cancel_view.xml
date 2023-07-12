@@ -9,12 +9,12 @@
                 <p>Are you sure to delete the selected purchase order(s)?</p>
                 <footer>
                     <button
-            string="Confirm"
-            groups="purchase.group_purchase_user"
-            name="action_cancel_purchase_order"
-            type="object"
-            class="oe_highlight"
-          />
+                        string="Confirm"
+                        groups="purchase.group_purchase_user"
+                        name="action_cancel_purchase_order"
+                        type="object"
+                        class="oe_highlight"
+                    />
                     or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
@@ -23,15 +23,15 @@
     </record>
 
     <act_window
-    id="cancel_purchase_order_wizard"
-    name="Cancel Purchase Orders"
-    multi="True"
-    res_model="purchase.order.cancel"
-    src_model="purchase.order"
-    view_mode="form"
-    target="new"
-    groups="purchase.group_purchase_user"
-    key2="client_action_multi"
-  />
+        id="cancel_purchase_order_wizard"
+        name="Cancel Purchase Orders"
+        multi="True"
+        res_model="purchase.order.cancel"
+        src_model="purchase.order"
+        view_mode="form"
+        target="new"
+        groups="purchase.group_purchase_user"
+        key2="client_action_multi"
+    />
 
 </odoo>

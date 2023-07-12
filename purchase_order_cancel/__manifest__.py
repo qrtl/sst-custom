@@ -4,7 +4,7 @@
     "name": "Cancel Multiple Purchase Order",
     "version": "11.0.1.0.0",
     "author": "Quartile Limited",
-    "website": "https://www.odoo-asia.com",
+    "website": "https://www.quartile.co",
     "category": "Purchases",
     "license": "AGPL-3",
     "summary": "Cancel Multiple Purchase Orders",
