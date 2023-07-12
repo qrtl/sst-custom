@@ -11,7 +11,6 @@ class PurchaseOrderCancel(models.TransientModel):
     def _cancel_purchase_order(self, orders):
         return orders.button_cancel()
 
-    @api.multi
     def action_cancel_purchase_order(self):
         active_ids = self._context.get("active_ids", [])
         active_model = self._context.get("active_model", "purchase.order")
