@@ -9,8 +9,6 @@ class TestProductGrossProfitCalculation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestProductGrossProfitCalculation, cls).setUpClass()
-        cls.SaleOrder = cls.env["sale.order"]
-        cls.AccountMove = cls.env["account.move"]
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test",
@@ -30,7 +28,7 @@ class TestProductGrossProfitCalculation(common.TransactionCase):
 
     def test_sale_order_confirmation(self):
         # Create sale order
-        sale_order = self.SaleOrder.create(
+        sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_12").id,
                 "team_id": self.env.ref("sales_team.crm_team_1").id,
@@ -47,11 +45,9 @@ class TestProductGrossProfitCalculation(common.TransactionCase):
             }
         )
         sale_order.action_confirm()
-        self.assertEqual(self.product.product_tmpl_id.sale_price_unit, 200)
-        self.assertEqual(
-            self.product.product_tmpl_id.confirmation_date, sale_order.date_order
-        )
-        self.assertEqual(self.product.product_tmpl_id.team_id.id, sale_order.team_id.id)
+        self.assertEqual(self.product.sale_price_unit, 200)
+        self.assertEqual(self.product.confirmation_date, sale_order.date_order)
+        self.assertEqual(self.product.team_id.id, sale_order.team_id.id)
 
     def test_invoice_posting(self):
         # Create invoice
@@ -65,7 +61,7 @@ class TestProductGrossProfitCalculation(common.TransactionCase):
             ],
             limit=1,
         )
-        invoice = self.AccountMove.create(
+        invoice = self.env["account.move"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_12").id,
                 "move_type": "out_invoice",
@@ -88,4 +84,4 @@ class TestProductGrossProfitCalculation(common.TransactionCase):
         )
         # Post invoice and check the sale_price_unit of the product
         invoice.action_post()
-        self.assertEqual(self.product.product_tmpl_id.sale_price_unit, 400)
+        self.assertEqual(self.product.sale_price_unit, 400)
