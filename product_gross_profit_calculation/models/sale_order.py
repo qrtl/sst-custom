@@ -10,8 +10,7 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         res = super(SaleOrder, self).action_confirm()
         for line in self.order_line:
-            template = line.product_id.product_tmpl_id
-            template.write(
+            line.product_id.write(
                 {
                     "sale_price_unit": line.price_reduce_taxinc,
                     "confirmation_date": self.date_order,

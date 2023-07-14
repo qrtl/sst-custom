@@ -12,8 +12,7 @@ class AccountMove(models.Model):
         for move in self:
             if move.state == "posted" and move.move_type == "out_invoice":
                 for line in move.invoice_line_ids:
-                    template = line.product_id.product_tmpl_id
-                    template.write(
+                    line.product_id.write(
                         {
                             "sale_price_unit": line.price_total / line.quantity
                             if line.quantity
