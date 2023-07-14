@@ -28,7 +28,7 @@ msgstr "請求書"
 #. module: purchase_invoice_indicator
 #: model:ir.model.fields,field_description:purchase_invoice_indicator.field_account_invoice_is_invoice
 msgid "Is Invoice"
-msgstr "請求書です"
+msgstr "適格請求書"
 
 #. module: purchase_invoice_indicator
 #: model:ir.model,name:purchase_invoice_indicator.model_purchase_order
