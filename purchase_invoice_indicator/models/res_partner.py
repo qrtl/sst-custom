@@ -7,6 +7,4 @@ from odoo import models,fields
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    # override vat to add translation
-    vat = fields.Char()
     is_invoice_issuer = fields.Boolean("Qualified Invoice Issuer")
