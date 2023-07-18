@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_gross_profit_calculation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-11 10:08+0000\n"
+"PO-Revision-Date: 2023-07-11 10:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_gross_profit_calculation
+#: model:ir.model.fields,field_description:product_gross_profit_calculation.field_product_product__confirmation_date
+#: model:ir.model.fields,field_description:product_gross_profit_calculation.field_product_template__confirmation_date
+msgid "Confirmation Date"
+msgstr "確認日"
+
+#. module: product_gross_profit_calculation
+#: model:ir.model.fields,field_description:product_gross_profit_calculation.field_product_product__gross_profit
+#: model:ir.model.fields,field_description:product_gross_profit_calculation.field_product_template__gross_profit
+msgid "Gross Profit"
+msgstr "粗利"
+
+#. module: product_gross_profit_calculation
+#: model:ir.model,name:product_gross_profit_calculation.model_account_move
+msgid "Journal Entry"
+msgstr "仕訳"
+
+#. module: product_gross_profit_calculation
+#: model:ir.model,name:product_gross_profit_calculation.model_product_template
+msgid "Product Template"
+msgstr "プロダクトテンプレート"
+
+#. module: product_gross_profit_calculation
+#: model:ir.model.fields,field_description:product_gross_profit_calculation.field_product_product__sale_price_unit
+#: model:ir.model.fields,field_description:product_gross_profit_calculation.field_product_template__sale_price_unit
+msgid "Sale Price (Actual)"
+msgstr "販売価格(実績)"
+
+#. module: product_gross_profit_calculation
+#: model:ir.model.fields,field_description:product_gross_profit_calculation.field_product_product__team_id
+#: model:ir.model.fields,field_description:product_gross_profit_calculation.field_product_template__team_id
+msgid "Sales Channel"
+msgstr "販売チャネル"
+
+#. module: product_gross_profit_calculation
+#: model:ir.model,name:product_gross_profit_calculation.model_sale_order
+msgid "Sales Order"
+msgstr "販売オーダ"
