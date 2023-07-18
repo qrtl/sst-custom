@@ -18,7 +18,7 @@ msgstr ""
 #. module: purchase_order_cancel
 #: model_terms:ir.ui.view,arch_db:purchase_order_cancel.purchase_order_cancel_form_view
 msgid "Are you sure to cancel the selected purchase order(s)?"
-msgstr "選択した注文書をキャンセルしてもよろしいですか?"
+msgstr "選択した発注を取り消しますか?"
 
 #. module: purchase_order_cancel
 #: model_terms:ir.ui.view,arch_db:purchase_order_cancel.purchase_order_cancel_form_view
@@ -28,7 +28,7 @@ msgstr "取消"
 #. module: purchase_order_cancel
 #: model_terms:ir.ui.view,arch_db:purchase_order_cancel.purchase_order_cancel_form_view
 msgid "Cancel Purchase Order"
-msgstr "注文書のキャンセル"
+msgstr "発注取消"
 
 #. module: purchase_order_cancel
 #: model:ir.actions.act_window,name:purchase_order_cancel.cancel_purchase_order_wizard
@@ -43,7 +43,7 @@ msgstr "確認"
 #. module: purchase_order_cancel
 #: model:ir.model.fields,field_description:purchase_order_cancel.field_purchase_order_cancel__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "作成者"
 
 #. module: purchase_order_cancel
 #: model:ir.model.fields,field_description:purchase_order_cancel.field_purchase_order_cancel__create_date
