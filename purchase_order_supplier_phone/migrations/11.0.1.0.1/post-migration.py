@@ -13,7 +13,7 @@ def migrate(env, version):
             env.cr,
             """
             UPDATE ir_model_data
-            SET module = 'purchase_supplier_info'
+            SET module = 'purchase_order_supplier_phone'
             WHERE module IN %s AND model = 'ir.model.fields' and name LIKE %s;
             """,
             (tuple(MODULE_LIST),"%" + field +"%",)
