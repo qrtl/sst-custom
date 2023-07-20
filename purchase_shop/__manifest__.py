@@ -7,7 +7,7 @@
     "website": "https://www.quartile.co",
     "category": "Purchase",
     "license": "AGPL-3",
-    "depends": ["hr", "stock", "purchase"],
+    "depends": ["hr", "purchase", "stock", "account_invoice_shop"],
     "data": [
         "views/purchase_order_views.xml",
     ],

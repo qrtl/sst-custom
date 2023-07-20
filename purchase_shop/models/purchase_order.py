@@ -8,7 +8,7 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     shop_id = fields.Many2one("stock.warehouse", "Shop")
-    purchased_by_id = fields.Many2one("hr.employee", "Delivery Staff")
+    purchased_by_id = fields.Many2one("hr.employee", "Buyer")
 
     @api.onchange("purchased_by_id")
     def onchange_purchased_by_id(self):

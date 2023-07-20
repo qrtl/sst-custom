@@ -1,18 +1,11 @@
 # Copyright 2018 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
-
-    shop_id = fields.Many2one(
-        "stock.warehouse",
-        string="Shop",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-    )
 
     @api.onchange("invoice_line_ids")
     def invoice_line_ids_onchange(self):
@@ -24,6 +17,6 @@ class AccountInvoice(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(AccountInvoice, self).create(vals)
+        res = super().create(vals)
         res.invoice_line_ids_onchange()
         return res
