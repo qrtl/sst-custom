@@ -14,7 +14,7 @@ def migrate(env, version):
             env.cr,
             """
             UPDATE ir_model_data
-            SET module = 'purchase_order_request_attribute'
+            SET module = 'purchase_order_channel'
             WHERE module IN %s AND model = 'ir.model.fields' and name LIKE %s;
             """,
             (tuple(MODULE_LIST),"%"+ field + "%",)
@@ -24,7 +24,7 @@ def migrate(env, version):
             env.cr,
             """
             UPDATE ir_model_data
-            SET module = 'purchase_order_request_attribute'
+            SET module = 'purchase_order_channel'
             WHERE module IN %s AND model = 'ir.model.fields' and name LIKE %s;
             """,
             (tuple(MODULE_LIST),"%"+ model+ "%",)
