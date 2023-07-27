@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="selectable_delivery_city_ids" invisible="1" />
+                <field name="delivery_state_id"/>
+                <field name="delivery_city_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -23,8 +23,6 @@
                             <field name="product_condition" />
                             <field name="carrier_id" />
                             <field name="carrier_size_id" />
-                            <field name="deliver_prefecture" />
-                            <field name="delivery_cites" />
                             <field name="yahoo_product_state_id" />
                         </group>
                     </group>

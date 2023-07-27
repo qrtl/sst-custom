@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_delivery_city_tree" model="ir.ui.view">
+        <field name="name">delivery.city.tree</field>
+        <field name="model">delivery.city</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+                <field name="state_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="menu_action_delivery_city" model="ir.actions.act_window">
+        <field name="name">Delivery Cities</field>
+        <field name="res_model">delivery.city</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem 
+        id="menu_delivery_city"
+        name="Delivery Cities"
+        parent="sale.menu_sale_config"
+        action="menu_action_delivery_city"
+        sequence="10"
+    />
+</odoo>

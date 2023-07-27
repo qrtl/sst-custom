@@ -124,7 +124,9 @@
                 <field name="list_price" />
                 <field name="carrier_id" />
                 <field name="carrier_size_id" />
-                <field name="delivery_cites" />
+                <field name="selectable_delivery_city_ids" invisible="1" />
+                <field name="delivery_state_id" />
+                <field name="delivery_city_id" />
                 <field name="yahoo_product_state_id" />
                 <field name="staff_in_charge" />
                 <field name="type" invisible="1" />

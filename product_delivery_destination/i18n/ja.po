@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_delivery_destination
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-26 08:57+0000\n"
+"PO-Revision-Date: 2023-07-26 08:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_delivery_city_name
+msgid "City Name"
+msgstr "市町村名"
+
+#. module: product_delivery_destination
+#: model:ir.model,name:product_delivery_destination.model_res_country_state
+msgid "Country state"
+msgstr "都道府県/州"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_delivery_city_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_delivery_city_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: product_delivery_destination
+#: model:ir.actions.act_window,name:product_delivery_destination.menu_action_delivery_city
+#: model:ir.ui.menu,name:product_delivery_destination.menu_delivery_city
+msgid "Delivery Cities"
+msgstr "発送市町村"
+
+#. module: product_delivery_destination
+#: model:ir.model,name:product_delivery_destination.model_delivery_city
+#: model:ir.model.fields,field_description:product_delivery_destination.field_product_product_delivery_city_id
+#: model:ir.model.fields,field_description:product_delivery_destination.field_product_template_delivery_city_id
+msgid "Delivery City"
+msgstr "発送市町村"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_product_product_delivery_state_id
+#: model:ir.model.fields,field_description:product_delivery_destination.field_product_template_delivery_state_id
+msgid "Delivery Prefecture"
+msgstr "発送都道府県"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_delivery_city_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_delivery_city_id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_res_country_state_is_deliverable
+msgid "Is Deliverable"
+msgstr "配送可能"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_delivery_city___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_delivery_city_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_delivery_city_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: product_delivery_destination
+#: model:ir.model,name:product_delivery_destination.model_product_template
+msgid "Product Template"
+msgstr "プロダクトテンプレート"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_product_product_selectable_delivery_city_ids
+#: model:ir.model.fields,field_description:product_delivery_destination.field_product_template_selectable_delivery_city_ids
+msgid "Selectable Delivery City"
+msgstr "Selectable Delivery City"
+
+#. module: product_delivery_destination
+#: model:ir.model.fields,field_description:product_delivery_destination.field_delivery_city_state_id
+msgid "State"
+msgstr "都道府県・州"
+

@@ -26,8 +26,6 @@ class ProductTemplate(models.Model):
     )
     carrier_id = fields.Many2one("delivery.carrier", string="Delivery Method",)
     carrier_size_id = fields.Many2one("delivery.carrier.size", string="Delivery Size",)
-    deliver_prefecture = fields.Char(string="Delivery Prefecture",)
-    delivery_cites = fields.Char(string="Delivery Cities",)
     yahoo_product_state_id = fields.Many2one(
         "yahoo.product.state", string="Yahoo Product State",
     )
