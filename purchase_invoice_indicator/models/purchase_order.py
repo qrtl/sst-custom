@@ -12,6 +12,6 @@ class PurchaseOrder(models.Model):
         res = super(PurchaseOrder, self).action_view_invoice()
         if res.get("context"):
             res["context"].update(
-                default_is_invoice=self.partner_id.is_invoice_issuer,
+                default_is_invoice_issuer=self.partner_id.is_invoice_issuer,
             )
         return res
