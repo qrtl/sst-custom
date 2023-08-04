@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="account.invoice_supplier_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='number']" position="after">
-                <field name="is_invoice"/>
+                <field name="is_invoice_issuer"/>
             </xpath>
         </field>
     </record>
@@ -16,7 +16,7 @@
         <field name="inherit_id" ref="account.invoice_supplier_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="is_invoice" force_save="1" />
+                <field name="is_invoice_issuer" />
             </xpath>
         </field>
     </record>
