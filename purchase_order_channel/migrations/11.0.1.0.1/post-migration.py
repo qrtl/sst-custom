@@ -17,7 +17,7 @@ def migrate(env, version):
             SET module = 'purchase_order_channel'
             WHERE module IN %s AND model = 'ir.model.fields' and name LIKE %s;
             """,
-            (tuple(MODULE_LIST),"%"+ field + "%",)
+            (tuple(MODULE_LIST), "%" + field + "%",)
         )
     for model in model_list:
         openupgrade.logged_query(
@@ -27,23 +27,21 @@ def migrate(env, version):
             SET module = 'purchase_order_channel'
             WHERE module IN %s AND model = 'ir.model.fields' and name LIKE %s;
             """,
-            (tuple(MODULE_LIST),"%"+ model+ "%",)
+            (tuple(MODULE_LIST), "%" + model + "%",)
         )
-
         openupgrade.logged_query(
             env.cr,
             """
             DELETE FROM ir_model_data
             WHERE module IN %s AND model = ('ir.model') and name LIKE %s;
             """,
-            (tuple(MODULE_LIST),"%"+ model+ "%",)
+            (tuple(MODULE_LIST), "%" + model + "%",)
         )
-
         openupgrade.logged_query(
             env.cr,
             """
             DELETE FROM ir_model_data
             WHERE module IN %s AND model = 'request.channel' and name LIKE %s;
             """,
-            (tuple(MODULE_LIST),"%"+ model+ "%",)        
+            (tuple(MODULE_LIST), "%" + model + "%",)        
         )

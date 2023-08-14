@@ -10,7 +10,7 @@ class PurchaseOrder(models.Model):
 
     employee_id = fields.Many2one("hr.employee", "Received By")
     address = fields.Char()
-    remark = fields.Text("Remark")
+    remark = fields.Text()
     worked_hours = fields.Selection(
         [
             (num, num + " hours")
@@ -39,9 +39,7 @@ class PurchaseOrder(models.Model):
         ],
         string="Worked Hours",
     )
-    date_planned = fields.Datetime(
-        compute=False,
-    )
+    date_planned = fields.Datetime(compute=False)
     sale_prediction_amount = fields.Monetary("Sales Prediction")
 
     @api.multi
@@ -60,15 +58,15 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def button_confirm(self):
-        for purchase_order in self:
-            if self.is_default_partner(purchase_order.partner_id.id):
+        for order in self:
+            if self.is_default_partner(order.partner_id.id):
                 raise UserError(
                     _("Purchase order cannot be confirmed with " "default guest user.")
                 )
-            if not purchase_order.date_planned:
-                purchase_order.date_planned = fields.Datetime.now()
-                for order_line in purchase_order.order_line:
-                    order_line.date_planned = purchase_order.date_planned
+            if not order.date_planned:
+                order.date_planned = fields.Datetime.now()
+                for order_line in order.order_line:
+                    order_line.date_planned = order.date_planned
         return super(PurchaseOrder, self).button_confirm()
 
     def is_default_partner(self, partner_id):
@@ -90,5 +88,5 @@ class PurchaseOrder(models.Model):
     @api.onchange("date_planned")
     def onchange_date_planned(self):
         if self.date_planned:
-            for order_line in self.order_line:
-                order_line.date_planned = self.date_planned
+            for line in self.order_line:
+                line.date_planned = self.date_planned

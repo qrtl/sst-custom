@@ -7,7 +7,7 @@
     "website": "https://www.quartile.co",
     "license": "LGPL-3",
     "category": "Purchase Management",
-    "depends": ["purchase_ext_sst"],
+    "depends": ["purchase"],
     "data": [
         "security/ir.model.access.csv",
         "views/purchase_order_tag_views.xml",

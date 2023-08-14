@@ -16,5 +16,5 @@ def migrate(env, version):
             SET module = 'purchase_shop'
             WHERE module IN %s AND model = 'ir.model.fields' and name LIKE %s;
             """,
-            (tuple(MODULE_LIST),"%" + field +"%",)
+            (tuple(MODULE_LIST), "%" + field + "%",)
         )
