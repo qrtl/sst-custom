@@ -24,3 +24,9 @@ msgstr "請求書"
 #: model:ir.model,name:account_invoice_shop.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "請求書行"
+
+#. module: account_invoice_shop
+#: model:ir.model.fields,field_description:account_invoice_shop.field_account_invoice_line_shop_id
+#: model:ir.model.fields,field_description:account_invoice_shop.field_account_invoice_shop_id
+msgid "Shop"
+msgstr "担当店舗"
