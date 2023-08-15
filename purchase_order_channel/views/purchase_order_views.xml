@@ -11,7 +11,7 @@
                         <field name="call_back" />
                         <field name="request_channel_id" />
                         <field name="request_medium_id" />
-                    </group>        
+                    </group>
                 </group>
             </xpath>
         </field>

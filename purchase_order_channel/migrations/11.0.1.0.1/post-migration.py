@@ -3,8 +3,9 @@
 from openupgradelib import openupgrade
 
 MODULE_LIST = ["purchase_ext_sst"]
-fields_list = ["request_channel_id","request_medium_id"]
+fields_list = ["request_channel_id", "request_medium_id"]
 model_list = ["request_channel", "request_medium"]
+
 
 @openupgrade.migrate()
 def migrate(env, version):
@@ -17,7 +18,10 @@ def migrate(env, version):
             SET module = 'purchase_order_channel'
             WHERE module IN %s AND model = 'ir.model.fields' and name LIKE %s;
             """,
-            (tuple(MODULE_LIST), "%" + field + "%",)
+            (
+                tuple(MODULE_LIST),
+                "%" + field + "%",
+            ),
         )
     for model in model_list:
         openupgrade.logged_query(
@@ -27,7 +31,10 @@ def migrate(env, version):
             SET module = 'purchase_order_channel'
             WHERE module IN %s AND model = 'ir.model.fields' and name LIKE %s;
             """,
-            (tuple(MODULE_LIST), "%" + model + "%",)
+            (
+                tuple(MODULE_LIST),
+                "%" + model + "%",
+            ),
         )
         openupgrade.logged_query(
             env.cr,
@@ -35,7 +42,10 @@ def migrate(env, version):
             DELETE FROM ir_model_data
             WHERE module IN %s AND model = ('ir.model') and name LIKE %s;
             """,
-            (tuple(MODULE_LIST), "%" + model + "%",)
+            (
+                tuple(MODULE_LIST),
+                "%" + model + "%",
+            ),
         )
         openupgrade.logged_query(
             env.cr,
@@ -43,5 +53,8 @@ def migrate(env, version):
             DELETE FROM ir_model_data
             WHERE module IN %s AND model = 'request.channel' and name LIKE %s;
             """,
-            (tuple(MODULE_LIST), "%" + model + "%",)        
+            (
+                tuple(MODULE_LIST),
+                "%" + model + "%",
+            ),
         )

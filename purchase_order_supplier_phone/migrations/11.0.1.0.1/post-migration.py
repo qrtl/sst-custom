@@ -3,7 +3,15 @@
 from openupgradelib import openupgrade
 
 MODULE_LIST = ["purchase_ext_sst"]
-fields_list = ["phone_update","mobile_update","phone_search","supplier_phone","supplier_mobile","tentative_name"]
+fields_list = [
+    "phone_update",
+    "mobile_update",
+    "phone_search",
+    "supplier_phone",
+    "supplier_mobile",
+    "tentative_name",
+]
+
 
 @openupgrade.migrate()
 def migrate(env, version):
@@ -16,5 +24,8 @@ def migrate(env, version):
             SET module = 'purchase_order_supplier_phone'
             WHERE module IN %s AND model = 'ir.model.fields' and name LIKE %s;
             """,
-            (tuple(MODULE_LIST),"%" + field +"%",)
+            (
+                tuple(MODULE_LIST),
+                "%" + field + "%",
+            ),
         )

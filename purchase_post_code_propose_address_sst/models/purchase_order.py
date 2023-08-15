@@ -19,11 +19,23 @@ class PurchaseOrder(models.Model):
     country_id = fields.Many2one(
         string="Country", default=lambda self: self.env.ref("base.jp")
     )
-    state_id = fields.Many2one("res.country.state", string="Prefecture",)
-    city = fields.Char(string="City",)
-    street = fields.Char(oldname="address", string="Street",)
-    street2 = fields.Char(string="Street2",)
-    zipcode = fields.Char(string="Post Code (Search)",)
+    state_id = fields.Many2one(
+        "res.country.state",
+        string="Prefecture",
+    )
+    city = fields.Char(
+        string="City",
+    )
+    street = fields.Char(
+        oldname="address",
+        string="Street",
+    )
+    street2 = fields.Char(
+        string="Street2",
+    )
+    zipcode = fields.Char(
+        string="Post Code (Search)",
+    )
     zip = fields.Char(
         related="partner_id.zip",
         string="Post Code (Supplier)",
