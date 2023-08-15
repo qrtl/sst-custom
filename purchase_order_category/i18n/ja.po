@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_order_category
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-15 08:19+0000\n"
+"PO-Revision-Date: 2023-08-15 08:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_active
+msgid "Active"
+msgstr "有効"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_company_id
+msgid "Company"
+msgstr "会社"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_name
+msgid "Name"
+msgstr "名称"
+
+#. module: purchase_order_category
+#: model:ir.actions.act_window,name:purchase_order_category.action_purchase_category
+#: model:ir.ui.menu,name:purchase_order_category.menu_purchase_category
+#: model:ir.ui.view,arch_db:purchase_order_category.tree_view_purchase_category
+msgid "Purchase Categories"
+msgstr "買取区分"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_order_purchase_category_id
+#: model:ir.ui.view,arch_db:purchase_order_category.form_view_purchase_category
+msgid "Purchase Category"
+msgstr "買取区分"
+
+#. module: purchase_order_category
+#: model:ir.model,name:purchase_order_category.model_purchase_order
+msgid "Purchase Order"
+msgstr "発注"
+
+#. module: purchase_order_category
+#: model:ir.model.fields,field_description:purchase_order_category.field_purchase_category_sequence
+msgid "Sequence"
+msgstr "付番"
+
+#. module: purchase_order_category
+#: model:ir.model,name:purchase_order_category.model_purchase_category
+msgid "purchase.category"
+msgstr "purchase.category"
+

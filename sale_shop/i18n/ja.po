@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_invoice_shop
+#	* sale_shop
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-15 08:17+0000\n"
-"PO-Revision-Date: 2023-08-15 08:17+0000\n"
+"POT-Creation-Date: 2023-08-15 08:25+0000\n"
+"PO-Revision-Date: 2023-08-15 08:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,12 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: account_invoice_shop
-#: model:ir.model,name:account_invoice_shop.model_account_invoice
-msgid "Invoice"
-msgstr "請求書"
-
-#. module: account_invoice_shop
-#: model:ir.model,name:account_invoice_shop.model_account_invoice_line
+#. module: sale_shop
+#: model:ir.model,name:sale_shop.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "請求書行"
+
