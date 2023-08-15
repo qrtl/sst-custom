@@ -9,7 +9,6 @@
     "license": "LGPL-3",
     "depends": ["hr", "purchase"],
     "data": [
-        "security/ir.model.access.csv",
         "views/purchase_order_views.xml",
     ],
     "installable": True,

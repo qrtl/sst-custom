@@ -37,11 +37,6 @@
                         <field name="sale_order_id" />
                         <field name="partner_ref" />
                     </group>
-                </group>
-                <group>
-                    <group>
-                        <field name="worked_hours" />
-                    </group>
                     <group>
                         <field name="employee_id" />
                     </group>

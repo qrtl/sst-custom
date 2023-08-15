@@ -1,4 +1,4 @@
-# Copyright 2017-2018 Quartile Limited
+# Copyright 2017-2023 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import _, api, fields, models
@@ -11,34 +11,6 @@ class PurchaseOrder(models.Model):
     employee_id = fields.Many2one("hr.employee", "Received By")
     address = fields.Char()
     remark = fields.Text()
-    worked_hours = fields.Selection(
-        [
-            (num, num + " hours")
-            for num in [
-                "0.5",
-                "1.0",
-                "1.5",
-                "2.0",
-                "2.5",
-                "3.0",
-                "3.5",
-                "4.0",
-                "4.5",
-                "5.0",
-                "5.5",
-                "6.0",
-                "6.5",
-                "7.0",
-                "7.5",
-                "8.0",
-                "8.5",
-                "9.0",
-                "9.5",
-                "10.0",
-            ]
-        ],
-        string="Worked Hours",
-    )
     date_planned = fields.Datetime(compute=False)
     sale_prediction_amount = fields.Monetary("Sales Prediction")
 
@@ -61,7 +33,7 @@ class PurchaseOrder(models.Model):
         for order in self:
             if self.is_default_partner(order.partner_id.id):
                 raise UserError(
-                    _("Purchase order cannot be confirmed with " "default guest user.")
+                    _("Purchase order cannot be confirmed with default guest user.")
                 )
             if not order.date_planned:
                 order.date_planned = fields.Datetime.now()
@@ -70,16 +42,16 @@ class PurchaseOrder(models.Model):
         return super(PurchaseOrder, self).button_confirm()
 
     def is_default_partner(self, partner_id):
-        company_id = self.env.user.company_id.id
+        company = self.env.user.company_id
         default_id = (
             self.env["ir.default"].get(
                 "purchase.order",
                 "partner_id",
                 user_id=self.env.uid,
-                company_id=company_id,
+                company_id=company.id,
             )
             or self.env["ir.default"].get(
-                "purchase.order", "partner_id", user_id=False, company_id=company_id
+                "purchase.order", "partner_id", user_id=False, company_id=company.id
             )
             or False
         )
