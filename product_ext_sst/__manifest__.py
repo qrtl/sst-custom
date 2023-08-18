@@ -1,12 +1,12 @@
 # Copyright 2017-2018 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     "name": "Extension for product",
     "version": "11.0.3.0.0",
     "author": "Quartile Limited",
     "website": "https://www.quartile.co",
     "category": "Product",
-    "license": "AGPL-3",
+    "license": "LGPL-3",
     "depends": [
         "website_sale",
         "purchase_order_category",  # purchase_category_id
