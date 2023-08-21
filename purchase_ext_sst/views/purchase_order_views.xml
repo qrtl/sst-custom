@@ -16,9 +16,6 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="priority" eval="18" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='partner_ref']" position="attributes">
-                 <attribute name="invisible">1</attribute>
-            </xpath>
             <xpath expr="//field[@name='product_id']" position="attributes">
                 <attribute
                     name="context"
@@ -34,11 +31,6 @@
             </xpath>
             <xpath expr="//notebook" position="before">
                 <group>
-                    <group>
-                        <field name="user_id" />
-                        <field name="sale_order_id" />
-                        <field name="partner_ref" />
-                    </group>
                     <group>
                         <field name="employee_id" />
                     </group>

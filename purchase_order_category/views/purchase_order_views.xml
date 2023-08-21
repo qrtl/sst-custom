@@ -10,11 +10,9 @@
                     name="context"
                 >{"default_purchase_category_id": parent.purchase_category_id}</attribute>
             </xpath>
-            <xpath expr="//sheet/group" position="after">
+            <xpath expr="//sheet/group" position="inside">
                 <group>
-                    <group>
-                        <field name="purchase_category_id" />
-                    </group>
+                    <field name="purchase_category_id" />
                 </group>
             </xpath>
         </field>
