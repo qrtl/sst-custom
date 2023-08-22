@@ -3,7 +3,7 @@
 
 from datetime import datetime
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
@@ -19,11 +19,10 @@ class ProductTemplate(models.Model):
     manufacturer = fields.Char()
     manufactured_year = fields.Selection(
         [(num, str(num)) for num in reversed(range(1900, datetime.now().year + 1))],
-        "Manufactured Year",
     )
     model = fields.Char()
-    purchase_category_id = fields.Many2one("purchase.category", "Purchase Category")
-    evaluated_by_id = fields.Many2one("hr.employee", "Evaluated By")
-    purchased_by_id = fields.Many2one("hr.employee", "Purchased By")
+    purchase_category_id = fields.Many2one("purchase.category")
+    evaluated_by_id = fields.Many2one("hr.employee")
+    purchased_by_id = fields.Many2one("hr.employee")
     shop_id = fields.Many2one("stock.warehouse", string="Shop Purchased")
     list_price = fields.Float(track_visibility="onchange")

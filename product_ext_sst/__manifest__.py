@@ -12,6 +12,7 @@
         "purchase_order_category",  # purchase_category_id
         "product_yahoo_auction_sst",
         "product_delivery_destination",
+        "web_widget_open_tab",
     ],
     "data": [
         "views/product_template_views.xml",
