@@ -21,7 +21,6 @@ class ProductTemplate(models.Model):
         [(num, str(num)) for num in reversed(range(1900, datetime.now().year + 1))],
     )
     model = fields.Char()
-    purchase_category_id = fields.Many2one("purchase.category")
     evaluated_by_id = fields.Many2one("hr.employee")
     purchased_by_id = fields.Many2one("hr.employee")
     shop_id = fields.Many2one("stock.warehouse", string="Shop Purchased")

@@ -3,7 +3,7 @@
 
 from openupgradelib import openupgrade
 
-MODULE_LIST = ["purchase_ext_sst"]
+MODULE_LIST = ["purchase_ext_sst", "product_ext_sst"]
 fields_list = ["purchase_category_id"]
 model_list = ["purchase_category"]
 

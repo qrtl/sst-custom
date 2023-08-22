@@ -13,6 +13,7 @@
         "data/purchase_category_data.xml",
         "views/purchase_order_views.xml",
         "views/purchase_category_views.xml",
+        "views/product_template_views.xml",
     ],
     "installable": True,
 }
