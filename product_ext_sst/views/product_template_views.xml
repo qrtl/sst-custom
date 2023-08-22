@@ -27,15 +27,11 @@
                         <field name="purchase_category_id" />
                     </group>
                 </group>
-                <group>
-                    <field name="product_state_id" widget="selection" />
-                </group>
             </xpath>
             <xpath expr="//page[@name='general_information']" position="before">
                 <page string="Purchase Input" name="purchase_input">
                     <group>
                         <field name="team_ids" widget="many2many_tags" />
-                        <field name="product_state_id" widget="selection" />
                         <field name="description_sale" />
                         <field
                             name="list_price"
@@ -65,13 +61,12 @@
                 <field name="image_medium" widget="image" />
                 <field name="website_published" string="Visible in Website" />
                 <field name="public_categ_ids" widget="many2many_tags" />
-                <field name="product_state_id" />
             </xpath>
             <xpath expr="//field[@name='type']" position="attributes">
                 <attribute name="invisible">True</attribute>
             </xpath>
             <xpath expr="//field[@name='active']" position="after">
-                <button name="open_record" type="object" icon="fa-sign-in" />
+                <field name="id" widget="open_tab" nolabel="1"/>
             </xpath>
         </field>
     </record>
@@ -106,6 +101,7 @@
                 <field name="standard_price" />
                 <field name="auction_start_price" />
                 <field name="auction_buyout_price" />
+                
                 <field name="list_price" />
                 <field name="carrier_id" />
                 <field name="carrier_size_id" />
@@ -121,7 +117,7 @@
                     groups="product.group_uom"
                 />
                 <field name="active" invisible="1" />
-                <button name="open_record" type="object" icon="fa-sign-in" />
+                <field name="id" widget="open_tab" nolabel="1"/>
             </tree>
         </field>
     </record>

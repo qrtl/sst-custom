@@ -6,10 +6,11 @@ from odoo import api, fields, models
 
 class ProductState(models.Model):
     _name = "product.state"
+    _description = "Product State"
     _order = "sequence, rank"
 
-    rank = fields.Char("Rank", required=True)
-    description = fields.Char("Description", required=True)
+    rank = fields.Char(required=True)
+    description = fields.Char(required=True)
     sequence = fields.Integer(default=10)
     active = fields.Boolean("Active", default=True)
     company_id = fields.Many2one(

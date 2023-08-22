@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id='form_view_product_state' model='ir.ui.view'>
         <field name='name'>form.view.product.state</field>
         <field name='model'>product.state</field>
