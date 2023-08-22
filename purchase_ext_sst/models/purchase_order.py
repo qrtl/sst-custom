@@ -15,20 +15,6 @@ class PurchaseOrder(models.Model):
     sale_prediction_amount = fields.Monetary("Sales Prediction")
 
     @api.multi
-    def open_record(self):
-        form_id = self.env.ref("purchase.purchase_order_form")
-        return {
-            "type": "ir.actions.act_window",
-            "res_model": "purchase.order",
-            "res_id": self.id,
-            "view_type": "form",
-            "view_mode": "form",
-            "view_id": form_id.id,
-            "context": {},
-            "target": "current",
-        }
-
-    @api.multi
     def button_confirm(self):
         for order in self:
             if self.is_default_partner(order.partner_id.id):

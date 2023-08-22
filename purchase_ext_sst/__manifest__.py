@@ -7,7 +7,7 @@
     "website": "https://www.quartile.co",
     "category": "Purchase",
     "license": "LGPL-3",
-    "depends": ["hr", "purchase"],
+    "depends": ["hr", "purchase", "web_widget_open_tab"],
     "data": [
         "views/purchase_order_views.xml",
     ],

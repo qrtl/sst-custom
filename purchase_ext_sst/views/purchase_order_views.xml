@@ -85,7 +85,7 @@
                 <attribute name="invisible">True</attribute>
             </xpath>
             <xpath expr="//field[@name='invoice_status']" position="after">
-                <button name="open_record" type="object" icon="fa-sign-in" />
+                <field name="id" widget="open_tab" nolabel="1"/>
             </xpath>
         </field>
     </record>
