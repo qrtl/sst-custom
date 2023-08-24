@@ -58,13 +58,19 @@ class PurchaseOrder(models.Model):
     @api.multi
     def write(self, vals):
         res = super().write(vals)
-        if "order_line" in vals or "shop_id" in vals or "purchased_by_id" in vals:
+        if (
+            "order_line" in vals
+            or "shop_id" in vals
+            or "purchased_by_id" in vals
+            or "evaluated_by_id" in vals
+        ):
             for order in self:
                 products = order.order_line.mapped("product_id")
                 products.write(
                     {
                         "shop_id": order.shop_id.id,
                         "purchased_by_id": order.purchased_by_id.id,
+                        "evaluated_by_id": order.employee_id.id,
                     }
                 )
         return res

@@ -2,8 +2,8 @@
 
 from openupgradelib import openupgrade
 
-MODULE_LIST = ["purchase_ext_sst"]
-fields_list = ["shop_id", "purchased_by_id"]
+MODULE_LIST = ["purchase_ext_sst", "product_ext_sst"]
+fields_list = ["shop_id", "purchased_by_id", "evaluated_by_id"]
 
 
 @openupgrade.migrate()

@@ -10,6 +10,7 @@
     "depends": ["hr", "purchase", "stock", "account_invoice_shop"],
     "data": [
         "views/purchase_order_views.xml",
+        "views/product_template_views.xml",
     ],
     "installable": True,
 }

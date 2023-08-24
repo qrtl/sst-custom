@@ -21,9 +21,6 @@
                         <field name="manufacturer" />
                         <field name="manufactured_year" />
                         <field name="model" />
-                        <field name="evaluated_by_id" />
-                        <field name="purchased_by_id" />
-                        <field name="shop_id" />
                     </group>
                 </group>
             </xpath>
@@ -55,8 +52,6 @@
             <xpath expr="//field[@name='name']" position="after">
                 <field name="team_ids" widget="many2many_tags" />
                 <field name="evaluated_by_id" />
-                <field name="purchased_by_id" />
-                <field name="shop_id" />
                 <field name="image_medium" widget="image" />
                 <field name="website_published" string="Visible in Website" />
                 <field name="public_categ_ids" widget="many2many_tags" />
@@ -77,8 +72,6 @@
             <xpath expr="//field[@name='categ_id']" position="after">
                 <field name="team_ids" />
                 <field name="evaluated_by_id" />
-                <field name="purchased_by_id" />
-                <field name="shop_id" />
                 <field name="public_categ_ids" />
             </xpath>
         </field>
