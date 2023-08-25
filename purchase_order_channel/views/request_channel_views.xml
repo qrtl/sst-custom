@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id='form_view_request_channel' model='ir.ui.view'>
+        <field name='name'>form.view.request.channel</field>
+        <field name='model'>request.channel</field>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+            <form string='Request Channel'>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <field name="active" />
+                            <field name="sequence" />
+                            <field name="company_id" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id='tree_view_request_channel' model='ir.ui.view'>
+        <field name='name'>tree.view.rquest.channel</field>
+        <field name='model'>request.channel</field>
+        <field name='type'>tree</field>
+        <field name='arch' type='xml'>
+            <tree string='Request Channels'>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="active" />
+                <field name="company_id" />
+            </tree>
+        </field>
+    </record>
+    <record id='action_request_channel' model='ir.actions.act_window'>
+        <field name='name'>Request Channels</field>
+        <field name='res_model'>request.channel</field>
+        <field name='view_type'>form</field>
+        <field name='view_mode'>tree,form</field>
+    </record>
+    <menuitem
+        id="menu_request_channel"
+        name="Request Channels"
+        parent="menu_purchase_in_config_purchase"
+        action='action_request_channel'
+        sequence="10"
+    />
+</odoo>

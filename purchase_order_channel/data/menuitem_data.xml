@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_purchase_in_config_purchase"
+        name="Purchases"
+        parent="purchase.menu_purchase_config"
+        sequence="50"
+        groups="base.group_no_one"
+    />
+</odoo>

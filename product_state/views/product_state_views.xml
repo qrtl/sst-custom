@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id='form_view_product_state' model='ir.ui.view'>
+        <field name='name'>form.view.product.state</field>
+        <field name='model'>product.state</field>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+            <form string='Product State'>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="rank" />
+                            <field name="description" />
+                        </group>
+                        <group>
+                            <field name="active" />
+                            <field name="sequence" />
+                            <field name="company_id" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id='tree_view_product_state' model='ir.ui.view'>
+        <field name='name'>tree.view.product.state</field>
+        <field name='model'>product.state</field>
+        <field name='type'>tree</field>
+        <field name='arch' type='xml'>
+            <tree string='Product States'>
+                <field name="sequence" widget="handle" />
+                <field name="rank" />
+                <field name="description" />
+                <field name="active" />
+                <field name="company_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="product_state_search_view" model="ir.ui.view">
+        <field name="name">product.state.search</field>
+        <field name="model">product.state</field>
+        <field name="arch" type="xml">
+            <search string="Search State">
+                <field name="rank" />
+                <field name="description" />
+            </search>
+        </field>
+    </record>
+    <record id='action_product_state' model='ir.actions.act_window'>
+        <field name='name'>Product States</field>
+        <field name='res_model'>product.state</field>
+        <field name='view_type'>form</field>
+        <field name='view_mode'>tree,form</field>
+        <field name="search_view_id" ref="product_state_search_view" />
+    </record>
+    <menuitem
+        id="menu_product_state"
+        name="Product State"
+        parent="sale.menu_sale_config"
+        action='action_product_state'
+        sequence="10"
+    />
+</odoo>

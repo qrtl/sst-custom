@@ -7,16 +7,9 @@
     "website": "https://www.quartile.co",
     "category": "Purchase",
     "license": "LGPL-3",
-    "depends": ["hr", "purchase", "purchase_convert_sale"],
+    "depends": ["hr", "purchase", "web_widget_open_tab"],
     "data": [
-        "security/ir.model.access.csv",
-        "data/request_channel_data.xml",
-        "data/purchase_category_data.xml",
-        "views/request_channel_views.xml",
-        "views/request_medium_views.xml",
-        "views/purchase_category_views.xml",
         "views/purchase_order_views.xml",
-        "views/hr_employee_views.xml",
     ],
     "installable": True,
 }

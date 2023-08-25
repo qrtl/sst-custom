@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">product.template.common.form</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
-                <button
-          string="Propose Sales Price"
-          name="action_propose_list_price"
-          type="object"
-          class="oe_read_only"
-        />
-            </xpath>
             <xpath expr="//h1" position="replace">
                 <h2>
                     <field name="name" placeholder="Product Name" />
@@ -33,24 +24,19 @@
                         <field name="evaluated_by_id" />
                         <field name="purchased_by_id" />
                         <field name="shop_id" />
-                        <field name="purchase_category_id" />
                     </group>
-                </group>
-                <group>
-                    <field name="product_state_id" widget="selection" />
                 </group>
             </xpath>
             <xpath expr="//page[@name='general_information']" position="before">
                 <page string="Purchase Input" name="purchase_input">
                     <group>
                         <field name="team_ids" widget="many2many_tags" />
-                        <field name="product_state_id" widget="selection" />
                         <field name="description_sale" />
                         <field
-              name="list_price"
-              widget='monetary'
-              options="{'currency_field': 'currency_id', 'field_digits': True}"
-            />
+                            name="list_price"
+                            widget='monetary'
+                            options="{'currency_field': 'currency_id', 'field_digits': True}"
+                        />
                         <field name="evaluated_by_id" />
                         <field name="yahoo_product_state_id" />
                     </group>
@@ -58,7 +44,6 @@
             </xpath>
         </field>
     </record>
-
     <record id="product_template_tree_view" model="ir.ui.view">
         <field name="name">product.template.product.tree</field>
         <field name="model">product.template</field>
@@ -75,20 +60,15 @@
                 <field name="image_medium" widget="image" />
                 <field name="website_published" string="Visible in Website" />
                 <field name="public_categ_ids" widget="many2many_tags" />
-                <field name="product_state_id" />
-            </xpath>
-            <xpath expr="//field[@name='list_price']" position="before">
-                <button name="action_propose_list_price" type="object" icon="fa-jpy" />
             </xpath>
             <xpath expr="//field[@name='type']" position="attributes">
                 <attribute name="invisible">True</attribute>
             </xpath>
             <xpath expr="//field[@name='active']" position="after">
-                <button name="open_record" type="object" icon="fa-sign-in" />
+                <field name="id" widget="open_tab" nolabel="1"/>
             </xpath>
         </field>
     </record>
-
     <record id="product_template_search_view" model="ir.ui.view">
         <field name="name">product.template.search</field>
         <field name="model">product.template</field>
@@ -103,7 +83,6 @@
             </xpath>
         </field>
     </record>
-
     <record id="sale_product_template_tree_view" model="ir.ui.view">
         <field name="name">sale.product.template.product.tree</field>
         <field name="model">product.template</field>
@@ -121,6 +100,7 @@
                 <field name="standard_price" />
                 <field name="auction_start_price" />
                 <field name="auction_buyout_price" />
+
                 <field name="list_price" />
                 <field name="carrier_id" />
                 <field name="carrier_size_id" />
@@ -131,18 +111,16 @@
                 <field name="staff_in_charge" />
                 <field name="type" invisible="1" />
                 <field
-          name="uom_id"
-          options="{'no_open': True, 'no_create': True}"
-          groups="product.group_uom"
-        />
+                    name="uom_id"
+                    options="{'no_open': True, 'no_create': True}"
+                    groups="product.group_uom"
+                />
                 <field name="active" invisible="1" />
-                <button name="open_record" type="object" icon="fa-sign-in" />
+                <field name="id" widget="open_tab" nolabel="1"/>
             </tree>
         </field>
     </record>
-
     <record id="product.product_template_action" model="ir.actions.act_window">
         <field name="view_id" ref="sale_product_template_tree_view" />
     </record>
-
 </odoo>

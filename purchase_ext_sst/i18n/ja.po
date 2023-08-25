@@ -6,136 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-30 09:55+0000\n"
-"PO-Revision-Date: 2020-12-30 09:55+0000\n"
+"POT-Creation-Date: 2023-08-15 08:15+0000\n"
+"PO-Revision-Date: 2023-08-15 08:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:230
-#: code:addons/purchase_ext_sst/models/purchase_order.py:265
-#, python-format
-msgid "\n"
-"%s\n"
-"- Phone: %s\n"
-"- Mobile: %s\n"
-""
-msgstr "\n"
-"%s\n"
-"- 電話: %s\n"
-"- 携帯電話: %s\n"
-""
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "0.5 hours"
-msgstr "0.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "1.0 hours"
-msgstr "1.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "1.5 hours"
-msgstr "1.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "10.0 hours"
-msgstr "10.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "2.0 hours"
-msgstr "2.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "2.5 hours"
-msgstr "2.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "3.0 hours"
-msgstr "3.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "3.5 hours"
-msgstr "3.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "4.0 hours"
-msgstr "4.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "4.5 hours"
-msgstr "4.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "5.0 hours"
-msgstr "5.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "5.5 hours"
-msgstr "5.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "6.0 hours"
-msgstr "6.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "6.5 hours"
-msgstr "6.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "7.0 hours"
-msgstr "7.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "7.5 hours"
-msgstr "7.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "8.0 hours"
-msgstr "8.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "8.5 hours"
-msgstr "8.5 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "9.0 hours"
-msgstr "9.0 時間"
-
-#. module: purchase_ext_sst
-#: selection:purchase.order,worked_hours:0
-msgid "9.5 hours"
-msgstr "9.5 時間"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_active
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_active
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_active
-msgid "Active"
-msgstr "有効"
 
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_address
@@ -148,41 +26,12 @@ msgid "Call Back"
 msgstr "折TEL"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_company_id
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_company_id
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_company_id
-msgid "Company"
-msgstr "会社"
-
-#. module: purchase_ext_sst
 #: model:ir.model,name:purchase_ext_sst.model_res_partner
 msgid "Contact"
 msgstr "連絡先"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_create_uid
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_create_uid
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_create_uid
-msgid "Created by"
-msgstr "作成者"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_create_date
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_create_date
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_create_date
-msgid "Created on"
-msgstr "作成日"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_purchased_by_id
-msgid "Delivery Staff"
-msgstr "買取担当者"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_display_name
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_line_hook_onchange_product_id_display_name
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_display_name
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_display_name
 msgid "Display Name"
 msgstr "表示名"
 
@@ -192,33 +41,13 @@ msgid "Employee"
 msgstr "従業員"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_id
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_line_hook_onchange_product_id_id
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_id
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_id
 msgid "ID"
 msgstr "ID"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category___last_update
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_line_hook_onchange_product_id___last_update
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel___last_update
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium___last_update
 msgid "Last Modified on"
-msgstr "最終更新日"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_write_uid
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_write_uid
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_write_uid
-msgid "Last Updated by"
-msgstr "最終更新者"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_write_date
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_write_date
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_write_date
-msgid "Last Updated on"
 msgstr "最終更新日"
 
 #. module: purchase_ext_sst
@@ -227,49 +56,14 @@ msgid "Late Scheduled Date"
 msgstr "過去予定日"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_mobile_update
-msgid "Mobile Update"
-msgstr "携帯電話(更新用)"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_name
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_name
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_name
-msgid "Name"
-msgstr "名称"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_phone_search
-msgid "Phone Search"
-msgstr "電話(検索用)"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_phone_update
-msgid "Phone Update"
-msgstr "電話(更新用)"
-
-#. module: purchase_ext_sst
 #: model:ir.model,name:purchase_ext_sst.model_purchase_order_line_hook_onchange_product_id
 msgid "Provide hook point for onchange_product_id method"
 msgstr "Provide hook point for onchange_product_id method"
 
 #. module: purchase_ext_sst
-#: model:ir.actions.act_window,name:purchase_ext_sst.action_purchase_category
-#: model:ir.ui.menu,name:purchase_ext_sst.menu_purchase_category
-#: model:ir.ui.view,arch_db:purchase_ext_sst.tree_view_purchase_category
-msgid "Purchase Categories"
-msgstr "買取区分"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_purchase_category_id
-#: model:ir.ui.view,arch_db:purchase_ext_sst.form_view_purchase_category
-msgid "Purchase Category"
-msgstr "買取区分"
-
-#. module: purchase_ext_sst
 #: model:ir.model,name:purchase_ext_sst.model_purchase_order
 msgid "Purchase Order"
-msgstr "購買オーダ"
+msgstr "発注"
 
 #. module: purchase_ext_sst
 #: model:ir.model,name:purchase_ext_sst.model_purchase_order_line
@@ -277,15 +71,10 @@ msgid "Purchase Order Line"
 msgstr "購買オーダ明細"
 
 #. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:218
+#: code:addons/purchase_ext_sst/models/purchase_order.py:36
 #, python-format
 msgid "Purchase order cannot be confirmed with default guest user."
 msgstr "ゲストユーザで購買オーダを確認することはできません。"
-
-#. module: purchase_ext_sst
-#: model:ir.ui.menu,name:purchase_ext_sst.menu_purchase_in_config_purchase
-msgid "Purchases"
-msgstr "購買"
 
 #. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_employee_id
@@ -298,32 +87,6 @@ msgid "Remark"
 msgstr "備考"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_request_channel_id
-#: model:ir.ui.view,arch_db:purchase_ext_sst.form_view_request_channel
-msgid "Request Channel"
-msgstr "受付方法"
-
-#. module: purchase_ext_sst
-#: model:ir.actions.act_window,name:purchase_ext_sst.action_request_channel
-#: model:ir.ui.menu,name:purchase_ext_sst.menu_request_channel
-#: model:ir.ui.view,arch_db:purchase_ext_sst.tree_view_request_channel
-msgid "Request Channels"
-msgstr "受付方法"
-
-#. module: purchase_ext_sst
-#: model:ir.actions.act_window,name:purchase_ext_sst.action_request_medium
-#: model:ir.ui.menu,name:purchase_ext_sst.menu_request_medium
-#: model:ir.ui.view,arch_db:purchase_ext_sst.tree_view_request_medium
-msgid "Request Media"
-msgstr "媒体"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_request_medium_id
-#: model:ir.ui.view,arch_db:purchase_ext_sst.form_view_request_medium
-msgid "Request Medium"
-msgstr "媒体"
-
-#. module: purchase_ext_sst
 #: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_sale_prediction_amount
 msgid "Sales Prediction"
 msgstr "販売予想額"
@@ -334,70 +97,7 @@ msgid "Scheduled Today"
 msgstr "本日予定日"
 
 #. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_category_sequence
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_channel_sequence
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_request_medium_sequence
-msgid "Sequence"
-msgstr "付番"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_hr_employee_shop_id
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_shop_id
-msgid "Shop"
-msgstr "担当店舗"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_supplier_mobile
-msgid "Supplier Mobile"
-msgstr "携帯電話(仕入先)"
-
-#. module: purchase_ext_sst
-#: model:ir.ui.view,arch_db:purchase_ext_sst.purchase_order_form
-msgid "Supplier Name Update (Tentative Name)"
-msgstr "名前更新(仮称)"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_supplier_phone
-msgid "Supplier Phone"
-msgstr "電話(仕入先)"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_tentative_name
-msgid "Tentative Name"
-msgstr "仮称"
-
-#. module: purchase_ext_sst
-#: code:addons/purchase_ext_sst/models/purchase_order.py:237
-#: code:addons/purchase_ext_sst/models/purchase_order.py:271
-#, python-format
-msgid "The entered phone (%s) conflicts with the following user(s):\n"
-"%s"
-msgstr "入力した電話（%s）につきコンフリクトがあります。\n"
-"下記のレコードを確認ください。\n"
-"%s"
-
-#. module: purchase_ext_sst
 #: model:ir.ui.view,arch_db:purchase_ext_sst.view_purchase_order_filter
 msgid "Upcoming Schedule"
 msgstr "将来予定日"
-
-#. module: purchase_ext_sst
-#: model:ir.model.fields,field_description:purchase_ext_sst.field_purchase_order_worked_hours
-msgid "Worked Hours"
-msgstr "作業時間"
-
-#. module: purchase_ext_sst
-#: model:ir.model,name:purchase_ext_sst.model_purchase_category
-msgid "purchase.category"
-msgstr "purchase.category"
-
-#. module: purchase_ext_sst
-#: model:ir.model,name:purchase_ext_sst.model_request_channel
-msgid "request.channel"
-msgstr "request.channel"
-
-#. module: purchase_ext_sst
-#: model:ir.model,name:purchase_ext_sst.model_request_medium
-msgid "request.medium"
-msgstr "request.medium"
 

@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_product_state_user,product_state_user,model_product_state,base.group_user,1,0,0,0
-access_product_state_public,product_state_public,model_product_state,base.group_public,1,0,0,0
-access_product_state_portal,product_state_portal,model_product_state,base.group_portal,1,0,0,0
-access_product_state_manager,product_state_manager,model_product_state,sales_team.group_sale_manager,1,1,1,1
-access_product_price_record_user,product_price_record_user,model_product_price_record,base.group_user,1,0,0,0
-access_product_price_record_public,product_price_record_public,model_product_price_record,base.group_public,1,0,0,0
-access_product_price_record_portal,product_price_record_portal,model_product_price_record,base.group_portal,1,0,0,0
-access_product_price_record_manager,product_price_record_manager,model_product_price_record,sales_team.group_sale_manager,1,1,1,1
