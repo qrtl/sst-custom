@@ -13,7 +13,7 @@ class TestProduct(common.TransactionCase):
 
     def test_compute_barcode_01(self):
         """This test evaluates the method of
-         whether the barcode is updating or not"""
+        whether the barcode is updating or not"""
 
         # Assign Default code to product
         self.product_01.default_code = "DEFCODE"
