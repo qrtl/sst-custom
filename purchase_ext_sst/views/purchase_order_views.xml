@@ -29,7 +29,7 @@
                     class="oe_read_only"
                 />
             </xpath>
-            <xpath expr="//sheet/group" position="inside">            
+            <xpath expr="//sheet/group" position="inside">
                 <group>
                     <field name="employee_id" />
                 </group>

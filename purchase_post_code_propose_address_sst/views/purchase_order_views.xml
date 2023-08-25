@@ -53,7 +53,7 @@
                                 class="o_address_street"
                                 placeholder="Street 2..."
                             />
-                            <field name="country_id" invisible="1" />                
+                            <field name="country_id" invisible="1" />
                         </div>
                 </group>
             </xpath>
