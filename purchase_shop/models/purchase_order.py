@@ -54,3 +54,17 @@ class PurchaseOrder(models.Model):
             if picking_type_id:
                 self.picking_type_id = picking_type_id
         return {"domain": {"purchased_by_id": ids}}
+
+    @api.multi
+    def write(self, vals):
+        res = super().write(vals)
+        if "order_line" in vals or "shop_id" in vals or "purchased_by_id" in vals:
+            for order in self:
+                products = order.order_line.mapped("product_id")
+                products.write(
+                    {
+                        "shop_id": order.shop_id.id,
+                        "purchased_by_id": order.purchased_by_id.id,
+                    }
+                )
+        return res
