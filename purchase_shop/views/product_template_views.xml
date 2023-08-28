@@ -20,6 +20,7 @@
         <field name="inherit_id" ref="product.product_template_tree_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
+                <field name="evaluated_by_id" />
                 <field name="purchased_by_id" />
                 <field name="shop_id" />
             </xpath>
@@ -31,6 +32,7 @@
         <field name="inherit_id" ref="product.product_template_search_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="evaluated_by_id" />
                 <field name="purchased_by_id" />
                 <field name="shop_id" />
             </xpath>
