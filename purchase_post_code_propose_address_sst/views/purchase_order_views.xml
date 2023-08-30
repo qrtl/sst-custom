@@ -63,6 +63,7 @@
         <field name="name">request.quotation.select</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="priority" eval="18"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="before">
                 <field name="zipcode" />
