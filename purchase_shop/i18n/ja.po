@@ -18,7 +18,7 @@ msgstr ""
 #. module: purchase_shop
 #: model:ir.model.fields,field_description:purchase_shop.field_purchase_order_purchased_by_id
 msgid "Buyer"
-msgstr "Buyer"
+msgstr "買取担当者"
 
 #. module: purchase_shop
 #: model:ir.model,name:purchase_shop.model_hr_employee

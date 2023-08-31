@@ -9,6 +9,7 @@
     "license": "AGPL-3",
     "depends": ["hr", "purchase", "stock", "account_invoice_shop"],
     "data": [
+        "views/hr_employee_views.xml",
         "views/purchase_order_views.xml",
     ],
     "installable": True,
