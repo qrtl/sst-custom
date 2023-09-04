@@ -19,6 +19,6 @@ def migrate(env, version):
             """,
             (
                 tuple(MODULE_LIST),
-                "%" + field + "%",
+                "%" + field,
             ),
         )

@@ -4,12 +4,18 @@
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="priority" eval="21" />
         <field name="arch" type="xml">
             <field name="partner_ref" position="after">
                 <field name="shop_id"/>
             </field>
             <xpath expr="//field[@name='incoterm_id']" position="after">
                 <field name="purchased_by_id" />
+            </xpath>
+            <xpath expr="//sheet/group" position="inside">
+                <group>
+                    <field name="employee_id" />
+                </group>
             </xpath>
         </field>
     </record>
@@ -21,6 +27,9 @@
             <xpath expr="//field[@name='name']" position="after">
                 <field name="shop_id" />
             </xpath>
+            <xpath expr="//field[@name='date_planned']" position="after">
+                <field name="employee_id" />
+            </xpath>
         </field>
     </record>
     <record id="view_purchase_order_filter" model="ir.ui.view">
@@ -30,6 +39,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_id']" position="before">
                 <field name="shop_id" />
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="employee_id" />
             </xpath>
         </field>
     </record>

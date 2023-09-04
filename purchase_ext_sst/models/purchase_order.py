@@ -8,7 +8,6 @@ from odoo.exceptions import UserError
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    employee_id = fields.Many2one("hr.employee", "Received By")
     address = fields.Char()
     remark = fields.Text()
     date_planned = fields.Datetime(compute=False)
