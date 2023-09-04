@@ -11,6 +11,7 @@
     "data": [
         "views/hr_employee_views.xml",
         "views/purchase_order_views.xml",
+        "views/product_template_views.xml",
     ],
     "installable": True,
 }

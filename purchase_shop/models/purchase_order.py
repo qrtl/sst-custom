@@ -7,6 +7,7 @@ from odoo import api, fields, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
+    employee_id = fields.Many2one("hr.employee", "Received By")
     shop_id = fields.Many2one("stock.warehouse", "Shop")
     purchased_by_id = fields.Many2one("hr.employee", "Buyer")
 
@@ -58,13 +59,19 @@ class PurchaseOrder(models.Model):
     @api.multi
     def write(self, vals):
         res = super().write(vals)
-        if "order_line" in vals or "shop_id" in vals or "purchased_by_id" in vals:
+        if (
+            "order_line" in vals
+            or "shop_id" in vals
+            or "purchased_by_id" in vals
+            or "evaluated_by_id" in vals
+        ):
             for order in self:
                 products = order.order_line.mapped("product_id")
                 products.write(
                     {
                         "shop_id": order.shop_id.id,
                         "purchased_by_id": order.purchased_by_id.id,
+                        "evaluated_by_id": order.employee_id.id,
                     }
                 )
         return res

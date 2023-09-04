@@ -22,10 +22,12 @@
                 <field name="shelf_id" />
             </xpath>
             <xpath
-        expr="//page[@name='general_information']//field[@name='evaluated_by_id']"
-        position="after"
+        expr="//page[@name='general_information']/group"
+        position="inside"
       >
-                <field name="shelf_id" />
+                <group>
+                    <field name="shelf_id" />
+                </group>
             </xpath>
         </field>
     </record>
