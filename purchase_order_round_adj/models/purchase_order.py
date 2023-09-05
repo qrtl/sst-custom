@@ -16,7 +16,7 @@ class PurcahseOrder(models.Model):
             amount_tax = amount_total = 0.0
             for line in order.order_line:
                 # If exclusive tax is included in the sale.order.line, the original logic will be used.
-                if not line.taxes_id.price_include:
+                if any(not tax.price_include for tax in line.taxes_id):
                     return
                 amount_tax += line.price_tax
                 amount_total += line.price_total
