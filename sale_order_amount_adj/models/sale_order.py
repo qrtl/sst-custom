@@ -10,16 +10,16 @@ class SaleOrder(models.Model):
     @api.depends("order_line.price_total")
     def _amount_all(self):
         # This method does not work for line items
-        # that include both inclusive and exclusive taxes.
+        # that include both inclusive and other taxes.
         # It assumes that the sales order only contains lines
-        # with either inclusive or exclusive taxes.
+        # with inclusive tax.
         super()._amount_all()
         for order in self:
             amount_tax = amount_total = 0.0
             for line in order.order_line:
-                # If exclusive tax is included in the sale.order.line,
-                # the original logic will be used.
-                if not line.tax_id.price_include:
+                # Use the original logic if a tax other than 
+                # the inclusive tax is applied to sale.order.line.
+                if any(not tax.price_include for tax in line.tax_id):
                     return
                 amount_tax += line.price_tax
                 amount_total += line.price_total

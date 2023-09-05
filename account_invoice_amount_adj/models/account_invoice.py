@@ -19,6 +19,8 @@ class AccountInvoice(models.Model):
     )
     def _compute_amount(self):
         super()._compute_amount()
+        # Use the original logic if a tax other than 
+        # the inclusive tax is applied to account.invoice.line.
         if any(
             not tax.price_include
             for tax in self.invoice_line_ids.mapped("invoice_line_tax_ids")
