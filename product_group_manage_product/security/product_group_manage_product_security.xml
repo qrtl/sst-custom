@@ -4,22 +4,4 @@
         <field name="name">Product Creation, Editing &amp; Deletion</field>
         <field name="category_id" ref="base.module_category_hidden"/>
     </record>
-    <record id="rule_product_template_create_edit_delete" model="ir.rule">
-        <field name="name">Product Template Create/Edit/Delete Rule</field>
-        <field name="model_id" ref="product.model_product_template"/>
-        <field name="groups" eval="[(4, ref('product_group_manage_product.group_manage_product'))]"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-    </record>
-    <record id="rule_product_create_edit_delete" model="ir.rule">
-        <field name="name">Product Create/Edit/Delete Rule</field>
-        <field name="model_id" ref="product.model_product_product"/>
-        <field name="groups" eval="[(4, ref('product_group_manage_product.group_manage_product'))]"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-    </record>
 </odoo>
