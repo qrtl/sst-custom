@@ -15,12 +15,14 @@ class PurcahseOrder(models.Model):
         # with inclusive taxes.
         super()._amount_all()
         for order in self:
+            # Use the original logic for exclusive tax cases.
+            # We assume that that there is no situation where
+            # lines contain tax inclusive and exclusive cases in an invoice at the same time.
+            taxes = self.order_line.mapped("taxes_id")
+            if not taxes or any(not tax.price_include for tax in taxes):
+                return
             amount_tax = amount_total = 0.0
             for line in order.order_line:
-                # Use the original logic if a tax other than 
-                # the inclusive tax is applied to purchase.order.line.
-                if any(not tax.price_include for tax in line.taxes_id):
-                    return
                 amount_tax += line.price_tax
                 amount_total += line.price_total
             order.update(

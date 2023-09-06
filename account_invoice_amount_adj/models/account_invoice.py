@@ -1,30 +1,19 @@
 # Copyright 2023 Quartile Limited
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    @api.one
-    @api.depends(
-        "invoice_line_ids.price_subtotal",
-        "tax_line_ids.amount",
-        "tax_line_ids.amount_rounding",
-        "currency_id",
-        "company_id",
-        "date_invoice",
-        "type",
-    )
     def _compute_amount(self):
         super()._compute_amount()
-        # Use the original logic if a tax other than 
-        # the inclusive tax is applied to account.invoice.line.
-        if any(
-            not tax.price_include
-            for tax in self.invoice_line_ids.mapped("invoice_line_tax_ids")
-        ):
+        # Use the original logic for exclusive tax cases.
+        # We assume that that there is no situation where
+        # lines contain tax inclusive and exclusive cases in an invoice at the same time..
+        taxes = self.invoice_line_ids.mapped("invoice_line_tax_ids")
+        if not taxes or any(not tax.price_include for tax in taxes):
             return
         self.amount_total = sum(line.price_total for line in self.invoice_line_ids)
         self.amount_untaxed = self.amount_total - self.amount_tax
