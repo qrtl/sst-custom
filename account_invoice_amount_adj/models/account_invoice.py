@@ -11,9 +11,10 @@ class AccountInvoice(models.Model):
         super()._compute_amount()
         # Use the original logic for exclusive tax cases.
         # We assume that that there is no situation where
-        # lines contain tax inclusive and exclusive cases in an invoice at the same time..
+        # lines contain tax inclusive and exclusive cases
+        # in an invoice at the same time.
         taxes = self.invoice_line_ids.mapped("invoice_line_tax_ids")
-        if not taxes or any(not tax.price_include for tax in taxes):
+        if not taxes or taxes.filtered(lambda x: not x.price_include and x.amount != 0):
             return
         self.amount_total = sum(line.price_total for line in self.invoice_line_ids)
         self.amount_untaxed = self.amount_total - self.amount_tax

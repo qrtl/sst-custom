@@ -17,9 +17,12 @@ class SaleOrder(models.Model):
         for order in self:
             # Use the original logic for exclusive tax cases.
             # We assume that that there is no situation where
-            # lines contain tax inclusive and exclusive cases in an invoice at the same time.
+            # lines contain tax inclusive and exclusive cases
+            # in an invoice at the same time.
             taxes = self.order_line.mapped("tax_id")
-            if not taxes or any(not tax.price_include for tax in taxes):
+            if not taxes or taxes.filtered(
+                lambda x: not x.price_include and x.amount != 0
+            ):
                 return
             amount_tax = amount_total = 0.0
             for line in order.order_line:
