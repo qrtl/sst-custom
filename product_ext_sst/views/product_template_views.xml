@@ -18,26 +18,8 @@
                 <group>
                     <group>
                         <field name="team_ids" widget="many2many_tags" />
-                        <field name="manufacturer" />
-                        <field name="manufactured_year" />
-                        <field name="model" />
                     </group>
                 </group>
-            </xpath>
-            <xpath expr="//page[@name='general_information']" position="before">
-                <page string="Purchase Input" name="purchase_input">
-                    <group>
-                        <field name="team_ids" widget="many2many_tags" />
-                        <field name="description_sale" />
-                        <field
-                            name="list_price"
-                            widget='monetary'
-                            options="{'currency_field': 'currency_id', 'field_digits': True}"
-                        />
-                        <field name="evaluated_by_id" />
-                        <field name="yahoo_product_state_id" />
-                    </group>
-                </page>
             </xpath>
         </field>
     </record>

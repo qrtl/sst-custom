@@ -72,24 +72,6 @@ msgid "Last Updated on"
 msgstr "最終更新日"
 
 #. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_manufactured_year
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_template_manufactured_year
-msgid "Manufactured Year"
-msgstr "製造年"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_manufacturer
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_template_manufacturer
-msgid "Manufacturer"
-msgstr "メーカー"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_model
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_template_model
-msgid "Model"
-msgstr "型式"
-
-#. module: product_ext_sst
 #: model:ir.model,name:product_ext_sst.model_product_product
 #: model:ir.ui.view,arch_db:product_ext_sst.sale_product_template_tree_view
 msgid "Product"
