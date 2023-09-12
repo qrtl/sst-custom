@@ -7,7 +7,7 @@
     "website": "https://www.odoo-asia.com",
     "category": "Stock",
     "license": "AGPL-3",
-    "depends": ["stock", "product_ext_sst"],
+    "depends": ["stock", "product_sales_channel"],
     "data": ["views/stock_quant_views.xml"],
     "installable": True,
 }

@@ -14,13 +14,6 @@
             <xpath expr="//div[@name='options']" position="inside">
                 <field name="image_medium" widget="image" class="oe_avatar" />
             </xpath>
-            <xpath expr="//page[@name='general_information']/group" position="after">
-                <group>
-                    <group>
-                        <field name="team_ids" widget="many2many_tags" />
-                    </group>
-                </group>
-            </xpath>
         </field>
     </record>
     <record id="product_template_tree_view" model="ir.ui.view">
@@ -32,7 +25,6 @@
                 <attribute name="editable">top</attribute>
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
-                <field name="team_ids" widget="many2many_tags" />
                 <field name="image_medium" widget="image" />
                 <field name="website_published" string="Visible in Website" />
                 <field name="public_categ_ids" widget="many2many_tags" />
@@ -51,7 +43,6 @@
         <field name="inherit_id" ref="product.product_template_search_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='categ_id']" position="after">
-                <field name="team_ids" />
                 <field name="public_categ_ids" />
             </xpath>
         </field>
