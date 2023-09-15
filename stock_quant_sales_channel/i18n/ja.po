@@ -21,6 +21,6 @@ msgid "Quants"
 msgstr "保管ロット"
 
 #. module: stock_quant_sales_channel
-#: model:ir.model.fields,field_description:stock_quant_sales_channel.field_stock_quant_team_ids
-msgid "Sales Channels"
+#: model:ir.model.fields,field_description:stock_quant_sales_channel.field_stock_quant_team_id
+msgid "Sales Channel"
 msgstr "販売候補"

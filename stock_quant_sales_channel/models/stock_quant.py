@@ -7,6 +7,6 @@ from odoo import fields, models
 class StockQuant(models.Model):
     _inherit = "stock.quant"
 
-    team_ids = fields.Many2many(
-        related="product_tmpl_id.team_ids", string="Sales Channels",
+    team_id = fields.Many2one(
+        related="product_tmpl_id.manual_team_id", string="Sales Channel",
     )
