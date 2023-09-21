@@ -1,0 +1,1 @@
+This module is used to correct the issue where the amount_total value in the purchase.order deviates from the sum of the price_total of all the purchase.order.line when the purchase.order.line has inclusive tax.

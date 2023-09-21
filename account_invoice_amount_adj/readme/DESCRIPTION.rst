@@ -1,0 +1,1 @@
+This module is used to correct the issue where the amount_total value in the account.invoice deviates from the sum of the price_total of all the account.invoice.line when the account.invoice.line has inclusive tax.
