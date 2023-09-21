@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-13 05:06+0000\n"
-"PO-Revision-Date: 2023-09-13 05:06+0000\n"
+"POT-Creation-Date: 2023-09-21 09:49+0000\n"
+"PO-Revision-Date: 2023-09-21 09:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_quant_sales_channel
+#: model:ir.model.fields,field_description:stock_quant_sales_channel.field_stock_quant_sales_channel_id
+msgid "Exp. Sales Channel"
+msgstr "販売候補"
+
+#. module: stock_quant_sales_channel
 #: model:ir.model,name:stock_quant_sales_channel.model_stock_quant
 msgid "Quants"
 msgstr "保管ロット"
 
-#. module: stock_quant_sales_channel
-#: model:ir.model.fields,field_description:stock_quant_sales_channel.field_stock_quant_team_id
-msgid "Sales Channel"
-msgstr "販売候補"

@@ -1,1 +1,1 @@
-This module adds sales channel in stock quant.
+This module adds sales channel field in stock.quant.

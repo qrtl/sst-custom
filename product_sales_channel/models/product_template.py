@@ -7,4 +7,4 @@ from odoo import fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    manual_team_id = fields.Many2one("crm.team", "Manual Sales Channel")
+    sales_channel_id = fields.Many2one("crm.team", "Exp. Sales Channel")

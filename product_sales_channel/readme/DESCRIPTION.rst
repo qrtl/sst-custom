@@ -1,1 +1,1 @@
-This module adds sale channel in product.
+This module adds sales channel field in product.

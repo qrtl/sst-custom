@@ -8,7 +8,7 @@
             <xpath expr="//page[@name='general_information']/group" position="after">
                 <group>
                     <group>
-                        <field name="manual_team_id" />
+                        <field name="sales_channel_id" />
                     </group>
                 </group>
             </xpath>
@@ -23,7 +23,7 @@
                 <attribute name="editable">top</attribute>
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
-                <field name="manual_team_id" />
+                <field name="sales_channel_id" />
             </xpath>
         </field>
     </record>
@@ -33,7 +33,7 @@
         <field name="inherit_id" ref="product.product_template_search_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='categ_id']" position="after">
-                <field name="manual_team_id" />
+                <field name="sales_channel_id" />
             </xpath>
         </field>
     </record>
