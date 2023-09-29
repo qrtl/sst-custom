@@ -7,8 +7,6 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    phone = fields.Char(related="partner_id.phone", string="Phone",)
-    requested_date = fields.Datetime(readonly=False,)
     # this field is decided to be a non-stored computed field to avoid the
     # complication of the logic and the risk of missing a trigger.
     # reconciling/unreconciling invoice with an existing payment particularly
