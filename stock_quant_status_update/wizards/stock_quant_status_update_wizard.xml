@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="stock_quant_status_update_wizard_form" model="ir.ui.view">
         <field name="name">stock.quant.status.update.wizard.form</field>
         <field name="model">stock.quant.status.update.wizard</field>
@@ -16,29 +15,27 @@
                 </group>
                 <footer>
                     <button
-            name="action_stock_quant_status_update"
-            string="Update"
-            type="object"
-            class="oe_highlight"
-          />
+                        name="action_stock_quant_status_update"
+                        string="Update"
+                        type="object"
+                        class="oe_highlight"
+                    />
                     or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>
         </field>
     </record>
-
     <act_window
-    id="stock_quant_status_update_wizard"
-    multi="True"
-    key2="client_action_multi"
-    name="Update Stock Quant Status"
-    res_model="stock.quant.status.update.wizard"
-    src_model="stock.quant"
-    view_id="stock_quant_status_update_wizard_form"
-    view_mode="form"
-    target="new"
-    view_type="form"
-  />
-
+        id="stock_quant_status_update_wizard"
+        multi="True"
+        key2="client_action_multi"
+        name="Update Stock Quant Status"
+        res_model="stock.quant.status.update.wizard"
+        src_model="stock.quant"
+        view_id="stock_quant_status_update_wizard_form"
+        view_mode="form"
+        target="new"
+        view_type="form"
+    />
 </odoo>

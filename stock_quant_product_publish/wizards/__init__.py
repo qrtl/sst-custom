@@ -1,0 +1,1 @@
+from . import stock_quant_product_publish_wizard
