@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-29 10:40+0000\n"
-"PO-Revision-Date: 2018-11-29 10:40+0000\n"
+"POT-Creation-Date: 2023-09-21 09:52+0000\n"
+"PO-Revision-Date: 2023-09-21 09:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,34 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_active
-msgid "Active"
-msgstr "有効"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_company_id
-msgid "Company"
-msgstr "会社"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_create_uid
-msgid "Created by"
-msgstr "作成者"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_create_date
-msgid "Created on"
-msgstr "作成日"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_description
-msgid "Description"
-msgstr "説明"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_display_name
-msgid "Display Name"
-msgstr "表示名"
+#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_cost_currency_id
+msgid "Cost Currency"
+msgstr "原価通貨"
 
 #. module: product_ext_sst
 #: model:ir.model.fields,field_description:product_ext_sst.field_product_product_evaluated_by_id
@@ -52,79 +27,10 @@ msgid "Evaluated By"
 msgstr "査定担当"
 
 #. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_id
-msgid "ID"
-msgstr "ID"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state___last_update
-msgid "Last Modified on"
-msgstr "最終更新日"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_write_uid
-msgid "Last Updated by"
-msgstr "最終更新者"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_write_date
-msgid "Last Updated on"
-msgstr "最終更新日"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_manufactured_year
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_template_manufactured_year
-msgid "Manufactured Year"
-msgstr "製造年"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_manufacturer
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_template_manufacturer
-msgid "Manufacturer"
-msgstr "メーカー"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_model
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_template_model
-msgid "Model"
-msgstr "型式"
-
-#. module: product_ext_sst
 #: model:ir.model,name:product_ext_sst.model_product_product
 #: model:ir.ui.view,arch_db:product_ext_sst.sale_product_template_tree_view
 msgid "Product"
 msgstr "プロダクト"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_price_record_product_state_id
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_product_state_id
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_template_product_state_id
-#: model:ir.ui.menu,name:product_ext_sst.menu_product_state
-#: model:ir.ui.view,arch_db:product_ext_sst.form_view_product_state
-msgid "Product State"
-msgstr "商品状態"
-
-#. module: product_ext_sst
-#: model:ir.actions.act_window,name:product_ext_sst.action_product_state
-#: model:ir.ui.view,arch_db:product_ext_sst.tree_view_product_state
-msgid "Product States"
-msgstr "商品状態"
-
-#. module: product_ext_sst
-#: model:ir.model,name:product_ext_sst.model_product_template
-msgid "Product Template"
-msgstr "製品テンプレート"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_purchase_category_id
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_template_purchase_category_id
-msgid "Purchase Category"
-msgstr "買取区分"
-
-#. module: product_ext_sst
-#: model:ir.ui.view,arch_db:product_ext_sst.product_template_form_view
-msgid "Purchase Input"
-msgstr "出張入力"
 
 #. module: product_ext_sst
 #: model:ir.ui.view,arch_db:product_ext_sst.product_template_form_view
@@ -132,27 +38,15 @@ msgid "Product Name"
 msgstr "プロダクト名"
 
 #. module: product_ext_sst
+#: model:ir.model,name:product_ext_sst.model_product_template
+msgid "Product Template"
+msgstr "プロダクトテンプレート"
+
+#. module: product_ext_sst
 #: model:ir.model.fields,field_description:product_ext_sst.field_product_product_purchased_by_id
 #: model:ir.model.fields,field_description:product_ext_sst.field_product_template_purchased_by_id
 msgid "Purchased By"
 msgstr "買取担当"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_name
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_rank
-msgid "Rank"
-msgstr "商品状態"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_product_team_ids
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_template_team_ids
-msgid "Sales Channels"
-msgstr "販売候補"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_state_sequence
-msgid "Sequence"
-msgstr "付番"
 
 #. module: product_ext_sst
 #: model:ir.model.fields,field_description:product_ext_sst.field_product_product_shop_id
@@ -166,45 +60,7 @@ msgid "Visible in Website"
 msgstr "ウェブサイトに表示"
 
 #. module: product_ext_sst
-#: model:ir.model,name:product_ext_sst.model_product_state
-msgid "product.state"
-msgstr "product.state"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_price_record_price
-msgid "Price"
-msgstr "価格"
-
-#. module: product_ext_sst
-#: model:ir.actions.act_window,name:product_ext_sst.action_product_price_record
-#: model:ir.ui.menu,name:product_ext_sst.menu_product_price_record
-#: model:ir.ui.view,arch_db:product_ext_sst.tree_view_product_price_record
-msgid "Product Price Record"
-msgstr "プロダクト価格レコード"
-
-#. module: product_ext_sst
-#: model:ir.ui.view,arch_db:product_ext_sst.product_price_record_search_view
-msgid "Search Record"
-msgstr "レコード検索"
-
-#. module: product_ext_sst
-#: model:ir.ui.view,arch_db:product_ext_sst.product_state_search_view
-msgid "Search State"
-msgstr "商品状態検索"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_price_record_string
-msgid "String Pattern"
-msgstr "文字列パターン"
-
-#. module: product_ext_sst
-#: model:ir.ui.view,arch_db:product_ext_sst.product_template_form_view
-msgid "Propose Sales Price"
-msgstr "販売価格提案"
-
-#. module: product_ext_sst
-#: model:ir.model.fields,field_description:product_ext_sst.field_product_price_record_public_categ_id
-msgid "Website Product Category"
-msgstr "ウェブサイトプロダクトカテゴリ"
-
+#: model:ir.model,name:product_ext_sst.model_product_price_record
+msgid "product.price.record"
+msgstr "product.price.record"
 

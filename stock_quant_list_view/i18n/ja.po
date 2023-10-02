@@ -26,19 +26,9 @@ msgid "On Hand"
 msgstr "手持在庫"
 
 #. module: stock_quant_list_view
-#: model:ir.model,name:stock_quant_list_view.model_stock_quant
-msgid "Quants"
-msgstr "保管ロット"
-
-#. module: stock_quant_list_view
 #: model:ir.ui.view,arch_db:stock_quant_list_view.view_stock_quant_tree
 msgid "Reserved"
 msgstr "引当済"
-
-#. module: stock_quant_list_view
-#: model:ir.model.fields,field_description:stock_quant_list_view.field_stock_quant_team_ids
-msgid "Sales Channels"
-msgstr "販売候補"
 
 #. module: stock_quant_list_view
 #: model:ir.actions.act_window,name:stock_quant_list_view.action_stock_quant
