@@ -5,9 +5,9 @@
     "category": "Sales",
     "version": "11.0.1.0.0",
     "author": "Quartile Limited",
-    "website": "https://www.quartile.co/",
+    "website": "https://www.quartile.co",
     "license": "LGPL-3",
-    "depends": ["sale"],
+    "depends": ["sale_stock"],
     "data": ["views/sale_view_adj.xml"],
     "installable": True,
 }
