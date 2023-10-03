@@ -8,7 +8,7 @@
     "category": "Warehouse",
     "license": "AGPL-3",
     "summary": """""",
-    "depends": ["stock", "website_sale", "product_ext_sst"],
+    "depends": ["stock", "website_sale"],
     "data": ["views/product_views.xml"],
     "installable": True,
 }
