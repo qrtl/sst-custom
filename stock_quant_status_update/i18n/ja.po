@@ -18,22 +18,22 @@ msgstr ""
 #. module: stock_quant_status_update
 #: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "取消"
 
 #. module: stock_quant_status_update
 #: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_create_uid
 msgid "Created by"
-msgstr "Created by"
+msgstr "作成者"
 
 #. module: stock_quant_status_update
 #: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr "作成日"
 
 #. module: stock_quant_status_update
 #: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "表示名"
 
 #. module: stock_quant_status_update
 #: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_id
@@ -43,66 +43,65 @@ msgstr "ID"
 #. module: stock_quant_status_update
 #: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "最終更新日"
 
 #. module: stock_quant_status_update
 #: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "最終更新者"
 
 #. module: stock_quant_status_update
 #: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_write_date
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "最終更新日"
 
 #. module: stock_quant_status_update
 #: model:ir.model,name:stock_quant_status_update.model_stock_quant
 msgid "Quants"
-msgstr "Quants"
+msgstr "保管ロット"
 
 #. module: stock_quant_status_update
 #: model:ir.model.fields,field_description:stock_quant_status_update.field_res_config_settings_picking_product_state_id
 #: model:ir.ui.view,arch_db:stock_quant_status_update.res_config_settings_view_form
 msgid "State For Finished Picking Product"
-msgstr "State For Finished Picking Product"
+msgstr "店舗在庫ピッキング済ステータス"
 
 #. module: stock_quant_status_update
 #: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
 msgid "Stock Quant Status Update"
-msgstr "Stock Quant Status Update"
+msgstr "店舗在庫ステータス更新"
 
 #. module: stock_quant_status_update
 #: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
 msgid "This wizard will update the status of\n"
 "                    selected stock quants at once."
-msgstr "This wizard will update the status of\n"
-"                    selected stock quants at once."
+msgstr "選択した保管ロット情報を更新します。"
 
 #. module: stock_quant_status_update
 #: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
 msgid "Update"
-msgstr "Update"
+msgstr "更新"
 
 #. module: stock_quant_status_update
 #: model:ir.actions.act_window,name:stock_quant_status_update.stock_quant_status_update_wizard
 msgid "Update Stock Quant Status"
-msgstr "Update Stock Quant Status"
+msgstr "店舗在庫ステータス更新"
 
 #. module: stock_quant_status_update
 #: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_yahoo_product_state_id
 #: model:ir.ui.view,arch_db:stock_quant_status_update.res_config_settings_view_form
 msgid "Yahoo Product State"
-msgstr "Yahoo Product State"
+msgstr "商品化ステータス"
 
 #. module: stock_quant_status_update
 #: model:ir.ui.view,arch_db:stock_quant_status_update.res_config_settings_view_form
 msgid "Yahoo Product State Settings"
-msgstr "Yahoo Product State Settings"
+msgstr "商品化ステータス設定"
 
 #. module: stock_quant_status_update
 #: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
 msgid "or"
-msgstr "or"
+msgstr "または"
 
 #. module: stock_quant_status_update
 #: model:ir.model,name:stock_quant_status_update.model_res_config_settings

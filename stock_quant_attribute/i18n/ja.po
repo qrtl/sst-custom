@@ -18,24 +18,24 @@ msgstr ""
 #. module: stock_quant_attribute
 #: model:ir.model.fields,field_description:stock_quant_attribute.field_stock_quant_default_code
 msgid "Barcode"
-msgstr "Barcode"
+msgstr "バーコード"
 
 #. module: stock_quant_attribute
 #: model:ir.model.fields,help:stock_quant_attribute.field_stock_quant_list_price
 msgid "Base price to compute the customer price. Sometimes called the catalog price."
-msgstr "Base price to compute the customer price. Sometimes called the catalog price."
+msgstr "顧客価格を計算するための基準価格。カタログ価格と呼ぶこともあります。"
 
 #. module: stock_quant_attribute
 #: model:ir.model,name:stock_quant_attribute.model_stock_quant
 msgid "Quants"
-msgstr "Quants"
+msgstr "保管ロット"
 
 #. module: stock_quant_attribute
 #: model:ir.model.fields,field_description:stock_quant_attribute.field_stock_quant_list_price
 msgid "Sale Price"
-msgstr "Sale Price"
+msgstr "販売価格"
 
 #. module: stock_quant_attribute
 #: model:ir.model.fields,field_description:stock_quant_attribute.field_stock_quant_website_published
 msgid "Visible in Website"
-msgstr "Visible in Website"
+msgstr "ウェブサイトに表示"
