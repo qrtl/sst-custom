@@ -7,7 +7,7 @@
     "website": "https://www.quartile.co",
     "category": "Product",
     "license": "LGPL-3",
-    "depends": ["mail_bcc", "product_ext_sst", "queue_job", "website_sale"],
+    "depends": ["mail_bcc", "product_state", "queue_job", "website_sale"],
     "data": [
         "data/ir_actions.xml",
         "data/mail_template_data.xml",
