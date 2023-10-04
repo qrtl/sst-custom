@@ -73,6 +73,7 @@
                 <field name="delivery_city_id" />
                 <field name="yahoo_product_state_id" />
                 <field name="staff_in_charge" />
+                <field name="website_sale_available_qty" />
                 <field name="type" invisible="1" />
                 <field
                     name="uom_id"
