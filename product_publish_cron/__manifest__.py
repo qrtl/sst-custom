@@ -11,7 +11,7 @@
     # A cron task that will publish products with custom domain and values.
     #     """,
     "summary": """""",
-    "depends": ["stock_ext_sst"],
+    "depends": ["stock_quant_attribute"],
     "data": ["data/cron_data.xml"],
     "installable": True,
 }
