@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_view_order_tree" model="ir.ui.view">
+        <field name="name">sale.view.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="phone" />
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_viw_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.view.quotation.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="phone" />
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale.view.sales.order.filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="phone" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

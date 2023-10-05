@@ -5,8 +5,45 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="warehouse_id" />
+            </xpath>
             <xpath expr="//field[@name='product_id']" position="after">
                 <field name="order_line" />
+            </xpath>
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="before">
+                <filter
+                    string="Today's Order"
+                    domain="[('confirmation_date','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
+                                            ('confirmation_date','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"
+                    name="today_order"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_viw_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.view.quotation.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="product_id" />
+                <field name="warehouse_id" />
+                <field name="team_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_view_order_tree" model="ir.ui.view">
+        <field name="name">sale.view.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="product_id" />
+                <field name="warehouse_id" />
+                <field name="team_id" />
             </xpath>
         </field>
     </record>
