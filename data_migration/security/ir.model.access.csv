@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_odoo_instance,odoo.instance,model_odoo_instance,base.group_system,1,1,1,1
+access_partner_data_migration,partner.data.migration,model_partner_data_migration,base.group_system,1,1,1,1
