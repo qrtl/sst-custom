@@ -20,6 +20,7 @@ Account Security Adj
 |badge1| |badge2| |badge3| 
 
 This module restricts the validation of customer invoices and vendor bills to the group_account_manager group.
+This module restricts the cancellation of customer invoices and vendor bills with open status to the group_account_manager group.
 
 **Table of contents**
 
