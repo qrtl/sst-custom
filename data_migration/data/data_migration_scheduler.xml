@@ -8,6 +8,7 @@
         <field name="state">code</field>
         <field name="code">model._run_partner_data_migration()</field>
         <field name="doall" eval="False" />
+        <field name="active" eval="False" />
         <field name="model_id" ref="model_partner_data_migration" />
     </record>
 </odoo>

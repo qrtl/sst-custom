@@ -20,7 +20,7 @@
                         <field name="instance_url" />
                         <field name="instance_db" />
                         <field name="login" />
-                        <field name="password" />
+                        <field name="password" widget="password"/>
                     </group>
                 </sheet>
             </form>
