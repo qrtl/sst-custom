@@ -15,17 +15,22 @@ class UserDataMigration(models.Model):
             instance.instance_db,
             uid_v11,
             instance.password,
-            "res.partner",
+            "res.users",
             "search_read",
+            [],
         )
         env = api.Environment(self.env.cr, SUPERUSER_ID, {})
         for user in users_v11:
-            user = self.env["res.users"].search([("login", "=", user["login"])])
-            if user:
+            user_id = self.env["res.users"].search([("login", "=", user["login"])])
+            if user_id:
                 continue
-            user["old_id"] = user["id"]
             partner_id = self.env["res.partner"].search(
                 [("old_id", "=", user["partner_id"][0])]
             )
-            user["parent_id"] = partner_id.id
-            env["res.users"].create(user)
+            user_data = {
+                "name": user["name"],
+                "login": user["login"],
+                # "password": hashlib.sha256(user["password"].encode()).hexdigest(),
+                "partner_id": partner_id.id,
+            }
+            env["res.users"].create(user_data)

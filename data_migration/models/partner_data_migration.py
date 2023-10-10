@@ -44,6 +44,7 @@ class PartnerDataMigration(models.Model):
             "website_description",
             "website_short_description",
             "contracts_count",
+            "commercial_partner_country_id",
         ]
         for partner in top_level_partners:
             if partner.pop("customer", False):
