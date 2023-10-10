@@ -1,35 +1,24 @@
 # Copyright 2023 Quartile Limited
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import xmlrpc.client
 
 from odoo import SUPERUSER_ID, api, models
 
 
 class PartnerDataMigration(models.Model):
     _name = "partner.data.migration"
+    _inherit = "data.migration"
+    _description = "Partner Data Migration"
 
     def _run_partner_data_migration(self):
-        instance = self.env["odoo.instance"].search([])
-        # Authenticate for v11
-        common_v11 = xmlrpc.client.ServerProxy(
-            "{}/xmlrpc/2/common".format(instance.instance_url)
-        )
-        uid_v11 = common_v11.authenticate(
-            instance.instance_db, instance.login, instance.password, {}
-        )
-        # Fetch partners from v11
-        models_v11 = xmlrpc.client.ServerProxy(
-            "{}/xmlrpc/2/object".format(instance.instance_url)
-        )
-        domain = [("user_ids", "=", False)]
+        instance, uid_v11, models_v11 = self._data_migration_authentication()
         partners_v11 = models_v11.execute_kw(
             instance.instance_db,
             uid_v11,
             instance.password,
             "res.partner",
             "search_read",
-            [domain],
+            [],
         )
         top_level_partners = [
             partner for partner in partners_v11 if not partner.get("parent_id")
@@ -90,4 +79,5 @@ class PartnerDataMigration(models.Model):
                 )
                 partner["parent_id"] = parent_id.id
             # Directly create the partner in the current v15 database using the fetched data
+            partner["old_id"] = partner["id"]
             env["res.partner"].create(partner)
