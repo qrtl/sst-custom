@@ -8,7 +8,7 @@ class OdooInstance(models.Model):
     _name = "odoo.instance"
     _description = "Odoo Instances"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
     instance_url = fields.Char(required=True)
     instance_db = fields.Char(required=True)
     login = fields.Char(required=True)
