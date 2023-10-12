@@ -19,6 +19,7 @@ class PartnerDataMigration(models.Model):
             "res.partner",
             "search_read",
             [],
+            {"limit": 100},
         )
         top_level_partners = [
             partner for partner in partners_v11 if not partner.get("parent_id")
@@ -45,6 +46,30 @@ class PartnerDataMigration(models.Model):
             "website_short_description",
             "contracts_count",
             "commercial_partner_country_id",
+            "calendar_last_notif_ack",
+            "is_invoice_issuer",
+            "member_group_id",
+            "seller",
+            "state",
+            "set_seller_wise_settings",
+            "gender",
+            "identification_number",
+            "date_of_birth",
+            "remaining_point_limit",
+            "commission",
+            "auto_product_approve",
+            "seller_payment_limit",
+            "next_payment_request",
+            "total_mp_payment",
+            "paid_mp_payment",
+            "balance_mp_payment",
+            "available_amount",
+            "profile_image",
+            "cart_update_message",
+            "task_count",
+            "cashable_amount",
+            "sol_count",
+            "allow_product_variants",
         ]
         for partner in top_level_partners:
             if partner.pop("customer", False):
