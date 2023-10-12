@@ -1,7 +1,6 @@
 # Copyright 2023 Quartile Limited
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-
 from odoo import SUPERUSER_ID, api, models
 
 
@@ -19,7 +18,6 @@ class PartnerDataMigration(models.Model):
             "res.partner",
             "search_read",
             [],
-            {"limit": 100},
         )
         top_level_partners = [
             partner for partner in partners_v11 if not partner.get("parent_id")
@@ -27,7 +25,14 @@ class PartnerDataMigration(models.Model):
         child_partners = [
             partner for partner in partners_v11 if partner.get("parent_id")
         ]
-        # Insert partners into v15 with all fields and their original IDs
+
+        for partner in top_level_partners:
+            self.with_delay()._process_partner_migration(partner, is_child=False)
+
+        for partner in child_partners:
+            self.with_delay()._process_partner_migration(partner, is_child=True)
+
+    def _process_partner_migration(self, partner, is_child=False):
         env = api.Environment(self.env.cr, SUPERUSER_ID, {})
         fields_to_remove = [
             "image",
@@ -71,39 +76,26 @@ class PartnerDataMigration(models.Model):
             "sol_count",
             "allow_product_variants",
         ]
-        for partner in top_level_partners:
-            if partner.pop("customer", False):
-                partner["customer_rank"] = 1
-            if partner.pop("supplier", False):
-                partner["supplier_rank"] = 1
-            for field in fields_to_remove:
-                partner.pop(field, None)
-            for field, value in list(partner.items()):
-                # We use list() to copy items as we're modifying the dictionary during iteration
-                if isinstance(value, tuple) or isinstance(value, list):
-                    partner.pop(field, None)
-            # Directly create the partner in the current v15 database using the fetched data
-            partner["old_id"] = partner["id"]
-            env["res.partner"].create(partner)
 
-        for partner in child_partners:
-            if partner.pop("customer", False):
-                partner["customer_rank"] = 1
-            if partner.pop("supplier", False):
-                partner["supplier_rank"] = 1
-            for field in fields_to_remove:
+        if partner.pop("customer", False):
+            partner["customer_rank"] = 1
+        if partner.pop("supplier", False):
+            partner["supplier_rank"] = 1
+
+        for field in fields_to_remove:
+            partner.pop(field, None)
+
+        for field, value in list(partner.items()):
+            if (not is_child or field != "parent_id") and (
+                isinstance(value, tuple) or isinstance(value, list)
+            ):
                 partner.pop(field, None)
-            for field, value in list(partner.items()):
-                # We use list() to copy items as we're modifying the dictionary during iteration
-                if field != "parent_id" and (
-                    isinstance(value, tuple) or isinstance(value, list)
-                ):
-                    partner.pop(field, None)
-            if partner.get("parent_id"):
-                parent_id = self.env["res.partner"].search(
-                    [("old_id", "=", partner["parent_id"][0])]
-                )
-                partner["parent_id"] = parent_id.id
-            # Directly create the partner in the current v15 database using the fetched data
-            partner["old_id"] = partner["id"]
-            env["res.partner"].create(partner)
+
+        if is_child and partner.get("parent_id"):
+            parent_id = env["res.partner"].search(
+                [("old_id", "=", partner["parent_id"][0])]
+            )
+            partner["parent_id"] = parent_id.id
+
+        partner["old_id"] = partner["id"]
+        env["res.partner"].create(partner)

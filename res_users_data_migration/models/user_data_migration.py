@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
-from odoo import SUPERUSER_ID, api, models
+from odoo import models
 
 
 class UserDataMigration(models.Model):
@@ -19,11 +19,13 @@ class UserDataMigration(models.Model):
             "search_read",
             [],
         )
-        env = api.Environment(self.env.cr, SUPERUSER_ID, {})
         for user in users_v11:
-            user_id = self.env["res.users"].search([("login", "=", user["login"])])
-            if user_id:
-                continue
+            # Use with_delay() to add each user creation to the job queue
+            self.with_delay()._create_user_job(user)
+
+    def _create_user_job(self, user):
+        user_id = self.env["res.users"].search([("login", "=", user["login"])])
+        if not user_id:
             partner_id = self.env["res.partner"].search(
                 [("old_id", "=", user["partner_id"][0])]
             )
@@ -33,4 +35,4 @@ class UserDataMigration(models.Model):
                 # "password": hashlib.sha256(user["password"].encode()).hexdigest(),
                 "partner_id": partner_id.id,
             }
-            env["res.users"].create(user_data)
+            self.env["res.users"].create(user_data)
