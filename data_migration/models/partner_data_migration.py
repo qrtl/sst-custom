@@ -16,8 +16,6 @@ class PartnerDataMigration(models.Model):
             "identification_type_id",
             "occupation_id",
             "website_published",
-            # "seller", # Not migrated yet
-            # "commission", # Not migrated yet
             "date_of_birth",
             "company_id",
             "date",
@@ -36,7 +34,6 @@ class PartnerDataMigration(models.Model):
             "display_name",
             "lang",
             "tz",
-            # "state", # not migrated yet.
             "vat",
             "website",
             "comment",
