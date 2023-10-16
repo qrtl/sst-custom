@@ -6,10 +6,66 @@ from odoo import SUPERUSER_ID, api, models
 
 class PartnerDataMigration(models.Model):
     _name = "partner.data.migration"
-    _inherit = "data.migration"
+    _inherit = ["data.migration", "data.migration.mapping"]
     _description = "Partner Data Migration"
 
     def _run_partner_data_migration(self):
+        required_fields = [
+            "is_invoice_issuer",
+            "team_id",
+            "identification_type_id",
+            "occupation_id",
+            "website_published",
+            # "seller", # Not migrated yet
+            # "commission", # Not migrated yet
+            "date_of_birth",
+            "company_id",
+            "date",
+            "title",
+            "parent_id",
+            # "user_id", # user migration will handle it.
+            "active",
+            "customer",
+            "supplier",
+            "employee",
+            "state_id",
+            "country_id",
+            "is_company",
+            # "commercial_partner_id", # compute function will handle it.
+            "name",
+            "display_name",
+            "lang",
+            "tz",
+            # "state", # not migrated yet.
+            "vat",
+            "website",
+            "comment",
+            "barcode",
+            "return_policy",
+            "invoice_warn",
+            "invoice_warn_msg",
+            "picking_warn",
+            "function",
+            "type",
+            "street",
+            "street2",
+            "zip",
+            "city",
+            "picking_warn_msg",
+            "sale_warn",
+            "email",
+            "phone",
+            "mobile",
+            "sale_warn_msg",
+            "shipping_policy",
+            "purchase_warn",
+            "purchase_warn_msg",
+            "profile_msg",
+            "identification_number",
+            "company_name",
+            "fax",
+            "gender",
+        ]
         instance, uid_v11, models_v11 = self._data_migration_authentication()
         partners_v11 = models_v11.execute_kw(
             instance.instance_db,
@@ -18,6 +74,7 @@ class PartnerDataMigration(models.Model):
             "res.partner",
             "search_read",
             [],
+            {"fields": required_fields},
         )
         top_level_partners = [
             partner for partner in partners_v11 if not partner.get("parent_id")
@@ -34,57 +91,28 @@ class PartnerDataMigration(models.Model):
 
     def _process_partner_migration(self, partner, is_child=False):
         env = api.Environment(self.env.cr, SUPERUSER_ID, {})
-        fields_to_remove = [
-            "image",
-            "image_medium",
-            "image_small",
-            "message_last_post",
-            "opt_out",
-            "website_message_ids",
-            "debit_limit",
-            "ref_company_ids",
-            "last_time_entries_checked",
-            "website_meta_title",
-            "website_meta_description",
-            "website_meta_keywords",
-            "website_description",
-            "website_short_description",
-            "contracts_count",
-            "commercial_partner_country_id",
-            "calendar_last_notif_ack",
-            "is_invoice_issuer",
-            "member_group_id",
-            "seller",
-            "state",
-            "set_seller_wise_settings",
-            "gender",
-            "identification_number",
-            "date_of_birth",
-            "remaining_point_limit",
-            "commission",
-            "auto_product_approve",
-            "seller_payment_limit",
-            "next_payment_request",
-            "total_mp_payment",
-            "paid_mp_payment",
-            "balance_mp_payment",
-            "available_amount",
-            "profile_image",
-            "cart_update_message",
-            "task_count",
-            "cashable_amount",
-            "sol_count",
-            "allow_product_variants",
-        ]
+        many2one_field_mapping = {
+            "team_id": "crm.team",
+            "identification_type_id": "identification.type",
+            "occupation_id": "res.occupation",
+            "company_id": "res.company",
+            "state_id": "res.country.state",
+            "country_id": "res.country",
+        }
 
         if partner.pop("customer", False):
             partner["customer_rank"] = 1
         if partner.pop("supplier", False):
             partner["supplier_rank"] = 1
+        date_of_birth = partner.pop("date_of_birth", False)
+        if date_of_birth:
+            partner["date_birth"] = date_of_birth
 
-        for field in fields_to_remove:
-            partner.pop(field, None)
-
+        for field, model in many2one_field_mapping.items():
+            if field in partner:
+                partner[field] = self.map_many2one_field_by_name(
+                    env, model, partner[field]
+                )
         for field, value in list(partner.items()):
             if (not is_child or field != "parent_id") and (
                 isinstance(value, tuple) or isinstance(value, list)
