@@ -95,6 +95,7 @@ class PartnerDataMigration(models.Model):
             "company_id": "res.company",
             "state_id": "res.country.state",
             "country_id": "res.country",
+            "title": "res.partner.title",
         }
 
         if partner.pop("customer", False):
