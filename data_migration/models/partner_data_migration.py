@@ -64,27 +64,33 @@ class PartnerDataMigration(models.Model):
             "gender",
         ]
         instance, uid_v11, models_v11 = self._data_migration_authentication()
-        partners_v11 = models_v11.execute_kw(
-            instance.instance_db,
-            uid_v11,
-            instance.password,
-            "res.partner",
-            "search_read",
-            [],
-            {"fields": required_fields},
-        )
-        top_level_partners = [
-            partner for partner in partners_v11 if not partner.get("parent_id")
-        ]
-        child_partners = [
-            partner for partner in partners_v11 if partner.get("parent_id")
-        ]
+        offset = 0
+        limit = 1000
+        while True:
+            partners_v11 = models_v11.execute_kw(
+                instance.instance_db,
+                uid_v11,
+                instance.password,
+                "res.partner",
+                "search_read",
+                [],
+                {"fields": required_fields, "offset": offset, "limit": limit},
+            )
+            if not partners_v11:
+                break
+            top_level_partners = [
+                partner for partner in partners_v11 if not partner.get("parent_id")
+            ]
+            child_partners = [
+                partner for partner in partners_v11 if partner.get("parent_id")
+            ]
+            offset += limit
 
-        for partner in top_level_partners:
-            self.with_delay()._process_partner_migration(partner, is_child=False)
+            for partner in top_level_partners:
+                self.with_delay()._process_partner_migration(partner, is_child=False)
 
-        for partner in child_partners:
-            self.with_delay()._process_partner_migration(partner, is_child=True)
+            for partner in child_partners:
+                self.with_delay()._process_partner_migration(partner, is_child=True)
 
     def _process_partner_migration(self, partner, is_child=False):
         env = api.Environment(self.env.cr, SUPERUSER_ID, {})
