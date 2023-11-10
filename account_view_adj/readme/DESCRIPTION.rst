@@ -1,1 +1,1 @@
-This module makes adjustments to account invoice related views.
+This module makes adjustments to account related views.

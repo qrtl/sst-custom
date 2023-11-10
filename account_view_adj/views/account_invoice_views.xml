@@ -5,7 +5,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_tree"/>
             <field name="arch" type="xml">
-                <xpath expr="//tree/field[@name='state']" position="before">
+                <xpath expr="//tree/field[@name='number']" position="after">
                    <field name="user_id" string="Responsible"/>
                 </xpath>
             </field>
