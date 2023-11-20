@@ -22,7 +22,8 @@ Product Image Security Adj
 
 |badge1| |badge2| |badge3|
 
-This module gives all access to product image of website sale for purchase user.
+This module gives all access to product image of website sale for
+purchase user.
 
 **Table of contents**
 
@@ -43,12 +44,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/15.0/product_image_security_adj>`_ project on GitHub.
 

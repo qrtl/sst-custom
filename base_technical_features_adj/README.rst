@@ -23,14 +23,15 @@ Technical features group adjustments
 |badge1| |badge2| |badge3|
 
 This module limits the visibility of the 'technical_features' attribute
-in the preference view, making it accessible exclusively to internal users.
+in the preference view, making it accessible exclusively to internal
+users.
 
 Background
-~~~~~~~~~~
+----------
 
-To enhance security, non-internal users' backend access, which includes their ability
-to view 'technical_features' and related menu items, should be restricted to uphold the
-intended user access levels.
+To enhance security, non-internal users' backend access, which includes
+their ability to view 'technical_features' and related menu items,
+should be restricted to uphold the intended user access levels.
 
 **Table of contents**
 
@@ -51,12 +52,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/15.0/base_technical_features_adj>`_ project on GitHub.
 

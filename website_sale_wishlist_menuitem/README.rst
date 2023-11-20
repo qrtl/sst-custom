@@ -24,8 +24,8 @@ Website Sales Wishlist Menuitem
 
 This module does the following:
 
-* Adds a menuitem for internal users to be able to check/manage the wishlist content
-  in the backend.
+-  Adds a menuitem for internal users to be able to check/manage the
+   wishlist content in the backend.
 
 **Table of contents**
 
@@ -46,12 +46,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/15.0/website_sale_wishlist_menuitem>`_ project on GitHub.
 

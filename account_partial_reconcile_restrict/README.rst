@@ -22,7 +22,9 @@ Account Partial Reconcile Restrict
 
 |badge1| |badge2| |badge3|
 
-This module adds permissions to the unlink method of account.partial.reconcile model. Only users who belong to the "Accounting Manager" group can execute the unreconcile operation.
+This module adds permissions to the unlink method of
+account.partial.reconcile model. Only users who belong to the
+"Accounting Manager" group can execute the unreconcile operation.
 
 **Table of contents**
 
@@ -43,12 +45,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/15.0/account_partial_reconcile_restrict>`_ project on GitHub.
 

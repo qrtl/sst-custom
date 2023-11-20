@@ -22,9 +22,11 @@ Product Gross Profit Calculation
 
 |badge1| |badge2| |badge3|
 
-This module adds some new fields in product template and calculates gross profit of product.
+This module adds some new fields in product template and calculates
+gross profit of product.
 
-This module currently does not support the case where there are multiple variants per product template.
+This module currently does not support the case where there are multiple
+variants per product template.
 
 **Table of contents**
 
@@ -45,12 +47,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/15.0/product_gross_profit_calculation>`_ project on GitHub.
 
