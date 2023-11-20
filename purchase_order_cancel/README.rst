@@ -24,7 +24,7 @@ Cancel Multiple Purchase Order
 
 This module does the following:
 
-* Allow to cancel multiple purchase orders at single click!
+-  Allow to cancel multiple purchase orders at single click!
 
 **Table of contents**
 
@@ -45,12 +45,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/15.0/purchase_order_cancel>`_ project on GitHub.
 

@@ -22,8 +22,8 @@ HR Security Adjust
 
 |badge1| |badge2| |badge3|
 
-This module adds new user group for hr and give read and write access for hr.employee to the user that
-has this group.
+This module adds new user group for hr and give read and write access
+for hr.employee to the user that has this group.
 
 **Table of contents**
 
@@ -44,12 +44,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/15.0/hr_security_adj>`_ project on GitHub.
 

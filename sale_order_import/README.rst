@@ -24,12 +24,12 @@ Sales Order Import
 
 This module provides following functions:
 
-- Imports sales data of designated format from `.csv` file (with UTF-8 encoding), and
-  processes following transactions:
-- Sales Order
-- Outgoing picking
-- Customer Invoice
-- Customer Payment
+-  Imports sales data of designated format from .csv file (with UTF-8
+   encoding), and processes following transactions:
+-  Sales Order
+-  Outgoing picking
+-  Customer Invoice
+-  Customer Payment
 
 **Table of contents**
 
@@ -39,17 +39,19 @@ This module provides following functions:
 Configuration
 =============
 
-- User should belong to 'Data Import Log' group. Adjust the user access right settings from
-  `Settings > Users > (the user) > Access Rights > Technical Settings`.
-- Select default journals ('Invoice Journal' and 'Payment Journal') in "Sales Import
-  Defaults" screen. The values are used to propose journals in "Import Sale Order"
-  wizard.
+-  User should belong to 'Data Import Log' group. Adjust the user access
+   right settings from Settings > Users > (the user) > Access Rights >
+   Technical Settings.
+-  Select default journals ('Invoice Journal' and 'Payment Journal') in
+   "Sales Import Defaults" screen. The values are used to propose
+   journals in "Import Sale Order" wizard.
 
 Usage
 =====
 
-Go to `Data Import > Import Sales Order` to import sales data in `.csv` format.
-Go to `Import > Data Import Log` to find the import history / error log.
+Go to Data Import > Import Sales Order to import sales data in .csv
+format. Go to Import > Data Import Log to find the import history /
+error log.
 
 Bug Tracker
 ===========
@@ -65,12 +67,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/15.0/sale_order_import>`_ project on GitHub.
 
