@@ -24,7 +24,8 @@ Website Sales Wishlist Archive Cron
 
 This module does the following:
 
-* A cron task that will "Archive" all the wishlist items that the product is inactive
+-  A cron task that will "Archive" all the wishlist items that the
+   product is inactive
 
 **Table of contents**
 
@@ -45,12 +46,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/sst-custom <https://github.com/qrtl/sst-custom/tree/15.0/website_sale_wishlist_archive_cron>`_ project on GitHub.
 
