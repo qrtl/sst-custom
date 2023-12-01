@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="restrict_edit" groups="base.group_system" />
+                <field name="restrict_edit" groups="partner_edit_restrict.group_partner_edit" />
             </xpath>
         </field>
     </record>
