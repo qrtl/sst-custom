@@ -22,7 +22,6 @@ class ResPartner(models.Model):
         if restricted_recs:
             names = ", ".join(restricted_recs.mapped("name"))
             raise UserError(
-                _("You are not allowed to modify following partner: %s")
-                %(names)
+                _("You are not allowed to modify following partner: %s") % (names)
             )
         return super().write(values)
