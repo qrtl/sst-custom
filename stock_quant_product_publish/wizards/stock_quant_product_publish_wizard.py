@@ -19,6 +19,4 @@ class StockQuantProductPublish(models.TransientModel):
             "website_published": True,
             "yahoo_product_state_id": self.yahoo_product_state_id.id,
         }
-        # Using mapped to gather all product_tmpl_id records
-        product_templates = quants.mapped('product_id.product_tmpl_id')
-        product_templates.sudo().write(values)
+        quants.mapped("product_id").sudo().write(values)
