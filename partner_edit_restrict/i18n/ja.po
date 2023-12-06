@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* partner_edit_restrict
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-04 03:21+0000\n"
+"PO-Revision-Date: 2023-12-04 03:21+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_edit_restrict
+#: model:res.groups,name:partner_edit_restrict.group_partner_edit
+msgid "Allow Editing Restricted Partners"
+msgstr "制限付き連絡先を編集"
+
+#. module: partner_edit_restrict
+#: model:ir.model,name:partner_edit_restrict.model_res_partner
+msgid "Contact"
+msgstr "連絡先"
+
+#. module: partner_edit_restrict
+#: model:ir.model.fields,help:partner_edit_restrict.field_res_partner_restrict_edit
+#: model:ir.model.fields,help:partner_edit_restrict.field_res_users_restrict_edit
+msgid "Enable to restrict the editing record for non-system users."
+msgstr "Enable to restrict the editing record for non-system users."
+
+#. module: partner_edit_restrict
+#: model:ir.model.fields,field_description:partner_edit_restrict.field_res_partner_restrict_edit
+#: model:ir.model.fields,field_description:partner_edit_restrict.field_res_users_restrict_edit
+msgid "Restrict Edit"
+msgstr "編集を制限"
+
+#. module: partner_edit_restrict
+#: code:addons/partner_edit_restrict/models/res_partner.py:25
+#, python-format
+msgid "You are not allowed to modify following partner: %s"
+msgstr "あなたは次の連絡先の編集を許可されていません: %s"
