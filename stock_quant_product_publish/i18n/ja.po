@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_quant_product_publish
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-02 12:33+0000\n"
+"PO-Revision-Date: 2023-10-02 12:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_quant_product_publish
+#: model:ir.ui.view,arch_db:stock_quant_product_publish.stock_quant_product_publish_wizard_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: stock_quant_product_publish
+#: model:ir.model.fields,field_description:stock_quant_product_publish.field_stock_quant_product_publish_wizard_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: stock_quant_product_publish
+#: model:ir.model.fields,field_description:stock_quant_product_publish.field_stock_quant_product_publish_wizard_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: stock_quant_product_publish
+#: model:ir.model.fields,field_description:stock_quant_product_publish.field_stock_quant_product_publish_wizard_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: stock_quant_product_publish
+#: model:ir.model.fields,field_description:stock_quant_product_publish.field_stock_quant_product_publish_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_quant_product_publish
+#: model:ir.model.fields,field_description:stock_quant_product_publish.field_stock_quant_product_publish_wizard___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: stock_quant_product_publish
+#: model:ir.model.fields,field_description:stock_quant_product_publish.field_stock_quant_product_publish_wizard_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: stock_quant_product_publish
+#: model:ir.model.fields,field_description:stock_quant_product_publish.field_stock_quant_product_publish_wizard_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: stock_quant_product_publish
+#: model:ir.ui.view,arch_db:stock_quant_product_publish.stock_quant_product_publish_wizard_form
+msgid "Publish"
+msgstr "公開"
+
+#. module: stock_quant_product_publish
+#: model:ir.actions.act_window,name:stock_quant_product_publish.action_stock_quant_publish_window
+msgid "Publish to website"
+msgstr "ウェブ表示"
+
+#. module: stock_quant_product_publish
+#: model:ir.ui.view,arch_db:stock_quant_product_publish.stock_quant_product_publish_wizard_form
+msgid "Stock Quant Publish"
+msgstr "ウェブサイト公開"
+
+#. module: stock_quant_product_publish
+#: model:ir.ui.view,arch_db:stock_quant_product_publish.stock_quant_product_publish_wizard_form
+msgid "This wizard will publish selected stock\n"
+"                    quants to website at once."
+msgstr "選択した保管ロットをウェブサイトに公開します。"
+
+#. module: stock_quant_product_publish
+#: model:ir.model.fields,field_description:stock_quant_product_publish.field_stock_quant_product_publish_wizard_yahoo_product_state_id
+msgid "Yahoo Product State"
+msgstr "商品化ステータス"
+
+#. module: stock_quant_product_publish
+#: model:ir.ui.view,arch_db:stock_quant_product_publish.stock_quant_product_publish_wizard_form
+msgid "or"
+msgstr "または"
+
+#. module: stock_quant_product_publish
+#: model:ir.model,name:stock_quant_product_publish.model_stock_quant_product_publish_wizard
+msgid "stock.quant.product.publish.wizard"
+msgstr "stock.quant.product.publish.wizard"

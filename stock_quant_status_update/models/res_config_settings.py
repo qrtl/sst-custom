@@ -17,7 +17,7 @@ class ResConfigSettings(models.TransientModel):
         get_param = self.env["ir.config_parameter"].sudo().get_param
         res.update(
             picking_product_state_id=int(
-                get_param("stock_ext_sst.picking_product_state_id", default=False)
+                get_param("stock_quant_status_update.picking_product_state_id", default=False)
             )
         )
         return res
@@ -26,5 +26,5 @@ class ResConfigSettings(models.TransientModel):
         super(ResConfigSettings, self).set_values()
         set_param = self.env["ir.config_parameter"].sudo().set_param
         set_param(
-            "stock_ext_sst.picking_product_state_id", self.picking_product_state_id.id
+            "stock_quant_status_update.picking_product_state_id", self.picking_product_state_id.id
         )

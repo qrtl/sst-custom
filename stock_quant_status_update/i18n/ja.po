@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_quant_status_update
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-02 12:34+0000\n"
+"PO-Revision-Date: 2023-10-02 12:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_quant_status_update
+#: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: stock_quant_status_update
+#: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: stock_quant_status_update
+#: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: stock_quant_status_update
+#: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: stock_quant_status_update
+#: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_quant_status_update
+#: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: stock_quant_status_update
+#: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: stock_quant_status_update
+#: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: stock_quant_status_update
+#: model:ir.model,name:stock_quant_status_update.model_stock_quant
+msgid "Quants"
+msgstr "保管ロット"
+
+#. module: stock_quant_status_update
+#: model:ir.model.fields,field_description:stock_quant_status_update.field_res_config_settings_picking_product_state_id
+#: model:ir.ui.view,arch_db:stock_quant_status_update.res_config_settings_view_form
+msgid "State For Finished Picking Product"
+msgstr "店舗在庫ピッキング済ステータス"
+
+#. module: stock_quant_status_update
+#: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
+msgid "Stock Quant Status Update"
+msgstr "店舗在庫ステータス更新"
+
+#. module: stock_quant_status_update
+#: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
+msgid "This wizard will update the status of\n"
+"                    selected stock quants at once."
+msgstr "選択した保管ロット情報を更新します。"
+
+#. module: stock_quant_status_update
+#: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
+msgid "Update"
+msgstr "更新"
+
+#. module: stock_quant_status_update
+#: model:ir.actions.act_window,name:stock_quant_status_update.stock_quant_status_update_wizard
+msgid "Update Stock Quant Status"
+msgstr "店舗在庫ステータス更新"
+
+#. module: stock_quant_status_update
+#: model:ir.model.fields,field_description:stock_quant_status_update.field_stock_quant_status_update_wizard_yahoo_product_state_id
+#: model:ir.ui.view,arch_db:stock_quant_status_update.res_config_settings_view_form
+msgid "Yahoo Product State"
+msgstr "商品化ステータス"
+
+#. module: stock_quant_status_update
+#: model:ir.ui.view,arch_db:stock_quant_status_update.res_config_settings_view_form
+msgid "Yahoo Product State Settings"
+msgstr "商品化ステータス設定"
+
+#. module: stock_quant_status_update
+#: model:ir.ui.view,arch_db:stock_quant_status_update.stock_quant_status_update_wizard_form
+msgid "or"
+msgstr "または"
+
+#. module: stock_quant_status_update
+#: model:ir.model,name:stock_quant_status_update.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
+
+#. module: stock_quant_status_update
+#: model:ir.model,name:stock_quant_status_update.model_stock_quant_status_update_wizard
+msgid "stock.quant.status.update.wizard"
+msgstr "stock.quant.status.update.wizard"

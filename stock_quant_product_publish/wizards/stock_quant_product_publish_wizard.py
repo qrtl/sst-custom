@@ -4,8 +4,8 @@
 from odoo import fields, models
 
 
-class StockQuantPublish(models.TransientModel):
-    _name = "stock.quant.publish.wizard"
+class StockQuantProductPublish(models.TransientModel):
+    _name = "stock.quant.product.publish.wizard"
 
     yahoo_product_state_id = fields.Many2one(
         "yahoo.product.state", string="Yahoo Product State",
@@ -19,5 +19,4 @@ class StockQuantPublish(models.TransientModel):
             "website_published": True,
             "yahoo_product_state_id": self.yahoo_product_state_id.id,
         }
-        for quant in quants:
-            quant.product_id.product_tmpl_id.sudo().write(values)
+        quants.mapped("product_id").sudo().write(values)

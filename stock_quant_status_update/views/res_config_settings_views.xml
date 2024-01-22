@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="res_config_settings_view_form" model="ir.ui.view">
         <field name="name">res.config.settings.view.form</field>
         <field name="model">res.config.settings</field>
@@ -10,19 +9,19 @@
                 <h2>Yahoo Product State Settings</h2>
                 <div class="row mt16 o_settings_container">
                     <div
-            class="col-xs-12 col-md-6 o_setting_box"
-            id="picking_product_state_settins"
-            groups="base.group_no_one"
-          >
+                        class="col-xs-12 col-md-6 o_setting_box"
+                        id="picking_product_state_settins"
+                        groups="base.group_no_one"
+                    >
                         <div class="o_setting_right_pane">
                             <label string="State For Finished Picking Product" />
                             <div class="content-group">
                                 <div class="row mt16">
                                     <label
-                    class="o_light_label col-md-3"
-                    string="Yahoo Product State"
-                    for="picking_product_state_id"
-                  />
+                                        class="o_light_label col-md-3"
+                                        string="Yahoo Product State"
+                                        for="picking_product_state_id"
+                                    />
                                     <field name="picking_product_state_id" />
                                 </div>
                             </div>
@@ -32,5 +31,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

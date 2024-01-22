@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_quant_product_publish_wizard_form" model="ir.ui.view">
+        <field name="name">stock.quant.product.publish.wizard.form</field>
+        <field name="model">stock.quant.product.publish.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Stock Quant Publish">
+                <p class="oe_gray">This wizard will publish selected stock
+                    quants to website at once.
+                </p>
+                <group>
+                    <group>
+                        <field name="yahoo_product_state_id" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="action_stock_quant_publish"
+                        string="Publish"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <act_window
+        id="action_stock_quant_publish_window"
+        multi="True"
+        key2="client_action_multi"
+        name="Publish to website"
+        res_model="stock.quant.product.publish.wizard"
+        src_model="stock.quant"
+        view_id="stock_quant_product_publish_wizard_form"
+        view_mode="form"
+        target="new"
+        view_type="form"
+    />
+</odoo>
