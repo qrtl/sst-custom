@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "depends": [
         "stock",
-        "delivery",
+        "website",
         "stock_quant_list_view",
     ],
     "data": [
