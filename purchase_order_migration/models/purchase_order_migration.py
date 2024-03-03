@@ -9,6 +9,22 @@ class PurchaseOrderMigration(models.Model):
     _inherit = ["data.migration", "data.migration.mapping"]
     _description = "Purchase Order Data Migration"
 
+    def get_or_create_dummy_product(self):
+        env = api.Environment(self.env.cr, SUPERUSER_ID, {})
+        # Check if the dummy product already exists
+        dummy_product = env['product.product'].search([('default_code', '=', 'DUMMY_PRODUCT')], limit=1)
+        if dummy_product:
+            return dummy_product.id
+        else:
+            # If the dummy product does not exist, create it
+            dummy_product = env['product.product'].create({
+                'name': 'Dummy Product',
+                'type': 'product',
+                'default_code': 'DUMMY_PRODUCT',
+                'taxes_id': False,  # Assuming no taxes, adjust if necessary
+            })
+            return dummy_product.id
+
     def _run_purchase_order_data_migration(self):
         required_fields = [
             "id",
@@ -119,7 +135,6 @@ class PurchaseOrderMigration(models.Model):
             "price_tax",
             "price_total",
             "price_unit",
-            "product_id",
             "product_qty",
             "product_uom",
             "qty_invoiced",
@@ -143,19 +158,10 @@ class PurchaseOrderMigration(models.Model):
                 "account_analytic_id": "account.analytic.account",
                 "analytic_tag_ids": "account.analytic.tag",
                 "company_id": "res.company",
-                "product_id": "product.product",
                 "product_uom": "uom.uom",
             }
-            product_id_info = line["product_id"]
-            if product_id_info and len(product_id_info) == 2:
-                if "] " in product_id_info[1]:
-                    # Case: [ID, '[CODE] Name']
-                    product_name = product_id_info[1].split("] ")[1]
-                else:
-                    # Case: [ID, 'Name']
-                    product_name = product_id_info[1]
-
-            line["product_id"] = [product_id_info[0], product_name]
+            dummy_product_id = self.get_or_create_dummy_product()
+            line["product_id"] = dummy_product_id
             for field, model in many2one_field_mapping.items():
                 if field in line and line[field]:
                     line[field] = self.map_many2one_field_by_name(
