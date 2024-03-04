@@ -35,4 +35,9 @@ class UserDataMigration(models.Model):
                 # "password": hashlib.sha256(user["password"].encode()).hexdigest(),
                 "partner_id": partner_id.id,
             }
+            existing_user = self.env["res.users"].search(
+                [("login", "=", user["login"])], limit=1
+            )
+            if existing_user:
+                return True
             self.env["res.users"].create(user_data)

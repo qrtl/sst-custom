@@ -12,17 +12,21 @@ class PurchaseOrderMigration(models.Model):
     def get_or_create_dummy_product(self):
         env = api.Environment(self.env.cr, SUPERUSER_ID, {})
         # Check if the dummy product already exists
-        dummy_product = env['product.product'].search([('default_code', '=', 'DUMMY_PRODUCT')], limit=1)
+        dummy_product = env["product.product"].search(
+            [("default_code", "=", "DUMMY_PRODUCT")], limit=1
+        )
         if dummy_product:
             return dummy_product.id
         else:
             # If the dummy product does not exist, create it
-            dummy_product = env['product.product'].create({
-                'name': 'Dummy Product',
-                'type': 'product',
-                'default_code': 'DUMMY_PRODUCT',
-                'taxes_id': False,  # Assuming no taxes, adjust if necessary
-            })
+            dummy_product = env["product.product"].create(
+                {
+                    "name": "Dummy Product",
+                    "type": "product",
+                    "default_code": "DUMMY_PRODUCT",
+                    "taxes_id": False,  # Assuming no taxes, adjust if necessary
+                }
+            )
             return dummy_product.id
 
     def _run_purchase_order_data_migration(self):

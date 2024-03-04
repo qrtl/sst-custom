@@ -130,4 +130,9 @@ class PartnerDataMigration(models.Model):
             partner["parent_id"] = parent_id.id
 
         partner["old_id"] = partner["id"]
+        existing_partner = env["res.partner"].search(
+            [("phone", "=", partner["phone"])], limit=1
+        )
+        if existing_partner:
+            return True
         env["res.partner"].create(partner)
