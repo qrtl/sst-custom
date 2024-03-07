@@ -37,7 +37,6 @@ class PartnerDataMigration(models.Model):
             "vat",
             "website",
             "comment",
-            "barcode",
             "return_policy",
             "invoice_warn",
             "invoice_warn_msg",
