@@ -109,14 +109,15 @@ class PurchaseOrderMigration(models.Model):
             "shop_id": "stock.warehouse",
             "purchase_by_id": "hr.employee",
             "state_id": "res.country.state",
-            # 'sale_order_id': 'sale.order',
+            "sale_order_id": "sale.order",
         }
         for field, model in many2one_field_mapping.items():
             if field in purchase:
                 purchase[field] = self.map_many2one_field_by_name(
                     env, model, purchase[field]
                 )
-
+        state = purchase["state"]
+        purchase["state"] = False
         purchase["old_id"] = purchase["id"]
         order = env["purchase.order"].create(purchase)
         self.create_purchase_order_line(order)
@@ -125,6 +126,7 @@ class PurchaseOrderMigration(models.Model):
                 "amount_tax": purchase["amount_tax"],
                 "amount_untaxed": purchase["amount_untaxed"],
                 "amount_total": purchase["amount_total"],
+                "state": state,
             }
         )
 
