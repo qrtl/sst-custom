@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="odoo_instance_tree" model="ir.ui.view">
+        <field name="name">odoo.instance.tree</field>
+        <field name="model">odoo.instance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="odoo_instance_form" model="ir.ui.view">
+        <field name="name">odoo.instance.form</field>
+        <field name="model">odoo.instance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="instance_url" />
+                        <field name="instance_db" />
+                        <field name="login" />
+                        <field name="password" password="True" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_odoo_instance" model="ir.actions.act_window">
+        <field name="name">Odoo Instance</field>
+        <field name="res_model">odoo.instance</field>
+    </record>
+    <menuitem
+        id="menu_odoo_instance"
+        name="Odoo Instance"
+        parent="base.menu_administration"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_odoo_instance_model"
+        action="action_odoo_instance"
+        parent="menu_odoo_instance"
+        sequence="20"
+    />
+</odoo>
